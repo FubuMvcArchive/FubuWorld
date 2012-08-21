@@ -11,6 +11,7 @@ src/CommonAssemblyInfo.cs
 _ReSharper.*
 *.csproj.user
 *.resharper.user
+*.DotSettings.user
 *.ReSharper.user
 *.suo
 *.cache
@@ -23,3 +24,5 @@ src/packages
 src/*/repositories.config
 .bottle-alias
 results
+bottles.cmd
+fubu.cmd
