@@ -1,0 +1,12 @@
+﻿/* This goes away when we fix it in FubuMVC.TwitterBootstrap */
+#Content
+{
+	min-height: 500px;
+	top: 70px;
+    position: relative;
+}
+
+.nav > li > a
+{
+	padding-top: 18px !important;
+}

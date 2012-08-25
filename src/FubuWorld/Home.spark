@@ -1,0 +1,11 @@
+﻿<use master="" />
+<viewdata model="FubuWorld.HomeViewModel" />
+<div class="row-fluid">
+  <div class="page-header">
+    <h1>
+      <Image src="fubuproject.png" />
+      <small>The Fubu Family of frameworks</small>
+    </h1>
+  </div>
+  <p>Some more content about the Fubu family.</p>
+</div>

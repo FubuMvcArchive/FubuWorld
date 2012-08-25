@@ -1,0 +1,65 @@
+﻿.container-fluid > .sidebar {
+    width: 280px;
+}
+
+.container-fluid > .content {
+    margin-left: 300px;
+}
+
+.container-fluid > .sidebar > .well > .form-stacked {
+    padding-left: 0;
+}
+
+#diagnostic-menu .nav > li > a
+{
+	padding-top: 18px !important;
+}
+
+#Content
+{
+	min-height: 600px;
+	top: 70px;
+}
+
+table.details th
+{
+	text-align:right;
+}
+
+table.details th span
+{
+	padding-right: 8px;
+}
+
+span.http-status-description
+{
+	margin-left: 8px;
+	font-style:italic;
+	font-weight: lighter;
+	font-size: smaller;
+}
+
+span.http-status-code
+{
+	font-weight: 700;
+}
+
+.duration-cell
+{
+	text-align: right;
+}
+
+.request-time
+{
+	text-align: right;
+}
+
+span.node-trace-duration
+{
+	float:right;
+	text-align:right;
+}
+
+/*
+<div class="node-trace-container">OutputCachingNode<span class="node-trace-duration">2</span></div>
+*/
