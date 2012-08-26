@@ -1,12 +1,39 @@
 ﻿/* This goes away when we fix it in FubuMVC.TwitterBootstrap */
 #Content
 {
-	min-height: 500px;
-	top: 70px;
-    position: relative;
+	min-height: 300px;
+    padding-top: 70px;
 }
 
 .nav > li > a
 {
 	padding-top: 18px !important;
+}
+
+.footer {
+    padding: 70px 0;
+    margin-top: 70px;
+    border-top: 1px solid #E5E5E5;
+    background-color: whiteSmoke;
+}
+
+.marketing {
+    text-align: center;
+    color: #5A5A5A;
+}
+
+.marketing h1 {
+    margin: 60px 0 10px;
+    font-size: 60px;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.marketing .marketing-byline {
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 25px;
+    color: #999;
 }

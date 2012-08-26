@@ -1,11 +1,6 @@
 ﻿<use master="" />
 <viewdata model="FubuWorld.HomeViewModel" />
-<div class="row-fluid">
-  <div class="page-header">
-    <h1>
-      <Image src="fubuproject.png" />
-      <small>The Fubu Family of frameworks</small>
-    </h1>
-  </div>
-  <p>Some more content about the Fubu family.</p>
+<div class="marketing">
+  <h1>Frameworks For Us, By Us.</h1>
+  <p class="marketing-byline">Frictionless, compositional, and compile-safe frameworks that bring the love back to .NET.</p>
 </div>

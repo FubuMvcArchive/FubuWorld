@@ -5,4 +5,5 @@
   <element name="Scripts">this.WriteScriptTags()</element>
   <element name="Styles">this.WriteCssTags()</element>
   <element name="Image">this.ImageFor('@src')</element>
+  <element name="Partial">this.Partial&lt;@model&gt;()</element>
 </bindings>

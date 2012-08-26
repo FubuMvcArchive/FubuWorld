@@ -9,6 +9,7 @@ namespace FubuWorld.StructureMap
             ObjectFactory.Initialize(x =>
             {
                 x.AddRegistry<CoreRegistry>();
+                x.AddRegistry<InfrastructureRegistry>();
             });
             return ObjectFactory.Container;
         }

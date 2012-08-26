@@ -8,19 +8,21 @@ namespace FubuWorld
     {
         public FubuWorldRegistry()
         {
-            Actions.IncludeClassesSuffixedWithController();
+            Actions
+                .IncludeClassesSuffixedWithController();
 
             Navigation<FubuWorldMenu>();
-
-            Routes.HomeIs<HomeController>(x => x.get_home());
-
-            Views.TryToAttachWithDefaultConventions();
-
             ApplyConvention<NavigationRootPolicy>(x =>
             {
                 x.ForKey(FubuWorldKeys.Main);
                 x.WrapWithChrome<FubuWorldChrome>();
             });
+
+            Routes
+                .HomeIs<HomeController>(x => x.get_home());
+
+            Views
+                .TryToAttachWithDefaultConventions();
         }
     }
 }
