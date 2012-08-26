@@ -32,7 +32,7 @@ BUILD_NUMBER = "#{BUILD_VERSION}.#{build_revision}"
 props = { :stage => BUILD_DIR, :artifacts => ARTIFACTS }
 
 desc "**Default**, compiles and runs tests"
-task :default => [:compile, :unit_test]
+task :default => [:compile, :virtual_dir, :unit_test]
 
 desc "Target used for the CI server"
 task :ci => [:update_all_dependencies, :default, :history, :package]
@@ -79,7 +79,7 @@ def waitfor(&block)
 end
 
 desc "Compiles the app"
-task :compile => [:restore_if_missing, :clean, :version] do
+task :compile => [:restore_if_missing, :aliases, :version] do
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/FubuWorld.sln', :clrversion => CLR_TOOLS_VERSION
 
   target = COMPILE_TARGET.downcase
@@ -93,6 +93,11 @@ end
 
 desc "Runs unit tests"
 task :test => [:unit_test]
+
+desc "Sets up the Bottles/Fubu aliases"
+task :aliases => [:restore_if_missing] do
+	bottles 'alias fubuworld src/FubuWorld'
+end 
 
 desc "Run unit tests"
 task :unit_test do 
@@ -109,13 +114,23 @@ task :unit_test do
   runner.executeTests tests
 end
 
+desc "Restarts the app"
+task :restart do
+	fubu "restart fubuworld"
+end
+
+desc "Set up the virtual directories"
+task :virtual_dir => [:compile] do
+  dir = File.expand_path("src/FubuWorld")
+  fubu("createvdir #{dir} fubuworld")
+end
+
 def self.bottles(args)
   bottles = Platform.runtime(Nuget.tool("Bottles", "BottleRunner.exe"))
   sh "#{bottles} #{args}"
 end
 
-
 def self.fubu(args)
-  fubu = Platform.runtime("src/fubu/bin/#{COMPILE_TARGET}/fubu.exe")
-  sh "#{fubu} #{args}"
+  fubu = Platform.runtime(Nuget.tool("FubuMVC.References", "fubu.exe"))
+  sh "#{fubu} #{args}" 
 end

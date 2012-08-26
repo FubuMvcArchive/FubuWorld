@@ -1,0 +1,5 @@
+﻿<use master="" />
+<viewdata model="FubuWorld.MVC.FubuMVCHomeModel" />
+<div class="marketing">
+  <h1>Hello, FubuMVC!</h1>
+</div>
