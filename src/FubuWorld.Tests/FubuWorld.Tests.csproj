@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bottles, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bottles.0.9.1.338\lib\Bottles.dll</HintPath>
+      <HintPath>..\packages\Bottles.0.9.1.360\lib\Bottles.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore, Version=0.9.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuCore.0.9.9.175\lib\FubuCore.dll</HintPath>
@@ -44,13 +44,13 @@
       <HintPath>..\packages\FubuMVC.References.0.9.8.1178\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Diagnostics">
-      <HintPath>..\packages\FubuMVC.Diagnostics.0.1.0.67\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Diagnostics.0.1.0.66\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.JQueryUI">
-      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.41\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.93\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.SlickGrid">
-      <HintPath>..\packages\FubuMVC.SlickGrid.0.0.0.40\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.SlickGrid.0.0.0.92\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Spark">
       <HintPath>..\packages\FubuMVC.Spark.0.9.8.1180\lib\net40\FubuMVC.Spark.dll</HintPath>
@@ -59,7 +59,7 @@
       <HintPath>..\packages\FubuMVC.References.0.9.8.1178\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.TwitterBootstrap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.46\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.98\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
     <Reference Include="FubuTestingSupport">
       <HintPath>..\packages\FubuTestingSupport.0.9.9.174\lib\FubuTestingSupport.dll</HintPath>
