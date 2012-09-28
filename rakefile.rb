@@ -131,6 +131,6 @@ def self.bottles(args)
 end
 
 def self.fubu(args)
-  fubu = Platform.runtime(Nuget.tool("FubuMVC.References", "fubu.exe"))
+  fubu = Platform.runtime(Nuget.tool("fubu", "fubu.exe"))
   sh "#{fubu} #{args}" 
 end
