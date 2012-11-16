@@ -9,9 +9,6 @@ namespace FubuWorld
     {
         public FubuWorldRegistry()
         {
-            Actions
-                .IncludeClassesSuffixedWithController();
-
             Policies.Add<FubuWorldMenu>();
             Policies.Add<NavigationRootPolicy>(x =>
             {
