@@ -1,5 +1,6 @@
 ﻿using FubuMVC.Core;
 using FubuMVC.Core.Registration.Conventions;
+using FubuMVC.Navigation;
 using FubuWorld.Navigation;
 
 namespace FubuWorld
@@ -11,18 +12,12 @@ namespace FubuWorld
             Actions
                 .IncludeClassesSuffixedWithController();
 
-            Navigation<FubuWorldMenu>();
-            ApplyConvention<NavigationRootPolicy>(x =>
+            Policies.Add<FubuWorldMenu>();
+            Policies.Add<NavigationRootPolicy>(x =>
             {
                 x.ForKey(FubuWorldKeys.Main);
                 x.WrapWithChrome<FubuWorldChrome>();
             });
-
-            Routes
-                .HomeIs<HomeController>(x => x.get_home());
-
-            Views
-                .TryToAttachWithDefaultConventions();
         }
     }
 }

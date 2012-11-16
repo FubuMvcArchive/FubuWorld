@@ -1,8 +1,8 @@
 ﻿namespace FubuWorld.MVC
 {
-    public class FubuMVCHomeController
+    public class FubuMVCHomeEndpoint
     {
-         public FubuMVCHomeModel get_mvc(FubuMVCHomeInput input)
+         public FubuMVCHomeModel get_fubumvc(FubuMVCHomeInput input)
          {
              return new FubuMVCHomeModel();
          }

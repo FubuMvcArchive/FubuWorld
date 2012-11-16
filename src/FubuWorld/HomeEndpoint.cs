@@ -1,8 +1,8 @@
 ﻿namespace FubuWorld
 {
-    public class HomeController
+    public class HomeEndpoint
     {
-         public HomeViewModel get_home()
+         public HomeViewModel Index()
          {
              return new HomeViewModel();
          }

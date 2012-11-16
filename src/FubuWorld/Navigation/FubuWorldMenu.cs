@@ -1,4 +1,4 @@
-﻿using FubuMVC.Core.UI.Navigation;
+﻿using FubuMVC.Navigation;
 
 namespace FubuWorld.Navigation
 {
@@ -7,7 +7,7 @@ namespace FubuWorld.Navigation
         public FubuWorldMenu()
         {
             ForMenu(FubuWorldKeys.Main);
-            Add += MenuNode.ForAction<HomeController>(FubuWorldKeys.Home, x => x.get_home());
+            Add += MenuNode.ForAction<HomeEndpoint>(FubuWorldKeys.Home, x => x.Index());
         }
     }
 }

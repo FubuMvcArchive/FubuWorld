@@ -1,4 +1,4 @@
-﻿using FubuMVC.Core.UI.Navigation;
+﻿using FubuMVC.Navigation;
 using FubuWorld.Navigation;
 
 namespace FubuWorld.MVC

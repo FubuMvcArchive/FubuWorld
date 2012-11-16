@@ -6,13 +6,7 @@ namespace FubuWorld.MVC
     {
         public FubuMVCWorldRegistry()
         {
-            Actions
-                .IncludeClassesSuffixedWithController();
-
-            Navigation<FubuMVCWorldMenu>();
-
-            Views
-                .TryToAttachWithDefaultConventions();
+            Policies.Add<FubuMVCWorldMenu>();
         }
     }
 }
