@@ -1,0 +1,46 @@
+﻿<use namespace="FubuWorld.Navigation" />
+<use namespace="FubuMVC.TwitterBootstrap" />
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="FubuWorld" />
+        <meta name="author" content="FubuWorld" />
+        <title>FubuWorld</title>
+        #{this.Asset('twitterbootstrap');}
+        <Stylesheet href="fubuworld.core.css" />
+        <Styles />
+        <use content="head" />
+    </head>
+    <body>
+        <div id="diagnostic-menu" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="brand" href="#">
+                        <Image src="fubuworld.png" />
+                    </a>
+                    !{this.TwitterNavBarFor(FubuWorldKeys.Main)}
+                </div>
+            </div>
+        </div>
+        <div id="Content" class="container-fluid">
+            <use content="view" />
+        </div>
+        <Partial model="PoweredByFubu" />
+        <footer class="footer">
+            <div class="container-fluid">
+                <use content="footer" />
+                <p class="pull-right">
+                    <a href="#">Back to top</a>
+                </p>
+                <p>
+                    Powered by <a href="#">FubuMVC</a>.
+                </p>
+                <p>
+                    Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>.
+                </p>
+            </div>
+        </footer>
+        <Scripts />
+    </body>
+</html>

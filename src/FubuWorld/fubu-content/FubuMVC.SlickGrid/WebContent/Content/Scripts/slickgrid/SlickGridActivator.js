@@ -7,6 +7,9 @@
 });
 
 
+    
+
+
 (function ($) {
     var slickGridColumns = function (columns) {
         var columnHash = {};
@@ -38,6 +41,8 @@
 
             return columns;
         }
+        
+
 
         this.getAllColumns = function(grid){
             var allColumns = {displayed:[], hidden:[]};
@@ -148,6 +153,20 @@ function makeSlickGrid(div) {
     var gridOptions = $.extend({}, defaultOptions, options);
     var grid = new Slick.Grid("#" + div.id, [], columns.getDisplayedColumns(), gridOptions);
 
+    grid.onSort.subscribe(function(e, args) {
+      var defaultSorter = function (a, b) {
+        var x = a[sortcol], y = b[sortcol];
+        return sortdir * (x == y ? 0 : (x > y ? 1 : -1));
+      };
+
+      sortdir = args.sortAsc ? 1 : -1;
+      sortcol = args.sortCol.field;
+
+      args.grid.getData().sort(args.sortCol.sorter || defaultSorter, sortdir);
+      args.grid.invalidateAllRows();
+      args.grid.render();
+    }); 
+
     div.getAllColumns = function(){
         return columns.getAllColumns(grid);
     }
@@ -157,6 +176,62 @@ function makeSlickGrid(div) {
 
         grid.setColumns(displayed);
         grid.render();
+    }
+
+    div.findRowIndex = function (search) {
+        var data = grid.getData();
+        
+        // Allow for DataView usage
+        if (typeof (data.getItems) == 'function') {
+            data = data.getItems();
+        }
+
+        var filter = function (row) {
+            for (prop in search) {
+                if (row[prop] != search[prop]) return false;
+            }
+
+            return true;
+        }
+
+        for (var i = 0; i < data.length; i++) {
+            if (filter(data[i])) return i;
+        }
+
+        return -1;
+    }
+    
+    div.findColumnIndex = function (name) {
+        return grid.getColumnIndex(name);
+    }
+
+    div.activateCell = function (search, columnName) {
+        var row = div.findRowIndex(search);
+        grid.scrollRowIntoView(row);
+
+        var column = 0;
+        if (columnName) {
+            column = grid.getColumnIndex(columnName);
+        }
+
+        grid.setActiveCell(row, column);
+    }
+
+    div.editCell = function (search, columnName) {
+        div.activateCell(search, columnName);
+        grid.editActiveCell();
+    }
+
+    div.markCell = function (search, columnName, id) {
+        var row = div.findRowIndex(search);
+        grid.scrollRowIntoView(row);
+
+        var column = 0;
+        if (columnName) {
+            column = grid.getColumnIndex(columnName);
+        }
+        $('#trace').text(row + ", " + column);
+        grid.getCellNode(row, column).id = id;
     }
 
     div.update = function (query) {
@@ -187,3 +262,6 @@ function makeSlickGrid(div) {
 
 
 }
+
+
+

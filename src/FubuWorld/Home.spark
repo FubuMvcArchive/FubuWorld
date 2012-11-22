@@ -1,5 +1,4 @@
-﻿<use master="" />
-<viewdata model="FubuWorld.HomeViewModel" />
+﻿<viewdata model="FubuWorld.HomeViewModel" />
 <div class="marketing">
   <h1>Frameworks For Us, By Us.</h1>
   <p class="marketing-byline">Frictionless, compositional, and compile-safe frameworks that bring the love back to .NET.</p>
