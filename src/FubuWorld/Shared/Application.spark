@@ -9,13 +9,13 @@
         <title>FubuWorld</title>
         #{this.Asset('twitterbootstrap');}
         <Stylesheet href="fubuworld.core.css" />
-        <Styles />
         <use content="head" />
+        <Styles />
     </head>
     <body>
         <div id="diagnostic-menu" class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <div class="container-fluid">
+                <div class="container">
                     <a class="brand" href="#">
                         <Image src="fubuworld.png" />
                     </a>
@@ -23,12 +23,12 @@
                 </div>
             </div>
         </div>
-        <div id="Content" class="container-fluid">
+        <use content="masthead" />
+        <div id="Content" class="container">
             <use content="view" />
         </div>
-        <Partial model="PoweredByFubu" />
         <footer class="footer">
-            <div class="container-fluid">
+            <div class="container">
                 <use content="footer" />
                 <p class="pull-right">
                     <a href="#">Back to top</a>

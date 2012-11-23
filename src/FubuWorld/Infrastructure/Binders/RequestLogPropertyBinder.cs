@@ -16,7 +16,8 @@ namespace FubuWorld.Infrastructure.Binders
 
         public void Bind(PropertyInfo property, IBindingContext context)
         {
-            property.SetValue(context.Object, context.Service<IRequestLogBuilder>().BuildForCurrentRequest(), null);
+            var log = context.Service<IRequestLogBuilder>().BuildForCurrentRequest();
+            property.SetValue(context.Object, log, null);
         }
     }
 }
