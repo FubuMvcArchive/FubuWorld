@@ -38,6 +38,13 @@
                         <p>Compact core library for Localization</p>
                     </div>
                 </li>
+                <li>
+                    <Image src="missing.png" />
+                    <div class="framework">
+                        <h3>StructureMap</h3>
+                        <p>A Dependency Injection/Inversion of Control tool for .NET</p>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="span2">&nbsp;</div>

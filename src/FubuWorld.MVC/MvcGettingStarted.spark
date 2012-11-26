@@ -1,0 +1,56 @@
+﻿<use master="Documentation" />
+<viewdata model="FubuWorld.MVC.MvcGettingStarted" />
+<content:masthead>
+    <div class="jumbotron subhead masthead">
+        <div class="container">
+            <h1>Getting started</h1>
+            <p>Everything you need to know to get up and running.</p>
+        </div>
+    </div>
+</content:masthead>
+<content:docnav>
+    <ul class="nav nav-list bs-docs-sidenav affix-top">
+        <li>
+            <a href="#topic1">
+                <i class="icon-chevron-right"></i> Topic 1
+            </a>
+        </li>
+        <li>
+            <a href="#topic2">
+                <i class="icon-chevron-right"></i> Topic 2
+            </a>
+        </li>
+    </ul>
+</content:docnav>
+<content:docs>
+    <section id="topic1">
+        <div class="page-header">
+            <h1>1. Topic 1</h1>
+        </div>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a est augue, sed dignissim dolor. Suspendisse in lobortis turpis. Donec vulputate semper lorem, sed pharetra arcu vehicula ut. Pellentesque sit amet lobortis metus.</p>
+        <p>Etiam viverra, ipsum nec malesuada pretium, tellus magna hendrerit nulla, eu pretium justo massa vel erat. Aenean aliquet, leo malesuada condimentum tempor, elit sem consequat urna, sit amet semper lorem ipsum ac felis. Praesent rutrum accumsan rutrum. Nam porta risus ut dui bibendum feugiat placerat sapien pulvinar. Suspendisse ornare urna sit amet erat bibendum posuere. Proin quis vulputate velit. Fusce lobortis vestibulum libero a pretium. Phasellus tincidunt pulvinar bibendum. Integer tincidunt justo et nisl vehicula porttitor. Nulla sollicitudin lorem quis urna sodales convallis. Aenean leo mi, fermentum et commodo id, tincidunt ac felis.</p>
+    </section>
+    <section id="topic2">
+        <div class="page-header">
+            <h1>2. Topic 2</h1>
+        </div>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a est augue, sed dignissim dolor. Suspendisse in lobortis turpis. Donec vulputate semper lorem, sed pharetra arcu vehicula ut. Pellentesque sit amet lobortis metus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean diam eros, vulputate eget porttitor ut, accumsan et libero. Integer congue dolor nec erat eleifend aliquam. Suspendisse potenti. In commodo leo commodo nunc semper sit amet pharetra diam luctus. Duis vel metus et eros sagittis tristique ut nec metus. Suspendisse potenti. Suspendisse tincidunt semper leo at porta. Aliquam vel purus nisi. Curabitur luctus euismod convallis. Nunc a leo erat. Vivamus nisl ante, rhoncus sed ullamcorper ac, venenatis eget magna.</p>
+        <p>Nulla sit amet massa aliquet ipsum fringilla pulvinar eget at velit. Nam enim diam, porttitor at aliquet vitae, ullamcorper ut nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum enim dui, fringilla id commodo ut, feugiat pretium nisl. Pellentesque non purus hendrerit libero elementum volutpat. Pellentesque elementum ultricies elit quis placerat. Donec scelerisque urna eu dui interdum dignissim. Morbi ut urna in lorem auctor lacinia id eu neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+        <p>Curabitur quis accumsan sem. In et neque leo, ut fringilla ante. Integer non commodo magna. Praesent tincidunt scelerisque nisl nec mattis. Curabitur semper, nunc ac scelerisque mollis, dui lorem congue magna, commodo interdum nisl nisl nec orci. Nunc velit erat, euismod ut sodales vitae, sagittis id arcu. Aenean in libero neque. Pellentesque et arcu diam. Vivamus nulla enim, sollicitudin quis semper vitae, placerat ultrices erat. Ut nec lacus odio. Integer fringilla sodales sodales.</p>
+        <p>Donec aliquet, velit ac scelerisque semper, dolor sem consequat nunc, eget dapibus quam libero eu eros. Vestibulum aliquet imperdiet justo, id fringilla massa cursus non. Proin faucibus magna ut metus porta mattis pellentesque sapien mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent faucibus, magna a porta porttitor, nulla risus sollicitudin elit, vitae vestibulum sapien risus quis massa. Mauris et lorem erat. Aliquam erat volutpat. Nulla eget sapien et purus commodo rhoncus. Phasellus condimentum, dolor sit amet tempus lobortis, justo elit pellentesque sapien, et blandit elit quam ac est. Pellentesque vel iaculis nisi. Nam eu rutrum elit. Vestibulum fringilla adipiscing arcu, cursus rutrum urna faucibus quis. Quisque eu enim ante, et porttitor ante. Suspendisse sit amet nibh felis. Nunc at felis non ante tincidunt auctor. Donec vitae diam in risus pretium dictum.</p>
+    </section>
+</content:docs>
+<content:footer>
+    <script type="text/javascript">
+        $(function() {
+            // side bar
+            $('.bs-docs-sidenav').affix({
+              offset: {
+                top: function () { return $window.width() <= 980 ? 290 : 210 }, 
+                bottom: 270
+              }
+            });
+        });
+    </script>
+</content:footer>

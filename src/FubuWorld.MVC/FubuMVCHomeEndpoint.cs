@@ -2,7 +2,7 @@
 {
     public class FubuMVCHomeEndpoint
     {
-         public FubuMVCHomeModel get_fubumvc(FubuMVCHomeInput input)
+         public FubuMVCHomeModel get_home(FubuMVCHomeInput input)
          {
              return new FubuMVCHomeModel();
          }

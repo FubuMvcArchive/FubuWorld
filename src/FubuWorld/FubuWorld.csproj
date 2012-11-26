@@ -149,7 +149,12 @@
     </Content>
     <None Include="PoweredByFubu.spark" />
     <None Include="Home.spark" />
-    <None Include="Shared\Application.spark" />
+    <None Include="Shared\Application.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Shared\Documentation.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Shared\_global.spark" />
   </ItemGroup>
   <ItemGroup />

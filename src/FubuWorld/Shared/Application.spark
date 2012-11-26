@@ -27,6 +27,7 @@
         <div id="Content" class="container">
             <use content="view" />
         </div>
+        <Scripts />
         <footer class="footer">
             <div class="container">
                 <use content="footer" />
@@ -41,6 +42,6 @@
                 </p>
             </div>
         </footer>
-        <Scripts />
+        
     </body>
 </html>

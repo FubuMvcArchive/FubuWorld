@@ -8,7 +8,14 @@ namespace FubuWorld.MVC
         public FubuMVCWorldMenu()
         {
             ForMenu(FubuWorldKeys.Main);
-            Add += MenuNode.ForInput<FubuMVCHomeInput>(FubuMVCWorldKeys.MvcHome);
+            var mvc = MenuNode.ForInput<FubuMVCHomeInput>(FubuMVCWorldKeys.MvcHome);
+            configureChildren(mvc);
+            Add += mvc;
+        }
+
+        private void configureChildren(MenuNode parent)
+        {
+            parent.AddChild(MenuNode.ForInput<MvcGettingStarted>(FubuMVCWorldKeys.GettingStarted));
         }
     }
 }
