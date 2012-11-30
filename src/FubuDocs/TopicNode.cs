@@ -6,65 +6,6 @@ using FubuCore.Util;
 
 namespace FubuDocs
 {
-    public abstract class Topic
-    {
-        private readonly string _title;
-
-        protected Topic(string title)
-        {
-            _title = title;
-        }
-
-        public string Title
-        {
-            get { return _title; }
-        }
-    }
-
-    public class TopicGraph
-    {
-        private readonly Cache<Type, TopicNode> _topics = new Cache<Type, TopicNode>();
-
-        public TopicGraph()
-        {
-            _topics.OnMissing = type => {
-                var node = findInChildren(type);
-                return node ?? new TopicNode(type);
-            };
-        }
-
-        private TopicNode findInChildren(Type topicType)
-        {
-            return _topics.GetAll().SelectMany(x => x.ChildNodes).FirstOrDefault(x => x.TopicType == topicType);
-        }
-
-        /// <summary>
-        /// Returns the TopicNode for a specified topic.  If the topic does not already exist,
-        /// it will be added as a new top level topic
-        /// </summary>
-        /// <param name="topicType"></param>
-        /// <returns></returns>
-        public TopicNode For(Type topicType)
-        {
-            return _topics[topicType];
-        }
-
-        public TopicNode For<T>() where T : Topic, new()
-        {
-            return For(typeof (T));
-        }
-
-        public IEnumerable<TopicNode> TopLevelNodes()
-        {
-            return _topics.GetAll().Where(x => x.Parent == null);
-        } 
-    }
-
-    public interface ITopicRegistration
-    {
-        void Modify(TopicGraph graph);
-    }
-
     public class TopicNode
     {
         public static TopicNode For<T>() where T : Topic, new()
@@ -261,18 +202,6 @@ namespace FubuDocs
             }
         }
 
-        /// <summary>
-        /// Adds a child topic and returns itself
-        /// </summary>
-        /// <typeparam name="T">The child topic</typeparam>
-        /// <param name="configuration">Optional configuration of the child topic</param>
-        /// <returns></returns>
-        public TopicNode Append<T>(Action<TopicNode> configuration = null) where T : Topic, new()
-        {
-            AppendChild(For<T>());
-
-            return this;
-        }
 
         public override string ToString()
         {

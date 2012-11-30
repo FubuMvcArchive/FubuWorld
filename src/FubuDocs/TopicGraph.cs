@@ -28,19 +28,54 @@ namespace FubuDocs
         /// </summary>
         /// <param name="topicType"></param>
         /// <returns></returns>
-        public TopicNode For(Type topicType)
+        public TopicNode Find(Type topicType)
         {
             return _topics[topicType];
         }
 
-        public TopicNode For<T>() where T : Topic, new()
+        public TopicNode Find<T>() where T : Topic, new()
         {
-            return For(typeof (T));
+            return Find(typeof (T));
+        }
+
+        public void Append<TParent, TChild>() where TParent : Topic, new() where TChild : Topic, new()
+        {
+            Find<TParent>().AppendChild(Find<TChild>());
         }
 
         public IEnumerable<TopicNode> TopLevelNodes()
         {
             return _topics.GetAll().Where(x => x.Parent == null);
         } 
+
+        public TopicExpression For<T>() where T : Topic, new()
+        {
+            return new TopicExpression(Find<T>(), this);
+        }
+
+        public class TopicExpression
+        {
+            private readonly TopicNode _parent;
+            private readonly TopicGraph _graph;
+
+            public TopicExpression(TopicNode parent, TopicGraph graph)
+            {
+                _parent = parent;
+                _graph = graph;
+            }
+
+            public TopicExpression Append<T>(Action<TopicExpression> childConfiguration = null) where T : Topic, new()
+            {
+                var child = _graph.Find<T>();
+                _parent.AppendChild(child);
+
+                if (childConfiguration != null)
+                {
+                    childConfiguration(new TopicExpression(child, _graph));
+                }
+
+                return this;
+            }
+        }
     }
 }
