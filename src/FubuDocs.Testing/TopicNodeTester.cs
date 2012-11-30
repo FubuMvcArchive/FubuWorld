@@ -221,13 +221,6 @@ namespace FubuDocs.Testing
         }
     }
 
-    public class ATopic : Topic
-    {
-        public ATopic() : base("A topic")
-        {
-        }
-    }
-
     public class BTopic : Topic
     {
         public BTopic()
