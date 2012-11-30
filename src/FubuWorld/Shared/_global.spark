@@ -1,4 +1,5 @@
 ﻿<use namespace="FubuCore" />
 ﻿<use namespace="FubuMVC.Core.UI" />
+﻿<use namespace="FubuMVC.Core.Assets" />
 <use namespace="FubuWorld" />
 <use namespace="System.Linq" />
