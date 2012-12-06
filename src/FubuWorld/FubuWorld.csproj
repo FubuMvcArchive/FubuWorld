@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="HomeEndpoint.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
+    <Compile Include="Infrastructure\TopicGraphActivator.cs" />
     <Compile Include="Navigation\FubuWorldKeys.cs" />
     <Compile Include="Navigation\FubuWorldMenu.cs" />
     <Compile Include="PoweredByFubu.cs" />
@@ -160,7 +161,12 @@
     </None>
     <None Include="Shared\_global.spark" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FubuDocs\FubuDocs.csproj">
+      <Project>{67676EEC-F448-4CFE-8A33-E4C26E9FDF35}</Project>
+      <Name>FubuDocs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

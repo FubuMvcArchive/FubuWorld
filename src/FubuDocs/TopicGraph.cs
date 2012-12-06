@@ -7,6 +7,8 @@ namespace FubuDocs
 {
     public class TopicGraph
     {
+        public static readonly TopicGraph AllTopics = new TopicGraph();
+
         private readonly Cache<Type, TopicNode> _topics = new Cache<Type, TopicNode>();
 
         public TopicGraph()

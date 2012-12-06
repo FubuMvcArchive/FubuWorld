@@ -41,16 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Topic1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FubuDocs\FubuDocs.csproj">
       <Project>{67676EEC-F448-4CFE-8A33-E4C26E9FDF35}</Project>
       <Name>FubuDocs</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Topic1.spark" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

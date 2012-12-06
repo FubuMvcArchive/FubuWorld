@@ -51,6 +51,7 @@
     <Compile Include="Topic.cs" />
     <Compile Include="TopicGraph.cs" />
     <Compile Include="TopicNode.cs" />
+    <Compile Include="TopicRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
