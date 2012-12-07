@@ -1,33 +1,28 @@
-using FubuDocs;
-using FubuWorld.HowTo;
-using FubuWorld.HowTo.FubuDocsRunner;
-using FubuWorld.HowTo.Topics;
-using FubuWorld.HowTo.ViewHelpers;
-
 namespace FubuWorld
 {
-    public class FubuWorldRootTopicRegistry : TopicRegistry
+    public class FubuWorldRootTopicRegistry : FubuDocs.TopicRegistry
     {
         public FubuWorldRootTopicRegistry()
         {
-            For<FubuWorldRoot>().Append<StartingANewFubuworldDocumentationProject>();
-            For<FubuWorldRoot>().Append<TheTopicNavigationStructure>();
-            For<FubuWorldRoot>().Append<WorkingWithFubudocsrunner>();
-            For<FubuWorldRoot>().Append<DocumentationViewHelpers>();
+            For<FubuWorld.FubuWorldRoot>().Append<FubuWorld.HowTo.StartingANewFubuworldDocumentationProject>();
+            For<FubuWorld.FubuWorldRoot>().Append<FubuWorld.HowTo.Topics.TheTopicNavigationStructure>();
+            For<FubuWorld.FubuWorldRoot>().Append<FubuWorld.HowTo.FubuDocsRunner.WorkingWithFubudocsrunner>();
+            For<FubuWorld.FubuWorldRoot>().Append<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>();
 
-            For<TheTopicNavigationStructure>().Append<TopicNavigation>();
-            For<TheTopicNavigationStructure>().Append<AddingANewTopic>();
-            For<TheTopicNavigationStructure>().Append<SparkLayoutForATopic>();
+            For<FubuWorld.HowTo.Topics.TheTopicNavigationStructure>().Append<FubuWorld.HowTo.Topics.TopicNavigation>();
+            For<FubuWorld.HowTo.Topics.TheTopicNavigationStructure>().Append<FubuWorld.HowTo.Topics.AddingANewTopic>();
+            For<FubuWorld.HowTo.Topics.TheTopicNavigationStructure>().Append<FubuWorld.HowTo.Topics.SparkLayoutForATopic>();
 
-            For<WorkingWithFubudocsrunner>().Append<RunningADocumentationProject>();
-            For<WorkingWithFubudocsrunner>().Append<AddASingleTopic>();
-            For<WorkingWithFubudocsrunner>().Append<GeneratingTheEntireTopicTree>();
-            For<WorkingWithFubudocsrunner>().Append<BottlingTheFubuworldProject>();
+            For<FubuWorld.HowTo.FubuDocsRunner.WorkingWithFubudocsrunner>().Append<FubuWorld.HowTo.FubuDocsRunner.RunningADocumentationProject>();
+            For<FubuWorld.HowTo.FubuDocsRunner.WorkingWithFubudocsrunner>().Append<FubuWorld.HowTo.FubuDocsRunner.AddASingleTopic>();
+            For<FubuWorld.HowTo.FubuDocsRunner.WorkingWithFubudocsrunner>().Append<FubuWorld.HowTo.FubuDocsRunner.GeneratingTheEntireTopicTree>();
+            For<FubuWorld.HowTo.FubuDocsRunner.WorkingWithFubudocsrunner>().Append<FubuWorld.HowTo.FubuDocsRunner.BottlingTheFubuworldProject>();
 
-            For<DocumentationViewHelpers>().Append<EmbeddingCodeSnippets>();
-            For<DocumentationViewHelpers>().Append<EmbeddingDiagnosticsVisualizations>();
-            For<DocumentationViewHelpers>().Append<EmbeddingUnitTestResults>();
-            For<DocumentationViewHelpers>().Append<EmbeddingCommandLineResults>();
+            For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.CodeSnippets>();
+            For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.DiagnosticsVisualizations>();
+            For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.UnitTestResults>();
+            For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.CommandLineResults>();
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FubuMVC.Core;
+using FubuWorld.Infrastructure;
 using FubuWorld.Navigation;
 
 namespace FubuWorld
@@ -8,6 +9,7 @@ namespace FubuWorld
         public FubuWorldRegistry()
         {
             Policies.Add<FubuWorldMenu>();
+            Policies.Add<TopicUrlPolicy>();
         }
     }
 }

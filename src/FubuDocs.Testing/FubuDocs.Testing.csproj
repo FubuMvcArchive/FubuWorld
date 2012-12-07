@@ -74,6 +74,7 @@
     <Compile Include="Runner\TopicXmlStackTester.cs" />
     <Compile Include="TopicGraphTester.cs" />
     <Compile Include="TopicNodeTester.cs" />
+    <Compile Include="TopicTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FubuDocsRunner\FubuDocsRunner.csproj">

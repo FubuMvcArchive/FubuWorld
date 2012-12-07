@@ -147,13 +147,14 @@
     <Compile Include="HowTo\Topics\SparkLayoutForATopic.cs" />
     <Compile Include="HowTo\Topics\TheTopicNavigationStructure.cs" />
     <Compile Include="HowTo\Topics\TopicNavigation.cs" />
+    <Compile Include="HowTo\ViewHelpers\CodeSnippets.cs" />
+    <Compile Include="HowTo\ViewHelpers\CommandLineResults.cs" />
+    <Compile Include="HowTo\ViewHelpers\DiagnosticsVisualizations.cs" />
     <Compile Include="HowTo\ViewHelpers\DocumentationViewHelpers.cs" />
-    <Compile Include="HowTo\ViewHelpers\EmbeddingCodeSnippets.cs" />
-    <Compile Include="HowTo\ViewHelpers\EmbeddingCommandLineResults.cs" />
-    <Compile Include="HowTo\ViewHelpers\EmbeddingDiagnosticsVisualizations.cs" />
-    <Compile Include="HowTo\ViewHelpers\EmbeddingUnitTestResults.cs" />
+    <Compile Include="HowTo\ViewHelpers\UnitTestResults.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
     <Compile Include="Infrastructure\TopicGraphActivator.cs" />
+    <Compile Include="Infrastructure\TopicUrlPolicy.cs" />
     <Compile Include="Navigation\FubuWorldKeys.cs" />
     <Compile Include="Navigation\FubuWorldMenu.cs" />
     <Compile Include="PoweredByFubu.cs" />
@@ -180,11 +181,11 @@
     <None Include="HowTo\Topics\SparkLayoutForATopic.spark" />
     <None Include="HowTo\Topics\TheTopicNavigationStructure.spark" />
     <None Include="HowTo\Topics\TopicNavigation.spark" />
+    <None Include="HowTo\ViewHelpers\CodeSnippets.spark" />
+    <None Include="HowTo\ViewHelpers\CommandLineResults.spark" />
+    <None Include="HowTo\ViewHelpers\DiagnosticsVisualizations.spark" />
     <None Include="HowTo\ViewHelpers\DocumentationViewHelpers.spark" />
-    <None Include="HowTo\ViewHelpers\EmbeddingCodeSnippets.spark" />
-    <None Include="HowTo\ViewHelpers\EmbeddingCommandLineResults.spark" />
-    <None Include="HowTo\ViewHelpers\EmbeddingDiagnosticsVisualizations.spark" />
-    <None Include="HowTo\ViewHelpers\EmbeddingUnitTestResults.spark" />
+    <None Include="HowTo\ViewHelpers\UnitTestResults.spark" />
     <None Include="PoweredByFubu.spark" />
     <None Include="Home.spark" />
     <None Include="Shared\Application.spark">
@@ -210,7 +211,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>15598</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -21,10 +21,10 @@
   
     <ViewHelpers>
       <Topic title="Documentation View Helpers">
-        <Topic title="Embedding Code Snippets"/>
-        <Topic title="Embedding Diagnostics Visualizations"/>
-        <Topic title="Embedding Unit Test Results"/>
-        <Topic title="Embedding Command Line Results"/>
+        <Topic title="Code Snippets"/>
+        <Topic title="Diagnostics Visualizations"/>
+        <Topic title="Unit Test Results"/>
+        <Topic title="Command Line Results"/>
       </Topic>
     </ViewHelpers>
 
