@@ -70,6 +70,8 @@
     <Compile Include="ATopic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runner\AddTopicInputTester.cs" />
+    <Compile Include="Runner\TopicParserTester.cs" />
+    <Compile Include="Runner\TopicXmlStackTester.cs" />
     <Compile Include="TopicGraphTester.cs" />
     <Compile Include="TopicNodeTester.cs" />
   </ItemGroup>
@@ -85,6 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Topics.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

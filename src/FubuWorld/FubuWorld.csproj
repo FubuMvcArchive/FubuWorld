@@ -117,6 +117,7 @@
     <Content Include="content\styles\toastr.css" />
     <Content Include="Global.asax" />
     <Content Include="Shared\bindings.xml" />
+    <Content Include="Topics.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -154,6 +155,9 @@
     <None Include="PoweredByFubu.spark" />
     <None Include="Home.spark" />
     <None Include="Shared\Application.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Shared\Topic.spark">
       <SubType>Designer</SubType>
     </None>
     <None Include="Shared\Documentation.spark">

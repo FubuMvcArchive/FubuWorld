@@ -82,6 +82,8 @@
     <Compile Include="AddTopicCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TopicParser.cs" />
+    <Compile Include="TopicRequest.cs" />
     <Compile Include="WebsiteDirectoryFinder.cs" />
   </ItemGroup>
   <ItemGroup>

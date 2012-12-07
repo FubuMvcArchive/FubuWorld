@@ -10,10 +10,10 @@ namespace FubuDocs.Testing.Runner
         [Test]
         public void determine_the_name_from_the_title()
         {
-            new AddTopicInput {Title = "Something"}.GetName().ShouldEqual("Something");
-            new AddTopicInput {Title = "Something else altogether"}.GetName().ShouldEqual("SomethingElseAltogether");
-            new AddTopicInput {Title = "Something else, altogether"}.GetName().ShouldEqual("SomethingElseAltogether");
-            new AddTopicInput {Title = "Something else - altogether"}.GetName().ShouldEqual("SomethingElseAltogether");
+            new AddTopicInput {Title = "Something"}.ToRequest().TopicName.ShouldEqual("Something");
+            new AddTopicInput { Title = "Something else altogether" }.ToRequest().TopicName.ShouldEqual("SomethingElseAltogether");
+            new AddTopicInput { Title = "Something else, altogether" }.ToRequest().TopicName.ShouldEqual("SomethingElseAltogether");
+            new AddTopicInput { Title = "Something else - altogether" }.ToRequest().TopicName.ShouldEqual("SomethingElseAltogether");
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace FubuDocs.Testing.Runner
                 Title = "Something else"
             };
 
-            input.GetName()
+            input.ToRequest().TopicName
                  .ShouldEqual(input.NameFlag);
         }
     }
