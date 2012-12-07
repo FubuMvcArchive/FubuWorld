@@ -16,15 +16,15 @@ namespace FubuDocsRunner
         public static readonly string TopicClassTemplate = @"
 using {0};
 
-namespace {1};
-{
+namespace {1}
+{{
     public class {2} : Topic
-    {
+    {{
         public {2}() : base('{3}')
-        {
-        }
-    }
-}".Replace("'", "\"");
+        {{
+        }}
+    }}
+}}".Replace("'", "\"");
 
         private string _topicName;
 
@@ -55,7 +55,7 @@ namespace {1};
             if (!fileSystem.FileExists(sparkFile))
             {
                 Console.WriteLine("Writing " + sparkFile);
-                var content = SparkTemplate.ToFormat(FullTopicClassName);
+                var content = SparkTemplate.ToFormat(FullTopicClassName, Environment.NewLine);
 
                 fileSystem.WriteStringToFile(sparkFile, content);
             }

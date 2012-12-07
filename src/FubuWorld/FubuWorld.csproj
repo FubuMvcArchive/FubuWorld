@@ -131,10 +131,27 @@
   <ItemGroup>
     <Compile Include="FubuWorldApplication.cs" />
     <Compile Include="FubuWorldRegistry.cs" />
+    <Compile Include="FubuWorldRoot.cs" />
+    <Compile Include="FubuWorldRootTopicRegistry.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HomeEndpoint.cs" />
+    <Compile Include="HowTo\FubuDocsRunner\AddASingleTopic.cs" />
+    <Compile Include="HowTo\FubuDocsRunner\BottlingTheFubuworldProject.cs" />
+    <Compile Include="HowTo\FubuDocsRunner\GeneratingTheEntireTopicTree.cs" />
+    <Compile Include="HowTo\FubuDocsRunner\RunningADocumentationProject.cs" />
+    <Compile Include="HowTo\FubuDocsRunner\WorkingWithFubudocsrunner.cs" />
+    <Compile Include="HowTo\StartingANewFubuworldDocumentationProject.cs" />
+    <Compile Include="HowTo\Topics\AddingANewTopic.cs" />
+    <Compile Include="HowTo\Topics\SparkLayoutForATopic.cs" />
+    <Compile Include="HowTo\Topics\TheTopicNavigationStructure.cs" />
+    <Compile Include="HowTo\Topics\TopicNavigation.cs" />
+    <Compile Include="HowTo\ViewHelpers\DocumentationViewHelpers.cs" />
+    <Compile Include="HowTo\ViewHelpers\EmbeddingCodeSnippets.cs" />
+    <Compile Include="HowTo\ViewHelpers\EmbeddingCommandLineResults.cs" />
+    <Compile Include="HowTo\ViewHelpers\EmbeddingDiagnosticsVisualizations.cs" />
+    <Compile Include="HowTo\ViewHelpers\EmbeddingUnitTestResults.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
     <Compile Include="Infrastructure\TopicGraphActivator.cs" />
     <Compile Include="Navigation\FubuWorldKeys.cs" />
@@ -152,6 +169,22 @@
     <Content Include="fubuworld.asset.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="FubuWorldRoot.spark" />
+    <None Include="HowTo\FubuDocsRunner\AddASingleTopic.spark" />
+    <None Include="HowTo\FubuDocsRunner\BottlingTheFubuworldProject.spark" />
+    <None Include="HowTo\FubuDocsRunner\GeneratingTheEntireTopicTree.spark" />
+    <None Include="HowTo\FubuDocsRunner\RunningADocumentationProject.spark" />
+    <None Include="HowTo\FubuDocsRunner\WorkingWithFubudocsrunner.spark" />
+    <None Include="HowTo\StartingANewFubuworldDocumentationProject.spark" />
+    <None Include="HowTo\Topics\AddingANewTopic.spark" />
+    <None Include="HowTo\Topics\SparkLayoutForATopic.spark" />
+    <None Include="HowTo\Topics\TheTopicNavigationStructure.spark" />
+    <None Include="HowTo\Topics\TopicNavigation.spark" />
+    <None Include="HowTo\ViewHelpers\DocumentationViewHelpers.spark" />
+    <None Include="HowTo\ViewHelpers\EmbeddingCodeSnippets.spark" />
+    <None Include="HowTo\ViewHelpers\EmbeddingCommandLineResults.spark" />
+    <None Include="HowTo\ViewHelpers\EmbeddingDiagnosticsVisualizations.spark" />
+    <None Include="HowTo\ViewHelpers\EmbeddingUnitTestResults.spark" />
     <None Include="PoweredByFubu.spark" />
     <None Include="Home.spark" />
     <None Include="Shared\Application.spark">
