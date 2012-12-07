@@ -157,6 +157,7 @@
     <Compile Include="Infrastructure\TopicUrlPolicy.cs" />
     <Compile Include="Navigation\FubuWorldKeys.cs" />
     <Compile Include="Navigation\FubuWorldMenu.cs" />
+    <Compile Include="Navigation\TopicTreeBuilder.cs" />
     <Compile Include="PoweredByFubu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureMap\CoreRegistry.cs" />

@@ -1,2 +1,8 @@
 <viewdata model="FubuWorld.FubuWorldRoot"/>
 <use master="Topic" />
+
+<content:main>
+<h1>Authoring Documentation with FubuWorld</h1>
+
+<TableOfContents />
+</content:main>

@@ -4,6 +4,6 @@
         <use content="docnav" />
     </div>
     <div class="span9">
-        <use content="docs" />
+        <use content="main" />
     </div>
 </div>

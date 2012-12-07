@@ -6,4 +6,5 @@
   <element name="Styles">this.WriteCssTags()</element>
   <element name="Image">this.ImageFor('@src')</element>
   <element name="Partial">this.Partial&lt;@model&gt;()</element>
+  <element name="TableOfContents">this.TableOfContents()</element>
 </bindings>

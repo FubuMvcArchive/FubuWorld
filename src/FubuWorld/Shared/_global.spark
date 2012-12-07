@@ -2,4 +2,5 @@
 ﻿<use namespace="FubuMVC.Core.UI" />
 ﻿<use namespace="FubuMVC.Core.Assets" />
 <use namespace="FubuWorld" />
+<use namespace="FubuWorld.Navigation" />
 <use namespace="System.Linq" />
