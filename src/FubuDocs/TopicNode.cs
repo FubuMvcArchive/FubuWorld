@@ -225,5 +225,37 @@ namespace FubuDocs
         {
             return (_topicType != null ? _topicType.GetHashCode() : 0);
         }
+
+        public TopicNode FindNext()
+        {
+            if (_firstChild != null) return _firstChild;
+
+            return findNextTopicNotChild();
+        }
+
+        private TopicNode findNextTopicNotChild()
+        {
+            if (NextSibling != null) return NextSibling;
+
+            if (Parent == null) return null;
+
+            return Parent.findNextTopicNotChild();
+        }
+
+        public TopicNode FindPrevious()
+        {
+            if (PreviousSibling != null) return PreviousSibling;
+
+            return Parent;
+        }
+
+        public TopicNode FindIndex()
+        {
+            if (Parent == null) return null;
+
+            if (Parent != null && Parent.Parent == null) return Parent;
+
+            return Parent.FindIndex();
+        }
     }
 }

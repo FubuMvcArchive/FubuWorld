@@ -219,6 +219,89 @@ namespace FubuDocs.Testing
 
             initial_state_nulls();
         }
+
+        [Test]
+        public void find_next_with_sibling()
+        {
+            a.InsertAfter(b);
+            a.FindNext().ShouldEqual(b);
+        }
+
+        [Test]
+        public void find_Next_with_children()
+        {
+            a.AppendChild(b);
+            a.InsertAfter(c);
+
+            a.FindNext().ShouldEqual(b);
+        }
+
+        [Test]
+        public void find_next_going_up_one_level_to_do_so()
+        {
+            a.AppendChild(b);
+            a.InsertAfter(c);
+
+            b.FindNext().ShouldEqual(c);
+
+        }
+
+        [Test]
+        public void find_next_going_up_two_levels_to_do_so()
+        {
+            a.AppendChild(b);
+            b.AppendChild(c);
+            a.InsertAfter(d);
+
+            c.FindNext().ShouldEqual(d);
+        }
+
+        [Test]
+        public void there_is_no_next()
+        {
+            a.AppendChild(b);
+            b.AppendChild(c);
+
+            c.FindNext().ShouldBeNull();
+        }
+
+        [Test]
+        public void find_previous_with_sibling()
+        {
+            a.InsertAfter(b);
+            b.FindPrevious().ShouldEqual(a);
+        }
+
+        [Test]
+        public void find_previous_going_to_the_parent()
+        {
+            a.AppendChild(b);
+            b.FindPrevious().ShouldEqual(a);
+        }
+
+        [Test]
+        public void find_previous_with_no_parent_or_sibling()
+        {
+            a.FindPrevious().ShouldBeNull();
+            a.AppendChild(b);
+            a.FindPrevious().ShouldBeNull();
+        }
+
+        [Test]
+        public void find_index_walks_up_top()
+        {
+            a.AppendChild(b);
+            b.AppendChild(c);
+            c.AppendChild(d);
+            d.AppendChild(e);
+
+            e.FindIndex().ShouldEqual(a);
+            d.FindIndex().ShouldEqual(a);
+            c.FindIndex().ShouldEqual(a);
+            b.FindIndex().ShouldEqual(a);
+
+            a.FindIndex().ShouldBeNull();
+        }
     }
 
     public class BTopic : Topic

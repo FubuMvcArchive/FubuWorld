@@ -1,7 +1,7 @@
 ﻿<use master="Application" />
-<div class="row">
+<div class="row" style="margin-top:25px">
     <div class="span3 bs-docs-sidebar">
-        <use content="docnav" />
+        !{this.LeftTopicNavigation()}
     </div>
     <div class="span9">
         <use content="main" />
