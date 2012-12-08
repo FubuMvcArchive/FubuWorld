@@ -1,4 +1,5 @@
 ﻿using System;
+using FubuCore.Reflection;
 
 namespace FubuDocs
 {
@@ -23,7 +24,15 @@ namespace FubuDocs
 
             var name = fullname.Substring(assemblyName.Length);
 
-            return name.TrimStart('.').Replace('.', '/').ToLower();
+            var url = name.TrimStart('.').Replace('.', '/').ToLower();
+
+
+            type.Assembly.ForAttribute<UrlRootAttribute>(att => {
+                url = att.Root + "/" + url;
+            });
+
+
+            return url;
         }
     }
 }
