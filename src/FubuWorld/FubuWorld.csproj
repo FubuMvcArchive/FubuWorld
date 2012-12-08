@@ -111,12 +111,15 @@
     <Content Include="content\images\header-bg.jpg" />
     <Content Include="content\scripts\request-diagnostics.js" />
     <Content Include="content\scripts\toastr.js" />
+    <Content Include="content\scripts\topics.js" />
     <Content Include="content\styles\home.css" />
     <Content Include="content\styles\fubuworld.core.css" />
     <Content Include="content\styles\toastr-responsive.css" />
     <Content Include="content\styles\toastr.css" />
     <Content Include="Global.asax" />
-    <Content Include="Shared\bindings.xml" />
+    <Content Include="Shared\bindings.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Topics.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -157,6 +160,7 @@
     <Compile Include="Infrastructure\TopicUrlPolicy.cs" />
     <Compile Include="Navigation\FubuWorldKeys.cs" />
     <Compile Include="Navigation\FubuWorldMenu.cs" />
+    <Compile Include="Navigation\FubuWorldPageExtensions.cs" />
     <Compile Include="Navigation\TopicTreeBuilder.cs" />
     <Compile Include="Navigation\TopLeftTopicNavigationTag.cs" />
     <Compile Include="PoweredByFubu.cs" />
@@ -183,7 +187,9 @@
     <None Include="HowTo\Topics\SparkLayoutForATopic.spark" />
     <None Include="HowTo\Topics\TheTopicNavigationStructure.spark" />
     <None Include="HowTo\Topics\TopicNavigation.spark" />
-    <None Include="HowTo\ViewHelpers\CodeSnippets.spark" />
+    <None Include="HowTo\ViewHelpers\CodeSnippets.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="HowTo\ViewHelpers\CommandLineResults.spark" />
     <None Include="HowTo\ViewHelpers\DiagnosticsVisualizations.spark" />
     <None Include="HowTo\ViewHelpers\DocumentationViewHelpers.spark" />

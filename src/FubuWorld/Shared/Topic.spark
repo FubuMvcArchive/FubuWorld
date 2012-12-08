@@ -1,11 +1,19 @@
 ﻿<use master="Application" />
 
+
+
 <content:navigation>
   !{this.TopTopicNavigation()}
 </content:navigation>
 
+<Script src="topics.js"/>
 <div class="row" style="margin-top:25px">
     <div class="span3 bs-docs-sidebar">
+        <ul id="page-toc" class="nav nav-list bs-docs-sidenav affix">
+        </ul>
+
+        <br/>
+      
         !{this.LeftTopicNavigation()}
     </div>
     <div class="span9">

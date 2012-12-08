@@ -1,2 +1,46 @@
 <viewdata model="FubuWorld.HowTo.ViewHelpers.CodeSnippets"/>
 <use master="Topic" />
+
+<content:main>
+
+<Section title="C# Code" id="csharp">
+  stuff
+</Section>
+
+<Section title="Xml" id="xml">
+  stuff
+</Section>
+
+<Section title="Html" id="html">
+  stuff
+</Section>
+
+<Section title="Spark Views" id="spark">
+  stuff
+  as;lkdfj
+  ;laskjf
+  ;lkasdjf
+  ;lkasdfj
+  ;lkasdfj
+  ;laksdjf
+  ;laksdfj
+  lkjsdf;
+  <p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p><p>more</p>
+</Section>
+
+<Section title="Razor Views" id="razor">
+  stuff
+</Section>
+
+<Section title="CSS Files" id="css">
+  stuff
+</Section>
+
+<Section title="Link to a File" id="wholefile">
+  stuff
+</Section>
+
+<Section title="Embed a file" id="embedfile">
+  stuff
+</Section>
+</content:main>

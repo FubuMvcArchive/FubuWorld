@@ -12,7 +12,7 @@
         <use content="head" />
         <Styles />
     </head>
-    <body>
+    <body data-spy="scroll" data-target=".bs-docs-sidebar">
         <div id="diagnostic-menu" class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
