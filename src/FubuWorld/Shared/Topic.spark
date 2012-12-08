@@ -1,9 +1,15 @@
 ﻿<use master="Application" />
+
+<content:navigation>
+  !{this.TopTopicNavigation()}
+</content:navigation>
+
 <div class="row" style="margin-top:25px">
     <div class="span3 bs-docs-sidebar">
         !{this.LeftTopicNavigation()}
     </div>
     <div class="span9">
+        !{this.Get<TopicTreeBuilder>().Title()}
         <use content="main" />
     </div>
 </div>

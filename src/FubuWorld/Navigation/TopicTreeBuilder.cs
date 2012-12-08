@@ -20,6 +20,11 @@ namespace FubuWorld.Navigation
         {
             return page.Get<TopicTreeBuilder>().BuildLeftTopicLinks().ToTagList();
         }
+
+        public static TagList TopTopicNavigation(this IFubuPage page)
+        {
+            return page.Get<TopicTreeBuilder>().BuildTopTopicLinks().ToTagList();
+        }
     }
 
     public class TopicTreeBuilder
@@ -39,6 +44,17 @@ namespace FubuWorld.Navigation
                 return graph.Find(topic.GetType());
             });
         }
+
+        public HtmlTag Title()
+        {
+            return new HtmlTag("h1").Text(_topic.Value.Title);
+        }
+        public IEnumerable<HtmlTag> BuildTopTopicLinks()
+        {
+            yield return new TopLeftTopicNavigationTag(_topic.Value, _urls);
+            yield return new TopRightTopicNavigationTag(_topic.Value, _urls);
+        }
+
 
         public IEnumerable<HtmlTag> BuildLeftTopicLinks()
         {

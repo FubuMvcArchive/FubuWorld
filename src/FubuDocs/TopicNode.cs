@@ -6,6 +6,7 @@ using FubuCore.Util;
 
 namespace FubuDocs
 {
+    // TODO -- make this thing be IUrlRegistry aware!!
     public class TopicNode
     {
         public static TopicNode For<T>() where T : Topic, new()

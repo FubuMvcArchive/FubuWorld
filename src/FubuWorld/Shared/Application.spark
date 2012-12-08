@@ -20,6 +20,7 @@
                         <Image src="fubuworld.png" />
                     </a>
                     !{this.TwitterNavBarFor(FubuWorldKeys.Main)}
+                    <use content="navigation" />
                 </div>
             </div>
         </div>
