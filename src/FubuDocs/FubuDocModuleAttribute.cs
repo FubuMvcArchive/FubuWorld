@@ -3,11 +3,11 @@
 namespace FubuDocs
 {
     [AttributeUsage(AttributeTargets.Assembly)]
-    public class UrlRootAttribute : Attribute
+    public class FubuDocModuleAttribute : Attribute
     {
         private readonly string _root;
 
-        public UrlRootAttribute(string root)
+        public FubuDocModuleAttribute(string root)
         {
             _root = root;
         }
