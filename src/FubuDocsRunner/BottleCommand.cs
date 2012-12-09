@@ -6,6 +6,7 @@ using FubuCore;
 using FubuDocs;
 using FubuMVC.Core;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FubuDocsRunner
 {
@@ -51,7 +52,10 @@ namespace FubuDocsRunner
                         list.Insert(0, @using);
                     }
 
-                    list.Add("[assembly: FubuDocModule(\"CHANGEME\")]");
+                    if (!list.Any(x => x.Contains("FubuDocModule")))
+                    {
+                        list.Add("[assembly: FubuDocModule(\"CHANGEME\")]");
+                    }
                 });
             }
         }

@@ -159,6 +159,7 @@
     <Compile Include="HowTo\ViewHelpers\DocumentationViewHelpers.cs" />
     <Compile Include="HowTo\ViewHelpers\UnitTestResults.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
+    <Compile Include="Infrastructure\FubuDocModuleAttributePackageLoader.cs" />
     <Compile Include="Infrastructure\TopicGraphActivator.cs" />
     <Compile Include="Infrastructure\TopicUrlPolicy.cs" />
     <Compile Include="Navigation\FubuWorldKeys.cs" />
@@ -211,6 +212,10 @@
     <None Include="Shared\_global.spark" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FakeDocs\FakeDocs.csproj">
+      <Project>{B3D34C58-5C31-4D33-ADA2-61396F4156F3}</Project>
+      <Name>FakeDocs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FubuDocs\FubuDocs.csproj">
       <Project>{67676EEC-F448-4CFE-8A33-E4C26E9FDF35}</Project>
       <Name>FubuDocs</Name>

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using Bottles;
 using Bottles.Diagnostics;
+using FubuCore;
 using FubuDocs;
 using FubuMVC.Core.Registration;
-using FubuCore;
-using System.Linq;
 
 namespace FubuWorld.Infrastructure
 {
@@ -17,10 +16,11 @@ namespace FubuWorld.Infrastructure
             pool.AddAssemblies(AppDomain.CurrentDomain.GetAssemblies());
             pool.IgnoreExportTypeFailures = true;
 
-            pool.TypesMatching(type => type.IsConcreteWithDefaultCtor() && type.CanBeCastTo<TopicRegistry>()).Each(type => {
-                // All we have to do is create it to work
-                Activator.CreateInstance(type);
-            });
+            pool.TypesMatching(type => type.IsConcreteWithDefaultCtor() && type.CanBeCastTo<TopicRegistry>())
+                .Each(type => {
+                    // All we have to do is create it to work
+                    Activator.CreateInstance(type);
+                });
         }
     }
 }
