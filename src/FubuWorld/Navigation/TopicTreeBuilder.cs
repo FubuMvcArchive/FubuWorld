@@ -2,31 +2,12 @@
 using FubuDocs;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Urls;
-using FubuMVC.Core.View;
 using HtmlTags;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FubuWorld.Navigation
 {
-    public static class TopicExtensions
-    {
-        public static HtmlTag TableOfContents(this IFubuPage page)
-        {
-            return page.Get<TopicTreeBuilder>().BuildTableOfContents();
-        }
-
-        public static TagList LeftTopicNavigation(this IFubuPage page)
-        {
-            return page.Get<TopicTreeBuilder>().BuildLeftTopicLinks().ToTagList();
-        }
-
-        public static TagList TopTopicNavigation(this IFubuPage page)
-        {
-            return page.Get<TopicTreeBuilder>().BuildTopTopicLinks().ToTagList();
-        }
-    }
-
     public class TopicTreeBuilder
     {
         private readonly IUrlRegistry _urls;

@@ -11,4 +11,12 @@
     <start>this.SectionFor('@title', '@id')</start>
     <end>"&lt;/section&gt;"</end>
   </element>
+
+  
+  <element name="Snippet">this.CodeSnippet('@name')</element>
+  <element name="LinkToSnippet">this.LinkToSnippet('@name')</element>
+  <element name="LinkToCodeFile">this.LinkToCodeFile('@name')</element>
+  <element name="EmbedFile">this.CodeFile('@name')</element>
+
+  <element name="TopicLink">this.LinkToTopic('@name')</element>
 </bindings>

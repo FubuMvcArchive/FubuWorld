@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FubuCore.Util;
+using FubuCore;
 
 namespace FubuDocs
 {
@@ -16,6 +17,10 @@ namespace FubuDocs
             _topics.OnMissing = type => {
                 var node = findInChildren(type);
                 return node ?? new TopicNode(type);
+            };
+
+            _typeByName.OnMissing = name => {
+                return All().FirstOrDefault(x => x.TopicType.Name.EqualsIgnoreCase(name));
             };
         }
 
@@ -78,6 +83,26 @@ namespace FubuDocs
 
                 return this;
             }
+        }
+
+        public IEnumerable<TopicNode> All()
+        {
+            foreach (var topic in TopLevelNodes())
+            {
+                yield return topic;
+
+                foreach (var descendant in topic.Descendents())
+                {
+                    yield return descendant;
+                }
+            }
+        } 
+
+        private readonly Cache<string, TopicNode> _typeByName = new Cache<string, TopicNode>(); 
+
+        public TopicNode FindByName(string name)
+        {
+            return _typeByName[name];
         }
     }
 }

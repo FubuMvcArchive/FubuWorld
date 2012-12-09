@@ -258,5 +258,18 @@ namespace FubuDocs
 
             return Parent.FindIndex();
         }
+
+        public IEnumerable<TopicNode> Descendents()
+        {
+            foreach (var childNode in ChildNodes)
+            {
+                yield return childNode;
+
+                foreach (var descendent in childNode.Descendents())
+                {
+                    yield return descendent;
+                }
+            }
+        }
     }
 }

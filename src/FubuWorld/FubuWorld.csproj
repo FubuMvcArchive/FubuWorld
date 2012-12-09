@@ -165,6 +165,7 @@
     <Compile Include="Navigation\FubuWorldKeys.cs" />
     <Compile Include="Navigation\FubuWorldMenu.cs" />
     <Compile Include="Navigation\FubuWorldPageExtensions.cs" />
+    <Compile Include="Navigation\TopicExtensions.cs" />
     <Compile Include="Navigation\TopicTreeBuilder.cs" />
     <Compile Include="Navigation\TopLeftTopicNavigationTag.cs" />
     <Compile Include="PoweredByFubu.cs" />
