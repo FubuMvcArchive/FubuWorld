@@ -6,18 +6,18 @@ namespace FubuWorld.Navigation
 {
     public class TopLeftTopicNavigationTag : HtmlTag
     {
-        public TopLeftTopicNavigationTag(TopicNode node, IUrlRegistry urls) : base("ul")
+        public TopLeftTopicNavigationTag(TopicNode node) : base("ul")
         {
             AddClass("nav");
 
-            var current = new NamedTopicLinkTag(node, urls);
+            var current = new NamedTopicLinkTag(node);
             current.AddClass("active");
 
             Append(current);
             var parent = node.Parent;
             while (parent != null)
             {
-                var tag = new NamedTopicLinkTag(parent, urls);
+                var tag = new NamedTopicLinkTag(parent);
                 Children.Insert(0, tag);
 
                 parent = parent.Parent;
@@ -27,17 +27,16 @@ namespace FubuWorld.Navigation
 
     public class NamedTopicLinkTag : HtmlTag
     {
-        public NamedTopicLinkTag(TopicNode node, IUrlRegistry urls)
+        public NamedTopicLinkTag(TopicNode node)
             : base("li")
         {
-            var url = urls.UrlFor(node.TopicType);
-            Add("a").Attr("href", url).Attr("data-key", node.TopicType.Name).Text(node.Title + " »");
+            Add("a").Attr("href", node.Url).Attr("data-key", node.TopicType.Name).Text(node.Title + " »");
         }
     }
 
     public class TopRightTopicNavigationTag : HtmlTag
     {
-        public TopRightTopicNavigationTag(TopicNode node, IUrlRegistry urls)
+        public TopRightTopicNavigationTag(TopicNode node)
             : base("ul")
         {
             AddClass("nav");
@@ -47,7 +46,7 @@ namespace FubuWorld.Navigation
             if (previous != null)
             {
                 Add("li/a")
-                    .Attr("href", urls.UrlFor(previous.TopicType))
+                    .Attr("href", previous.Url)
                     .Text("Previous")
                     .Attr("title", previous.Title);
             }
@@ -56,7 +55,7 @@ namespace FubuWorld.Navigation
             if (next != null)
             {
                 Add("li/a")
-                    .Attr("href", urls.UrlFor(next.TopicType))
+                    .Attr("href", next.Url)
                     .Text("Next")
                     .Attr("title", next.Title);
             }
@@ -65,7 +64,7 @@ namespace FubuWorld.Navigation
             if (index != null && !ReferenceEquals(node, index))
             {
                 Add("li/a")
-                    .Attr("href", urls.UrlFor(index.TopicType))
+                    .Attr("href", index.Url)
                     .Text("Index")
                     .Attr("title", index.Title);
             }

@@ -32,8 +32,8 @@ namespace FubuWorld.Navigation
         }
         public IEnumerable<HtmlTag> BuildTopTopicLinks()
         {
-            yield return new TopLeftTopicNavigationTag(_topic.Value, _urls);
-            yield return new TopRightTopicNavigationTag(_topic.Value, _urls);
+            yield return new TopLeftTopicNavigationTag(_topic.Value);
+            yield return new TopRightTopicNavigationTag(_topic.Value);
         }
 
 
@@ -44,9 +44,7 @@ namespace FubuWorld.Navigation
             if (next != null)
             {
                 yield return new HtmlTag("h4").Text("Next");
-                yield return new HtmlTag("p", tag => {
-                    tag.Add("a").Text(next.Title).Attr("href", _urls.UrlFor(next.TopicType));
-                });
+                yield return new HtmlTag("p", tag => tag.Append(new TopicLinkTag(next)));
             }
 
             var previous = _topic.Value.FindPrevious();
@@ -54,9 +52,7 @@ namespace FubuWorld.Navigation
             if (previous != null)
             {
                 yield return new HtmlTag("h4").Text("Previous");
-                yield return new HtmlTag("p", tag => {
-                    tag.Add("a").Text(previous.Title).Attr("href", _urls.UrlFor(previous.TopicType));
-                });
+                yield return new HtmlTag("p", tag => tag.Append(new TopicLinkTag(previous)));
             }
         }
 

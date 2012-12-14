@@ -1,7 +1,6 @@
 ﻿using FubuMVC.Core;
 using FubuMVC.StructureMap;
 using FubuWorld.Infrastructure;
-using FubuWorld.StructureMap;
 
 namespace FubuWorld
 {
@@ -11,7 +10,7 @@ namespace FubuWorld
         {
             return FubuApplication
                 .For<FubuWorldRegistry>()
-                .StructureMap(() => WebBootstrapper.BuildContainer())
+                .StructureMap<StructureMapRegistry>()
                 .Packages(x => x.Loader(new FubuDocModuleAttributePackageLoader()));
         }
     }

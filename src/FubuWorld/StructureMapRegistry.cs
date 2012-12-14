@@ -4,14 +4,20 @@ using FubuWorld.Infrastructure;
 using FubuWorld.Infrastructure.Binders;
 using StructureMap.Configuration.DSL;
 
-namespace FubuWorld.StructureMap
+namespace FubuWorld
 {
-    public class InfrastructureRegistry : Registry
+    public class StructureMapRegistry : Registry
     {
-        public InfrastructureRegistry()
+        public StructureMapRegistry()
         {
+            Scan(x =>
+            {
+                x.TheCallingAssembly();
+                x.WithDefaultConventions();
+            });
+
             For<IPropertyBinder>().Add<RequestLogPropertyBinder>();
             For<IActivator>().Add<TopicGraphActivator>();
-        }    
+        }
     }
 }

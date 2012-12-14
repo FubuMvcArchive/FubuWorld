@@ -1,6 +1,7 @@
 ﻿using FubuMVC.Navigation;
+using FubuWorld.Navigation;
 
-namespace FubuWorld.Navigation
+namespace FubuMVC.Website.Navigation
 {
     public class FubuWorldMenu : NavigationRegistry
     {

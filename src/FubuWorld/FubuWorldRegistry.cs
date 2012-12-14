@@ -1,6 +1,5 @@
 ﻿using FubuMVC.Core;
 using FubuWorld.Infrastructure;
-using FubuWorld.Navigation;
 
 namespace FubuWorld
 {
@@ -8,8 +7,24 @@ namespace FubuWorld
     {
         public FubuWorldRegistry()
         {
-            Policies.Add<FubuWorldMenu>();
-            Policies.Add<TopicUrlPolicy>();
+            Import<FubuWorldExtension>();
+            Routes.HomeIs<AllTopicsEndpoint>(x => x.get_topics());
+        }
+    }
+
+    public class AllTopicsEndpoint
+    {
+        public AllTopicsModel get_topics()
+        {
+            return new AllTopicsModel();
+        }
+    }
+
+    public class FubuWorldExtension : IFubuRegistryExtension
+    {
+        public void Configure(FubuRegistry registry)
+        {
+            registry.Policies.Add<TopicUrlPolicy>();
         }
     }
 }

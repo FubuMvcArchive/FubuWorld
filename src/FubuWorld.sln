@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeDocs", "FakeDocs\FakeDo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuDocsRunner", "FubuDocsRunner\FubuDocsRunner.csproj", "{A90E1BBE-8F1B-49D9-B5E0-F5ABC3B1AFAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuMVC.Website", "FubuMVC.Website\FubuMVC.Website.csproj", "{8B4A73A3-5382-4BF4-9543-E414AE3D520C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,16 @@ Global
 		{A90E1BBE-8F1B-49D9-B5E0-F5ABC3B1AFAF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{A90E1BBE-8F1B-49D9-B5E0-F5ABC3B1AFAF}.Release|x86.ActiveCfg = Release|x86
 		{A90E1BBE-8F1B-49D9-B5E0-F5ABC3B1AFAF}.Release|x86.Build.0 = Release|x86
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8B4A73A3-5382-4BF4-9543-E414AE3D520C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

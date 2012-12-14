@@ -25,9 +25,17 @@ namespace FubuWorld.Navigation
         {
             var node = TopicGraph.AllTopics.FindByName(name);
 
-            var url = page.Urls.UrlFor(node.TopicType);
+            return new TopicLinkTag(node);
+        }
+    }
 
-            return new HtmlTag("a").Attr("href", url).Text(node.Title);
+    public class TopicLinkTag : HtmlTag
+    {
+        public TopicLinkTag(TopicNode node) : base("a")
+        {
+            Attr("href", node.Url);
+            Text(node.Title);
+            Attr("data-key", node.TopicType.Name);
         }
     }
 }

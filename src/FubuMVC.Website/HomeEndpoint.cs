@@ -1,4 +1,4 @@
-﻿namespace FubuWorld
+﻿namespace FubuMVC.Website
 {
     public class HomeEndpoint
     {

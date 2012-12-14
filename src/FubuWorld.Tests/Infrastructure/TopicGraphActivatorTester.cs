@@ -1,9 +1,11 @@
 ﻿using Bottles.Diagnostics;
 using FubuDocs;
+using FubuMVC.Core.Urls;
 using FubuWorld.Infrastructure;
 using NUnit.Framework;
 using System.Linq;
 using FubuTestingSupport;
+using System.Collections.Generic;
 
 namespace FubuWorld.Tests.Infrastructure
 {
@@ -13,11 +15,13 @@ namespace FubuWorld.Tests.Infrastructure
         [Test]
         public void running_The_activator_applies_all_topic_registries()
         {
-            new TopicGraphActivator().Activate(null, new PackageLog());
+            var urls = new StubUrlRegistry();
+            new TopicGraphActivator(urls).Activate(null, new PackageLog());
 
             TopicGraph.AllTopics.Find<ATopic>().ChildNodes.Select(x => x.Title).ShouldHaveTheSameElementsAs("B", "C");
             TopicGraph.AllTopics.Find<DTopic>().ChildNodes.Select(x => x.Title).ShouldHaveTheSameElementsAs("E");
             TopicGraph.AllTopics.Find<CTopic>().ChildNodes.Select(x => x.Title).ShouldHaveTheSameElementsAs("D");
+
         }
     }
 

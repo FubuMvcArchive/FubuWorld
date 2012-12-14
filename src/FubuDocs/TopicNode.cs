@@ -34,6 +34,8 @@ namespace FubuDocs
             _topicType = topicType;
         }
 
+        public string Url { get; set; }
+
         public Type TopicType
         {
             get { return _topicType; }

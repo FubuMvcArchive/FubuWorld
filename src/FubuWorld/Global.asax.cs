@@ -1,23 +1,14 @@
 ﻿using System;
-using Bottles;
-using StructureMap;
+using System.Web;
+using FubuMVC.Core;
 
 namespace FubuWorld
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : HttpApplication
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            new FubuWorldApplication()
-                .BuildApplication()
-                .Bootstrap();
-
-            PackageRegistry.AssertNoFailures();
-        }
-
-        protected void Application_End(Object sender, EventArgs e)
-        {
-            ObjectFactory.Container.Dispose();
+            FubuApplication.BootstrapApplication<FubuWorldApplication>();
         }
     }
 }
