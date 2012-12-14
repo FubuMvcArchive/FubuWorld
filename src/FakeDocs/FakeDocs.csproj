@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FakeTopic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,5 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="pak-Config.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SecondTopic.spark" />
+    <None Include="FakeTopic.spark" />
   </ItemGroup>
 </Project>

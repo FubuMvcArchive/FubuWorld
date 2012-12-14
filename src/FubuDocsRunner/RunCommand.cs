@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Bottles;
 using Bottles.Diagnostics;
 using Bottles.Manifest;
@@ -16,7 +17,8 @@ namespace FubuDocsRunner
 
     public class RunInput : DocActionInput
     {
-        
+        [Description("Disables the bottle and code snippet scanning while this command runs")]
+        public bool NoBottlingFlag { get; set; }
     }
 
     public class RunCommand : FubuCommand<RunInput>
@@ -25,7 +27,11 @@ namespace FubuDocsRunner
         {
             var documentDirectory = input.DetermineDocumentsFolder();
 
-            new BottleCommand().Execute(new BottleInput {DirectoryFlag = documentDirectory});
+            if (!input.NoBottlingFlag)
+            {
+                new BottleCommand().Execute(new BottleInput { DirectoryFlag = documentDirectory });
+            }
+            
 
             FubuMvcPackageFacility.PhysicalRootPath = documentDirectory;
 

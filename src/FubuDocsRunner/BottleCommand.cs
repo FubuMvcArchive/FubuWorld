@@ -66,6 +66,8 @@ namespace FubuDocsRunner
             if (!File.Exists(manifestFile))
             {
                 var manifest = new PackageManifest {ContentFileSet = FileSet.Deep("*.*")};
+                manifest.Name = Path.GetFileName(directory);
+
                 manifest.ContentFileSet.Exclude = "Properties/*;bin/*;obj/*;*.csproj*;packages.config;repositories.config;pak-*.zip;*.sln";
 
                 fileSystem.WriteObjectToFile(manifestFile, manifest);

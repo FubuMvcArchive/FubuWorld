@@ -1,5 +1,6 @@
 ﻿using FubuMVC.Core;
 using FubuWorld.Infrastructure;
+using Spark;
 
 namespace FubuWorld
 {
@@ -9,6 +10,10 @@ namespace FubuWorld
         {
             Import<FubuWorldExtension>();
             Routes.HomeIs<AllTopicsEndpoint>(x => x.get_topics());
+
+            AlterSettings<SparkSettings>(x => {
+                x.AddNamespace(GetType().Namespace);
+            });
         }
     }
 
