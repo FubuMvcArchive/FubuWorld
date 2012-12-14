@@ -9,7 +9,8 @@ namespace FubuMVC.Website
         public FubuWorldWebsiteRegistry()
         {
             Policies.Add<FubuWorldMenu>();
-            Import<FubuWorldExtension>();
+
+            Routes.HomeIs<HomeEndpoint>(x => x.Index());
         }
     }
 }

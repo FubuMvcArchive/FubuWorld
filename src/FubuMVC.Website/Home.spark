@@ -1,4 +1,4 @@
-﻿<viewdata model="FubuWorld.Website.HomeViewModel" />
+﻿<viewdata model="FubuMVC.Website.HomeViewModel" />
 <content:head>
     <Stylesheet href="home.css" />
 </content:head>

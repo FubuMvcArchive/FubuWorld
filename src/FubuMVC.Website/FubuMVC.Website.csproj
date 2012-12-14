@@ -45,13 +45,49 @@
     <Reference Include="FubuMVC.Core">
       <HintPath>..\packages\FubuMVC.Core.0.9.9.1334\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Core.Assets, Version=0.9.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.Core.Assets.0.9.9.83\lib\net40\FubuMVC.Core.Assets.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core.UI, Version=0.9.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.Core.UI.0.9.9.94\lib\net40\FubuMVC.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core.View, Version=0.9.9.85, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.Core.View.0.9.9.85\lib\net40\FubuMVC.Core.View.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Diagnostics, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.Diagnostics.0.1.0.162\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.JQueryUI, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.180\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.Media.0.9.5.262\lib\net40\FubuMVC.Media.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.Navigation">
       <HintPath>..\packages\FubuMVC.Navigation.0.9.0.44\lib\net40\FubuMVC.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.SlickGrid, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.SlickGrid.0.0.0.199\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Spark, Version=0.9.9.85, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.Spark.0.9.9.85\lib\net40\FubuMVC.Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap, Version=0.9.9.1334, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.StructureMap.0.9.9.1334\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.TwitterBootstrap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.189\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
     <Reference Include="HtmlTags">
       <HintPath>..\packages\HtmlTags.1.2.0.138\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Spark, Version=1.7.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spark.1.7.5.0\lib\NET40\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -79,6 +115,7 @@
     <Content Include="content\scripts\toastr.js" />
     <Content Include="content\scripts\topics.js" />
     <Content Include="content\styles\home.css" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -88,7 +125,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FubuWorldWebsiteApplication.cs" />
     <Compile Include="FubuWorldWebsiteRegistry.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="HomeEndpoint.cs" />
     <Compile Include="Navigation\FubuWorldMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
