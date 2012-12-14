@@ -59,8 +59,9 @@
     <Reference Include="FubuMVC.Core.View">
       <HintPath>..\packages\FubuMVC.Core.View.0.9.9.85\lib\net40\FubuMVC.Core.View.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.SelfHost">
-      <HintPath>..\packages\FubuMVC.SelfHost.0.9.9.1323\lib\net40\FubuMVC.SelfHost.dll</HintPath>
+    <Reference Include="FubuMVC.SelfHost, Version=0.9.9.1334, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.SelfHost.0.9.9.1334\lib\net40\FubuMVC.SelfHost.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap">
       <HintPath>..\packages\FubuMVC.StructureMap.0.9.9.1334\lib\net40\FubuMVC.StructureMap.dll</HintPath>
@@ -116,6 +117,10 @@
     <ProjectReference Include="..\FubuDocs\FubuDocs.csproj">
       <Project>{67676EEC-F448-4CFE-8A33-E4C26E9FDF35}</Project>
       <Name>FubuDocs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FubuWorld\FubuWorld.csproj">
+      <Project>{6F5C4733-AF68-4591-9802-21425E6877C4}</Project>
+      <Name>FubuWorld</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,9 +10,9 @@ namespace FubuDocsRunner
 {
     public class TopicRequest
     {
-        public readonly IList<TopicRequest> Children = new List<TopicRequest>(); 
+        public readonly IList<TopicRequest> Children = new List<TopicRequest>();
 
-        public static readonly string SparkTemplate = "<viewdata model=\"{0}\"/>{1}<use master=\"Topic\" />{1}<content:main>{1}{1}</content:main>";
+        public static readonly string SparkTemplate = "<viewdata model=\"{0}\"/>{1}<use master=\"Topic\" />{1}<content:main>{1}{1}<markdown>{1}{1}</markdown>{1}{1}</content:main>";
         public static readonly string TopicClassTemplate = @"
 using {0};
 

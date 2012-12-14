@@ -53,7 +53,7 @@ namespace FubuDocsRunner
             writer.AddDivider('-');
 
             cache.All().Each(snippet => {
-                var relative = snippet.File.PathRelativeTo(srcDirectory);
+                var relative = snippet.File.PathRelativeTo(srcDirectory).ParentDirectory();
                 var newPath = snippets.AppendPath(relative);
 
                 writer.AddColumnData(snippet.File, newPath);
