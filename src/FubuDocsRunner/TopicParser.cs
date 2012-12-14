@@ -15,7 +15,12 @@ namespace FubuDocsRunner
             var file = directory.AppendPath("Topics.xml");
             if (!File.Exists(file))
             {
-                throw new ArgumentOutOfRangeException("directory", "File {0} does not exist".ToFormat(file));
+                Console.WriteLine("{0} does not exist, creating it for you now", file);
+                var doc = new XmlDocument();
+                doc.LoadXml("<Topic title=\"CHANGEME\" name=\"CHANGEME\" ></Topic>");
+                doc.Save(file);
+
+                return null;
             }
 
             var document = new XmlDocument();

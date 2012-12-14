@@ -23,6 +23,7 @@ namespace FubuDocsRunner
             var parser = new TopicParser();
 
             var request = parser.Parse(directory);
+            if (request == null) return true; // Nothing to do here, go away
 
             writeRequest(request);
             WriteRelationships(request);

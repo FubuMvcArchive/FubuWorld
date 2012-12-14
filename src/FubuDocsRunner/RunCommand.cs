@@ -33,18 +33,12 @@ namespace FubuDocsRunner
             }
             
 
-            FubuMvcPackageFacility.PhysicalRootPath = documentDirectory;
-
-            var application = new FubuWorldApplication().BuildApplication().Packages(x => {
-                x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory));
-            });
-
-            var server = application.RunEmbedded(documentDirectory);
+            var server = buildServer(documentDirectory);
             var url = server.BaseAddress;
 
             Process.Start(url);
 
-            Console.WriteLine("Press 'Q' to quit, or 'R' to refresh");
+            Console.WriteLine("Press any key to quit");
             while (true)
             {
                 var text = Console.ReadLine();
@@ -56,6 +50,17 @@ namespace FubuDocsRunner
             }
 
             return true;
+        }
+
+        private static EmbeddedFubuMvcServer buildServer(string documentDirectory)
+        {
+            FubuMvcPackageFacility.PhysicalRootPath = documentDirectory;
+
+            var application =
+                new FubuWorldApplication().BuildApplication()
+                                          .Packages(x => { x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory)); });
+
+            return application.RunEmbedded(documentDirectory);
         }
     }
 

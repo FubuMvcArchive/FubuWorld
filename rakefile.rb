@@ -136,3 +136,8 @@ def self.fubu(args)
   fubu = Platform.runtime(Nuget.tool("fubu", "fubu.exe"))
   sh "#{fubu} #{args}" 
 end
+
+desc "Compiles and copies FubuDocsRunner to the /buildsupport directory parallel to this solution"
+task :deploy => [:compile] do
+  sh "src/DeployRunner/bin/DeployRunner.exe"
+end
