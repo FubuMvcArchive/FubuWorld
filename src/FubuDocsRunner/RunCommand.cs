@@ -7,6 +7,7 @@ using Bottles.Manifest;
 using FubuCore;
 using FubuCore.CommandLine;
 using FubuMVC.Core;
+using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Packaging;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.SelfHost;
@@ -60,7 +61,7 @@ namespace FubuDocsRunner
             FubuMvcPackageFacility.PhysicalRootPath = documentDirectory;
 
             var application = FubuApplication
-                                .For<FubuWorldRegistry>()
+                                .For<RunFubuWorldRegistry>()
                                 .StructureMap(new StructureMap.Container())
                                 .Packages(x =>
                                 {
@@ -69,6 +70,22 @@ namespace FubuDocsRunner
                                 });
 
             return application.RunEmbedded(documentDirectory);
+        }
+    }
+
+    public class RunFubuWorldRegistry : FubuRegistry
+    {
+        public RunFubuWorldRegistry()
+        {
+
+        }
+    }
+
+    public class HomeEndpoint
+    {
+        public FubuContinuation Index()
+        {
+            return FubuContinuation.RedirectTo<AllTopicsEndpoint>(x => x.get_topics());
         }
     }
 
