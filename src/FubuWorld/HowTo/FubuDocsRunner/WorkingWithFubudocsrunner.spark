@@ -1,2 +1,20 @@
 <viewdata model="FubuWorld.HowTo.FubuDocsRunner.WorkingWithFubudocsrunner"/>
 <use master="Topic" />
+
+<content:main>
+
+  <pre>
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    Available commands:
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    add-topic -&gt; Add a new topic to the project
+    bottle -&gt; Packages up a documentation project as a FubuWorld bottle
+    build-topics -&gt; Looks for a 'Topics.xml' file in the named directory and tries to generate the skeleton files for the topics in the file
+    run -&gt; FubuDocsRunner.RunCommand
+    snippets -&gt; Scrapes the entire solution for files with code snippets and places those files under the '/snippets' directory of the documentation project
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------
+  </pre>
+  
+</content:main>

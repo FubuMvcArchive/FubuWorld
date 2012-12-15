@@ -75,9 +75,6 @@
     <Reference Include="FubuMVC.Spark">
       <HintPath>..\packages\FubuMVC.Spark.0.9.9.85\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.StructureMap">
-      <HintPath>..\packages\FubuMVC.StructureMap.0.9.9.1334\lib\net40\FubuMVC.StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="FubuMVC.TwitterBootstrap">
       <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.189\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
@@ -87,10 +84,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Spark">
       <HintPath>..\packages\Spark.1.7.5.0\lib\NET40\Spark.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -112,7 +105,6 @@
     <Content Include="content\styles\fubuworld.core.css" />
     <Content Include="content\styles\toastr-responsive.css" />
     <Content Include="content\styles\toastr.css" />
-    <Content Include="Global.asax" />
     <Content Include="Shared\bindings.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -129,13 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllTopicsModel.cs" />
-    <Compile Include="FubuWorldApplication.cs" />
     <Compile Include="FubuWorldRegistry.cs" />
     <Compile Include="FubuWorldRoot.cs" />
     <Compile Include="FubuWorldRootTopicRegistry.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="HowTo\FubuDocsRunner\AddASingleTopic.cs" />
     <Compile Include="HowTo\FubuDocsRunner\BottlingTheFubuworldProject.cs" />
     <Compile Include="HowTo\FubuDocsRunner\GeneratingTheEntireTopicTree.cs" />
@@ -162,7 +150,6 @@
     <Compile Include="Navigation\TopLeftTopicNavigationTag.cs" />
     <Compile Include="PoweredByFubu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StructureMapRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

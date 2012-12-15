@@ -6,11 +6,14 @@ using Bottles.Diagnostics;
 using Bottles.Manifest;
 using FubuCore;
 using FubuCore.CommandLine;
+using FubuMVC.Core;
 using FubuMVC.Core.Packaging;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.SelfHost;
 using FubuWorld;
+using FubuWorld.Infrastructure;
 using Process = System.Diagnostics.Process;
+using FubuMVC.StructureMap;
 
 namespace FubuDocsRunner
 {
@@ -56,9 +59,14 @@ namespace FubuDocsRunner
         {
             FubuMvcPackageFacility.PhysicalRootPath = documentDirectory;
 
-            var application =
-                new FubuWorldApplication().BuildApplication()
-                                          .Packages(x => { x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory)); });
+            var application = FubuApplication
+                                .For<FubuWorldRegistry>()
+                                .StructureMap(new StructureMap.Container())
+                                .Packages(x =>
+                                {
+                                    x.Loader(new FubuDocModuleAttributePackageLoader());
+                                    x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory));
+                                });
 
             return application.RunEmbedded(documentDirectory);
         }

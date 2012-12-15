@@ -1,19 +1,17 @@
-﻿using FubuMVC.Core;
+﻿using Bottles;
+using FubuCore.Binding;
+using FubuMVC.Core;
 using FubuWorld.Infrastructure;
+using FubuWorld.Infrastructure.Binders;
 using Spark;
 
 namespace FubuWorld
 {
-    public class FubuWorldRegistry : FubuRegistry
+    public class FubuWorldRegistry : FubuPackageRegistry
     {
         public FubuWorldRegistry()
         {
-            Import<FubuWorldExtension>();
-            Routes.HomeIs<AllTopicsEndpoint>(x => x.get_topics());
 
-            AlterSettings<SparkSettings>(x => {
-                x.AddNamespace(GetType().Namespace);
-            });
         }
     }
 
@@ -30,6 +28,17 @@ namespace FubuWorld
         public void Configure(FubuRegistry registry)
         {
             registry.Policies.Add<TopicUrlPolicy>();
+
+            registry.AlterSettings<SparkSettings>(x =>
+            {
+                x.AddNamespace(GetType().Namespace);
+            });
+
+            registry.Services(x =>
+            {
+                x.AddService<IPropertyBinder, RequestLogPropertyBinder>();
+                x.AddService<IActivator, TopicGraphActivator>();
+            });
         }
     }
 }

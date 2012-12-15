@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FubuMVC.Website")]
+[assembly: AssemblyTitle("FubuWorldHarness")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Extend Health Inc")]
-[assembly: AssemblyProduct("FubuMVC.Website")]
+[assembly: AssemblyProduct("FubuWorldHarness")]
 [assembly: AssemblyCopyright("Copyright © Extend Health Inc 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("012f5a3d-289e-472a-9a4b-7866f1e7feb4")]
+[assembly: Guid("dc4e1a46-9ebc-492e-aab9-afae03593dfc")]
 
 // Version information for an assembly consists of the following four values:
 //
