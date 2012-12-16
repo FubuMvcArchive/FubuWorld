@@ -21,6 +21,9 @@ namespace FubuDocsRunner
         public override bool Execute(BottleInput input)
         {
             var fileSystem = new FileSystem();
+
+
+
             importSnippets(input);
 
             var directory = input.DetermineDocumentsFolder();

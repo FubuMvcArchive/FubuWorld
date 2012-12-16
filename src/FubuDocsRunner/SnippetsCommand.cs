@@ -81,14 +81,21 @@ namespace FubuDocsRunner
 
         private static ISnippetCache buildCache(SnippetsInput input)
         {
-            var container = new Container();
-
             var files = new SnippetApplicationFiles(".".ToFullPath().AppendPath("src"), input.DetermineDocumentsFolder());
 
-            FubuApplication.For<FubuRegistry>().StructureMap(container).Bootstrap();
             var cache = new SnippetCache();
 
-            var scanners = container.GetAllInstances<ISnippetScanner>();
+            var scanners = new ISnippetScanner[]
+            {
+                new CLangSnippetScanner("cs"),
+                new CLangSnippetScanner("js"),
+                new BlockCommentScanner("<!--", "-->", "spark", "lang-html"),
+                new BlockCommentScanner("<!--", "-->", "htm", "lang-html"),
+                new BlockCommentScanner("<!--", "-->", "html", "lang-html"),
+                new BlockCommentScanner("<!--", "-->", "xml", "lang-xml"),
+                new BlockCommentScanner("/*", "*/", "css", "lang-css"),
+                new RazorSnippetScanner()
+            };
             scanners.Each(finder =>
             {
                 files.FindFiles(finder.MatchingFileSet).Each(file =>
