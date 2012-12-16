@@ -32,6 +32,10 @@ namespace FubuWorld.Infrastructure
 
             TopicGraph.AllTopics.All().Each(node => {
                 node.Url = _urls.UrlFor(node.TopicType);
+                if (!node.Url.StartsWith("/"))
+                {
+                    node.Url = "/" + node.Url; // has to be an absolute
+                }
             });
         }
     }
