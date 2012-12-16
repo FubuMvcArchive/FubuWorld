@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using Bottles;
 using Bottles.Diagnostics;
 using Bottles.Manifest;
@@ -69,8 +70,12 @@ namespace FubuDocsRunner
                                 .StructureMap(new StructureMap.Container())
                                 .Packages(x =>
                                 {
-                                    x.Loader(new FubuDocModuleAttributePackageLoader());
                                     x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory));
+                                    x.Loader(new FubuDocModuleAttributePackageLoader
+                                    {
+                                        IgnoreAssembly = Path.GetFileName(documentDirectory)
+                                    });
+                                    
                                 });
 
             return application.RunEmbedded(documentDirectory);

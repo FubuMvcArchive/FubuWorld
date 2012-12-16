@@ -48,15 +48,16 @@ namespace FubuWorld.Infrastructure
 
             list.Each(x =>
             {
-                log.Trace("Looking for assemblies marked with the [FubuModule] attribute in " + x);
+                log.Trace("Looking for assemblies marked with the [FubuDocModule] attribute in " + x);
             });
 
             return LoadPackages(list);
         }
 
-        public static IEnumerable<IPackageInfo> LoadPackages(List<string> list)
+        public IEnumerable<IPackageInfo> LoadPackages(List<string> list)
         {
-            return FindAssemblies(list)
+            IEnumerable<Assembly> assemblies = FindAssemblies(list).Where(assem => assem.GetName().Name.EqualsIgnoreCase(IgnoreAssembly));
+            return assemblies
                 .Select(assem => new AssemblyPackageInfo(assem));
         }
 
@@ -108,5 +109,7 @@ namespace FubuWorld.Infrastructure
                 }
             }
         }
+
+        public string IgnoreAssembly { get; set; }
     }
 }
