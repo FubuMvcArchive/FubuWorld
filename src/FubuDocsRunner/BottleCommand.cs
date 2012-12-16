@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.ComponentModel;
+using System.IO;
 using Bottles;
 using Bottles.Commands;
 using FubuCore.CommandLine;
@@ -12,7 +13,8 @@ namespace FubuDocsRunner
 {
     public class BottleInput : DocActionInput
     {
-        
+        [Description("If selected, disables the creation of the pak-WebContent.zip file")]
+        public bool NoZipFlag { get; set; }
     }
 
     [CommandDescription("Packages up a documentation project as a FubuWorld bottle")]
@@ -30,7 +32,10 @@ namespace FubuDocsRunner
             writeManifestIfNecessary(directory, fileSystem);
             writeFubuDocModuleAttributeIfNecessary(directory, fileSystem);
 
-            bottleItUp(directory);
+            if (!input.NoZipFlag)
+            {
+                bottleItUp(directory);
+            }
 
             return true;
         }
@@ -69,7 +74,9 @@ namespace FubuDocsRunner
             if (!File.Exists(manifestFile))
             {
                 var manifest = new PackageManifest {ContentFileSet = FileSet.Deep("*.*")};
-                manifest.Name = Path.GetFileName(directory);
+                string assemblyName = Path.GetFileName(directory);
+                manifest.Name = assemblyName;
+                manifest.AddAssembly(assemblyName);
 
                 manifest.ContentFileSet.Exclude = "Properties/*;bin/*;obj/*;*.csproj*;packages.config;repositories.config;pak-*.zip;*.sln";
 

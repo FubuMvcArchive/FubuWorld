@@ -33,7 +33,7 @@ namespace FubuDocsRunner
 
             if (!input.NoBottlingFlag)
             {
-                new BottleCommand().Execute(new BottleInput { DirectoryFlag = documentDirectory });
+                new BottleCommand().Execute(new BottleInput { DirectoryFlag = documentDirectory, NoZipFlag = true});
             }
             
             
