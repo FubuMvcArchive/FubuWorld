@@ -138,6 +138,7 @@
     <Compile Include="HowTo\ViewHelpers\CommandLineResults.cs" />
     <Compile Include="HowTo\ViewHelpers\DiagnosticsVisualizations.cs" />
     <Compile Include="HowTo\ViewHelpers\DocumentationViewHelpers.cs" />
+    <Compile Include="HowTo\ViewHelpers\TopicRelatedHelpers.cs" />
     <Compile Include="HowTo\ViewHelpers\UnitTestResults.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
     <Compile Include="Infrastructure\FubuDocModuleAttributePackageLoader.cs" />
@@ -177,6 +178,7 @@
     <None Include="HowTo\ViewHelpers\CommandLineResults.spark" />
     <None Include="HowTo\ViewHelpers\DiagnosticsVisualizations.spark" />
     <None Include="HowTo\ViewHelpers\DocumentationViewHelpers.spark" />
+    <None Include="HowTo\ViewHelpers\TopicRelatedHelpers.spark" />
     <None Include="HowTo\ViewHelpers\UnitTestResults.spark" />
     <None Include="PoweredByFubu.spark" />
     <None Include="Shared\Application.spark">

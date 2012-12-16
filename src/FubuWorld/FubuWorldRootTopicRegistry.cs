@@ -19,6 +19,7 @@ namespace FubuWorld
             For<FubuWorld.HowTo.FubuDocsRunner.WorkingWithFubudocsrunner>().Append<FubuWorld.HowTo.FubuDocsRunner.BottlingTheFubuworldProject>();
 
             For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.CodeSnippets>();
+            For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.TopicRelatedHelpers>();
             For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.DiagnosticsVisualizations>();
             For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.UnitTestResults>();
             For<FubuWorld.HowTo.ViewHelpers.DocumentationViewHelpers>().Append<FubuWorld.HowTo.ViewHelpers.CommandLineResults>();

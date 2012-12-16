@@ -22,6 +22,7 @@
     <ViewHelpers>
       <Topic title="Documentation View Helpers">
         <Topic title="Code Snippets"/>
+        <Topic title="Topic Related Helpers"/>
         <Topic title="Diagnostics Visualizations"/>
         <Topic title="Unit Test Results"/>
         <Topic title="Command Line Results"/>

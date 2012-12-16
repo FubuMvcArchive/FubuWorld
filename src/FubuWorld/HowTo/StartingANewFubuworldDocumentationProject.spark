@@ -1,2 +1,35 @@
 <viewdata model="FubuWorld.HowTo.StartingANewFubuworldDocumentationProject"/>
 <use master="Topic" />
+
+<content:main>
+  <Section title="Starting a new Document Project" id="csproj">
+    <p>Using <a href="https://github.com/DarthFubuMVC/fubucore">FubuCore</a> as an example solution, we followed these steps to create a new documentation project:</p>
+
+    <p>TODO:  Add a link to FubuDocsRunner</p>
+    
+    <ol>
+      <li>Make sure that the /buildsupport submodule is updated to the latest.  If you type <code>rake -T</code> you should see rake tasks for <code>docs:bottle</code>, <code>docs:run</code>, <code>docs:snippets</code>, and <code>docs:topic</code>.
+    </li>
+      <li>Add a new project named "FubuCore.Docs" as a class library.  In this case, the naming convention of ".Docs" tells the FubuDocsRunner tool that this project is the documentation project for the solution.</li>
+      <li>In the new project, add a reference to the FubuDocs.dll assembly in /buildsupport/fubudocs/.</li>
+      <li>Optionally, to make the generation of the topic tree a little bit easier, run <code>rake docs:topics</code> to generate an empty Topics.xml file under the docs project.  This will also confirm that your new documentation project is getting picked up correctly by <code>FubuDocsRunner</code>.</li>
+      <li>Run <code>rake docs:bottle</code> to seed the project as a FubuWorld documentation Bottle.  The initial run of this task will add a <code>.package-manifest</code> file, create the standard zip file entries for an assembly bottle, and add a new assembly attribute that you'll probably want to modify shown in the next step.</li>
+      <li>Open the <code>AssemblyInfo.cs</code> file for the new project.  You should see a new line of code like <code>[assembly: FubuDocModule("CHANGEME")]</code>.  Change "CHANGEME" to the root url you'd like to use for all the endpoints in this project.  For FubuCore, this ends up being:  <code>[assembly: FubuDocModule("fubucore")]</code>. </li>
+      <li>In the main rake file for the solution (<code>rakefile</code>), add the rake task <code>docs:bottle</code> as a dependency to the <code>:compile</code> task like so: <code>task :compile => [:clean, :restore_if_missing, :version, "docs:bottle"] do</code>.</li>
+      <li>Add a new nuspec file for the new documentation library at /packaging/nuget/.  See <a href="https://github.com/DarthFubuMVC/fubucore/blob/master/packaging/nuget/fubucore.docs.nuspec">fubucore.docs.nuspec</a> for an example.</li>
+    </ol>
+
+    <p>After doing all these steps, you're ready to start creating content.  See <TopicLink name="TheTopicNavigationStructure"/> for more information about creating content.</p>
+  </Section>
+
+  <Section title="Updating buildsupport" id="buildsupport">
+    <p>The binaries to support the FubuWorld documentation system are deployed to the <a href="https://github.com/DarthFubuMVC/buildsupport">buildsupport</a> GitHub repository that is included as the "/buildsupport" submodule in all projects.  Simple running "rake" from the command line in any FubuMVC related project with the standard configuration should update the buildsupport submodule, but it's not a perfect world so you may have to do this manually.</p>
+
+    <p>To update buildsupport manually, just open a command line prompt (or your CLI tool of choice) to the buildsupport directory and:</p>
+    <ol>
+      <li>Type <code>git status</code> first and make sure that your on the master branch.  Type <code>git checkout master</code> to put it on the master branch.</li>
+      <li>Assuming that there's no outstanding changes to buildsupport, I'll usually take the lazy approach and just type <code>git pull origin master</code>.  Describing proper git workflow is far beyond (my knowledge) the scope of this documentation.</li>
+    </ol>
+  </Section>
+  
+</content:main>
