@@ -1,6 +1,7 @@
 ﻿using Bottles;
 using FubuCore.Binding;
 using FubuMVC.Core;
+using FubuMVC.Core.View;
 using FubuWorld.Infrastructure;
 using FubuWorld.Infrastructure.Binders;
 using Spark;
@@ -29,9 +30,9 @@ namespace FubuWorld
         {
             registry.Policies.Add<TopicUrlPolicy>();
 
-            registry.AlterSettings<SparkSettings>(x =>
+            registry.AlterSettings<CommonViewNamespaces>(x =>
             {
-                x.AddNamespace(GetType().Namespace);
+                x.AddForType<FubuWorldRegistry>();
             });
 
             registry.Services(x =>
