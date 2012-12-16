@@ -36,6 +36,10 @@ namespace FubuDocsRunner
                 new BottleCommand().Execute(new BottleInput { DirectoryFlag = documentDirectory });
             }
             
+            
+            string explodedBottlesDirectory = documentDirectory.AppendPath("fubu-content");
+            Console.WriteLine("Trying to clean out the contents of " + explodedBottlesDirectory);
+            new FileSystem().CleanDirectory(explodedBottlesDirectory);
 
             var server = buildServer(documentDirectory);
             var url = server.BaseAddress;
