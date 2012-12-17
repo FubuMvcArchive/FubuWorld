@@ -32,7 +32,7 @@ BUILD_NUMBER = "#{BUILD_VERSION}.#{build_revision}"
 props = { :stage => BUILD_DIR, :artifacts => ARTIFACTS }
 
 desc "**Default**, compiles and runs tests"
-task :default => [:compile, :virtual_dir, :unit_test]
+task :default => [:compile, :unit_test]
 
 desc "Target used for the CI server"
 task :ci => [:update_all_dependencies, :default, :history, :package]
@@ -119,12 +119,6 @@ end
 desc "Restarts the app"
 task :restart do
 	fubu "restart fubuworld"
-end
-
-desc "Set up the virtual directories"
-task :virtual_dir => [:compile] do
-  dir = File.expand_path("src/FubuWorld")
-  fubu("createvdir #{dir} fubuworld")
 end
 
 def self.bottles(args)
