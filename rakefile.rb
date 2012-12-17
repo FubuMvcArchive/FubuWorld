@@ -79,7 +79,7 @@ def waitfor(&block)
 end
 
 desc "Compiles the app"
-task :compile => [:restore_if_missing, :aliases, :version] do
+task :compile => [:clean, :restore_if_missing, :aliases, :version] do
   bottles("assembly-pak src/FubuWorld -p FubuWorld.csproj")
 
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/FubuWorld.sln', :clrversion => CLR_TOOLS_VERSION
