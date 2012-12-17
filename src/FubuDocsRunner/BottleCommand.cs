@@ -101,7 +101,7 @@ namespace FubuDocsRunner
             var name = Path.GetFileName(documentationDirectory);
             var nuspecName = name.ToLower() + ".nuspec";
 
-            var file = AppDomain.CurrentDomain.BaseDirectory.AppendPath("packaging", "nuget", nuspecName);
+            var file = ".".ToFullPath().AppendPath("packaging", "nuget", nuspecName);
             var system = new FileSystem();
             
             if (!system.FileExists(file))
