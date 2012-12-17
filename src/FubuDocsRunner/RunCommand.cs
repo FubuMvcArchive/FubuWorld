@@ -48,15 +48,7 @@ namespace FubuDocsRunner
             Process.Start(url);
 
             Console.WriteLine("Press any key to quit");
-            while (true)
-            {
-                var text = Console.ReadLine();
-                if (text.Trim().EqualsIgnoreCase("q"))
-                {
-                    server.Dispose();
-                    break;
-                }
-            }
+            Console.ReadLine();
 
             return true;
         }

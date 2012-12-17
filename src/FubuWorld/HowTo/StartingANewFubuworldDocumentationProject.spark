@@ -16,7 +16,7 @@
       <li>Run <code>rake docs:bottle</code> to seed the project as a FubuWorld documentation Bottle.  The initial run of this task will add a <code>.package-manifest</code> file, create the standard zip file entries for an assembly bottle, and add a new assembly attribute that you'll probably want to modify shown in the next step.</li>
       <li>Open the <code>AssemblyInfo.cs</code> file for the new project.  You should see a new line of code like <code>[assembly: FubuDocModule("CHANGEME")]</code>.  Change "CHANGEME" to the root url you'd like to use for all the endpoints in this project.  For FubuCore, this ends up being:  <code>[assembly: FubuDocModule("fubucore")]</code>. </li>
       <li>In the main rake file for the solution (<code>rakefile</code>), add the rake task <code>docs:bottle</code> as a dependency to the <code>:compile</code> task like so: <code>task :compile => [:clean, :restore_if_missing, :version, "docs:bottle"] do</code>.</li>
-      <li>Add a new nuspec file for the new documentation library at /packaging/nuget/.  See <a href="https://github.com/DarthFubuMVC/fubucore/blob/master/packaging/nuget/fubucore.docs.nuspec">fubucore.docs.nuspec</a> for an example.</li>
+      <li>The first call to <code>rake docs:bottle</code> will create a new nuspec file for the documentation assembly at /packaging/nuget/ that you may want to alter.  See <a href="https://github.com/DarthFubuMVC/fubucore/blob/master/packaging/nuget/fubucore.docs.nuspec">fubucore.docs.nuspec</a> for an example.</li>
     </ol>
 
     <p>After doing all these steps, you're ready to start creating content.  See <TopicLink name="TheTopicNavigationStructure"/> for more information about creating content.</p>
