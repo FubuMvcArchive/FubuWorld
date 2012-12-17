@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using Bottles;
 using Bottles.Commands;
 using FubuCore.CommandLine;
@@ -31,6 +33,8 @@ namespace FubuDocsRunner
             var directory = input.DetermineDocumentsFolder();
             writeManifestIfNecessary(directory, fileSystem);
             writeFubuDocModuleAttributeIfNecessary(directory, fileSystem);
+
+            NuspecMaker.CreateNuspecIfMissing(directory);
 
             if (!input.NoZipFlag)
             {
@@ -87,6 +91,32 @@ namespace FubuDocsRunner
         private static void importSnippets(BottleInput input)
         {
             new SnippetsCommand().Execute(new SnippetsInput {DirectoryFlag = input.DetermineDocumentsFolder()});
+        }
+    }
+
+    public static class NuspecMaker
+    {
+        public static void CreateNuspecIfMissing(string documentationDirectory)
+        {
+            var name = Path.GetFileName(documentationDirectory);
+            var nuspecName = name.ToLower() + ".nuspec";
+
+            var file = AppDomain.CurrentDomain.BaseDirectory.AppendPath("packaging", "nuget", nuspecName);
+            var system = new FileSystem();
+            
+            if (!system.FileExists(file))
+            {
+                Console.WriteLine("Creating a nuspec file at " + file);
+
+                var nuspecText = Assembly.GetExecutingAssembly()
+                        .GetManifestResourceStream(typeof (NuspecMaker), "nuspec.txt")
+                        .ReadAllText().Replace("NAME", name);
+
+                Console.WriteLine(nuspecText);
+
+                system.WriteStringToFile(file, nuspecText);
+            }
+
         }
     }
 }
