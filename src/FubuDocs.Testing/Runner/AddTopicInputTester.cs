@@ -14,6 +14,8 @@ namespace FubuDocs.Testing.Runner
             new AddTopicInput { Title = "Something else altogether" }.ToRequest().TopicName.ShouldEqual("SomethingElseAltogether");
             new AddTopicInput { Title = "Something else, altogether" }.ToRequest().TopicName.ShouldEqual("SomethingElseAltogether");
             new AddTopicInput { Title = "Something else - altogether" }.ToRequest().TopicName.ShouldEqual("SomethingElseAltogether");
+            new AddTopicInput { Title = "Moving From ASP.Net MVC" }.ToRequest().TopicName.ShouldEqual("MovingFromAspnetMvc");
+            new AddTopicInput { Title = "[Cache] Attribute" }.ToRequest().TopicName.ShouldEqual("CacheAttribute");
         }
 
         [Test]

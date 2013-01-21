@@ -108,7 +108,9 @@
     <Content Include="Shared\bindings.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Topics.xml" />
+    <Content Include="Topics.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

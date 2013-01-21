@@ -30,7 +30,15 @@ namespace {1}
 
         public static string GetNameFromTitle(string title)
         {
-            return StringTokenizer.Tokenize(title).Select(x => x.ToLower().Replace(",", "").Replace("'", "").Replace("-", "").Replace("?", "").Capitalize()).Join(string.Empty);
+            return StringTokenizer.Tokenize(title).Select(x => x.ToLower()
+                .Replace(",", "")
+                .Replace(".", "")
+                .Replace("'", "")
+                .Replace("-", "")
+                .Replace("[", "")
+                .Replace("]", "")
+                .Replace("?", "")
+                .Capitalize()).Join(string.Empty);
         }
 
         public void WriteFiles()
