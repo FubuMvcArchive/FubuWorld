@@ -52,7 +52,6 @@
     <Compile Include="TopicGraph.cs" />
     <Compile Include="TopicNode.cs" />
     <Compile Include="TopicRegistry.cs" />
-    <Compile Include="FubuDocModuleAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

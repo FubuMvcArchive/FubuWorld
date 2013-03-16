@@ -26,12 +26,6 @@ namespace FubuDocs
 
             var url = name.TrimStart('.').Replace('.', '/').ToLower();
 
-
-            type.Assembly.ForAttribute<FubuDocModuleAttribute>(att => {
-                url = att.Root + "/" + url;
-            });
-
-
             return url;
         }
     }

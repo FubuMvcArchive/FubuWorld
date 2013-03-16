@@ -32,7 +32,6 @@ namespace FubuDocsRunner
 
             var directory = input.DetermineDocumentsFolder();
             writeManifestIfNecessary(directory, fileSystem);
-            writeFubuDocModuleAttributeIfNecessary(directory, fileSystem);
 
             NuspecMaker.CreateNuspecIfMissing(directory);
 
@@ -50,26 +49,6 @@ namespace FubuDocsRunner
             {
                 RootFolder = directory.ToFullPath()
             });
-        }
-
-        private static void writeFubuDocModuleAttributeIfNecessary(string directory, FileSystem fileSystem)
-        {
-            var assemblyInfoFile = directory.AppendPath("Properties").AppendPath("AssemblyInfo.cs");
-            if (File.Exists(assemblyInfoFile))
-            {
-                fileSystem.AlterFlatFile(assemblyInfoFile, list => {
-                    var @using = "using {0};".ToFormat(typeof (FubuDocModuleAttribute).Namespace);
-                    if (!list.Contains(@using))
-                    {
-                        list.Insert(0, @using);
-                    }
-
-                    if (!list.Any(x => x.Contains("FubuDocModule")))
-                    {
-                        list.Add("[assembly: FubuDocModule(\"CHANGEME\")]");
-                    }
-                });
-            }
         }
 
         private static void writeManifestIfNecessary(string directory, FileSystem fileSystem)

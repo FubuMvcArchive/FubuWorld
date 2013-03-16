@@ -65,7 +65,7 @@ namespace FubuWorld.Infrastructure
         {
             return directories.SelectMany(
                 x =>
-                AssembliesFromPath(x, assem => assem.GetCustomAttributes(typeof(FubuDocModuleAttribute), false).Any()));
+                AssembliesFromPath(x, assem => assem.GetName().Name.EndsWith(".Docs")));
         }
 
         // TODO -- this is so common here and in FubuMVC, just get something into FubuCore
