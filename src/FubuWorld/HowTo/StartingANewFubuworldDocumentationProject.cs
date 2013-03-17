@@ -5,7 +5,7 @@ namespace FubuWorld.HowTo
 {
     public class StartingANewFubuworldDocumentationProject : Topic
     {
-        public StartingANewFubuworldDocumentationProject() : base("Starting a new FubuWorld Documentation Project")
+        public StartingANewFubuworldDocumentationProject() : base("Starting a new FubuWorld Documentation ProjectRoot")
         {
         }
     }

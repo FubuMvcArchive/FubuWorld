@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Topic title="Working with FubuWorld Docs" name="FubuWorldRoot">
   <HowTo>
-    <Topic title="Starting a new FubuWorld Documentation Project"/>
+    <Topic title="Starting a new FubuWorld Documentation ProjectRoot"/>
     <Topics>
       <Topic title="The 'Topic' Navigation Structure">
         <Topic title="Topic Navigation"/>
@@ -12,10 +12,10 @@
 
     <FubuDocsRunner>
       <Topic title="Working with FubuDocsRunner">
-        <Topic title="Running a Documentation Project" />
+        <Topic title="Running a Documentation ProjectRoot" />
         <Topic title="Add a Single Topic" />
         <Topic title="Generating the Entire Topic Tree"/>
-        <Topic title="Bottling the FubuWorld Project"/>
+        <Topic title="Bottling the FubuWorld ProjectRoot"/>
       </Topic>
     </FubuDocsRunner>
   
