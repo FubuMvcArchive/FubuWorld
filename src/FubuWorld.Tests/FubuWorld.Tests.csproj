@@ -118,6 +118,7 @@
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinderTester.cs" />
     <Compile Include="Infrastructure\TopicGraphActivatorTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Topics\ProjectRootPersistenceTester.cs" />
     <Compile Include="Topics\SparkTopicFileTester.cs" />
   </ItemGroup>
   <ItemGroup>

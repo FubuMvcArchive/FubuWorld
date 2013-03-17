@@ -31,9 +31,9 @@ namespace FubuWorld.Topics
     {
         public void Configure(BehaviorGraph graph)
         {
-            PackageRegistry.Packages.Where(x => x.Name.EndsWith(".Docs")).Each(pak => {
-                pak.ForFolder(BottleFiles.WebContentFolder, dir => LoadPackage(pak, dir, graph));
-            });
+            PackageRegistry.Packages.Where(x => x.Name.EndsWith(".Docs"))
+                           .Each(
+                               pak => { pak.ForFolder(BottleFiles.WebContentFolder, dir => LoadPackage(pak, dir, graph)); });
         }
 
         private void LoadPackage(IPackageInfo pak, string directory, BehaviorGraph graph)
@@ -42,7 +42,7 @@ namespace FubuWorld.Topics
             // 2.) go through the folders and build out the ITopicFile's
 
             var loader = new TopicFileLoader();
-            var files = loader.FindFilesFromBottle(pak.Name);
+            IEnumerable<ITopicFile> files = loader.FindFilesFromBottle(pak.Name);
 
             // find the project.spark file.  If it does not exist, use the default one and create
             // a new TopicNode for the default.
@@ -64,7 +64,7 @@ namespace FubuWorld.Topics
         public static bool IsTopic<T>(ViewDescriptor<T> descriptor) where T : ITemplateFile
         {
             if (descriptor.HasViewModel()) return false;
-            
+
             if (descriptor.ViewPath.Contains("/Samples/") || descriptor.ViewPath.Contains("/Examples/")) return false;
 
             return true;
@@ -76,7 +76,7 @@ namespace FubuWorld.Topics
                                   .OfType<ViewDescriptor<Template>>()
                                   .Where(IsTopic)
                                   .Select(x => new SparkTopicFile(x));
-        } 
+        }
     }
 
     public interface ITopicFile
@@ -90,44 +90,12 @@ namespace FubuWorld.Topics
     [ApplicationLevel]
     public class TopicGraph
     {
-        private readonly Cache<string, ProjectRoot> _projects = new Cache<string, ProjectRoot>(); 
-        
+        private readonly Cache<string, ProjectRoot> _projects = new Cache<string, ProjectRoot>();
+
         public void AddProject(ProjectRoot project)
         {
             _projects[project.Name] = project;
         }
-    }
-
-    public class ProjectRoot
-    {
-        public static ProjectRoot LoadFrom(string file)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void WriteTo(string file)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Name { get; set; }
-        public string GitHubPage { get; set; }
-        public string UserGroupUrl { get; set; }
-        public string BuildServerUrl { get; set; }
-        public string BottleName { get; set; }
-
-        public TopicNode RootNode { get; set; }
-
-
-        /*
-         * Extends what?
-         * Keywords?
-         * Nugets?
-         * 
-         * 
-         * 
-         * 
-         */
     }
 
     // TODO -- add DescibesItself stuff to this
@@ -166,17 +134,6 @@ namespace FubuWorld.Topics
             get { return _node; }
         }
 
-        protected override ObjectDef buildObjectDef()
-        {
-            var def = ObjectDef.ForType<TopicBehavior>();
-
-            def.DependencyByValue(typeof(TopicNode), Node);
-            var writerDef = _view.As<IContainerModel>().ToObjectDef();
-            def.Dependency(typeof(IMediaWriter<TopicNode>), writerDef);
-
-            return def;
-        }
-
         public override BehaviorCategory Category
         {
             get { return BehaviorCategory.Output; }
@@ -185,6 +142,17 @@ namespace FubuWorld.Topics
         public Type InputType()
         {
             return typeof (TopicNode);
+        }
+
+        protected override ObjectDef buildObjectDef()
+        {
+            ObjectDef def = ObjectDef.ForType<TopicBehavior>();
+
+            def.DependencyByValue(typeof (TopicNode), Node);
+            ObjectDef writerDef = _view.As<IContainerModel>().ToObjectDef();
+            def.Dependency(typeof (IMediaWriter<TopicNode>), writerDef);
+
+            return def;
         }
     }
 
@@ -206,10 +174,7 @@ namespace FubuWorld.Topics
 
         public string Key
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { throw new NotImplementedException(); }
         }
 
         public string Url
