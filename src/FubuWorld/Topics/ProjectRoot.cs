@@ -5,6 +5,8 @@ namespace FubuWorld.Topics
 {
     public class ProjectRoot
     {
+        public static readonly string File = "project.xml";
+
         public string Name { get; set; }
         public string GitHubPage { get; set; }
         public string UserGroupUrl { get; set; }

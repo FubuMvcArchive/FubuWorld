@@ -1,0 +1,8 @@
+﻿<?xml version="1.0"?>
+<ProjectRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>FubuMVC</Name>
+  <GitHubPage>https://github.com/DarthFubuMVC/fubumvc</GitHubPage>
+  <UserGroupUrl>https://groups.google.com/forum/?fromgroups#!forum/fubumvc-devel</UserGroupUrl>
+  <BuildServerUrl>http://build.fubu-project.org/project.html?projectId=project3&amp;tab=projectOverview</BuildServerUrl>
+  <BottleName>FubuMVC.Docs</BottleName>
+</ProjectRoot>
