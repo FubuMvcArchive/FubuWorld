@@ -13,7 +13,6 @@ using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.View;
 using FubuMVC.Core.View.Model;
-using FubuMVC.Spark;
 using FubuMVC.Spark.SparkModel;
 
 namespace FubuWorld.Topics
@@ -24,6 +23,7 @@ namespace FubuWorld.Topics
      * - find Url for a named topic key
      * - show all topics
      * - register DocumentationProjectLoader
+     * - going to need a full end to end test for SparkTopicFile
      */
 
     [ConfigurationType(ConfigurationType.Discovery)]
@@ -81,32 +81,10 @@ namespace FubuWorld.Topics
 
     public interface ITopicFile
     {
-        string ViewPath { get; }
+        string FilePath { get; }
         string Name { get; }
         string RelativePath();
         IViewToken ToViewToken();
-    }
-
-    public class SparkTopicFile : ITopicFile
-    {
-        private readonly ViewDescriptor<Template> _viewDescriptor;
-
-        public SparkTopicFile(ViewDescriptor<Template> viewDescriptor)
-        {
-            _viewDescriptor = viewDescriptor;
-        }
-
-        public string ViewPath { get { return _viewDescriptor.ViewPath; } }
-        public string Name { get { return _viewDescriptor.Name(); } }
-        public string RelativePath()
-        {
-            return _viewDescriptor.RelativePath();
-        }
-
-        public IViewToken ToViewToken()
-        {
-            return new SparkViewToken(new SparkDescriptor(_viewDescriptor.Template));
-        }
     }
 
     [ApplicationLevel]
