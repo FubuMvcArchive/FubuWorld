@@ -14,13 +14,13 @@ namespace FubuWorld.Tests.Topics
         {
             Name = Guid.NewGuid().ToString() + ".spark";
             FilePath = Name;
-            RelativePath = Path.GetFileNameWithoutExtension(Name);
+            Folder = Path.GetFileNameWithoutExtension(Name);
         }
 
         public string FilePath { get; set; }
         public string Name { get; set; }
 
-        public string RelativePath { get; set; }
+        public string Folder { get; set; }
 
         public void WriteContents(string contents)
         {

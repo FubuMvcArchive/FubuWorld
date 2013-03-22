@@ -120,6 +120,7 @@
     <Compile Include="Topics\ProjectRootPersistenceTester.cs" />
     <Compile Include="Topics\SparkTopicFileTester.cs" />
     <Compile Include="Topics\StubTopicFile.cs" />
+    <Compile Include="Topics\TopicNodeIntegratedTester.cs" />
     <Compile Include="Topics\TopicFileLoaderIntegratedTester.cs" />
     <Compile Include="Topics\TopicNodeTester.cs" />
   </ItemGroup>

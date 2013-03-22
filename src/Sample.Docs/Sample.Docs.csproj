@@ -48,18 +48,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="deep\1.1.1.topic.spark" />
-    <None Include="deep\1.1.2.topic.spark" />
-    <None Include="deep\1.1.topic.spark" />
-    <None Include="deep\1.2.topic.spark" />
-    <None Include="deep\1.3.topic.spark" />
-    <None Include="deep\1.topic.spark" />
-    <None Include="deep\2.1.topic.spark" />
-    <None Include="deep\2.2.topic.spark" />
-    <None Include="deep\2.topic.spark" />
-    <None Include="deep\3.topic.spark" />
-    <None Include="deep\examples\anything.spark" />
-    <None Include="deep\index.spark" />
+    <None Include="colors\1.1.1.red.spark" />
+    <None Include="colors\1.1.2.green.spark" />
+    <None Include="colors\1.1.blue.spark" />
+    <None Include="colors\1.2.orange.spark" />
+    <None Include="colors\1.3.purple.spark" />
+    <None Include="colors\1.pink.spark" />
+    <None Include="colors\2.1.cornflower.spark" />
+    <None Include="colors\2.2.black.spark" />
+    <None Include="colors\2.white.spark" />
+    <None Include="colors\3.gray.spark" />
+    <None Include="colors\examples\anything.spark" />
+    <None Include="colors\index.spark" />
     <None Include="Root.spark" />
     <None Include="subject1\index.spark" />
     <None Include="subject1\samples\whatever.spark" />

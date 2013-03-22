@@ -5,6 +5,7 @@ using FubuMVC.Spark;
 using FubuMVC.Spark.SparkModel;
 using System.Linq;
 using System.Collections.Generic;
+using FubuCore;
 
 namespace FubuWorld.Topics
 {
@@ -20,12 +21,12 @@ namespace FubuWorld.Topics
         public string FilePath { get { return _viewDescriptor.Template.FilePath; } }
         public string Name { get { return _viewDescriptor.Name(); } }
 
-        public string RelativePath
+        public string Folder
         {
             get
             {
                 string relativeFile = _viewDescriptor.RelativePath().Replace('\\', '/');
-                return relativeFile.Split('.').Reverse().Skip(1).Reverse().Join(".");
+                return relativeFile.Split('.').Reverse().Skip(1).Reverse().Join(".").ParentDirectory();
             }
         }
 

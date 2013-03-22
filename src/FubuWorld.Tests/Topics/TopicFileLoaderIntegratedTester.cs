@@ -43,10 +43,10 @@ namespace FubuWorld.Tests.Topics
         [Test]
         public void spot_check_a_topic()
         {
-            var file = theFiles.First(x => x.Name == "1.3.topic");
+            var file = theFiles.First(x => x.Name == "1.3.purple");
             file.ShouldNotBeNull();
 
-            file.RelativePath.ShouldEqual("deep/1.3.topic");
+            file.Folder.ShouldEqual("colors");
         }
 
         [Test]

@@ -157,6 +157,7 @@
     <Compile Include="Topics\ProjectRoot.cs" />
     <Compile Include="Topics\SparkTopicFile.cs" />
     <Compile Include="Topics\TopicFileLoader.cs" />
+    <Compile Include="Topics\TopicNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
