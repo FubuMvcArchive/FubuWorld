@@ -52,21 +52,6 @@ namespace FubuWorld.Tests.Topics
         }
 
         [Test]
-        public void get_the_title_if_it_is_not_written_into_the_file()
-        {
-            b.File.As<StubTopicFile>().Name = "Some Name";
-            b.Title.ShouldEqual("Some Name");
-        }
-
-        [Test]
-        public void get_the_title_from_file_contents()
-        {
-            a.File.As<StubTopicFile>().WriteContents("<!--Title: Some Title for This Topic -->");
-
-            a.Title.ShouldEqual("Some Title for This Topic");
-        }
-
-        [Test]
         public void initial_state_nulls()
         {
             a.NextSibling.ShouldBeNull();

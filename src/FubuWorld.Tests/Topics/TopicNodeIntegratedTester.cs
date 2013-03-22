@@ -13,16 +13,15 @@ using StructureMap;
 
 namespace FubuWorld.Tests.Topics
 {
-    [TestFixture]
-    public class TopicNodeIntegratedTester
+    public static class ObjectMother
     {
-        private Cache<string, TopicNode> nodes;
-        private ProjectRoot theProjectRoot;
+        public readonly static ProjectRoot ProjectRoot;
+        public readonly static Cache<string, TopicNode> Nodes;
+        public readonly static IEnumerable<ITopicFile> Files;
 
-        [SetUp]
-        public void SetUp()
+        static ObjectMother()
         {
-            theProjectRoot = new ProjectRoot();
+            ProjectRoot = new ProjectRoot();
 
             FubuMvcPackageFacility.PhysicalRootPath = ".".ToFullPath().ParentDirectory().ParentDirectory();
             var app = FubuApplication
@@ -34,24 +33,64 @@ namespace FubuWorld.Tests.Topics
             registry.ShouldNotBeNull();
 
             var loader = new TopicFileLoader(registry);
-            var files = loader.FindFilesFromBottle("Sample.Docs");
+            Files = loader.FindFilesFromBottle("Sample.Docs");
 
-            nodes = new Cache<string, TopicNode>();
-            files.Each(file => {
-                var node = new TopicNode(theProjectRoot, file);
-                nodes[node.Key] = node;
+            Nodes = new Cache<string, TopicNode>();
+            Files.Each(file =>
+            {
+                var node = new TopicNode(ProjectRoot, file);
+                Nodes[node.Key] = node;
 
                 Debug.WriteLine(node.Key);
             });
         }
+    }
 
+    [TestFixture]
+    public class TopicNodeIntegratedTester
+    {
         [Test]
         public void determines_the_key()
         {
-            nodes["colors/red"].ShouldNotBeNull();
-            nodes["colors/blue"].ShouldNotBeNull();
-            nodes["colors/purple"].ShouldNotBeNull();
-            nodes["colors/green"].ShouldNotBeNull();
+            ObjectMother.Nodes["colors/red"].ShouldNotBeNull();
+            ObjectMother.Nodes["colors/blue"].ShouldNotBeNull();
+            ObjectMother.Nodes["colors/purple"].ShouldNotBeNull();
+            ObjectMother.Nodes["colors/green"].ShouldNotBeNull();
+        }
+
+
+        [Test]
+        public void determine_the_url_for_an_index_name()
+        {
+            var colorsIndex = ObjectMother.Nodes["colors"];
+            colorsIndex.File.Name.ShouldEqual("index");
+
+            colorsIndex.Url.ShouldEqual("colors");
+        }
+
+        [Test]
+        public void determine_the_url_for_a_file_not_the_index()
+        {
+            ObjectMother.Nodes["colors/red"].Url.ShouldEqual("colors/red");
+        }
+
+        [Test]
+        public void determine_the_url_for_a_file_overriding_url_in_spark_file()
+        {
+            ObjectMother.Nodes["colors/green"].Url.ShouldEqual("colors/SeaGreen"); // look at the 1.1.2.green.spark file
+        }
+
+
+        [Test]
+        public void get_the_title_if_it_is_not_written_into_the_file()
+        {
+            ObjectMother.Nodes["colors/green"].Title.ShouldEqual("The green page");
+        }
+
+        [Test]
+        public void get_the_title_from_file_contents()
+        {
+            ObjectMother.Nodes["colors/blue"].Title.ShouldEqual("Blue");
         }
 
     }

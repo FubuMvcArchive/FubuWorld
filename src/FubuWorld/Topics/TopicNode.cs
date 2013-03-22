@@ -13,14 +13,16 @@ namespace FubuWorld.Topics
         private static FileSystem FileSystem = new FileSystem();
 
 
-        private readonly Lazy<string> _title; 
+        private readonly string _title; 
         private readonly ITopicFile _file;
         private readonly ProjectRoot _projectRoot;
         private TopicNode _firstChild;
         private TopicNode _next;
         private TopicNode _parent;
         private TopicNode _previous;
-        private string _key;
+        private readonly string _key;
+        private readonly string _url;
+        private readonly string Index = "index";
 
         public TopicNode(ProjectRoot projectRoot, ITopicFile file)
         {
@@ -28,22 +30,36 @@ namespace FubuWorld.Topics
             _file = file;
 
             var filename = Path.GetFileNameWithoutExtension(file.FilePath).Split('.').Last();
-            _key = _file.Folder.TrimEnd('/') + "/" + filename;
+            var isIndex = filename.EqualsIgnoreCase(Index);
 
-            _title = new Lazy<string>(() => {
-                if (FileSystem.FileExists(_file.FilePath))
+            _url = _key = isIndex ? _file.Folder : _file.Folder.TrimEnd('/') + "/" + filename;
+
+
+            if (FileSystem.FileExists(_file.FilePath))
+            {
+                Func<string, bool> filter = x => x.StartsWith("Title:", StringComparison.OrdinalIgnoreCase);
+                IEnumerable<string> comments = findComments();
+                var rawTitle = comments.FirstOrDefault(filter);
+                if (rawTitle != null)
                 {
-                    Func<string, bool> filter = x => x.StartsWith("Title:", StringComparison.OrdinalIgnoreCase);
-                    var rawTitle = findComments().FirstOrDefault(filter);
-
-                    if (rawTitle != null)
-                    {
-                        return rawTitle.Split(':').Last().Trim();
-                    }
+                    _title = rawTitle.Split(':').Last().Trim();
                 }
 
-                return _file.Name;
-            });
+                if (!isIndex)
+                {
+                    var rawUrl = comments.FirstOrDefault(x => x.StartsWith("Url:", StringComparison.OrdinalIgnoreCase));
+                    if (rawUrl.IsNotEmpty())
+                    {
+                        var segment = rawUrl.Split(':').Last().Trim();
+                        _url = _file.Folder.TrimEnd() + "/" + segment;
+                    }
+                }
+            }
+
+            if (_title.IsEmpty())
+            {
+                _title = filename.Capitalize().SplitPascalCase();
+            }
         }
 
         private IEnumerable<string> findComments()
@@ -69,12 +85,12 @@ namespace FubuWorld.Topics
 
         public string Url
         {
-            get { throw new NotImplementedException(); }
+            get { return _url; }
         }
 
         public string Title
         {
-            get { return _title.Value; }
+            get { return _title; }
         }
 
 
