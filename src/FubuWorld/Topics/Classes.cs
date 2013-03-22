@@ -55,7 +55,48 @@ namespace FubuWorld.Topics
         }
     }
 
-    
+    public class OrderedString : IComparable<OrderedString>
+    {
+        private readonly int[] _order;
+        private readonly string _value;
+
+        public OrderedString(string text)
+        {
+            var values = text.Split('.');
+            _order = values.Reverse().Skip(1).Reverse().Select(int.Parse).ToArray();
+            _value = values.Last();
+        }
+
+        public int[] Order
+        {
+            get { return _order; }
+        }
+
+        public string Value
+        {
+            get { return _value; }
+        }
+
+        public bool OrderStartsWith(int[] order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CompareTo(OrderedString other)
+        {
+            if (Order.Any() && other.Order.Length == Order.Length)
+            {
+                for (int i = 0; i < Order.Length; i++)
+                {
+                    var compare = Order[i].CompareTo(other.Order[i]);
+                    if (compare != 0) return compare;
+
+                }
+            }
+
+            return Value.CompareTo(other.Value);
+        }
+    }
 
     public interface ITopicFile
     {
