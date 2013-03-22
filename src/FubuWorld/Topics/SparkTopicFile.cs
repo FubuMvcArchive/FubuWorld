@@ -1,7 +1,10 @@
-﻿using FubuMVC.Core.View;
+﻿using System.IO;
+using FubuMVC.Core.View;
 using FubuMVC.Core.View.Model;
 using FubuMVC.Spark;
 using FubuMVC.Spark.SparkModel;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace FubuWorld.Topics
 {
@@ -18,7 +21,8 @@ namespace FubuWorld.Topics
         public string Name { get { return _viewDescriptor.Name(); } }
         public string RelativePath()
         {
-            return _viewDescriptor.RelativePath();
+            string relativeFile = _viewDescriptor.RelativePath().Replace('\\', '/');
+            return relativeFile.Split('.').Reverse().Skip(1).Reverse().Join(".");
         }
 
         public IViewToken ToViewToken()

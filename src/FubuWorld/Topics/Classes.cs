@@ -12,8 +12,6 @@ using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.View;
-using FubuMVC.Core.View.Model;
-using FubuMVC.Spark.SparkModel;
 
 namespace FubuWorld.Topics
 {
@@ -41,8 +39,8 @@ namespace FubuWorld.Topics
             // 1.) Load the project file itself and build the project root
             // 2.) go through the folders and build out the ITopicFile's
 
-            var loader = new TopicFileLoader();
-            IEnumerable<ITopicFile> files = loader.FindFilesFromBottle(pak.Name);
+            //var loader = new TopicFileLoader();
+            //IEnumerable<ITopicFile> files = loader.FindFilesFromBottle(pak.Name);
 
             // find the project.spark file.  If it does not exist, use the default one and create
             // a new TopicNode for the default.
@@ -56,28 +54,7 @@ namespace FubuWorld.Topics
         }
     }
 
-    public class TopicFileLoader
-    {
-        private readonly SparkTemplateRegistry _sparkTemplates = new SparkTemplateRegistry();
-        // needs to use SparkTemplateRegistry to find descriptors
-
-        public static bool IsTopic<T>(ViewDescriptor<T> descriptor) where T : ITemplateFile
-        {
-            if (descriptor.HasViewModel()) return false;
-
-            if (descriptor.ViewPath.Contains("/Samples/") || descriptor.ViewPath.Contains("/Examples/")) return false;
-
-            return true;
-        }
-
-        public IEnumerable<ITopicFile> FindFilesFromBottle(string bottleName)
-        {
-            return _sparkTemplates.Where(x => x.Origin == bottleName)
-                                  .OfType<ViewDescriptor<Template>>()
-                                  .Where(IsTopic)
-                                  .Select(x => new SparkTopicFile(x));
-        }
-    }
+    
 
     public interface ITopicFile
     {

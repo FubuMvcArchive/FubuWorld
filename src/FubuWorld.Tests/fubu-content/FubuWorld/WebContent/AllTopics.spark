@@ -1,0 +1,7 @@
+﻿<viewdata model="FubuWorld.AllTopicsModel"/>
+
+<h1>All Topics</h1>
+
+<ul>
+	!{Model.Topics}
+</ul>

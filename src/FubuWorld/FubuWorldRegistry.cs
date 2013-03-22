@@ -38,7 +38,6 @@ namespace FubuWorld
             registry.Services(x =>
             {
                 x.AddService<IPropertyBinder, RequestLogPropertyBinder>();
-                x.AddService<IActivator, TopicGraphActivator>();
             });
         }
     }
