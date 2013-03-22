@@ -60,7 +60,7 @@ namespace FubuWorld.Topics
     {
         string FilePath { get; }
         string Name { get; }
-        string RelativePath();
+        string RelativePath { get; }
         IViewToken ToViewToken();
     }
 

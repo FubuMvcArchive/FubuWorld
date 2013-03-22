@@ -19,10 +19,14 @@ namespace FubuWorld.Topics
 
         public string FilePath { get { return _viewDescriptor.Template.FilePath; } }
         public string Name { get { return _viewDescriptor.Name(); } }
-        public string RelativePath()
+
+        public string RelativePath
         {
-            string relativeFile = _viewDescriptor.RelativePath().Replace('\\', '/');
-            return relativeFile.Split('.').Reverse().Skip(1).Reverse().Join(".");
+            get
+            {
+                string relativeFile = _viewDescriptor.RelativePath().Replace('\\', '/');
+                return relativeFile.Split('.').Reverse().Skip(1).Reverse().Join(".");
+            }
         }
 
         public IViewToken ToViewToken()

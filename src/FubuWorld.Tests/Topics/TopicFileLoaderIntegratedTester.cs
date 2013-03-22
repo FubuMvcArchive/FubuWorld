@@ -46,7 +46,7 @@ namespace FubuWorld.Tests.Topics
             var file = theFiles.First(x => x.Name == "1.3.topic");
             file.ShouldNotBeNull();
 
-            file.RelativePath().ShouldEqual("deep/1.3.topic");
+            file.RelativePath.ShouldEqual("deep/1.3.topic");
         }
 
         [Test]
