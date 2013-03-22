@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Bottles;
 using FubuCore;
 using FubuCore.Util;
@@ -135,10 +137,13 @@ namespace FubuWorld.Topics
 
     public class TopicNode
     {
+        private static FileSystem FileSystem = new FileSystem();
+
+
+        private readonly Lazy<string> _title; 
         private readonly ITopicFile _file;
         private readonly ProjectRoot _projectRoot;
         private TopicNode _firstChild;
-
         private TopicNode _next;
         private TopicNode _parent;
         private TopicNode _previous;
@@ -147,6 +152,37 @@ namespace FubuWorld.Topics
         {
             _projectRoot = projectRoot;
             _file = file;
+
+            _title = new Lazy<string>(() => {
+                if (FileSystem.FileExists(_file.FilePath))
+                {
+                    Func<string, bool> filter = x => x.StartsWith("Title:", StringComparison.OrdinalIgnoreCase);
+                    var rawTitle = findComments().FirstOrDefault(filter);
+
+                    if (rawTitle != null)
+                    {
+                        return rawTitle.Split(':').Last().Trim();
+                    }
+                }
+
+                return _file.Name;
+            });
+        }
+
+        private IEnumerable<string> findComments()
+        {
+            var regex = @"<!--(.*?)-->";
+            var matches = Regex.Matches(FileSystem.ReadStringFromFile(_file.FilePath), regex);
+            foreach (Match match in matches)
+            {
+                yield return match.Groups[1].Value.Trim();
+            }
+        } 
+
+
+        public ITopicFile File
+        {
+            get { return _file; }
         }
 
         public string Key
@@ -161,7 +197,7 @@ namespace FubuWorld.Topics
 
         public string Title
         {
-            get { throw new NotImplementedException(); }
+            get { return _title.Value; }
         }
 
 

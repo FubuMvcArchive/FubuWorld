@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using FubuCore;
 using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Core.View;
@@ -9,6 +10,13 @@ namespace FubuWorld.Tests.Topics
 {
     public class StubTopicFile : ITopicFile
     {
+        public StubTopicFile()
+        {
+            Name = Guid.NewGuid().ToString() + ".spark";
+            FilePath = Name;
+            RelativePath = Path.GetFileNameWithoutExtension(Name);
+        }
+
         public string FilePath { get; set; }
         public string Name { get; set; }
 
