@@ -53,7 +53,7 @@ namespace FubuWorld.Topics
             get { return _rawName; }
         }
 
-        public void AddFiles(IEnumerable<ITopicFile> topicFiles)
+        public void OrganizeFiles(IEnumerable<ITopicFile> topicFiles)
         {
             var topics = topicFiles.Select(x => new Topic(this, x)).ToArray();
             // if one is "index", that's the root.  If not, order it.

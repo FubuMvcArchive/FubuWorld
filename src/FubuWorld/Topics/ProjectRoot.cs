@@ -51,7 +51,7 @@ namespace FubuWorld.Topics
         {
             var folders = new Cache<string, TopicFolder>(raw => new TopicFolder(raw, this));
             files.GroupBy(x => x.Folder).Each(group => {
-                folders[group.Key].AddFiles(group);
+                folders[group.Key].OrganizeFiles(group);
             });
         }
 
