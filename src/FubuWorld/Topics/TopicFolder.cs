@@ -4,34 +4,38 @@ using System.Linq;
 
 namespace FubuWorld.Topics
 {
-    public class TopicFolder : ITopicNode
+    public class OrderedTopic : IComparable<OrderedTopic>
+    {
+        public OrderedTopic(string text)
+        {
+            Raw = text;
+            var values = text.Split('.');
+            Name = values.Last();
+        }
+
+        public string Raw { get; private set; }
+        public string Name { get; private set; }
+        public int CompareTo(OrderedTopic other)
+        {
+            return Raw.CompareTo(other.Raw);
+        }
+    }
+
+    public class TopicFolder : OrderedTopic, ITopicNode
     {
         private readonly string _rawName;
         private readonly ProjectRoot _project;
-        private readonly OrderedString _order;
-        private string _url;
+        private readonly string _url;
 
-        public TopicFolder(string rawName, ProjectRoot project)
+        public TopicFolder(string rawName, ProjectRoot project) : base(rawName.Split('/').Last())
         {
             _rawName = rawName;
             _project = project;
-            var last = rawName.Split('/').Last();
 
-            _order = new OrderedString(last);
-
-            _url = rawName.Split('/').Select(x => new OrderedString(x).Value).Join("/");
+            _url = rawName.Split('/').Select(x => new OrderedTopic(x).Name).Join("/");
             _url = project.Url.AppendUrl(_url);
         }
 
-        public string Name
-        {
-            get { return _order.Value; }
-        }
-
-        public OrderedString Order
-        {
-            get { return _order; }
-        }
 
         public Topic RootTopic()
         {

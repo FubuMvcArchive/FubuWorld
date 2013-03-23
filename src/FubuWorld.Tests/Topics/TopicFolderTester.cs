@@ -38,12 +38,6 @@ namespace FubuWorld.Tests.Topics
         }
 
         [Test]
-        public void has_the_order()
-        {
-            theFolder.Order.ShouldEqual(new OrderedString("1.1.2.abc"));
-        }
-
-        [Test]
         public void has_the_url()
         {
             theFolder.Url.ShouldEqual("fubumvc/foo/bar/abc");

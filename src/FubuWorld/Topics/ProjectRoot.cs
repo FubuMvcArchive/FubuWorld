@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace FubuWorld.Topics
 {
+
     public class ProjectRoot : ITopicNode
     {
         public static readonly string File = "project.xml";
@@ -53,11 +54,6 @@ namespace FubuWorld.Topics
             files.GroupBy(x => x.Folder).Each(group => {
                 folders[group.Key].OrganizeFiles(group);
             });
-        }
-
-        OrderedString ITopicNode.Order
-        {
-            get { return null; }
         }
 
         Topic ITopicNode.RootTopic()

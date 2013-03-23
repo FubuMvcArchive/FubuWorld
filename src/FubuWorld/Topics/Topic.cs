@@ -8,17 +8,7 @@ using FubuMVC.Core.Registration;
 
 namespace FubuWorld.Topics
 {
-    public interface ITopicNode
-    {
-        OrderedString Order { get; }
-        Topic RootTopic();
-
-        string Url { get; }
-
-        ProjectRoot Project { get; }
-    }
-
-    public class Topic : ITopicNode
+    public class Topic : OrderedTopic, ITopicNode
     {
         private static FileSystem FileSystem = new FileSystem();
 
@@ -32,18 +22,14 @@ namespace FubuWorld.Topics
         private readonly string _key;
         private readonly string _url;
         private readonly string Index = "index";
-        private readonly OrderedString _ordered;
 
-        public Topic(ITopicNode parent, ITopicFile file)
+        public Topic(ITopicNode parent, ITopicFile file) : base(Path.GetFileNameWithoutExtension(file.FilePath))
         {
             _file = file;
 
-            _ordered = new OrderedString(Path.GetFileNameWithoutExtension(file.FilePath));
-            
-            var filename = _ordered.Value;
-            var isIndex = filename.EqualsIgnoreCase(Index);
+            var isIndex = Name.EqualsIgnoreCase(Index);
 
-            _url = _key = isIndex ? _file.Folder : parent.Url.AppendUrl(filename);
+            _url = _key = isIndex ? _file.Folder : parent.Url.AppendUrl(Name);
             
 
             if (FileSystem.FileExists(_file.FilePath))
@@ -69,7 +55,7 @@ namespace FubuWorld.Topics
 
             if (_title.IsEmpty())
             {
-                _title = filename.Capitalize().SplitPascalCase();
+                _title = Name.Capitalize().SplitPascalCase();
             }
         }
 
@@ -314,8 +300,6 @@ namespace FubuWorld.Topics
                 }
             }
         }
-
-        public OrderedString Order { get { return _ordered; } }
 
         Topic ITopicNode.RootTopic()
         {
