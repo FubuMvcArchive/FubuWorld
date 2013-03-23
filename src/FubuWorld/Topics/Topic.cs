@@ -8,32 +8,43 @@ using FubuMVC.Core.Registration;
 
 namespace FubuWorld.Topics
 {
-    public class TopicNode
+    public interface ITopicNode
+    {
+        OrderedString Order { get; }
+        Topic RootTopic();
+
+        string Url { get; }
+
+        ProjectRoot Project { get; }
+    }
+
+    public class Topic : ITopicNode
     {
         private static FileSystem FileSystem = new FileSystem();
 
 
         private readonly string _title; 
         private readonly ITopicFile _file;
-        private readonly ProjectRoot _projectRoot;
-        private TopicNode _firstChild;
-        private TopicNode _next;
-        private TopicNode _parent;
-        private TopicNode _previous;
+        private Topic _firstChild;
+        private Topic _next;
+        private Topic _parent;
+        private Topic _previous;
         private readonly string _key;
         private readonly string _url;
         private readonly string Index = "index";
+        private readonly OrderedString _ordered;
 
-        public TopicNode(ProjectRoot projectRoot, ITopicFile file)
+        public Topic(ITopicNode parent, ITopicFile file)
         {
-            _projectRoot = projectRoot;
             _file = file;
 
-            var filename = Path.GetFileNameWithoutExtension(file.FilePath).Split('.').Last();
+            _ordered = new OrderedString(Path.GetFileNameWithoutExtension(file.FilePath));
+            
+            var filename = _ordered.Value;
             var isIndex = filename.EqualsIgnoreCase(Index);
 
-            _url = _key = isIndex ? _file.Folder : _file.Folder.TrimEnd('/') + "/" + filename;
-
+            _url = _key = isIndex ? _file.Folder : parent.Url.AppendUrl(filename);
+            
 
             if (FileSystem.FileExists(_file.FilePath))
             {
@@ -88,32 +99,37 @@ namespace FubuWorld.Topics
             get { return _url; }
         }
 
+        public ProjectRoot Project
+        {
+            get { return _parent.Project; }
+        }
+
         public string Title
         {
             get { return _title; }
         }
 
 
-        public TopicNode NextSibling
+        public Topic NextSibling
         {
             get { return _next; }
         }
 
-        public TopicNode PreviousSibling
+        public Topic PreviousSibling
         {
             get { return _previous; }
         }
 
-        public TopicNode Parent
+        public Topic Parent
         {
             get { return _previous == null ? _parent : _previous.Parent; }
         }
 
-        public IEnumerable<TopicNode> ChildNodes
+        public IEnumerable<Topic> ChildNodes
         {
             get
             {
-                TopicNode node = FirstChild;
+                Topic node = FirstChild;
                 while (node != null)
                 {
                     yield return node;
@@ -123,7 +139,7 @@ namespace FubuWorld.Topics
             }
         }
 
-        public TopicNode FirstChild
+        public Topic FirstChild
         {
             get { return _firstChild; }
             private set
@@ -136,7 +152,7 @@ namespace FubuWorld.Topics
             }
         }
 
-        public TopicNode LastChild
+        public Topic LastChild
         {
             get { return ChildNodes.LastOrDefault(); }
         }
@@ -146,9 +162,9 @@ namespace FubuWorld.Topics
             throw new NotImplementedException();
         }
 
-        public void AppendChild(TopicNode node)
+        public void AppendChild(Topic node)
         {
-            TopicNode last = LastChild;
+            Topic last = LastChild;
             if (last == null)
             {
                 FirstChild = node;
@@ -159,7 +175,7 @@ namespace FubuWorld.Topics
             }
         }
 
-        public void PrependChild(TopicNode node)
+        public void PrependChild(Topic node)
         {
             if (_firstChild != null)
             {
@@ -170,7 +186,7 @@ namespace FubuWorld.Topics
             FirstChild = node;
         }
 
-        public void InsertAfter(TopicNode node)
+        public void InsertAfter(Topic node)
         {
             if (_next != null)
             {
@@ -182,7 +198,7 @@ namespace FubuWorld.Topics
             _next = node;
         }
 
-        public void InsertBefore(TopicNode node)
+        public void InsertBefore(Topic node)
         {
             if (_previous == null)
             {
@@ -208,16 +224,16 @@ namespace FubuWorld.Topics
 
         public void Remove()
         {
-            TopicNode parent = Parent;
+            Topic parent = Parent;
             if (parent != null)
             {
                 parent.RemoveChild(this);
             }
         }
 
-        public void RemoveChild(TopicNode child)
+        public void RemoveChild(Topic child)
         {
-            List<TopicNode> children = ChildNodes.ToList();
+            List<Topic> children = ChildNodes.ToList();
             children.Remove(child);
 
             child._parent = null;
@@ -254,14 +270,14 @@ namespace FubuWorld.Topics
             return string.Format("Topic: {0}", Title);
         }
 
-        public TopicNode FindNext()
+        public Topic FindNext()
         {
             if (_firstChild != null) return _firstChild;
 
             return findNextTopicNotChild();
         }
 
-        private TopicNode findNextTopicNotChild()
+        private Topic findNextTopicNotChild()
         {
             if (NextSibling != null) return NextSibling;
 
@@ -270,14 +286,14 @@ namespace FubuWorld.Topics
             return Parent.findNextTopicNotChild();
         }
 
-        public TopicNode FindPrevious()
+        public Topic FindPrevious()
         {
             if (PreviousSibling != null) return PreviousSibling;
 
             return Parent;
         }
 
-        public TopicNode FindIndex()
+        public Topic FindIndex()
         {
             if (Parent == null) return null;
 
@@ -286,17 +302,24 @@ namespace FubuWorld.Topics
             return Parent.FindIndex();
         }
 
-        public IEnumerable<TopicNode> Descendents()
+        public IEnumerable<Topic> Descendents()
         {
-            foreach (TopicNode childNode in ChildNodes)
+            foreach (Topic childNode in ChildNodes)
             {
                 yield return childNode;
 
-                foreach (TopicNode descendent in childNode.Descendents())
+                foreach (Topic descendent in childNode.Descendents())
                 {
                     yield return descendent;
                 }
             }
+        }
+
+        public OrderedString Order { get { return _ordered; } }
+
+        Topic ITopicNode.RootTopic()
+        {
+            return this;
         }
     }
 }

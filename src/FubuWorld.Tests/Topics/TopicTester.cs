@@ -10,24 +10,24 @@ using FubuCore;
 namespace FubuWorld.Tests.Topics
 {
     [TestFixture]
-    public class TopicNodeTester
+    public class TopicTester
     {
-        private TopicNode a;
-        private TopicNode b;
-        private TopicNode c;
-        private TopicNode d;
-        private TopicNode e;
+        private Topic a;
+        private Topic b;
+        private Topic c;
+        private Topic d;
+        private Topic e;
         private ProjectRoot theProject;
 
         [SetUp]
         public void SetUp()
         {
             theProject = new ProjectRoot();
-            a = new TopicNode(theProject, new StubTopicFile());
-            b = new TopicNode(theProject, new StubTopicFile());
-            c = new TopicNode(theProject, new StubTopicFile());
-            d = new TopicNode(theProject, new StubTopicFile());
-            e = new TopicNode(theProject, new StubTopicFile());
+            a = new Topic(theProject, new StubTopicFile());
+            b = new Topic(theProject, new StubTopicFile());
+            c = new Topic(theProject, new StubTopicFile());
+            d = new Topic(theProject, new StubTopicFile());
+            e = new Topic(theProject, new StubTopicFile());
 
         }
 

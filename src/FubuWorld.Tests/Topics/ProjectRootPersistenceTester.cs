@@ -33,5 +33,17 @@ namespace FubuWorld.Tests.Topics
             project2.BuildServerUrl.ShouldEqual(project.BuildServerUrl);
             project2.BottleName.ShouldEqual(project.BottleName);
         }
+
+        [Test]
+        public void url_is_lower_case_name_if_no_url_is_set()
+        {
+            Assert.Fail("Do.");
+        }
+
+        [Test]
+        public void use_the_persisted_url_if_it_exists()
+        {
+            Assert.Fail("Do.");
+        }
     }
 }

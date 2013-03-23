@@ -44,10 +44,10 @@ namespace FubuWorld.Topics
             //IEnumerable<ITopicFile> files = loader.FindFilesFromBottle(pak.Name);
 
             // find the project.spark file.  If it does not exist, use the default one and create
-            // a new TopicNode for the default.
+            // a new Topic for the default.
 
             // group the files in a hierarchy and order. 
-            // Build the TopicNode's
+            // Build the Topic's
 
             // add the new ProjectRoot to 
 
@@ -59,12 +59,17 @@ namespace FubuWorld.Topics
     {
         private readonly int[] _order;
         private readonly string _value;
+        private readonly int[] _parentRank;
+        private string _raw;
 
         public OrderedString(string text)
         {
+            _raw = text;
             var values = text.Split('.');
             _order = values.Reverse().Skip(1).Reverse().Select(int.Parse).ToArray();
             _value = values.Last();
+
+            _parentRank = _order.Any() ? _order.Take(_order.Length - 1).ToArray() : new int[0];
         }
 
         public int[] Order
@@ -75,6 +80,32 @@ namespace FubuWorld.Topics
         public string Value
         {
             get { return _value; }
+        }
+
+        public int[] ParentRank
+        {
+            get { return _parentRank; }
+        }
+
+        protected bool Equals(OrderedString other)
+        {
+            return _order.SequenceEqual(other._order) && string.Equals(_value, other._value);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((OrderedString) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((_order != null ? _order.GetHashCode() : 0)*397) ^ (_value != null ? _value.GetHashCode() : 0);
+            }
         }
 
         public bool OrderStartsWith(int[] order)
@@ -94,7 +125,7 @@ namespace FubuWorld.Topics
                 }
             }
 
-            return Value.CompareTo(other.Value);
+            return _raw.CompareTo(other._raw);
         }
     }
 
@@ -106,24 +137,14 @@ namespace FubuWorld.Topics
         IViewToken ToViewToken();
     }
 
-    [ApplicationLevel]
-    public class TopicGraph
-    {
-        private readonly Cache<string, ProjectRoot> _projects = new Cache<string, ProjectRoot>();
-
-        public void AddProject(ProjectRoot project)
-        {
-            _projects[project.Name] = project;
-        }
-    }
 
     // TODO -- add DescibesItself stuff to this
     public class TopicBehavior : BasicBehavior
     {
-        private readonly TopicNode _node;
-        private readonly IMediaWriter<TopicNode> _writer;
+        private readonly Topic _node;
+        private readonly IMediaWriter<Topic> _writer;
 
-        public TopicBehavior(TopicNode node, IMediaWriter<TopicNode> writer) : base(PartialBehavior.Executes)
+        public TopicBehavior(Topic node, IMediaWriter<Topic> writer) : base(PartialBehavior.Executes)
         {
             _node = node;
             _writer = writer;
@@ -139,16 +160,16 @@ namespace FubuWorld.Topics
 
     public class TopicBehaviorNode : BehaviorNode, IMayHaveInputType
     {
-        private readonly TopicNode _node;
+        private readonly Topic _node;
         private readonly ViewNode _view;
 
-        public TopicBehaviorNode(TopicNode node, ViewNode view)
+        public TopicBehaviorNode(Topic node, ViewNode view)
         {
             _node = node;
             _view = view;
         }
 
-        public TopicNode Node
+        public Topic Node
         {
             get { return _node; }
         }
@@ -160,16 +181,16 @@ namespace FubuWorld.Topics
 
         public Type InputType()
         {
-            return typeof (TopicNode);
+            return typeof (Topic);
         }
 
         protected override ObjectDef buildObjectDef()
         {
             ObjectDef def = ObjectDef.ForType<TopicBehavior>();
 
-            def.DependencyByValue(typeof (TopicNode), Node);
+            def.DependencyByValue(typeof (Topic), Node);
             ObjectDef writerDef = _view.As<IContainerModel>().ToObjectDef();
-            def.Dependency(typeof (IMediaWriter<TopicNode>), writerDef);
+            def.Dependency(typeof (IMediaWriter<Topic>), writerDef);
 
             return def;
         }

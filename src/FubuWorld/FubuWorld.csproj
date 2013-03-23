@@ -156,8 +156,10 @@
     <Compile Include="Topics\FubuWorldPackageLoader.cs" />
     <Compile Include="Topics\ProjectRoot.cs" />
     <Compile Include="Topics\SparkTopicFile.cs" />
+    <Compile Include="Topics\StringExtensions.cs" />
     <Compile Include="Topics\TopicFileLoader.cs" />
-    <Compile Include="Topics\TopicNode.cs" />
+    <Compile Include="Topics\TopicFolder.cs" />
+    <Compile Include="Topics\Topic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

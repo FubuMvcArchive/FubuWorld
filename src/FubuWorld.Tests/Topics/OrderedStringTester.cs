@@ -25,6 +25,13 @@ namespace FubuWorld.Tests.Topics
         }
 
         [Test]
+        public void parent_rank()
+        {
+            var s = new OrderedString("1.2.3.foo");
+            s.ParentRank.ShouldEqual(new int[] {1, 2});
+        }
+
+        [Test]
         public void ordered_testing_is_alphabetic_if_no_ordered()
         {
             var s1 = new OrderedString("a");
