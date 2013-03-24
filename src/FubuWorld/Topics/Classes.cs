@@ -40,7 +40,7 @@ namespace FubuWorld.Topics
             // 1.) Load the project file itself and build the project root
             // 2.) go through the folders and build out the ITopicFile's
 
-            //var loader = new TopicFileLoader();
+            //var loader = new TopicLoader();
             //IEnumerable<ITopicFile> files = loader.FindFilesFromBottle(pak.Name);
 
             // find the project.spark file.  If it does not exist, use the default one and create

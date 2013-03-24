@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bottles;
 using FubuMVC.Core.View.Model;
 using FubuMVC.Spark.SparkModel;
+using FubuCore;
 
 namespace FubuWorld.Topics
 {
     // Only testing w/ integration tests.
-    public class TopicFileLoader
+    public class TopicLoader
     {
         private readonly ISparkTemplateRegistry _sparkTemplates;
 
-        public TopicFileLoader(ISparkTemplateRegistry sparkTemplates)
+        public TopicLoader(ISparkTemplateRegistry sparkTemplates)
         {
             _sparkTemplates = sparkTemplates;
         }
@@ -31,6 +33,19 @@ namespace FubuWorld.Topics
                                   .OfType<Template>()
                                   .Where(IsTopic)
                                   .Select(x => new SparkTopicFile(new ViewDescriptor<Template>(x)));
+        }
+
+        public ProjectRoot LoadProject(string bottleName)
+        {
+            var pak = PackageRegistry.Packages.FirstOrDefault(x => x.Name == bottleName);
+            string folder = null;
+            pak.ForFolder(BottleFiles.WebContentFolder, x => folder = x);
+
+            var project = ProjectRoot.LoadFrom(folder.AppendPath(ProjectRoot.File));
+            var files = FindFilesFromBottle(bottleName);
+            project.OrganizeFiles(files);
+
+            return project;
         }
     }
 }

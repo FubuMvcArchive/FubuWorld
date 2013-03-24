@@ -9,6 +9,7 @@ using FubuMVC.StructureMap;
 using FubuTestingSupport;
 using FubuWorld.Topics;
 using StructureMap;
+using System.Linq;
 
 namespace FubuWorld.Tests.Topics
 {
@@ -29,22 +30,14 @@ namespace FubuWorld.Tests.Topics
             var registry = app.Factory.Get<ISparkTemplateRegistry>();
             registry.ShouldNotBeNull();
 
-            var loader = new TopicFileLoader(registry);
-            Files = loader.FindFilesFromBottle("Sample.Docs");
-
-            ProjectRoot =
-                ProjectRoot.LoadFrom(".".ToFullPath().ParentDirectory()
-                                        .ParentDirectory()
-                                        .ParentDirectory()
-                                        .AppendPath("Sample.Docs", ProjectRoot.File));
-
-            ProjectRoot.OrganizeFiles(Files);
+            var loader = new TopicLoader(registry);
+            ProjectRoot = loader.LoadProject("Sample.Docs");
 
             Nodes = new Cache<string, Topic>();
             Nodes[ProjectRoot.Root.Key] = ProjectRoot.Root;
             ProjectRoot.Root.Descendents().Each(x => Nodes[x.Key] = x);
 
-            Nodes.Each(x => Debug.WriteLine(x.Key));
+            Files = Nodes.Select(x => x.File).ToArray();
         }
     }
 }

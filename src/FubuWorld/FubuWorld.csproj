@@ -158,7 +158,7 @@
     <Compile Include="Topics\ProjectRoot.cs" />
     <Compile Include="Topics\SparkTopicFile.cs" />
     <Compile Include="Topics\StringExtensions.cs" />
-    <Compile Include="Topics\TopicFileLoader.cs" />
+    <Compile Include="Topics\TopicLoader.cs" />
     <Compile Include="Topics\TopicFolder.cs" />
     <Compile Include="Topics\Topic.cs" />
   </ItemGroup>
