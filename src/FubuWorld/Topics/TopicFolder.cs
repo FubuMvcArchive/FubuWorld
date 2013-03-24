@@ -58,5 +58,10 @@ namespace FubuWorld.Topics
         {
             _children.Add(orderedTopic);
         }
+
+        public override string ToString()
+        {
+            return string.Format("Folder Url: {0}", _url);
+        }
     }
 }

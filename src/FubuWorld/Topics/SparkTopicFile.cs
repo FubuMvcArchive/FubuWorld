@@ -26,8 +26,8 @@ namespace FubuWorld.Topics
         {
             get
             {
-                string relativeFile = _viewDescriptor.RelativePath().Replace('\\', '/');
-                return relativeFile.Split('.').Reverse().Skip(1).Reverse().Join(".").ParentDirectory();
+                string relativeFile = _viewDescriptor.RelativePath().Replace("\\", "/");
+                return relativeFile.Split('.').Reverse().Skip(1).Reverse().Join(".").ParentUrl();
             }
         }
 

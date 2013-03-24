@@ -18,7 +18,7 @@ namespace FubuWorld.Tests.Topics
         [Test]
         public void strips_the_order_out_of_folder_names()
         {
-            ObjectMother.Nodes["fubumvc/deep/1"].Url.ShouldEqual("deep/1");
+            ObjectMother.Nodes["fubumvc/deep/b"].Url.ShouldEqual("fubumvc/deep/b");
         }
 
         [Test]

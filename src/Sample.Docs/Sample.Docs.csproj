@@ -63,6 +63,8 @@
     <None Include="deep\1.b\1.subjectB\index.spark" />
     <None Include="deep\1.b\2.subjectA\C.spark" />
     <None Include="deep\1.b\index.spark" />
+    <None Include="deep\2.a\index.spark" />
+    <None Include="deep\3.d\index.spark" />
     <None Include="index.spark" />
     <None Include="subject1\index.spark" />
     <None Include="subject1\samples\whatever.spark" />
@@ -75,8 +77,6 @@
     <None Include="subject3\3.b.spark" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="deep\2.a\" />
-    <Folder Include="deep\3.d\" />
     <Folder Include="deep\4.c\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
