@@ -29,8 +29,7 @@ namespace FubuWorld.Topics
 
             var isIndex = Name.EqualsIgnoreCase(Index);
 
-            _url = _key = isIndex ? _file.Folder : parent.Url.AppendUrl(Name);
-            
+            _url = _key = isIndex ? parent.Url : parent.Url.AppendUrl(Name);
 
             if (FileSystem.FileExists(_file.FilePath))
             {
@@ -48,7 +47,7 @@ namespace FubuWorld.Topics
                     if (rawUrl.IsNotEmpty())
                     {
                         var segment = rawUrl.Split(':').Last().Trim();
-                        _url = _file.Folder.TrimEnd() + "/" + segment;
+                        _url = _url.ParentUrl().AppendUrl(segment);
                     }
                 }
             }

@@ -20,8 +20,6 @@ namespace FubuWorld.Tests.Topics
 
         static ObjectMother()
         {
-            ProjectRoot = new ProjectRoot();
-
             FubuMvcPackageFacility.PhysicalRootPath = ".".ToFullPath().ParentDirectory().ParentDirectory();
             var app = FubuApplication
                 .DefaultPolicies()
@@ -34,16 +32,19 @@ namespace FubuWorld.Tests.Topics
             var loader = new TopicFileLoader(registry);
             Files = loader.FindFilesFromBottle("Sample.Docs");
 
+            ProjectRoot =
+                ProjectRoot.LoadFrom(".".ToFullPath().ParentDirectory()
+                                        .ParentDirectory()
+                                        .ParentDirectory()
+                                        .AppendPath("Sample.Docs", ProjectRoot.File));
+
             ProjectRoot.OrganizeFiles(Files);
 
             Nodes = new Cache<string, Topic>();
-//            Files.Each(file =>
-//            {
-//                var node = new Topic(ProjectRoot, file);
-//                Nodes[node.Key] = node;
-//
-//                Debug.WriteLine(node.Key);
-//            });
+            Nodes[ProjectRoot.Root.Key] = ProjectRoot.Root;
+            ProjectRoot.Root.Descendents().Each(x => Nodes[x.Key] = x);
+
+            Nodes.Each(x => Debug.WriteLine(x.Key));
         }
     }
 }

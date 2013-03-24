@@ -63,7 +63,7 @@
     <None Include="deep\1.b\1.subjectB\index.spark" />
     <None Include="deep\1.b\2.subjectA\C.spark" />
     <None Include="deep\1.b\index.spark" />
-    <None Include="Root.spark" />
+    <None Include="index.spark" />
     <None Include="subject1\index.spark" />
     <None Include="subject1\samples\whatever.spark" />
     <None Include="subject2\child1.spark" />

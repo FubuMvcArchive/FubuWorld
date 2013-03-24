@@ -155,6 +155,7 @@
     <Compile Include="Topics\Classes.cs" />
     <Compile Include="Topics\FubuWorldPackageLoader.cs" />
     <Compile Include="Topics\ITopicNode.cs" />
+    <Compile Include="Topics\OrderedTopic.cs" />
     <Compile Include="Topics\ProjectRoot.cs" />
     <Compile Include="Topics\SparkTopicFile.cs" />
     <Compile Include="Topics\StringExtensions.cs" />

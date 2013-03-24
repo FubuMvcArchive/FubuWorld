@@ -7,12 +7,13 @@ namespace FubuWorld.Topics
     {
          public static string AppendUrl(this string url, string part)
          {
-             return (url + "/" + part).Replace("//", "/");
+             return (url + "/" + part).Replace("//", "/").Trim('/');
          }
 
         public static string ParentUrl(this string url)
         {
-            return url.Contains("/") ? url.Split('/').Reverse().Skip(1).Reverse().Join("/") : null;
+            url = url.Trim('/');
+            return url.Contains("/") ? url.Split('/').Reverse().Skip(1).Reverse().Join("/") : string.Empty;
         }
     }
 }

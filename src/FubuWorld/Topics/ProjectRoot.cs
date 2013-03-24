@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using FubuCore;
 using FubuCore.Util;
@@ -10,6 +11,7 @@ namespace FubuWorld.Topics
     public class ProjectRoot : ITopicNode
     {
         public static readonly string File = "project.xml";
+        private Topic _root;
 
         public string Name { get; set; }
         public string GitHubPage { get; set; }
@@ -19,7 +21,7 @@ namespace FubuWorld.Topics
         public string Url { get; set; }
 
         [XmlIgnore]
-        public Topic Root { get; set; }
+        public Topic Root { get { return _root; } }
 
         public static ProjectRoot LoadFrom(string file)
         {
@@ -51,10 +53,30 @@ namespace FubuWorld.Topics
         public void OrganizeFiles(IEnumerable<ITopicFile> files)
         {
             var folders = new Cache<string, TopicFolder>(raw => new TopicFolder(raw, this));
-            files.GroupBy(x => x.Folder).Each(group => {
+            files.GroupBy(x => (x.Folder ?? string.Empty)).Each(group => {
                 folders[group.Key].AddFiles(group);
             });
+
+            folders.Each(x => {
+                if (x.Raw == string.Empty) return;
+
+                var rawParent = x.Raw.ParentUrl();
+                folders.WithValue(rawParent, parent => parent.Add(x));
+            });
+
+            var masterFolder = folders[string.Empty];
+            var topLevelSubjects = masterFolder.TopLevelTopics();
+            if (topLevelSubjects.Count() > 1)
+            {
+                throw new NotImplementedException("Don't know what to do here");
+            }
+            else
+            {
+                _root = topLevelSubjects.Single();
+            }
         }
+
+
 
         ProjectRoot ITopicNode.Project { get { return this; } }
     }
