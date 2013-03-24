@@ -1,4 +1,7 @@
-﻿namespace FubuWorld.Topics
+﻿using System.Linq;
+using System.Collections.Generic;
+
+namespace FubuWorld.Topics
 {
     public static class StringExtensions
     {
@@ -6,5 +9,10 @@
          {
              return (url + "/" + part).Replace("//", "/");
          }
+
+        public static string ParentUrl(this string url)
+        {
+            return url.Contains("/") ? url.Split('/').Reverse().Skip(1).Reverse().Join("/") : null;
+        }
     }
 }

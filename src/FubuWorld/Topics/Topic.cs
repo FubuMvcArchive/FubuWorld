@@ -21,7 +21,7 @@ namespace FubuWorld.Topics
         private Topic _previous;
         private readonly string _key;
         private readonly string _url;
-        private readonly string Index = "index";
+        public static readonly string Index = "index";
 
         public Topic(ITopicNode parent, ITopicFile file) : base(Path.GetFileNameWithoutExtension(file.FilePath))
         {
@@ -301,9 +301,9 @@ namespace FubuWorld.Topics
             }
         }
 
-        Topic ITopicNode.RootTopic()
+        public override IEnumerable<Topic> TopLevelTopics()
         {
-            return this;
+            yield return this;
         }
     }
 }

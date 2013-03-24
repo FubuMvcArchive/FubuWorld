@@ -52,15 +52,9 @@ namespace FubuWorld.Topics
         {
             var folders = new Cache<string, TopicFolder>(raw => new TopicFolder(raw, this));
             files.GroupBy(x => x.Folder).Each(group => {
-                folders[group.Key].OrganizeFiles(group);
+                folders[group.Key].AddFiles(group);
             });
         }
-
-        Topic ITopicNode.RootTopic()
-        {
-            throw new System.NotImplementedException();
-        }
-
 
         ProjectRoot ITopicNode.Project { get { return this; } }
     }

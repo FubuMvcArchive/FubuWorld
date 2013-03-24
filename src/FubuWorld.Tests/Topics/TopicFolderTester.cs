@@ -13,8 +13,8 @@ namespace FubuWorld.Tests.Topics
 
         private IEnumerable<ITopicFile> addFiles(params string[] names)
         {
-            var files = names.Select(x => new StubTopicFile {Name = x}).ToArray();
-            theFolder.OrganizeFiles(files);
+            var files = names.Select(x => new StubTopicFile {Name = x, FilePath = x + ".spark"}).ToArray();
+            theFolder.AddFiles(files);
 
             return files;
         }
@@ -22,13 +22,13 @@ namespace FubuWorld.Tests.Topics
         [SetUp]
         public void SetUp()
         {
-            theFolder = new TopicFolder("1.foo/2.3.1.bar/1.1.2.abc", new ProjectRoot { Url = "fubumvc" });
+            theFolder = new TopicFolder("1.foo/1.bar/2.abc", new ProjectRoot { Url = "fubumvc" });
         }
 
         [Test]
         public void captures_the_raw_name()
         {
-            theFolder.RawName.ShouldEqual("1.foo/2.3.1.bar/1.1.2.abc");
+            theFolder.RawName.ShouldEqual("1.foo/1.bar/2.abc");
         }
 
         [Test]
@@ -46,9 +46,9 @@ namespace FubuWorld.Tests.Topics
         [Test]
         public void organizing_by_index_only()
         {
-            var file = addFiles("index.spark").Single();
+            var file = addFiles("index").Single();
 
-            theFolder.RootTopic().File.ShouldBeTheSameAs(file);
+            theFolder.TopLevelTopics().Single().File.ShouldBeTheSameAs(file);
         }
 
         [Test]
@@ -56,9 +56,8 @@ namespace FubuWorld.Tests.Topics
         {
             addFiles("b", "c", "a");
 
-            theFolder.RootTopic().File.Name.ShouldEqual("a");
-            theFolder.RootTopic().NextSibling.File.Name.ShouldEqual("b");
-            theFolder.RootTopic().NextSibling.NextSibling.File.Name.ShouldEqual("c");
+            theFolder.TopLevelTopics().Select(x => x.File.Name)
+                .ShouldHaveTheSameElementsAs("a", "b", "c");
         }
 
         [Test]
@@ -66,7 +65,7 @@ namespace FubuWorld.Tests.Topics
         {
             addFiles("b", "c", "a", "index");
 
-            var root = theFolder.RootTopic();
+            var root = theFolder.TopLevelTopics().Single();
             root.File.Name.ShouldEqual("index");
             root.FirstChild.File.Name.ShouldEqual("a");
             root.FirstChild.NextSibling.File.Name.ShouldEqual("b");
@@ -78,9 +77,8 @@ namespace FubuWorld.Tests.Topics
         {
             addFiles("1.c", "2.a", "3.b");
 
-            theFolder.RootTopic().File.Name.ShouldEqual("1.c");
-            theFolder.RootTopic().NextSibling.File.Name.ShouldEqual("2.a");
-            theFolder.RootTopic().NextSibling.NextSibling.File.Name.ShouldEqual("3.b");
+            theFolder.TopLevelTopics().Select(x => x.Name)
+                .ShouldHaveTheSameElementsAs("c", "a", "b");
         }
 
         [Test]
@@ -88,7 +86,7 @@ namespace FubuWorld.Tests.Topics
         {
             addFiles("1.b", "3.c", "2.a", "index");
 
-            var root = theFolder.RootTopic();
+            var root = theFolder.TopLevelTopics().Single();
             root.File.Name.ShouldEqual("index");
             root.FirstChild.File.Name.ShouldEqual("1.b");
             root.FirstChild.NextSibling.File.Name.ShouldEqual("2.a");
