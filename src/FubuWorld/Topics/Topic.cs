@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using FubuCore;
 using FubuMVC.Core.Registration;
+using FubuMVC.Core.Registration.Nodes;
 
 namespace FubuWorld.Topics
 {
@@ -13,86 +14,72 @@ namespace FubuWorld.Topics
         private static FileSystem FileSystem = new FileSystem();
 
 
-        private readonly string _title; 
-        private readonly ITopicFile _file;
         private Topic _firstChild;
         private Topic _next;
         private Topic _parent;
         private Topic _previous;
-        private readonly string _key;
-        private readonly string _url;
         public static readonly string Index = "index";
 
         public Topic(ITopicNode parent, ITopicFile file) : base(Path.GetFileNameWithoutExtension(file.FilePath))
         {
-            _file = file;
+            File = file;
 
-            var isIndex = Name.EqualsIgnoreCase(Index);
+            IsIndex = Name.EqualsIgnoreCase(Index);
+            Key = IsIndex ? parent.Url : parent.Url.AppendUrl(Name);
 
-            _url = _key = isIndex ? parent.Url : parent.Url.AppendUrl(Name);
+            Url = Key;
 
-            if (FileSystem.FileExists(_file.FilePath))
+            if (FileSystem.FileExists(File.FilePath))
             {
                 Func<string, bool> filter = x => x.StartsWith("Title:", StringComparison.OrdinalIgnoreCase);
-                IEnumerable<string> comments = findComments();
+                IEnumerable<string> comments = findComments().ToArray();
                 var rawTitle = comments.FirstOrDefault(filter);
                 if (rawTitle != null)
                 {
-                    _title = rawTitle.Split(':').Last().Trim();
+                    Title = rawTitle.Split(':').Last().Trim();
                 }
 
-                if (!isIndex)
+                if (!IsIndex)
                 {
                     var rawUrl = comments.FirstOrDefault(x => x.StartsWith("Url:", StringComparison.OrdinalIgnoreCase));
                     if (rawUrl.IsNotEmpty())
                     {
                         var segment = rawUrl.Split(':').Last().Trim();
-                        _url = _url.ParentUrl().AppendUrl(segment);
+                        Url = Url.ParentUrl().AppendUrl(segment);
                     }
                 }
             }
 
-            if (_title.IsEmpty())
+            if (Title.IsEmpty())
             {
-                _title = Name.Capitalize().SplitPascalCase();
+                Title = Name.Capitalize().SplitPascalCase();
             }
         }
 
         private IEnumerable<string> findComments()
         {
             var regex = @"<!--(.*?)-->";
-            var matches = Regex.Matches(FileSystem.ReadStringFromFile(_file.FilePath), regex);
+            var matches = Regex.Matches(FileSystem.ReadStringFromFile(File.FilePath), regex);
             foreach (Match match in matches)
             {
                 yield return match.Groups[1].Value.Trim();
             }
-        } 
-
-
-        public ITopicFile File
-        {
-            get { return _file; }
         }
 
-        public string Key
-        {
-            get { return _key; }
-        }
+        public bool IsIndex { get; private set; }
 
-        public string Url
-        {
-            get { return _url; }
-        }
+        public ITopicFile File { get; private set; }
+
+        public string Key { get; private set; }
+
+        public string Url { get; set; }
 
         public ProjectRoot Project
         {
             get { return _parent.Project; }
         }
 
-        public string Title
-        {
-            get { return _title; }
-        }
+        public string Title { get; set; }
 
 
         public Topic NextSibling
@@ -142,10 +129,7 @@ namespace FubuWorld.Topics
             get { return ChildNodes.LastOrDefault(); }
         }
 
-        public void BuildChain(BehaviorGraph graph)
-        {
-            throw new NotImplementedException();
-        }
+        public BehaviorChain Chain { get; set; }
 
         public void AppendChild(Topic node)
         {

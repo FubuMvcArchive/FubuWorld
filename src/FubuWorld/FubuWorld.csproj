@@ -3,7 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F5C4733-AF68-4591-9802-21425E6877C4}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -151,13 +152,17 @@
     <Compile Include="Navigation\TopLeftTopicNavigationTag.cs" />
     <Compile Include="PoweredByFubu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Topics\Classes.cs" />
+    <Compile Include="Topics\DocumentationProjectLoader.cs" />
     <Compile Include="Topics\FubuWorldPackageLoader.cs" />
+    <Compile Include="Topics\ITopicFile.cs" />
     <Compile Include="Topics\ITopicNode.cs" />
     <Compile Include="Topics\OrderedTopic.cs" />
     <Compile Include="Topics\ProjectRoot.cs" />
     <Compile Include="Topics\SparkTopicFile.cs" />
     <Compile Include="Topics\StringExtensions.cs" />
+    <Compile Include="Topics\TopicBehavior.cs" />
+    <Compile Include="Topics\TopicBehaviorNode.cs" />
+    <Compile Include="Topics\TopicBuilder.cs" />
     <Compile Include="Topics\TopicLoader.cs" />
     <Compile Include="Topics\TopicFolder.cs" />
     <Compile Include="Topics\Topic.cs" />
@@ -222,7 +227,8 @@
           <IISUrl>http://localhost/fubuworld</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
