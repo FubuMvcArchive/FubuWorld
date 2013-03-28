@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using FubuCore;
-using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 
 namespace FubuWorld.Topics
 {
     public class Topic : OrderedTopic, ITopicNode
     {
-        private static FileSystem FileSystem = new FileSystem();
-
-
+        public static readonly string Index = "index";
         private Topic _firstChild;
         private Topic _next;
         private Topic _parent;
         private Topic _previous;
-        public static readonly string Index = "index";
 
         public Topic(ITopicNode parent, ITopicFile file) : base(Path.GetFileNameWithoutExtension(file.FilePath))
         {
@@ -27,57 +21,15 @@ namespace FubuWorld.Topics
             IsIndex = Name.EqualsIgnoreCase(Index);
             Key = IsIndex ? parent.Url : parent.Url.AppendUrl(Name);
 
-            Url = Key;
-
-            if (FileSystem.FileExists(File.FilePath))
-            {
-                Func<string, bool> filter = x => x.StartsWith("Title:", StringComparison.OrdinalIgnoreCase);
-                IEnumerable<string> comments = findComments().ToArray();
-                var rawTitle = comments.FirstOrDefault(filter);
-                if (rawTitle != null)
-                {
-                    Title = rawTitle.Split(':').Last().Trim();
-                }
-
-                if (!IsIndex)
-                {
-                    var rawUrl = comments.FirstOrDefault(x => x.StartsWith("Url:", StringComparison.OrdinalIgnoreCase));
-                    if (rawUrl.IsNotEmpty())
-                    {
-                        var segment = rawUrl.Split(':').Last().Trim();
-                        Url = Url.ParentUrl().AppendUrl(segment);
-                    }
-                }
-            }
-
-            if (Title.IsEmpty())
-            {
-                Title = Name.Capitalize().SplitPascalCase();
-            }
+            TopicBuilder.BuildOut(this);
         }
 
-        private IEnumerable<string> findComments()
-        {
-            var regex = @"<!--(.*?)-->";
-            var matches = Regex.Matches(FileSystem.ReadStringFromFile(File.FilePath), regex);
-            foreach (Match match in matches)
-            {
-                yield return match.Groups[1].Value.Trim();
-            }
-        }
 
         public bool IsIndex { get; private set; }
 
         public ITopicFile File { get; private set; }
 
         public string Key { get; private set; }
-
-        public string Url { get; set; }
-
-        public ProjectRoot Project
-        {
-            get { return _parent.Project; }
-        }
 
         public string Title { get; set; }
 
@@ -130,6 +82,12 @@ namespace FubuWorld.Topics
         }
 
         public BehaviorChain Chain { get; set; }
+        public string Url { get; set; }
+
+        public ProjectRoot Project
+        {
+            get { return _parent.Project; }
+        }
 
         public void AppendChild(Topic node)
         {
