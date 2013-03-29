@@ -29,9 +29,8 @@ namespace FubuWorld.Topics
             get { return _project; }
         }
 
-        public void AddFiles(IEnumerable<ITopicFile> topicFiles)
+        public void AddFiles(IEnumerable<Topic> topics)
         {
-            var topics = topicFiles.Select(x => new Topic(this, x)).ToArray();
             _root = topics.FirstOrDefault(x => x.Name.EqualsIgnoreCase(Topic.Index));
 
             var others = topics.Where(x => !x.Name.EqualsIgnoreCase(Topic.Index));

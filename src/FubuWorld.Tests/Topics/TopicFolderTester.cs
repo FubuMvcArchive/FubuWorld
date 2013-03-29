@@ -13,10 +13,10 @@ namespace FubuWorld.Tests.Topics
 
         private IEnumerable<ITopicFile> addFiles(params string[] names)
         {
-            var files = names.Select(x => new StubTopicFile {Name = x, FilePath = x + ".spark"}).ToArray();
+            var files = names.Select(x => new StubTopicFile {Name = x, FilePath = x + ".spark"}).Select(x => new FubuWorld.Topics.Topic(new ProjectRoot(), x)).ToArray();
             theFolder.AddFiles(files);
 
-            return files;
+            return files.Select(x => x.File).ToArray();
         }
 
         [SetUp]

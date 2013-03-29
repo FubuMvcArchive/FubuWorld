@@ -6,7 +6,8 @@
   <element name="Styles">this.WriteCssTags()</element>
   <element name="Image">this.ImageFor('@src')</element>
   <element name="Partial">this.Partial&lt;@model&gt;()</element>
-  <element name="TableOfContents">this.TableOfContents()</element>
+  <!--<element name="TableOfContents">this.TableOfContents()</element>-->
+  <element name="TableOfContents"></element>
   <element name="Section">
     <start>this.SectionFor('@title', '@id')</start>
     <end>"&lt;/section&gt;"</end>

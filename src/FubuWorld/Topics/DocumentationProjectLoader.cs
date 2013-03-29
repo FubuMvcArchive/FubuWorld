@@ -19,7 +19,7 @@ namespace FubuWorld.Topics
                                pak => { pak.ForFolder(BottleFiles.WebContentFolder, dir => LoadPackage(pak, dir, graph)); });
         }
 
-        private void LoadPackage(IPackageInfo pak, string directory, BehaviorGraph graph)
+        public void LoadPackage(IPackageInfo pak, string directory, BehaviorGraph graph)
         {
             // 1.) Load the project file itself and build the project root
             // 2.) go through the folders and build out the ITopicFile's
