@@ -42,5 +42,15 @@ namespace FubuWorld.Topics
 
 
         ProjectRoot ITopicNode.Project { get { return this; } }
+
+        public Topic FindByKey(string key)
+        {
+            if (key.EqualsIgnoreCase(key))
+            {
+                return Root;
+            }
+
+            return Root.Descendents().FirstOrDefault(x => x.Key == key);
+        }
     }
 }
