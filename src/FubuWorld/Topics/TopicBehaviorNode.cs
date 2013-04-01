@@ -4,6 +4,7 @@ using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.View;
+using FubuMVC.Core.View.Rendering;
 
 namespace FubuWorld.Topics
 {
@@ -44,8 +45,8 @@ namespace FubuWorld.Topics
             ObjectDef def = ObjectDef.ForType<TopicBehavior>();
 
             def.DependencyByValue(typeof (Topic), Topic);
-            ObjectDef writerDef = _view.As<IContainerModel>().ToObjectDef();
-            def.Dependency(typeof (IMedia<Topic>), writerDef);
+            ObjectDef viewDef = Topic.File.ToViewToken().ToViewFactoryObjectDef();
+            def.Dependency(typeof (IViewFactory), viewDef);
 
             return def;
         }
