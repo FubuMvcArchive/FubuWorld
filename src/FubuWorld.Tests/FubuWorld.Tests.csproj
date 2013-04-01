@@ -128,10 +128,6 @@
     <Compile Include="Topics\TopicTester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FubuDocs\FubuDocs.csproj">
-      <Project>{67676EEC-F448-4CFE-8A33-E4C26E9FDF35}</Project>
-      <Name>FubuDocs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FubuWorld\FubuWorld.csproj">
       <Project>{6F5C4733-AF68-4591-9802-21425E6877C4}</Project>
       <Name>FubuWorld</Name>

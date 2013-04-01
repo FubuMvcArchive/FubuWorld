@@ -1,6 +1,6 @@
-﻿<viewdata model="FubuWorld.AllTopicsModel"/>
+﻿<viewdata model="FubuWorld.AllProjectsModel"/>
 
-<h1>All Topics</h1>
+<h1>All Projects</h1>
 
 <ul>
 	!{Model.Topics}

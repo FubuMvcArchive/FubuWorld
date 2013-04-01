@@ -63,7 +63,7 @@ namespace FubuDocsRunner
                                 .Packages(x =>
                                 {
                                     x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory));
-                                    x.Loader(new FubuDocModuleAttributePackageLoader
+                                    x.Loader(new FubuDocsPackageLoader
                                     {
                                         IgnoreAssembly = Path.GetFileName(documentDirectory)
                                     });

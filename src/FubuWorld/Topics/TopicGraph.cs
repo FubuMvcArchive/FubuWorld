@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using FubuCore.Util;
 using FubuMVC.Core.Registration;
 
@@ -22,6 +23,11 @@ namespace FubuWorld.Topics
         public void AddProject(ProjectRoot project)
         {
             _projects[project.Name] = project;
+        }
+
+        public IEnumerable<ProjectRoot> Projects
+        {
+            get { return _projects; }
         }
 
         public ProjectRoot ProjectFor(string name)

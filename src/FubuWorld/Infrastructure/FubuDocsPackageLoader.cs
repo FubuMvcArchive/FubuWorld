@@ -7,13 +7,11 @@ using Bottles;
 using Bottles.Diagnostics;
 using Bottles.PackageLoaders.Assemblies;
 using FubuCore;
-using FubuDocs;
-using FubuMVC.Core;
 using FubuMVC.Core.Packaging;
 
 namespace FubuWorld.Infrastructure
 {
-    public class FubuDocModuleAttributePackageLoader : IPackageLoader
+    public class FubuDocsPackageLoader : IPackageLoader
     {
         public IEnumerable<IPackageInfo> Load(IPackageLog log)
         {

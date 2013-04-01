@@ -1,12 +1,11 @@
-﻿using FubuDocs;
-using FubuMVC.Core.Urls;
+﻿using FubuWorld.Topics;
 using HtmlTags;
 
 namespace FubuWorld.Navigation
 {
     public class TopLeftTopicNavigationTag : HtmlTag
     {
-        public TopLeftTopicNavigationTag(TopicNode node) : base("ul")
+        public TopLeftTopicNavigationTag(Topic node) : base("ul")
         {
             AddClass("nav");
 
@@ -14,7 +13,7 @@ namespace FubuWorld.Navigation
             current.AddClass("active");
 
             Append(current);
-            var parent = node.Parent;
+            Topic parent = node.Parent;
             while (parent != null)
             {
                 var tag = new NamedTopicLinkTag(parent);
@@ -27,22 +26,22 @@ namespace FubuWorld.Navigation
 
     public class NamedTopicLinkTag : HtmlTag
     {
-        public NamedTopicLinkTag(TopicNode node)
+        public NamedTopicLinkTag(Topic node)
             : base("li")
         {
-            Add("a").Attr("href", node.Url).Attr("data-key", node.TopicType.Name).Text(node.Title + " »");
+            Add("a").Attr("href", node.Url).Attr("data-key", node.Name).Text(node.Title + " »");
         }
     }
 
     public class TopRightTopicNavigationTag : HtmlTag
     {
-        public TopRightTopicNavigationTag(TopicNode node)
+        public TopRightTopicNavigationTag(Topic node)
             : base("ul")
         {
             AddClass("nav");
-            Style("float","right");
+            Style("float", "right");
 
-            var previous = node.FindPrevious();
+            Topic previous = node.FindPrevious();
             if (previous != null)
             {
                 Add("li/a")
@@ -51,7 +50,7 @@ namespace FubuWorld.Navigation
                     .Attr("title", previous.Title);
             }
 
-            var next = node.FindNext();
+            Topic next = node.FindNext();
             if (next != null)
             {
                 Add("li/a")
@@ -59,8 +58,8 @@ namespace FubuWorld.Navigation
                     .Text("Next")
                     .Attr("title", next.Title);
             }
-            
-            var index = node.FindIndex();
+
+            Topic index = node.FindIndex();
             if (index != null && !ReferenceEquals(node, index))
             {
                 Add("li/a")

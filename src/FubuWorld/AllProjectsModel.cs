@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using FubuDocs;
 using FubuMVC.Core;
 using FubuWorld.Navigation;
+using FubuWorld.Topics;
 using HtmlTags;
 
 namespace FubuWorld
 {
-    [UrlPattern("topics")]
-    public class AllTopicsModel
+    [UrlPattern("projects")]
+    public class AllProjectsModel
     {
         public TagList Topics
         {
             get
             {
                 List<HtmlTag> tags =
-                    TopicGraph.AllTopics.TopLevelNodes()
-                              .OrderBy(x => x.Title)
-                              .Select(x => new HtmlTag("li").Append(new TopicLinkTag(x)))
+                    TopicGraph.AllTopics.Projects
+                              .OrderBy(x => x.Name)
+                              .Select(x => new HtmlTag("li").Append(new TopicLinkTag(x.Root)))
                               .ToList();
 
                 return new TagList(tags);

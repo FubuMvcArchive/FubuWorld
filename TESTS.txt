@@ -1,2 +1,1 @@
 FubuWorld.Tests
-FubuDocs.Testing

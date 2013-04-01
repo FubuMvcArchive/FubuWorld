@@ -20,7 +20,7 @@ namespace FubuWorld.Tests.Topics
         {
             FubuMvcPackageFacility.PhysicalRootPath = ".".ToFullPath().ParentDirectory().ParentDirectory();
             var registry = new FubuRegistry();
-            registry.Import<TopicExtensions>();
+            registry.Import<TopicFubuRegistryExtensions>();
 
             FubuRuntime app = FubuApplication
                 .For(registry)
@@ -28,9 +28,9 @@ namespace FubuWorld.Tests.Topics
                 .Bootstrap();
 
 
-            var graph = app.Factory.Get<TopicGraph>();
 
-            ProjectRoot = graph.ProjectFor("FubuMVC");
+
+            ProjectRoot = TopicGraph.AllTopics.ProjectFor("FubuMVC");
 
             Nodes = new Cache<string, Topic>();
             Nodes[ProjectRoot.Root.Key] = ProjectRoot.Root;

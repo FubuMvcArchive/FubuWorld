@@ -4,12 +4,8 @@ using System.IO;
 using System.Reflection;
 using Bottles;
 using Bottles.Commands;
-using FubuCore.CommandLine;
 using FubuCore;
-using FubuDocs;
-using FubuMVC.Core;
-using System.Collections.Generic;
-using System.Linq;
+using FubuCore.CommandLine;
 
 namespace FubuDocsRunner
 {
@@ -27,10 +23,9 @@ namespace FubuDocsRunner
             var fileSystem = new FileSystem();
 
 
-
             importSnippets(input);
 
-            var directory = input.DetermineDocumentsFolder();
+            string directory = input.DetermineDocumentsFolder();
             writeManifestIfNecessary(directory, fileSystem);
 
             NuspecMaker.CreateNuspecIfMissing(directory);
@@ -53,7 +48,7 @@ namespace FubuDocsRunner
 
         private static void writeManifestIfNecessary(string directory, FileSystem fileSystem)
         {
-            var manifestFile = directory.AppendPath(PackageManifest.FILE);
+            string manifestFile = directory.AppendPath(PackageManifest.FILE);
             if (!File.Exists(manifestFile))
             {
                 var manifest = new PackageManifest {ContentFileSet = FileSet.Deep("*.*")};
@@ -61,7 +56,8 @@ namespace FubuDocsRunner
                 manifest.Name = assemblyName;
                 manifest.AddAssembly(assemblyName);
 
-                manifest.ContentFileSet.Exclude = "Properties/*;bin/*;obj/*;*.csproj*;packages.config;repositories.config;pak-*.zip;*.sln";
+                manifest.ContentFileSet.Exclude =
+                    "Properties/*;bin/*;obj/*;*.csproj*;packages.config;repositories.config;pak-*.zip;*.sln";
 
                 fileSystem.WriteObjectToFile(manifestFile, manifest);
             }
@@ -77,25 +73,24 @@ namespace FubuDocsRunner
     {
         public static void CreateNuspecIfMissing(string documentationDirectory)
         {
-            var name = Path.GetFileName(documentationDirectory);
-            var nuspecName = name.ToLower() + ".nuspec";
+            string name = Path.GetFileName(documentationDirectory);
+            string nuspecName = name.ToLower() + ".nuspec";
 
-            var file = ".".ToFullPath().AppendPath("packaging", "nuget", nuspecName);
+            string file = ".".ToFullPath().AppendPath("packaging", "nuget", nuspecName);
             var system = new FileSystem();
-            
+
             if (!system.FileExists(file))
             {
                 Console.WriteLine("Creating a nuspec file at " + file);
 
-                var nuspecText = Assembly.GetExecutingAssembly()
-                        .GetManifestResourceStream(typeof (NuspecMaker), "nuspec.txt")
-                        .ReadAllText().Replace("NAME", name);
+                string nuspecText = Assembly.GetExecutingAssembly()
+                                            .GetManifestResourceStream(typeof (NuspecMaker), "nuspec.txt")
+                                            .ReadAllText().Replace("NAME", name);
 
                 Console.WriteLine(nuspecText);
 
                 system.WriteStringToFile(file, nuspecText);
             }
-
         }
     }
 }

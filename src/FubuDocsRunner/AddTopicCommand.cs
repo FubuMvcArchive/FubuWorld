@@ -1,18 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using Bottles.Commands;
-using FubuCore.CommandLine;
-using FubuCore;
 using System.Linq;
-using System.Collections.Generic;
-using FubuDocs;
+using FubuCore;
+using FubuCore.CommandLine;
 
 namespace FubuDocsRunner
 {
     public class DocActionInput
     {
-        [Description("The directory holding the docs.  Will try to find a single directory containing the name 'Docs' under an 'src' folder if this flag is not specified")]
+        [Description(
+            "The directory holding the docs.  Will try to find a single directory containing the name 'Docs' under an 'src' folder if this flag is not specified"
+            )]
         public string DirectoryFlag { get; set; }
 
         public string DetermineDocumentsFolder()
@@ -22,8 +22,8 @@ namespace FubuDocsRunner
                 return DirectoryFlag;
             }
 
-            
-            var path = ".".ToFullPath().AppendPath("src");
+
+            string path = ".".ToFullPath().AppendPath("src");
             if (!Directory.Exists(path))
             {
                 return ".".ToFullPath().ParentDirectory().ParentDirectory();
@@ -31,7 +31,8 @@ namespace FubuDocsRunner
 
             Console.WriteLine("No directory specified, looking in {0} for a 'Docs' folder", path);
 
-            var directories = Directory.GetDirectories(path).Where(x => Path.GetFileName(x).EndsWith("Docs"));
+            IEnumerable<string> directories =
+                Directory.GetDirectories(path).Where(x => Path.GetFileName(x).EndsWith("Docs"));
             if (directories.Count() == 1)
             {
                 return directories.Single();
@@ -46,7 +47,9 @@ namespace FubuDocsRunner
         [Description("The title of this topic in navigation links and the page title")]
         public string Title { get; set; }
 
-        [Description("Optional argument to specify a namespace underneath the assembly folder.  Use either periods or '/' to delimit the namespace")]
+        [Description(
+            "Optional argument to specify a namespace underneath the assembly folder.  Use either periods or '/' to delimit the namespace"
+            )]
         public string Namespace { get; set; }
 
         [Description("The name of the Topic class.  If not specified, it will be derived from the title")]
@@ -76,7 +79,7 @@ namespace FubuDocsRunner
 
         public override bool Execute(AddTopicInput input)
         {
-            var request = input.ToRequest();
+            TopicRequest request = input.ToRequest();
             Console.WriteLine("Using directory " + request.RootDirectory);
             Console.WriteLine("The topic name is '{0}'", request.TopicName);
 
@@ -84,7 +87,5 @@ namespace FubuDocsRunner
 
             return true;
         }
-
-
     }
 }

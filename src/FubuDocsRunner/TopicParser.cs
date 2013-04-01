@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using FubuCore;
-using FubuDocs;
 using System.Linq;
 
 namespace FubuDocsRunner

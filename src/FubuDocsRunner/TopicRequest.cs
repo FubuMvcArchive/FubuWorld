@@ -4,7 +4,7 @@ using System.IO;
 using FubuCore;
 using FubuCore.CommandLine;
 using System.Linq;
-using FubuDocs;
+using FubuWorld.Topics;
 
 namespace FubuDocsRunner
 {

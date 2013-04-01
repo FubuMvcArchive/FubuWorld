@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using FubuCore.CommandLine;
 using FubuCore;
-using FubuDocs;
 using StringWriter = System.IO.StringWriter;
 using System.Linq;
 
@@ -26,7 +25,6 @@ namespace FubuDocsRunner
             if (request == null) return true; // Nothing to do here, go away
 
             writeRequest(request);
-            WriteRelationships(request);
 
             return true;
         }
@@ -38,47 +36,6 @@ namespace FubuDocsRunner
             request.Children.Each(writeRequest);
         }
 
-        public static void WriteRelationships(TopicRequest request)
-        {
-            var @ns = Path.GetFileName(request.RootDirectory);
-            var className = request.TopicName + "TopicRegistry";
-
-            var writer = new StringWriter();
-
-            writer.WriteLine("namespace {0}", @ns);
-            writer.WriteLine("{");
-            writer.WriteLine("    public class {0} : {1}", className, typeof(TopicRegistry).FullName);
-            writer.WriteLine("    {");
-
-            writer.WriteLine("        public {0}()", className);
-            writer.WriteLine("        {");
-
-            writeRelationships(writer, request);
-
-            writer.WriteLine("        }");
-            writer.WriteLine("    }");
-            writer.WriteLine("}");
-
-            var path = request.RootDirectory.AppendPath(className + ".cs");
-
-            Console.WriteLine("Writing the topic registry to " + path);
-            new FileSystem().WriteStringToFile(path, writer.ToString());
-        }
-
-        private static void writeRelationships(StringWriter writer, TopicRequest request)
-        {
-            if (!request.Children.Any()) return;
-
-            request.Children.Each(child => {
-                writer.WriteLine("            For<{0}>().Append<{1}>();", request.FullTopicClassName, child.FullTopicClassName);
-            });
-
-            writer.WriteLine();
-
-            request.Children.Each(child => {
-                writeRelationships(writer, child);
-            });
-        }
     }
 
 }

@@ -122,29 +122,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllTopicsModel.cs" />
+    <Compile Include="AllProjectsModel.cs" />
     <Compile Include="FubuWorldRegistry.cs" />
-    <Compile Include="FubuWorldRoot.cs" />
-    <Compile Include="FubuWorldRootTopicRegistry.cs" />
-    <Compile Include="HowTo\FubuDocsRunner\AddASingleTopic.cs" />
-    <Compile Include="HowTo\FubuDocsRunner\BottlingTheFubuworldProject.cs" />
-    <Compile Include="HowTo\FubuDocsRunner\GeneratingTheEntireTopicTree.cs" />
-    <Compile Include="HowTo\FubuDocsRunner\RunningADocumentationProject.cs" />
-    <Compile Include="HowTo\FubuDocsRunner\WorkingWithFubudocsrunner.cs" />
-    <Compile Include="HowTo\StartingANewFubuworldDocumentationProject.cs" />
-    <Compile Include="HowTo\Topics\AddingANewTopic.cs" />
-    <Compile Include="HowTo\Topics\SparkLayoutForATopic.cs" />
-    <Compile Include="HowTo\Topics\TheTopicNavigationStructure.cs" />
-    <Compile Include="HowTo\Topics\TopicNavigation.cs" />
-    <Compile Include="HowTo\ViewHelpers\CodeSnippets.cs" />
-    <Compile Include="HowTo\ViewHelpers\CommandLineResults.cs" />
-    <Compile Include="HowTo\ViewHelpers\DiagnosticsVisualizations.cs" />
-    <Compile Include="HowTo\ViewHelpers\DocumentationViewHelpers.cs" />
-    <Compile Include="HowTo\ViewHelpers\TopicRelatedHelpers.cs" />
-    <Compile Include="HowTo\ViewHelpers\UnitTestResults.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
-    <Compile Include="Infrastructure\FubuDocModuleAttributePackageLoader.cs" />
-    <Compile Include="Infrastructure\TopicUrlPolicy.cs" />
+    <Compile Include="Infrastructure\FubuDocsPackageLoader.cs" />
     <Compile Include="Navigation\FubuWorldKeys.cs" />
     <Compile Include="Navigation\FubuWorldPageExtensions.cs" />
     <Compile Include="Navigation\TopicExtensions.cs" />
@@ -163,7 +144,7 @@
     <Compile Include="Topics\TopicBehavior.cs" />
     <Compile Include="Topics\TopicBehaviorNode.cs" />
     <Compile Include="Topics\TopicBuilder.cs" />
-    <Compile Include="Topics\TopicExtensions.cs" />
+    <Compile Include="Topics\TopicFubuRegistryExtensions.cs" />
     <Compile Include="Topics\TopicGraph.cs" />
     <Compile Include="Topics\TopicLoader.cs" />
     <Compile Include="Topics\TopicFolder.cs" />
@@ -208,12 +189,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Shared\_global.spark" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FubuDocs\FubuDocs.csproj">
-      <Project>{67676EEC-F448-4CFE-8A33-E4C26E9FDF35}</Project>
-      <Name>FubuDocs</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
