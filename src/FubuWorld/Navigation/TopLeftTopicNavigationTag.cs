@@ -29,7 +29,7 @@ namespace FubuWorld.Navigation
         public NamedTopicLinkTag(Topic node)
             : base("li")
         {
-            Add("a").Attr("href", node.Url).Attr("data-key", node.Name).Text(node.Title + " »");
+            Add("a").Attr("href", node.AbsoluteUrl).Attr("data-key", node.Name).Text(node.Title + " »");
         }
     }
 
@@ -45,7 +45,7 @@ namespace FubuWorld.Navigation
             if (previous != null)
             {
                 Add("li/a")
-                    .Attr("href", previous.Url)
+                    .Attr("href", previous.AbsoluteUrl)
                     .Text("Previous")
                     .Attr("title", previous.Title);
             }
@@ -54,7 +54,7 @@ namespace FubuWorld.Navigation
             if (next != null)
             {
                 Add("li/a")
-                    .Attr("href", next.Url)
+                    .Attr("href", next.AbsoluteUrl)
                     .Text("Next")
                     .Attr("title", next.Title);
             }
@@ -63,7 +63,7 @@ namespace FubuWorld.Navigation
             if (index != null && !ReferenceEquals(node, index))
             {
                 Add("li/a")
-                    .Attr("href", index.Url)
+                    .Attr("href", index.AbsoluteUrl)
                     .Text("Index")
                     .Attr("title", index.Title);
             }

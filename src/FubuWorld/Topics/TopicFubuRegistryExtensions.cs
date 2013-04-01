@@ -9,6 +9,7 @@ namespace FubuWorld.Topics
             registry.ReplaceSettings(TopicGraph.AllTopics);
 
             registry.Policies.Add<DocumentationProjectLoader>();
+            registry.Services(x => x.ReplaceService<ITopicContext, TopicContext>());
         }
     }
 }

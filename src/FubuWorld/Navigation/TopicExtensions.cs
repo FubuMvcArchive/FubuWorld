@@ -1,5 +1,4 @@
-﻿using System;
-using FubuMVC.Core.View;
+﻿using FubuMVC.Core.View;
 using FubuWorld.Topics;
 using HtmlTags;
 
@@ -24,12 +23,9 @@ namespace FubuWorld.Navigation
 
         public static HtmlTag LinkToTopic(this IFubuPage page, string name)
         {
-            var graph = page.Get<TopicGraph>();
+            Topic topic = page.Get<ITopicContext>().Current;
 
-            throw new NotImplementedException("Need to look for the current project first");
-            Topic node = graph.Find(name);
-
-            return new TopicLinkTag(node);
+            return new TopicLinkTag(topic);
         }
     }
 
@@ -37,7 +33,7 @@ namespace FubuWorld.Navigation
     {
         public TopicLinkTag(Topic topic) : base("a")
         {
-            Attr("href", topic.Url);
+            Attr("href", topic.AbsoluteUrl);
             Text(topic.Title);
             Attr("data-key", topic.Name);
         }

@@ -1,0 +1,70 @@
+﻿
+<viewdata model="FubuWorld.Topics.TopicChrome" />
+<use namespace="FubuWorld.Navigation" />
+<use namespace="FubuMVC.TwitterBootstrap" />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="FubuWorld" />
+    <meta name="author" content="FubuWorld" />
+    <title>FubuWorld</title>
+    #{this.Asset('twitterbootstrap');}
+    <Stylesheet href="fubuworld.core.css" />
+    <use content="head" />
+    <Styles />
+  </head>
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <div id="diagnostic-menu" class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">
+            <Image src="fubuworld.png" />
+          </a>
+          !{this.TwitterNavBarFor(FubuWorldKeys.Main)}
+          !{this.TopTopicNavigation()}
+        </div>
+      </div>
+    </div>
+    <use content="masthead" />
+    <div id="Content" class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul id="page-toc" class="nav nav-list bs-docs-sidenav affix">
+          </ul>
+
+          <br/>
+
+          !{this.LeftTopicNavigation()}
+        </div>
+        <div class="span9">
+          !{this.Get<TopicTreeBuilder>().Title()}
+        !{Model.InnerContent}
+    </div>
+      </div>
+    </div>
+
+    <Script src="topics.js"/>
+    <Scripts />
+    <footer class="footer">
+      <div class="container">
+        <use content="footer" />
+        <p class="pull-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>
+          Powered by <a href="#">FubuMVC</a>.
+        </p>
+        <p>
+          Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>
+
+
+
+
+

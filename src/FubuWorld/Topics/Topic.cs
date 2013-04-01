@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FubuCore;
+using FubuMVC.Core.Behaviors.Chrome;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Core.View;
@@ -27,6 +28,11 @@ namespace FubuWorld.Topics
             TopicBuilder.BuildOut(this);
         }
 
+
+        public string AbsoluteUrl
+        {
+            get { return "/" + Url; }
+        }
 
         public bool IsIndex { get; private set; }
 
@@ -95,6 +101,8 @@ namespace FubuWorld.Topics
             {
                 throw new InvalidOperationException("The view model has to be Topic here.");
             }
+
+            chain.AddToEnd(new ChromeNode(typeof (TopicChrome)) {Title = () => Title});
 
             chain.AddToEnd(new TopicBehaviorNode(this, new ViewNode(viewToken)));
 
