@@ -1,4 +1,5 @@
-﻿using FubuMVC.Core;
+﻿using FubuCore;
+using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
@@ -14,12 +15,14 @@ namespace FubuWorld.Topics
         private readonly Topic _node;
         private readonly IViewFactory _factory;
         private readonly IOutputWriter _writer;
+        private readonly IServiceLocator _services;
 
-        public TopicBehavior(Topic node, IViewFactory factory, IOutputWriter writer) : base(PartialBehavior.Executes)
+        public TopicBehavior(Topic node, IViewFactory factory, IOutputWriter writer, IServiceLocator services) : base(PartialBehavior.Executes)
         {
             _node = node;
             _factory = factory;
             _writer = writer;
+            _services = services;
         }
 
         public Topic Node
@@ -30,6 +33,7 @@ namespace FubuWorld.Topics
         protected override DoNext performInvoke()
         {
             var view = _factory.GetView();
+            view.Page.ServiceLocator = _services;
             view.Render();
 
             _writer.ContentType(MimeType.Html);
