@@ -42,6 +42,26 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FubuDocsRunner\AddASingleTopic.spark" />
+    <None Include="FubuDocsRunner\BottlingTheFubuworldProject.spark" />
+    <None Include="FubuDocsRunner\GeneratingTheEntireTopicTree.spark" />
+    <None Include="FubuDocsRunner\RunningADocumentationProject.spark" />
+    <None Include="FubuDocsRunner\WorkingWithFubudocsrunner.spark" />
+    <None Include="StartingANewFubuworldDocumentationProject.spark" />
+    <None Include="Topics\AddingANewTopic.spark" />
+    <None Include="Topics\SparkLayoutForATopic.spark" />
+    <None Include="Topics\TheTopicNavigationStructure.spark" />
+    <None Include="Topics\TopicNavigation.spark" />
+    <None Include="ViewHelpers\CodeSnippets.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ViewHelpers\CommandLineResults.spark" />
+    <None Include="ViewHelpers\DiagnosticsVisualizations.spark" />
+    <None Include="ViewHelpers\DocumentationViewHelpers.spark" />
+    <None Include="ViewHelpers\TopicRelatedHelpers.spark" />
+    <None Include="ViewHelpers\UnitTestResults.spark" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
