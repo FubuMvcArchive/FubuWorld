@@ -163,6 +163,8 @@
     <Compile Include="Topics\TopicBehavior.cs" />
     <Compile Include="Topics\TopicBehaviorNode.cs" />
     <Compile Include="Topics\TopicBuilder.cs" />
+    <Compile Include="Topics\TopicExtensions.cs" />
+    <Compile Include="Topics\TopicGraph.cs" />
     <Compile Include="Topics\TopicLoader.cs" />
     <Compile Include="Topics\TopicFolder.cs" />
     <Compile Include="Topics\Topic.cs" />
@@ -222,7 +224,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>15598</DevelopmentServerPort>
+          <DevelopmentServerPort>56254</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/fubuworld</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

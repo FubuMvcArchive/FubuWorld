@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Bottles;
 using FubuCore.Util;
+using FubuMVC.Core.Registration;
+using FubuMVC.Core.View;
 using FubuMVC.Core.View.Model;
 using FubuMVC.Spark.SparkModel;
 using FubuCore;
@@ -17,6 +19,15 @@ namespace FubuWorld.Topics
         public TopicLoader(ISparkTemplateRegistry sparkTemplates)
         {
             _sparkTemplates = sparkTemplates;
+        }
+
+        public TopicLoader(BehaviorGraph graph)
+        {
+            // Just need to force the views to be executed and found
+            var views = graph.Settings.Get<ViewEngines>().Views;
+
+            // Not super wild about this
+            _sparkTemplates = (ISparkTemplateRegistry) graph.Services.DefaultServiceFor<ISparkTemplateRegistry>().Value;
         }
 
         public static bool IsTopic(ITemplate descriptor)
@@ -37,12 +48,8 @@ namespace FubuWorld.Topics
                                   .Select(x => new SparkTopicFile(new ViewDescriptor<Template>(x)));
         }
 
-        public ProjectRoot LoadProject(string bottleName)
+        public ProjectRoot LoadProject(string bottleName, string folder)
         {
-            var pak = PackageRegistry.Packages.FirstOrDefault(x => x.Name == bottleName);
-            string folder = null;
-            pak.ForFolder(BottleFiles.WebContentFolder, x => folder = x);
-
             ProjectRoot project = ProjectRoot.LoadFrom(folder.AppendPath(ProjectRoot.File));
             IEnumerable<ITopicFile> files = FindFilesFromBottle(bottleName);
             var folders = new Cache<string, TopicFolder>(raw => new TopicFolder(raw, project));

@@ -3,45 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FubuCore;
-using FubuCore.Util;
 using FubuDocs;
 using FubuMVC.Core.Registration.Nodes;
 
 namespace FubuWorld.Topics
 {
-    public class TopicGraph
-    {
-        public static readonly TopicGraph AllTopics = new TopicGraph();
-        private readonly Cache<string, ProjectRoot> _projects = new Cache<string, ProjectRoot>(); 
-        private readonly Cache<string, Topic> _topicCache = new Cache<string, Topic>(); 
-
-        public TopicGraph()
-        {
-            _topicCache.OnMissing = key => {
-                var projectName = key.Split('/').First();
-                return _projects[projectName].FindByKey(key);
-            };
-        }
-
-        public void AddProject(ProjectRoot project)
-        {
-            _projects[project.Name] = project;
-        }
-
-
-        /// <summary>
-        /// Returns the Topic for a specified topic.  If the topic does not already exist,
-        /// it will be added as a new top level topic
-        /// </summary>
-        /// <param name="topicType"></param>
-        /// <returns></returns>
-        public Topic Find(string key)
-        {
-            return _topicCache[key];
-        }
-
-    }
-
     public class Topic : OrderedTopic, ITopicNode
     {
         public static readonly string Index = "index";
