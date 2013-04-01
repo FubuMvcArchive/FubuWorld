@@ -11,9 +11,9 @@ namespace FubuWorld.Topics
         // TODO -- add DescibesItself stuff to this
 
         private readonly Topic _node;
-        private readonly IMediaWriter<Topic> _writer;
+        private readonly IMedia<Topic> _writer;
 
-        public TopicBehavior(Topic node, IMediaWriter<Topic> writer) : base(PartialBehavior.Executes)
+        public TopicBehavior(Topic node, IMedia<Topic> writer) : base(PartialBehavior.Executes)
         {
             _node = node;
             _writer = writer;

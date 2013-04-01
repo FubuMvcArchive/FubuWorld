@@ -89,7 +89,14 @@ namespace FubuWorld.Topics
             var chain = new BehaviorChain();
             chain.Route = new RouteDefinition(Url);
             chain.UrlCategory.Category = Key;
-            chain.AddToEnd(new TopicBehaviorNode(this, new ViewNode(File.ToViewToken())));
+            IViewToken viewToken = File.ToViewToken();
+
+            if (viewToken.ViewModel != typeof(Topic))
+            {
+                throw new InvalidOperationException("The view model has to be Topic here.");
+            }
+
+            chain.AddToEnd(new TopicBehaviorNode(this, new ViewNode(viewToken)));
 
             return chain;
         }

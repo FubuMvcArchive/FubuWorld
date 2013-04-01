@@ -3,6 +3,7 @@ using FubuTestingSupport;
 using FubuWorld.Topics;
 using NUnit.Framework;
 using System.Linq;
+using FubuCore;
 
 namespace FubuWorld.Tests.Topics
 {
@@ -45,6 +46,12 @@ namespace FubuWorld.Tests.Topics
         {
             var node = theChain.OfType<TopicBehaviorNode>().Single();
             node.View.View.Name().ShouldEqual(theTopic.File.Name);
+        }
+
+        [Test]
+        public void the_chain_can_build_its_object_def_smoke_test()
+        {
+            theChain.As<IContainerModel>().ToObjectDef().ShouldNotBeNull();
         }
     }
 }

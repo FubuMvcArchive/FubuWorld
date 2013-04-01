@@ -22,6 +22,7 @@ namespace FubuWorld.Topics
         public void LoadPackage(IPackageInfo pak, string directory, BehaviorGraph graph)
         {
             ProjectRoot root = _loader.LoadProject(pak.Name, directory);
+            root.AllTopics().Each(topic => graph.AddChain(topic.BuildChain()));
 
             TopicGraph.AllTopics.AddProject(root);
         }

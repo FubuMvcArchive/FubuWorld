@@ -45,7 +45,7 @@ namespace FubuWorld.Topics
 
             def.DependencyByValue(typeof (Topic), Topic);
             ObjectDef writerDef = _view.As<IContainerModel>().ToObjectDef();
-            def.Dependency(typeof (IMediaWriter<Topic>), writerDef);
+            def.Dependency(typeof (IMedia<Topic>), writerDef);
 
             return def;
         }

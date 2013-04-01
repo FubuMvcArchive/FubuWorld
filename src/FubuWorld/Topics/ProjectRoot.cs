@@ -52,5 +52,15 @@ namespace FubuWorld.Topics
 
             return Root.Descendents().FirstOrDefault(x => x.Key == key);
         }
+
+        public IEnumerable<Topic> AllTopics()
+        {
+            yield return Root;
+
+            foreach (Topic descendent in Root.Descendents())
+            {
+                yield return descendent;
+            }
+        }
     }
 }

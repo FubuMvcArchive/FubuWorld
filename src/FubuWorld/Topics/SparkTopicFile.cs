@@ -17,6 +17,7 @@ namespace FubuWorld.Topics
         public SparkTopicFile(ViewDescriptor<Template> viewDescriptor)
         {
             _viewDescriptor = viewDescriptor;
+            _viewDescriptor.ViewModel = typeof (Topic);
         }
 
         public string FilePath { get { return _viewDescriptor.Template.FilePath; } }
@@ -33,7 +34,10 @@ namespace FubuWorld.Topics
 
         public IViewToken ToViewToken()
         {
-            return new SparkViewToken(new SparkDescriptor(_viewDescriptor.Template));
+            var sparkDescriptor = new SparkDescriptor(_viewDescriptor.Template);
+            sparkDescriptor.ViewModel = typeof (Topic);
+
+            return new SparkViewToken(sparkDescriptor);
         }
     }
 }

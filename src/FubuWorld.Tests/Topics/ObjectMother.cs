@@ -4,6 +4,7 @@ using FubuCore;
 using FubuCore.Util;
 using FubuMVC.Core;
 using FubuMVC.Core.Packaging;
+using FubuMVC.Core.Registration;
 using FubuMVC.StructureMap;
 using FubuWorld.Topics;
 using StructureMap;
@@ -15,6 +16,7 @@ namespace FubuWorld.Tests.Topics
         public static readonly ProjectRoot ProjectRoot;
         public static readonly Cache<string, Topic> Topics;
         public static readonly IEnumerable<ITopicFile> Files;
+        public static BehaviorGraph Behaviors;
 
         static ObjectMother()
         {
@@ -28,7 +30,7 @@ namespace FubuWorld.Tests.Topics
                 .Bootstrap();
 
 
-
+            Behaviors = app.Factory.Get<BehaviorGraph>();
 
             ProjectRoot = TopicGraph.AllTopics.ProjectFor("FubuMVC");
 
