@@ -23,7 +23,7 @@ namespace FubuWorld.Topics
         {
             ProjectRoot root = _loader.LoadProject(pak.Name, directory);
 
-            graph.Settings.Get<TopicGraph>().AddProject(root);
+            TopicGraph.AllTopics.AddProject(root);
         }
     }
 }

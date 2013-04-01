@@ -302,6 +302,4 @@ namespace FubuWorld.Tests.Topics
             a.FindIndex().ShouldBeNull();
         }
     }
-
-
 }

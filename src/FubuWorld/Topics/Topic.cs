@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using FubuCore;
 using FubuMVC.Core.Registration.Nodes;
+using FubuMVC.Core.Registration.Routes;
+using FubuMVC.Core.View;
 
 namespace FubuWorld.Topics
 {
@@ -82,7 +84,16 @@ namespace FubuWorld.Topics
             get { return ChildNodes.LastOrDefault(); }
         }
 
-        public BehaviorChain Chain { get; set; }
+        public BehaviorChain BuildChain()
+        {
+            var chain = new BehaviorChain();
+            chain.Route = new RouteDefinition(Url);
+            chain.UrlCategory.Category = Key;
+            chain.AddToEnd(new TopicBehaviorNode(this, new ViewNode(File.ToViewToken())));
+
+            return chain;
+        }
+
         public string Url { get; set; }
 
         public ProjectRoot Project

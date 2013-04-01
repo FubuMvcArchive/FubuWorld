@@ -10,18 +10,23 @@ namespace FubuWorld.Topics
     // Only using integration tests on this
     public class TopicBehaviorNode : BehaviorNode, IMayHaveInputType
     {
-        private readonly Topic _node;
+        private readonly Topic _topic;
         private readonly ViewNode _view;
 
-        public TopicBehaviorNode(Topic node, ViewNode view)
+        public TopicBehaviorNode(Topic topic, ViewNode view)
         {
-            _node = node;
+            _topic = topic;
             _view = view;
         }
 
-        public Topic Node
+        public Topic Topic
         {
-            get { return _node; }
+            get { return _topic; }
+        }
+
+        public ViewNode View
+        {
+            get { return _view; }
         }
 
         public override BehaviorCategory Category
@@ -38,7 +43,7 @@ namespace FubuWorld.Topics
         {
             ObjectDef def = ObjectDef.ForType<TopicBehavior>();
 
-            def.DependencyByValue(typeof (Topic), Node);
+            def.DependencyByValue(typeof (Topic), Topic);
             ObjectDef writerDef = _view.As<IContainerModel>().ToObjectDef();
             def.Dependency(typeof (IMediaWriter<Topic>), writerDef);
 

@@ -126,6 +126,7 @@
     <Compile Include="Topics\TopicIntegratedTester.cs" />
     <Compile Include="Topics\TopicFileLoaderIntegratedTester.cs" />
     <Compile Include="Topics\TopicTester.cs" />
+    <Compile Include="Topics\when_building_a_behavior_chain.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FubuWorld\FubuWorld.csproj">
