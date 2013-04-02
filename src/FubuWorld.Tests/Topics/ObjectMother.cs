@@ -22,7 +22,7 @@ namespace FubuWorld.Tests.Topics
         {
             FubuMvcPackageFacility.PhysicalRootPath = ".".ToFullPath().ParentDirectory().ParentDirectory();
             var registry = new FubuRegistry();
-            registry.Import<TopicFubuRegistryExtensions>();
+            registry.Import<FubuWorldExtension>();
 
             FubuRuntime app = FubuApplication
                 .For(registry)
