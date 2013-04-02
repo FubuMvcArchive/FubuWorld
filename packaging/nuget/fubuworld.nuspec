@@ -19,6 +19,5 @@
   </metadata>
   <files>
     <file src="..\..\src\FubuWorld\bin\FubuWorld.*" target="lib\net40" />
-    <file src="..\..\src\FubuDocs\bin\release\FubuDocs.*" target="lib\net40" />
   </files>
 </package>
