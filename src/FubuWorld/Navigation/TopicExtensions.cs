@@ -1,11 +1,19 @@
-﻿using FubuMVC.Core.View;
+﻿using System.Web;
+using FubuMVC.Core.View;
 using FubuWorld.Topics;
 using HtmlTags;
+using FubuMVC.Core.UI;
 
 namespace FubuWorld.Navigation
 {
     public static class TopicExtensions
     {
+        public static IHtmlString ProjectSummary(this IFubuPage page)
+        {
+            var project = page.Get<ITopicContext>().Project;
+            return page.Partial(project);
+        }
+
         public static HtmlTag TableOfContents(this IFubuPage page)
         {
             return page.Get<TopicTreeBuilder>().BuildTableOfContents();

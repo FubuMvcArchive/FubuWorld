@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using FubuCore;
-using FubuCore.Util;
-using System.Linq;
 
 namespace FubuWorld.Topics
 {
-
     public class ProjectRoot : ITopicNode
     {
         public static readonly string File = "project.xml";
@@ -19,10 +15,16 @@ namespace FubuWorld.Topics
         public string UserGroupUrl { get; set; }
         public string BuildServerUrl { get; set; }
         public string BottleName { get; set; }
-        public string Url { get; set; }
 
         [XmlIgnore]
         public Topic Root { get; set; }
+
+        public string Url { get; set; }
+
+        ProjectRoot ITopicNode.Project
+        {
+            get { return this; }
+        }
 
         public static ProjectRoot LoadFrom(string file)
         {
@@ -40,8 +42,6 @@ namespace FubuWorld.Topics
             new FileSystem().WriteObjectToFile(file, this);
         }
 
-
-        ProjectRoot ITopicNode.Project { get { return this; } }
 
         public Topic FindByKey(string key)
         {

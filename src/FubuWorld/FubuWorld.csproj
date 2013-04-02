@@ -123,6 +123,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllProjectsModel.cs" />
+    <Compile Include="AllTopicsEndpoint.cs" />
+    <Compile Include="FubuWorldExtension.cs" />
     <Compile Include="FubuWorldRegistry.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
     <Compile Include="Infrastructure\FubuDocsPackageLoader.cs" />
@@ -146,7 +148,6 @@
     <Compile Include="Topics\TopicBehaviorNode.cs" />
     <Compile Include="Topics\TopicBuilder.cs" />
     <Compile Include="Topics\TopicChrome.cs" />
-    <Compile Include="Topics\TopicFubuRegistryExtensions.cs" />
     <Compile Include="Topics\TopicGraph.cs" />
     <Compile Include="Topics\TopicLoader.cs" />
     <Compile Include="Topics\TopicFolder.cs" />
@@ -159,10 +160,10 @@
     <None Include="AllTopics.spark" />
     <Content Include="fubuworld.view.config" />
     <None Include="PoweredByFubu.spark" />
+    <None Include="project.spark" />
     <None Include="Shared\Application.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="topics.view.config" />
     <None Include="Topics\Topic.spark">
       <SubType>Designer</SubType>
     </None>

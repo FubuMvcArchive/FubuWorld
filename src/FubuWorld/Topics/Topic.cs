@@ -20,6 +20,10 @@ namespace FubuWorld.Topics
 
         public Topic(ITopicNode parent, ITopicFile file) : base(Path.GetFileNameWithoutExtension(file.FilePath))
         {
+            if (parent == null) throw new ArgumentNullException("parent");
+
+            Project = parent.Project;
+
             File = file;
 
             IsIndex = Name.EqualsIgnoreCase(Index);
@@ -111,10 +115,7 @@ namespace FubuWorld.Topics
 
         public string Url { get; set; }
 
-        public ProjectRoot Project
-        {
-            get { return _parent.Project; }
-        }
+        public ProjectRoot Project { get; private set; }
 
         public void AppendChild(Topic node)
         {
