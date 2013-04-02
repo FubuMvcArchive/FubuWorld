@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using Bottles;
 using Bottles.Diagnostics;
@@ -10,16 +11,14 @@ using FubuCore.CommandLine;
 using FubuMVC.Core;
 using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Packaging;
-using FubuMVC.Core.Registration.Nodes;
-using FubuMVC.SelfHost;
+using FubuMVC.Katana;
+using FubuMVC.StructureMap;
 using FubuWorld;
 using FubuWorld.Infrastructure;
-using Process = System.Diagnostics.Process;
-using FubuMVC.StructureMap;
+using Container = StructureMap.Container;
 
 namespace FubuDocsRunner
 {
-
     public class RunInput : DocActionInput
     {
         [Description("Disables the bottle and code snippet scanning while this command runs")]
@@ -30,20 +29,20 @@ namespace FubuDocsRunner
     {
         public override bool Execute(RunInput input)
         {
-            var documentDirectory = input.DetermineDocumentsFolder();
+            string documentDirectory = input.DetermineDocumentsFolder();
 
             if (!input.NoBottlingFlag)
             {
-                new BottleCommand().Execute(new BottleInput { DirectoryFlag = documentDirectory, NoZipFlag = true});
+                new BottleCommand().Execute(new BottleInput {DirectoryFlag = documentDirectory, NoZipFlag = true});
             }
-            
-            
+
+
             string explodedBottlesDirectory = documentDirectory.AppendPath("fubu-content");
             Console.WriteLine("Trying to clean out the contents of " + explodedBottlesDirectory);
             new FileSystem().CleanDirectory(explodedBottlesDirectory);
 
-            var server = buildServer(documentDirectory);
-            var url = server.BaseAddress;
+            EmbeddedFubuMvcServer server = buildServer(documentDirectory);
+            string url = server.BaseAddress;
 
             Process.Start(url);
 
@@ -57,18 +56,16 @@ namespace FubuDocsRunner
         {
             FubuMvcPackageFacility.PhysicalRootPath = documentDirectory;
 
-            var application = FubuApplication
-                                .For<RunFubuWorldRegistry>()
-                                .StructureMap(new StructureMap.Container())
-                                .Packages(x =>
-                                {
-                                    x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory));
-                                    x.Loader(new FubuDocsPackageLoader
-                                    {
-                                        IgnoreAssembly = Path.GetFileName(documentDirectory)
-                                    });
-                                    
-                                });
+            FubuApplication application = FubuApplication
+                .For<RunFubuWorldRegistry>()
+                .StructureMap(new Container())
+                .Packages(x => {
+                    x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory));
+                    x.Loader(new FubuDocsPackageLoader
+                    {
+                        IgnoreAssembly = Path.GetFileName(documentDirectory)
+                    });
+                });
 
             return application.RunEmbedded(documentDirectory);
         }
@@ -76,10 +73,6 @@ namespace FubuDocsRunner
 
     public class RunFubuWorldRegistry : FubuRegistry
     {
-        public RunFubuWorldRegistry()
-        {
-
-        }
     }
 
     public class HomeEndpoint
@@ -97,7 +90,7 @@ namespace FubuDocsRunner
         public MainDocumentLinkedPackageLoader(string directory)
         {
             _directory = directory;
-            }
+        }
 
         public IEnumerable<IPackageInfo> Load(IPackageLog log)
         {
