@@ -1,6 +1,4 @@
-<viewdata model="FubuWorld.HowTo.ViewHelpers.TopicRelatedHelpers"/>
-<use master="Topic" />
-<content:main>
+<!--Title: Topic Related View Helpers-->
 
   <Section title="Link to another Topic" id="link-topic">
     <p>Use the <code>&lt;UsingTopicLink /&gt;</code> spark binding to make a link to another topic.  This html helper will create an &lt;a&gt; tag pointing at the named topic with the topic title as the text.
@@ -26,5 +24,3 @@
     <TableOfContents />
     <!-- ENDSAMPLE -->
   </Section>
-
-</content:main>

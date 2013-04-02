@@ -1,7 +1,4 @@
-<viewdata model="FubuWorld.HowTo.StartingANewFubuworldDocumentationProject"/>
-<use master="Topic" />
 
-<content:main>
   <Section title="Starting a new Document Project" id="csproj">
     <p>Using <a href="https://github.com/DarthFubuMVC/fubucore">FubuCore</a> as an example solution, we followed these steps to create a new documentation project:</p>
 
@@ -10,7 +7,7 @@
     <ol>
       <li>Make sure that the /buildsupport submodule is updated to the latest.  If you type <code>rake -T</code> you should see rake tasks for <code>docs:bottle</code>, <code>docs:run</code>, <code>docs:snippets</code>, and <code>docs:topic</code>.
     </li>
-      <li>Add a new project named "FubuCore.Docs" as a class library.  In this case, the naming convention of ".Docs" tells the FubuDocsRunner tool that this project is the documentation project for the solution.</li>
+      <li>Add a new project named "[SOMETHING].Docs" as a class library.  In this case, the naming convention of ".Docs" tells the FubuDocsRunner tool that this project is the documentation project for the solution.</li>
       <li>In the new project, add a reference to the FubuDocs.dll assembly in /buildsupport/fubudocs/.</li>
       <li>Optionally, to make the generation of the topic tree a little bit easier, run <code>rake docs:topics</code> to generate an empty Topics.xml file under the docs project.  This will also confirm that your new documentation project is getting picked up correctly by <code>FubuDocsRunner</code>.</li>
       <li>Run <code>rake docs:bottle</code> to seed the project as a FubuWorld documentation Bottle.  The initial run of this task will add a <code>.package-manifest</code> file, create the standard zip file entries for an assembly bottle, and add a new assembly attribute that you'll probably want to modify shown in the next step.</li>
@@ -31,5 +28,3 @@
       <li>Assuming that there's no outstanding changes to buildsupport, I'll usually take the lazy approach and just type <code>git pull origin master</code>.  Describing proper git workflow is far beyond (my knowledge) the scope of this documentation.</li>
     </ol>
   </Section>
-  
-</content:main>

@@ -1,7 +1,4 @@
-<viewdata model="FubuWorld.HowTo.ViewHelpers.CodeSnippets"/>
-<use master="Topic" />
-
-<content:main>
+<!--Title: Code Snippets-->
 
   <p>The FubuWorld documentation application uses the <a href="https://github.com/DarthFubuMVC/FubuMVC.CodeSnippets">FubuMVC.CodeSnippets</a> library to discover and embed snippets of code from the running application into FubuMVC views.  The code formatting is done with Google's <a href="http://google-code-prettify.googlecode.com/svn/trunk/README.html">prettyprint.js</a> library.  </p>
 
@@ -105,6 +102,3 @@
     /* ENDSAMPLE */
   </pre>
 </Section>
-
-
-</content:main>

@@ -43,24 +43,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FubuDocsRunner\AddASingleTopic.spark" />
-    <None Include="FubuDocsRunner\BottlingTheFubuworldProject.spark" />
-    <None Include="FubuDocsRunner\GeneratingTheEntireTopicTree.spark" />
-    <None Include="FubuDocsRunner\RunningADocumentationProject.spark" />
-    <None Include="FubuDocsRunner\WorkingWithFubudocsrunner.spark" />
-    <None Include="StartingANewFubuworldDocumentationProject.spark" />
-    <None Include="Topics\AddingANewTopic.spark" />
-    <None Include="Topics\SparkLayoutForATopic.spark" />
-    <None Include="Topics\TheTopicNavigationStructure.spark" />
-    <None Include="Topics\TopicNavigation.spark" />
-    <None Include="ViewHelpers\CodeSnippets.spark">
+    <None Include="3.ViewHelpers\index.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ViewHelpers\CommandLineResults.spark" />
-    <None Include="ViewHelpers\DiagnosticsVisualizations.spark" />
-    <None Include="ViewHelpers\DocumentationViewHelpers.spark" />
-    <None Include="ViewHelpers\TopicRelatedHelpers.spark" />
-    <None Include="ViewHelpers\UnitTestResults.spark" />
+    <None Include="index.spark" />
+    <None Include="1.starting.spark" />
+    <None Include="2.Topics\index.spark" />
+    <None Include="3.ViewHelpers\CodeSnippets.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="3.ViewHelpers\TopicRelatedHelpers.spark" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Project.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
