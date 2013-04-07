@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using Bottles;
+using System.Linq;
 using FubuCore;
 using FubuCore.CommandLine;
 using FubuCore.Util.TextWriting;
 using FubuMVC.CodeSnippets;
-using FubuMVC.Core;
 using FubuMVC.Core.Packaging;
 using FubuMVC.Core.Runtime.Files;
-using System.Linq;
-using FubuMVC.StructureMap;
-using Container = StructureMap.Container;
 
 namespace FubuDocsRunner
 {
@@ -23,12 +18,16 @@ namespace FubuDocsRunner
         public bool ScanFlag { get; set; }
     }
 
-    [CommandDescription("Scrapes the entire solution for files with code snippets and places those files under the '/snippets' directory of the documentation project")]
+    [CommandDescription(
+        "Scrapes the entire solution for files with code snippets and places those files under the '/snippets' directory of the documentation project"
+        )]
     public class SnippetsCommand : FubuCommand<SnippetsInput>
     {
+        private static readonly FileSystem fileSystem = new FileSystem();
+
         public override bool Execute(SnippetsInput input)
         {
-            var cache = buildCache(input);
+            ISnippetCache cache = buildCache(input);
 
             if (input.ScanFlag)
             {
@@ -37,13 +36,13 @@ namespace FubuDocsRunner
                 return true;
             }
 
-            var directory = input.DetermineDocumentsFolder();
-            var snippets = directory.AppendPath("snippets");
+            string directory = input.DetermineDocumentsFolder();
 
-            var fileSystem = new FileSystem();
+            string snippets = directory.AppendPath("snippets");
+
             fileSystem.DeleteDirectory(snippets);
 
-            var srcDirectory = ".".ToFullPath().AppendPath("src");
+            string srcDirectory = ".".ToFullPath().AppendPath("src");
 
 
             Console.WriteLine("Moving snippet files to " + snippets);
@@ -53,8 +52,8 @@ namespace FubuDocsRunner
             writer.AddDivider('-');
 
             cache.All().Each(snippet => {
-                var relative = snippet.File.PathRelativeTo(srcDirectory).ParentDirectory();
-                var newPath = snippets.AppendPath(relative);
+                string relative = snippet.File.PathRelativeTo(srcDirectory).ParentDirectory();
+                string newPath = snippets.AppendPath(relative);
 
                 writer.AddColumnData(snippet.File, newPath);
 
@@ -96,10 +95,8 @@ namespace FubuDocsRunner
                 new BlockCommentScanner("/*", "*/", "css", "lang-css"),
                 new RazorSnippetScanner()
             };
-            scanners.Each(finder =>
-            {
-                files.FindFiles(finder.MatchingFileSet).Each(file =>
-                {
+            scanners.Each(finder => {
+                files.FindFiles(finder.MatchingFileSet).Each(file => {
                     var scanner = new SnippetReader(file, finder, snippet => {
                         snippet.File = file.Path;
                         cache.Add(snippet);
@@ -108,7 +105,7 @@ namespace FubuDocsRunner
                     scanner.Start();
                 });
             });
-            
+
 
             return cache;
         }
@@ -116,11 +113,11 @@ namespace FubuDocsRunner
 
     public class SnippetApplicationFiles : IFubuApplicationFiles
     {
-        private List<string> _directories;
+        private readonly List<string> _directories;
 
         public SnippetApplicationFiles(string sourceDirectory, string documentationDirectory)
         {
-            var name = Path.GetFileName(documentationDirectory);
+            string name = Path.GetFileName(documentationDirectory);
 
             _directories =
                 Directory.GetDirectories(sourceDirectory)
@@ -128,9 +125,11 @@ namespace FubuDocsRunner
                          .ToList();
         }
 
+        public IEnumerable<ContentFolder> Folders { get; private set; }
+
         public string GetApplicationPath()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<IFubuFile> FindFiles(FileSet fileSet)
@@ -148,10 +147,9 @@ namespace FubuDocsRunner
 
         public IFubuFile Find(string relativeName)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<ContentFolder> AllFolders { get; private set; }
-        public IEnumerable<ContentFolder> Folders { get; private set; }
     }
 }

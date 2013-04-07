@@ -18,24 +18,28 @@ namespace FubuDocsRunner
     [CommandDescription("Packages up a documentation project as a FubuWorld bottle")]
     public class BottleCommand : FubuCommand<BottleInput>
     {
+        private static readonly FileSystem fileSystem = new FileSystem();
+
         public override bool Execute(BottleInput input)
         {
-            var fileSystem = new FileSystem();
-
-
             importSnippets(input);
 
             string directory = input.DetermineDocumentsFolder();
-            writeManifestIfNecessary(directory, fileSystem);
 
+            bottleize(input, directory);
+
+            return true;
+        }
+
+        private static void bottleize(BottleInput input, string directory)
+        {
+            writeManifestIfNecessary(directory);
             NuspecMaker.CreateNuspecIfMissing(directory);
 
             if (!input.NoZipFlag)
             {
                 bottleItUp(directory);
             }
-
-            return true;
         }
 
         private static void bottleItUp(string directory)
@@ -46,7 +50,7 @@ namespace FubuDocsRunner
             });
         }
 
-        private static void writeManifestIfNecessary(string directory, FileSystem fileSystem)
+        private static void writeManifestIfNecessary(string directory)
         {
             string manifestFile = directory.AppendPath(PackageManifest.FILE);
             if (!File.Exists(manifestFile))
