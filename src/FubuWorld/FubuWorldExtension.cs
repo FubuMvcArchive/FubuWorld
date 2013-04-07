@@ -12,6 +12,8 @@ namespace FubuWorld
         {
             registry.AlterSettings<CommonViewNamespaces>(x => {
                 x.AddForType<FubuWorldRegistry>();
+                x.Add("FubuWorld.Navigation");
+                x.Add("FubuMVC.CodeSnippets");
             });
 
             registry.Services(x => {
