@@ -7,6 +7,8 @@ using Bottles.Commands;
 using FubuCore;
 using FubuCore.CommandLine;
 using System.Collections.Generic;
+using System.Linq;
+using FubuWorld.Topics;
 
 namespace FubuDocsRunner
 {
@@ -35,11 +37,58 @@ namespace FubuDocsRunner
         private static void bottleize(BottleInput input, string directory)
         {
             writeManifestIfNecessary(directory);
+            writeIndexPageIfNecessary(directory);
+            writeIndexProjectFileIfNecessary(directory);
+
             NuspecMaker.CreateNuspecIfMissing(directory);
 
             if (!input.NoZipFlag)
             {
                 bottleItUp(directory);
+            }
+        }
+
+        private static void writeIndexProjectFileIfNecessary(string directory)
+        {
+            var file = directory.AppendPath(ProjectRoot.File);
+
+           if (!fileSystem.FileExists(file))
+           {
+               var bottleName = Path.GetFileName(directory);
+               var guessedName = bottleName.Replace(".Docs", "");
+               var project = new ProjectRoot
+               {
+                   BottleName = bottleName,
+                   Name = guessedName,
+                   BuildServerUrl =
+                       "http://build.fubu-project.org/project.html?projectId=[CHANGEME]&tab=projectOverview",
+                   GitHubPage = "http://github.com/DarthFubuMVC/" + guessedName,
+                   Url = guessedName.ToLower(),
+                   UserGroupUrl = "https://groups.google.com/forum/?fromgroups#!forum/fubumvc-devel"
+               };
+
+               Console.WriteLine("Writing documentation project directives to " + file);
+               project.WriteTo(file);
+           }
+        }
+
+        private static void writeIndexPageIfNecessary(string directory)
+        {
+            var hasIndex = fileSystem.FindFiles(directory, FileSet.Shallow("index.*")).Any();
+        
+            if (!hasIndex)
+            {
+                var guessedTitle = Path.GetFileNameWithoutExtension(directory).Replace(".Docs", "");
+
+                var text = @"<!--Title: {0}-->
+<ProjectSummary />
+<TableOfContents />
+".ToFormat(guessedTitle);
+
+                var indexFile = directory.AppendPath("index.spark");
+                Console.WriteLine("Writing project root file to " + indexFile);
+                
+                fileSystem.WriteStringToFile(indexFile, text);
             }
         }
 

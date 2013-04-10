@@ -4,30 +4,27 @@ using System.Threading.Tasks;
 using Fubu.Running;
 using FubuCore;
 using FubuCore.CommandLine;
-using System.Collections.Generic;
 
 namespace FubuDocsRunner.Running
 {
     public class RunCommand : FubuCommand<RunInput>
     {
+        private readonly IFileSystem fileSystem = new FileSystem();
         private RemoteApplication _application;
-        private IFileSystem fileSystem = new FileSystem();
         private string _solutionDirectory;
 
         public override bool Execute(RunInput input)
         {
-            var runnerDirectory = Assembly.GetExecutingAssembly().Location.ParentDirectory();
+            string runnerDirectory = Assembly.GetExecutingAssembly().Location.ParentDirectory();
 
-            var bottling = Task.Factory.StartNew(() => {
+            Task bottling = Task.Factory.StartNew(() => {
                 if (!input.NoBottlingFlag)
                 {
-                    new BottleCommand().Execute(new BottleInput { NoZipFlag = true });
+                    new BottleCommand().Execute(new BottleInput {NoZipFlag = true});
                 }
             });
 
-            var cleaning = Task.Factory.StartNew(() => {
-                cleanExplodedBottleContents(runnerDirectory);
-            });
+            Task cleaning = Task.Factory.StartNew(() => { cleanExplodedBottleContents(runnerDirectory); });
 
 
             Task.WaitAll(bottling, cleaning);
@@ -38,12 +35,12 @@ namespace FubuDocsRunner.Running
             try
             {
                 _application = new RemoteApplication(x => {
-                    x.Setup.AppDomainInitializerArguments = new string[]{_solutionDirectory};
-                    
+                    x.Setup.AppDomainInitializerArguments = new[] {_solutionDirectory};
+
                     x.Setup.ApplicationBase = runnerDirectory;
                 });
 
-                _application.Start(input); 
+                _application.Start(input);
 
                 tellUserWhatToDo();
                 ConsoleKeyInfo key = Console.ReadKey();
@@ -57,6 +54,8 @@ namespace FubuDocsRunner.Running
 
                     key = Console.ReadKey();
                 }
+
+                _application.Shutdown();
             }
             catch (Exception e)
             {
