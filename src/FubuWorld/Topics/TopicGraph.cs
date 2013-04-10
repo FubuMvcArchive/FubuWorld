@@ -22,7 +22,7 @@ namespace FubuWorld.Topics
 
         public void AddProject(ProjectRoot project)
         {
-            _projects[project.Name] = project;
+            _projects[project.Name.ToLowerInvariant()] = project;
         }
 
         public IEnumerable<ProjectRoot> Projects
@@ -32,7 +32,7 @@ namespace FubuWorld.Topics
 
         public ProjectRoot ProjectFor(string name)
         {
-            return _projects[name];
+            return _projects[name.ToLower()];
         }
 
         /// <summary>

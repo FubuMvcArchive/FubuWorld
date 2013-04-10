@@ -45,7 +45,7 @@ namespace FubuWorld.Topics
 
         public Topic FindByKey(string key)
         {
-            if (key.EqualsIgnoreCase(key))
+            if (Root.Key.EqualsIgnoreCase(key))
             {
                 return Root;
             }

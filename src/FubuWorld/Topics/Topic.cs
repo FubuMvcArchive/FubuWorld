@@ -32,7 +32,6 @@ namespace FubuWorld.Topics
             TopicBuilder.BuildOut(this);
         }
 
-
         public string AbsoluteUrl
         {
             get { return "/" + Url; }

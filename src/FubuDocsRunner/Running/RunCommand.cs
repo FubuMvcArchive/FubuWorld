@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading.Tasks;
 using Fubu.Running;
 using FubuCore;
 using FubuCore.CommandLine;
@@ -14,19 +15,29 @@ namespace FubuDocsRunner.Running
 
         public override bool Execute(RunInput input)
         {
-            if (!input.NoBottlingFlag)
-            {
-                new BottleCommand().Execute(new BottleInput {NoZipFlag = true});
-            }
+            var runnerDirectory = Assembly.GetExecutingAssembly().Location.ParentDirectory();
 
-            cleanExplodedBottleContents();
+            var bottling = Task.Factory.StartNew(() => {
+                if (!input.NoBottlingFlag)
+                {
+                    new BottleCommand().Execute(new BottleInput { NoZipFlag = true });
+                }
+            });
+
+            var cleaning = Task.Factory.StartNew(() => {
+                cleanExplodedBottleContents(runnerDirectory);
+            });
+
+
+            Task.WaitAll(bottling, cleaning);
 
 
             try
             {
                 _application = new RemoteApplication(x => {
                     x.Setup.AppDomainInitializerArguments = new string[]{Environment.CurrentDirectory};
-                    x.Setup.ApplicationBase = Assembly.GetExecutingAssembly().Location.ParentDirectory();
+                    
+                    x.Setup.ApplicationBase = runnerDirectory;
                 });
 
                 _application.Start(input); 
@@ -48,13 +59,11 @@ namespace FubuDocsRunner.Running
             return true;
         }
 
-        private void cleanExplodedBottleContents()
+        private void cleanExplodedBottleContents(string runnerDirectory)
         {
-            new DocActionInput().DetermineDocumentsFolders().Each(dir => {
-                string explodedBottlesDirectory = dir.AppendPath("fubu-content");
-                Console.WriteLine("Trying to clean out the contents of " + explodedBottlesDirectory);
-                fileSystem.CleanDirectory(explodedBottlesDirectory);
-            });
+            string explodedBottlesDirectory = runnerDirectory.AppendPath("fubu-content");
+            Console.WriteLine("Trying to clean out the contents of " + explodedBottlesDirectory);
+            fileSystem.CleanDirectory(explodedBottlesDirectory);
         }
     }
 }

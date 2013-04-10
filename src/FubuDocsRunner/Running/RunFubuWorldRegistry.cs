@@ -4,5 +4,6 @@ namespace FubuDocsRunner.Running
 {
     public class RunFubuWorldRegistry : FubuRegistry
     {
+
     }
 }

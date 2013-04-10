@@ -16,6 +16,7 @@
   </head>
   <body data-spy="scroll" data-target=".bs-docs-sidebar">
     <div id="diagnostic-menu" class="navbar navbar-fixed-top">
+      
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="#">
@@ -24,10 +25,15 @@
           !{this.TwitterNavBarFor(FubuWorldKeys.Main)}
           !{this.TopTopicNavigation()}
         </div>
+
+        
       </div>
     </div>
     <use content="masthead" />
     <div id="Content" class="container">
+
+      !{this.AuthoringTopic()}
+
       <div class="row">
         <div class="span3 bs-docs-sidebar">
           <ul id="page-toc" class="nav nav-list bs-docs-sidenav affix">

@@ -7,4 +7,16 @@
     });
 
     $('#page-toc').affix();
+
+    $('a.edit-link').click(function (e) {
+        $.ajax({
+            type: "POST",
+            url: $(this).data('url'),
+            data: {Key: $(this).data('key')},
+            dataType: 'json'
+        });
+
+        e.preventDefault();
+        return false;
+    });
 });

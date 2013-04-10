@@ -916,3 +916,15 @@ form.bs-docs-example {
     float: none;
   }
 }
+
+
+
+.authoring {
+    padding: 5px;
+    border: solid blue thick;
+    margin-bottom: 10px;
+}
+
+.authoring span {
+    float: right;
+}

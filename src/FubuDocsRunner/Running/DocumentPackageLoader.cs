@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Bottles;
@@ -24,10 +25,14 @@ namespace FubuDocsRunner.Running
 
         public IEnumerable<IPackageInfo> Load(IPackageLog log)
         {
+            
+
             var reader = new PackageManifestReader(new FileSystem(), folder => folder);
             var docDirs = FindDocumentDirectories(_directory);
 
-            return docDirs.Select(reader.LoadFromFolder);
+            return docDirs.Select(dir => {
+                return reader.LoadFromFolder(dir);
+            });
         }
     }
 }
