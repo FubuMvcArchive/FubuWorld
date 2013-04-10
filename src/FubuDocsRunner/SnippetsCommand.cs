@@ -6,6 +6,7 @@ using System.Linq;
 using FubuCore;
 using FubuCore.CommandLine;
 using FubuCore.Util.TextWriting;
+using FubuDocsRunner.Running;
 using FubuMVC.CodeSnippets;
 using FubuMVC.Core.Packaging;
 using FubuMVC.Core.Runtime.Files;
@@ -16,6 +17,9 @@ namespace FubuDocsRunner
     {
         [Description("Scans and lists codesnippets, but does not perform the import")]
         public bool ScanFlag { get; set; }
+
+        [Description("Turns off most of the tracing messages")]
+        public bool QuietFlag { get; set; }
     }
 
     [CommandDescription(
@@ -27,22 +31,29 @@ namespace FubuDocsRunner
 
         public override bool Execute(SnippetsInput input)
         {
-            ISnippetCache cache = buildCache(input);
+            input.DetermineDocumentsFolders().Each(dir => processDirectory(input, dir));
+
+            return true;
+        }
+
+        private static void processDirectory(SnippetsInput input, string directory)
+        {
+            ConsoleWriter.Write(ConsoleColor.White, "Processing code snippets for " + directory);
+
+            ISnippetCache cache = buildCache(directory);
 
             if (input.ScanFlag)
             {
                 writePreview(cache);
-
-                return true;
             }
 
-            string directory = input.DetermineDocumentsFolder();
+
 
             string snippets = directory.AppendPath("snippets");
 
             fileSystem.DeleteDirectory(snippets);
 
-            string srcDirectory = ".".ToFullPath().AppendPath("src");
+            string srcDirectory = Environment.CurrentDirectory.AppendPath("src");
 
 
             Console.WriteLine("Moving snippet files to " + snippets);
@@ -51,7 +62,8 @@ namespace FubuDocsRunner
             writer.AddColumnData("Source", "Destination");
             writer.AddDivider('-');
 
-            cache.All().Each(snippet => {
+            cache.All().Each(snippet =>
+            {
                 string relative = snippet.File.PathRelativeTo(srcDirectory).ParentDirectory();
                 string newPath = snippets.AppendPath(relative);
 
@@ -60,9 +72,10 @@ namespace FubuDocsRunner
                 fileSystem.CopyToDirectory(snippet.File, newPath);
             });
 
-            writer.WriteToConsole();
-
-            return true;
+            if (!input.QuietFlag)
+            {
+                writer.WriteToConsole();
+            }
         }
 
         private static void writePreview(ISnippetCache cache)
@@ -78,9 +91,9 @@ namespace FubuDocsRunner
             writer.WriteToConsole();
         }
 
-        private static ISnippetCache buildCache(SnippetsInput input)
+        private static ISnippetCache buildCache(string directory)
         {
-            var files = new SnippetApplicationFiles(".".ToFullPath().AppendPath("src"), input.DetermineDocumentsFolder());
+            var files = new SnippetApplicationFiles(".".ToFullPath().AppendPath("src"), directory);
 
             var cache = new SnippetCache();
 
@@ -95,6 +108,7 @@ namespace FubuDocsRunner
                 new BlockCommentScanner("/*", "*/", "css", "lang-css"),
                 new RazorSnippetScanner()
             };
+
             scanners.Each(finder => {
                 files.FindFiles(finder.MatchingFileSet).Each(file => {
                     var scanner = new SnippetReader(file, finder, snippet => {
@@ -139,6 +153,7 @@ namespace FubuDocsRunner
             // I hate the duplication, but it's tooling code on a beautiful Saturday afternoon
             fileSet.AppendExclude(FubuMvcPackageFacility.FubuContentFolder + "/*.*");
             fileSet.AppendExclude(FubuMvcPackageFacility.FubuPackagesFolder + "/*.*");
+            fileSet.AppendExclude("snippets/*.*");
 
             return
                 _directories.SelectMany(

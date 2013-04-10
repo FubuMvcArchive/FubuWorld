@@ -124,7 +124,7 @@ task :restart do
 end
 
 def self.bottles(args)
-  bottles = Platform.runtime(Nuget.tool("Bottles", "BottleRunner.exe"))
+  bottles = 'src/packages/Bottles/tools/BottleRunner.exe'
   sh "#{bottles} #{args}"
 end
 

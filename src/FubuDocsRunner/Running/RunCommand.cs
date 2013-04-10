@@ -1,42 +1,48 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
+using System.Reflection;
+using Fubu.Running;
 using FubuCore;
 using FubuCore.CommandLine;
-using FubuMVC.Core;
-using FubuMVC.Core.Packaging;
-using FubuMVC.Katana;
-using FubuMVC.StructureMap;
-using FubuWorld.Infrastructure;
-using Container = StructureMap.Container;
+using System.Collections.Generic;
 
 namespace FubuDocsRunner.Running
 {
     public class RunCommand : FubuCommand<RunInput>
     {
+        private RemoteApplication _application;
+        private IFileSystem fileSystem = new FileSystem();
+
         public override bool Execute(RunInput input)
         {
-            string documentDirectory = input.DetermineDocumentsFolder();
-
             if (!input.NoBottlingFlag)
             {
-                new BottleCommand().Execute(new BottleInput {DirectoryFlag = documentDirectory, NoZipFlag = true});
+                new BottleCommand().Execute(new BottleInput {NoZipFlag = true});
             }
 
+            cleanExplodedBottleContents();
 
-            string explodedBottlesDirectory = documentDirectory.AppendPath("fubu-content");
-            Console.WriteLine("Trying to clean out the contents of " + explodedBottlesDirectory);
-            new FileSystem().CleanDirectory(explodedBottlesDirectory);
+            var request = new ApplicationRequest
+            {
+                ApplicationFlag = typeof (FubuDocsApplication).Name,
+                DirectoryFlag = Assembly.GetExecutingAssembly().Location.ParentDirectory(),
+            };
 
             try
             {
-                EmbeddedFubuMvcServer server = buildServer(documentDirectory);
-                string url = server.BaseAddress;
+                _application = new RemoteApplication(x => {
+                    x.Setup.AppDomainInitializerArguments = new string[]{input.DirectoryFlag ?? Environment.CurrentDirectory};
+                });
 
-                Process.Start(url);
+                _application.Start(request); // Need to pass on a linked package directory (ies)
 
-                Console.WriteLine("Press any key to quit");
-                Console.ReadLine();
+                Console.WriteLine("Press 'r' to recycle the application, anything else to quit");
+                ConsoleKeyInfo key = Console.ReadKey();
+                while (key.Key == ConsoleKey.R)
+                {
+                    _application.RecycleAppDomain();
+
+                    key = Console.ReadKey();
+                }
             }
             catch (Exception e)
             {
@@ -46,22 +52,13 @@ namespace FubuDocsRunner.Running
             return true;
         }
 
-        private static EmbeddedFubuMvcServer buildServer(string documentDirectory)
+        private void cleanExplodedBottleContents()
         {
-            FubuMvcPackageFacility.PhysicalRootPath = documentDirectory;
-
-            FubuApplication application = FubuApplication
-                .For<RunFubuWorldRegistry>()
-                .StructureMap(new Container())
-                .Packages(x => {
-                    x.Loader(new MainDocumentLinkedPackageLoader(documentDirectory));
-                    x.Loader(new FubuDocsPackageLoader
-                    {
-                        IgnoreAssembly = Path.GetFileName(documentDirectory)
-                    });
-                });
-
-            return application.RunEmbedded(documentDirectory);
+            new DocActionInput().DetermineDocumentsFolders().Each(dir => {
+                string explodedBottlesDirectory = dir.AppendPath("fubu-content");
+                Console.WriteLine("Trying to clean out the contents of " + explodedBottlesDirectory);
+                fileSystem.CleanDirectory(explodedBottlesDirectory);
+            });
         }
     }
 }

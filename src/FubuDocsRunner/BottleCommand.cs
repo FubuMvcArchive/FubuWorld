@@ -6,6 +6,7 @@ using Bottles;
 using Bottles.Commands;
 using FubuCore;
 using FubuCore.CommandLine;
+using System.Collections.Generic;
 
 namespace FubuDocsRunner
 {
@@ -24,9 +25,9 @@ namespace FubuDocsRunner
         {
             importSnippets(input);
 
-            string directory = input.DetermineDocumentsFolder();
-
-            bottleize(input, directory);
+            input.DetermineDocumentsFolders().Each(directory => {
+                bottleize(input, directory);
+            });
 
             return true;
         }
@@ -69,7 +70,7 @@ namespace FubuDocsRunner
 
         private static void importSnippets(BottleInput input)
         {
-            new SnippetsCommand().Execute(new SnippetsInput {DirectoryFlag = input.DetermineDocumentsFolder()});
+            new SnippetsCommand().Execute(new SnippetsInput {DirectoryFlag = input.DirectoryFlag, QuietFlag = true});
         }
     }
 

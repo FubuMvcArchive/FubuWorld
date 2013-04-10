@@ -37,6 +37,8 @@ namespace FubuWorld.Topics
             if (path.Contains("/Samples/") || path.Contains("/Examples/")) return false;
             if (path.Contains("/samples/") || path.Contains("/examples/")) return false;
 
+            if (descriptor.RelativePath().StartsWith("snippets")) return false;
+
             return true;
         }
 
