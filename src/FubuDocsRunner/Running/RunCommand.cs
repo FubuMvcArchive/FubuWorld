@@ -12,6 +12,7 @@ namespace FubuDocsRunner.Running
     {
         private RemoteApplication _application;
         private IFileSystem fileSystem = new FileSystem();
+        private string _solutionDirectory;
 
         public override bool Execute(RunInput input)
         {
@@ -32,21 +33,27 @@ namespace FubuDocsRunner.Running
             Task.WaitAll(bottling, cleaning);
 
 
+            _solutionDirectory = Environment.CurrentDirectory;
+
             try
             {
                 _application = new RemoteApplication(x => {
-                    x.Setup.AppDomainInitializerArguments = new string[]{Environment.CurrentDirectory};
+                    x.Setup.AppDomainInitializerArguments = new string[]{_solutionDirectory};
                     
                     x.Setup.ApplicationBase = runnerDirectory;
                 });
 
                 _application.Start(input); 
 
-                Console.WriteLine("Press 'r' to recycle the application, anything else to quit");
+                tellUserWhatToDo();
                 ConsoleKeyInfo key = Console.ReadKey();
-                while (key.Key == ConsoleKey.R)
+                while (key.Key != ConsoleKey.Q)
                 {
-                    _application.RecycleAppDomain();
+                    if (key.Key == ConsoleKey.R)
+                    {
+                        _application.RecycleAppDomain();
+                        tellUserWhatToDo();
+                    }
 
                     key = Console.ReadKey();
                 }
@@ -57,6 +64,11 @@ namespace FubuDocsRunner.Running
             }
 
             return true;
+        }
+
+        private static void tellUserWhatToDo()
+        {
+            Console.WriteLine("Press 'q' to quit, 'r' to recycle the application");
         }
 
         private void cleanExplodedBottleContents(string runnerDirectory)
