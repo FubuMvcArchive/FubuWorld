@@ -21,19 +21,15 @@ namespace FubuDocsRunner.Running
 
             cleanExplodedBottleContents();
 
-            var request = new ApplicationRequest
-            {
-                ApplicationFlag = typeof (FubuDocsApplication).Name,
-                DirectoryFlag = Assembly.GetExecutingAssembly().Location.ParentDirectory(),
-            };
 
             try
             {
                 _application = new RemoteApplication(x => {
-                    x.Setup.AppDomainInitializerArguments = new string[]{input.DirectoryFlag ?? Environment.CurrentDirectory};
+                    x.Setup.AppDomainInitializerArguments = new string[]{Environment.CurrentDirectory};
+                    x.Setup.ApplicationBase = Assembly.GetExecutingAssembly().Location.ParentDirectory();
                 });
 
-                _application.Start(request); // Need to pass on a linked package directory (ies)
+                _application.Start(input); 
 
                 Console.WriteLine("Press 'r' to recycle the application, anything else to quit");
                 ConsoleKeyInfo key = Console.ReadKey();
