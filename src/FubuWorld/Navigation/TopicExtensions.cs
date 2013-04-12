@@ -1,13 +1,28 @@
 ﻿using System.Web;
+using FubuMVC.CodeSnippets;
 using FubuMVC.Core.View;
 using FubuWorld.Topics;
 using HtmlTags;
 using FubuMVC.Core.UI;
+using FubuCore;
 
 namespace FubuWorld.Navigation
 {
     public static class TopicExtensions
     {
+        public static HtmlTag BottleSnippetFor(this IFubuPage page, string snippetName)
+        {
+            var project = page.Get<ITopicContext>().Project;
+            var snippets = page.Get<ISnippetCache>();
+
+            // TODO -- get rid of the downcast here when the new SlickGrid bottle is ready
+            var snippet = snippets.As<SnippetCache>().FindByBottle(snippetName, project.BottleName) ??
+                          snippets.Find(snippetName);
+
+            return page.CodeSnippet(snippet);
+        }
+
+
         public static IHtmlString ProjectSummary(this IFubuPage page)
         {
             var project = page.Get<ITopicContext>().Project;

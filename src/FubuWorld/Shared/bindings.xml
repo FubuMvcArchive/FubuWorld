@@ -13,7 +13,7 @@
   </element>
 
   <element name="ProjectSummary">this.ProjectSummary()</element>
-  <element name="Snippet">this.CodeSnippet('@name')</element>
+  <element name="Snippet">this.BottleSnippetFor('@name')</element>
   <element name="LinkToSnippet">this.LinkToSnippet('@name')</element>
   <element name="LinkToCodeFile">this.LinkToCodeFile('@name')</element>
   <element name="EmbedFile">this.CodeFile('@name')</element>

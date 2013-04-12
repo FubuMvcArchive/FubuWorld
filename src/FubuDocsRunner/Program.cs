@@ -9,40 +9,17 @@ namespace FubuDocsRunner
 
     public class FubuDocsExecutor : CommandExecutor
     {
-        
+        public FubuDocsExecutor()
+        {
+            Factory.RegisterCommands(GetType().Assembly);
+        }
     }
 
     class Program
     {
-        private static bool success;
-
         public static int Main(string[] args)
         {
-            // Try to magically determine the FubuMvcPackage folder here
-            try
-            {
-                var factory = new CommandFactory();
-                factory.RegisterCommands(typeof(Program).Assembly);
-
-                var executor = new CommandExecutor(factory);
-                success = executor.Execute(args);
-            }
-            catch (CommandFailureException e)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("ERROR: " + e.Message);
-                Console.ResetColor();
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("ERROR: " + ex);
-                Console.ResetColor();
-                return 1;
-            }
-
-            return success ? 0 : 1;
+            return CommandExecutor.ExecuteInConsole<FubuDocsExecutor>(args);
         }
     }
 }
