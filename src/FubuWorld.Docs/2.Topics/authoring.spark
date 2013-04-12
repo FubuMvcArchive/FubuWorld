@@ -1,0 +1,45 @@
+﻿<!--Title: Authoring a Topic-->
+
+<markdown>
+To add a new topic, simply add a new text file with the extension <code>.spark</code> like the following:   
+  
+<EmbedFile name="SampleView.txt" />
+  
+A couple things to note:
+
+* FubuWorld uses [Twitter Bootstrap](http://twitter.github.io/bootstrap/) for styling.  
+* You do not need to make any spark declarations for an input model or layout.  FubuWorld takes care of all of that for you.
+* Using the <code>&lt;markdown&gt;</code> element is optional, but using Markdown text is highly recommended over straight html.
+* You can happily mix html markup into the Markdown wiki text, including any custom Spark bindings like <code>&lt;Section&gt;</code> in the sample above.
+  
+Optionally, import the ReSharper file templates at TODO(export the link and put it into GitHub somewhere) and use the <code>Doc View</code> file template.
+  
+<Section title="Other Resources" id="other">
+* [Spark View Engine](http://sparkviewengine.com)
+* [Markdown with Spark tips](http://sparkviewengine.com/filter/tips)
+* [Markdown Reference](http://daringfireball.net/projects/markdown/syntax)
+</Section>
+
+<Section title="Controlling the Title" id="title">
+  <Snippet name="topic-title" />
+</Section>
+
+<Section title="Controlling the Url" id="url">
+  <Snippet name="topic-url"/>
+</Section>
+
+<Section title="ReSharper File Template" id="rsharp">
+  TODO(Link to a template here)
+</Section>
+
+<Section title="Markup for this View" id="markup">
+To make this more concrete, the markup for this topic is:
+
+<EmbedFile name="2.topics/authoring.spark" />
+</Section>
+
+</markdown>
+
+
+
+

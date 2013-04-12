@@ -6,6 +6,12 @@ using FubuCore.CommandLine;
 
 namespace FubuDocsRunner
 {
+
+    public class FubuDocsExecutor : CommandExecutor
+    {
+        
+    }
+
     class Program
     {
         private static bool success;
@@ -13,9 +19,6 @@ namespace FubuDocsRunner
         public static int Main(string[] args)
         {
             // Try to magically determine the FubuMvcPackage folder here
-
-            
-
             try
             {
                 var factory = new CommandFactory();

@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="2.Topics\navigation.spark" />
     <None Include="3.ViewHelpers\index.spark">
       <SubType>Designer</SubType>
     </None>
@@ -58,6 +59,7 @@
     <Content Include="Project.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SampleView.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
