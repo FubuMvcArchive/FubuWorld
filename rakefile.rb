@@ -119,9 +119,9 @@ task :unit_test do
   runner.executeTests tests
 end
 
-desc "Restarts the app"
-task :restart do
-	fubu "restart fubuworld"
+desc "Outputs the command line usage"
+task :dump_usages do
+  sh "src/FubuDocsRunner/bin/Debug/fubudocs.exe dump-usages fubudocs src/FubuWorld.Docs/fubudocs.cli.xml"
 end
 
 def self.bottles(args)

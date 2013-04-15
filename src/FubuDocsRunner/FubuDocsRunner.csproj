@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FubuDocsRunner</RootNamespace>
-    <AssemblyName>FubuDocsRunner</AssemblyName>
+    <AssemblyName>fubudocs</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -134,7 +134,9 @@
     <Compile Include="WebsiteDirectoryFinder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Shared\Application.spark">
       <SubType>Designer</SubType>
     </None>

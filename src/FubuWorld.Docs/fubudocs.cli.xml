@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<CommandLineApplicationReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ApplicationName>fubudocs</ApplicationName>
+  <Commands>
+    <CommandReport>
+      <Name>bottle</Name>
+      <Description>Packages up a documentation project as a FubuWorld bottle</Description>
+      <Arguments />
+      <Flags>
+        <FlagReport>
+          <UsageDescription>[-n, --no-zip]</UsageDescription>
+          <Description>If selected, disables the creation of the pak-WebContent.zip file</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-d, --directory &lt;directory&gt;]</UsageDescription>
+          <Description>The directory holding the docs.  Will try to find a single directory containing the name 'Docs' under an 'src' folder if this flag is not specified</Description>
+        </FlagReport>
+      </Flags>
+      <Usages />
+    </CommandReport>
+    <CommandReport>
+      <Name>snippets</Name>
+      <Description>Scrapes the entire solution for files with code snippets and places those files under the '/snippets' directory of the documentation project</Description>
+      <Arguments />
+      <Flags>
+        <FlagReport>
+          <UsageDescription>[-s, --scan]</UsageDescription>
+          <Description>Scans and lists codesnippets, but does not perform the import</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-q, --quiet]</UsageDescription>
+          <Description>Turns off most of the tracing messages</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-d, --directory &lt;directory&gt;]</UsageDescription>
+          <Description>The directory holding the docs.  Will try to find a single directory containing the name 'Docs' under an 'src' folder if this flag is not specified</Description>
+        </FlagReport>
+      </Flags>
+      <Usages />
+    </CommandReport>
+    <CommandReport>
+      <Name>run</Name>
+      <Description>RunCommand</Description>
+      <Arguments />
+      <Flags>
+        <FlagReport>
+          <UsageDescription>[-n, --no-bottling]</UsageDescription>
+          <Description>Disables the bottle and code snippet scanning while this command runs</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-b, --build &lt;build&gt;]</UsageDescription>
+          <Description>If you are running a class library, sets the preference for the profile to load.  As in bin/[BuildFlag].  Default is debug</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-p, --port &lt;port&gt;]</UsageDescription>
+          <Description>IP Port.  Default is 5500</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-a, --application &lt;application&gt;]</UsageDescription>
+          <Description>Specific name of an IApplicationSource class that builds this application</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-d, --directory &lt;directory&gt;]</UsageDescription>
+          <Description>Overrides the directory that is the physical path of the running fubumvc application</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-o, --open]</UsageDescription>
+          <Description>Start the default browser to the home page of this application</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-w, --watched]</UsageDescription>
+          <Description>Open a 'watched' browser with WebDriver to refresh the page on content or application recycles</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-b, --browser Chrome|Firefox]</UsageDescription>
+          <Description>Browser to use in watched.  Default is Firefox because it's more stable. </Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-p, --production-mode]</UsageDescription>
+          <Description>Unless this flag is set, the fubumvc application will run in Development mode</Description>
+        </FlagReport>
+      </Flags>
+      <Usages />
+    </CommandReport>
+  </Commands>
+</CommandLineApplicationReport>
