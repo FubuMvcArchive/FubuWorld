@@ -1,4 +1,5 @@
 ﻿using FubuMVC.Core;
+using FubuWorld.Navigation;
 
 namespace FubuWorld.MVC
 {
@@ -6,7 +7,7 @@ namespace FubuWorld.MVC
     {
         public FubuMVCWorldRegistry()
         {
-            Policies.Add<FubuMVCWorldMenu>();
+            Policies.Add<FubuWorldMenu>();
         }
     }
 }

@@ -7,6 +7,9 @@ namespace FubuWorld.Navigation
     {
         public static readonly FubuWorldKeys Main = new FubuWorldKeys("Main");
         public static readonly FubuWorldKeys Home = new FubuWorldKeys("Home");
+        public static readonly FubuWorldKeys MvcHome = new FubuWorldKeys("MVC");
+        public static readonly FubuWorldKeys GettingStarted = new FubuWorldKeys("Getting Started");
+
 
         public FubuWorldKeys(string defaultValue)
             : base(null, defaultValue, namespaceByType: true)

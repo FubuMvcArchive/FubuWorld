@@ -4,8 +4,6 @@ namespace FubuWorld.MVC
 {
     public class FubuMVCWorldKeys : StringToken
     {
-        public static readonly FubuMVCWorldKeys MvcHome = new FubuMVCWorldKeys("MVC");
-        public static readonly FubuMVCWorldKeys GettingStarted = new FubuMVCWorldKeys("Getting Started");
 
         public FubuMVCWorldKeys(string defaultValue)
             : base(null, defaultValue, namespaceByType: true)

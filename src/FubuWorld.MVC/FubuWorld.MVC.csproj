@@ -3,7 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4F12B286-E137-4163-8917-E2DB3EB67BF6}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -83,7 +84,6 @@
   <ItemGroup>
     <Compile Include="FubuMVCHomeEndpoint.cs" />
     <Compile Include="FubuMVCWorldKeys.cs" />
-    <Compile Include="FubuMVCWorldMenu.cs" />
     <Compile Include="FubuMVCWorldRegistry.cs" />
     <Compile Include="MvcGettingStartedEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,9 +93,6 @@
       <Project>{6F5C4733-AF68-4591-9802-21425E6877C4}</Project>
       <Name>FubuWorld</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".package-manifest" />
@@ -112,10 +109,12 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>16970</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl></IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
