@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="AllProjectsModel.cs" />
     <Compile Include="AllTopicsEndpoint.cs" />
+    <Compile Include="CLI\Classes.cs" />
     <Compile Include="FubuWorldExtension.cs" />
     <Compile Include="FubuWorldRegistry.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
@@ -169,9 +170,7 @@
     </None>
     <None Include="Shared\_global.spark" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CLI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

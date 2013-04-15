@@ -7,13 +7,22 @@ using HtmlTags;
 
 namespace FubuWorld.Navigation
 {
+    public class SectionTag : HtmlTag
+    {
+        public SectionTag(string text, string id) : base("section")
+        {
+            Add("h4").Text(text).AddClass("section-header").Id(id);
+        }
+    }
+
     public static class FubuWorldPageExtensions
     {
-
          public static HtmlTag SectionFor(this IFubuPage page, string text, string id)
          {
-             return new HtmlTag("section", tag => tag.Add("h4").Text(text).AddClass("section-header")).Id(id).NoClosingTag();
+             return new SectionTag(text, id).NoClosingTag();
          }
+
+        
 
         public static HtmlTag AuthoringTopic(this IFubuPage page)
         {
