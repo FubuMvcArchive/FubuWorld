@@ -2,11 +2,12 @@
 using System.Linq;
 using FubuCore;
 using FubuCore.Util;
+using FubuDocs;
+using FubuDocs.Topics;
 using FubuMVC.Core;
 using FubuMVC.Core.Packaging;
 using FubuMVC.Core.Registration;
 using FubuMVC.StructureMap;
-using FubuWorld.Topics;
 using StructureMap;
 
 namespace FubuWorld.Tests.Topics
@@ -22,7 +23,7 @@ namespace FubuWorld.Tests.Topics
         {
             FubuMvcPackageFacility.PhysicalRootPath = ".".ToFullPath().ParentDirectory().ParentDirectory();
             var registry = new FubuRegistry();
-            registry.Import<FubuWorldExtension>();
+            registry.Import<FubuDocsExtension>();
 
             FubuRuntime app = FubuApplication
                 .For(registry)

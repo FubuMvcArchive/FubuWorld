@@ -1,9 +1,8 @@
 ﻿using FubuCore;
+using FubuDocs.Topics;
 using FubuMVC.Core.Registration.Querying;
 using FubuTestingSupport;
-using FubuWorld.Topics;
 using NUnit.Framework;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace FubuWorld.Tests.Topics

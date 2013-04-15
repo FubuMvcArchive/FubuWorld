@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using FubuDocs.Topics;
 using FubuTestingSupport;
-using FubuWorld.Topics;
 using NUnit.Framework;
 using System.Linq;
 
@@ -13,7 +13,7 @@ namespace FubuWorld.Tests.Topics
 
         private IEnumerable<ITopicFile> addFiles(params string[] names)
         {
-            var files = names.Select(x => new StubTopicFile {Name = x, FilePath = x + ".spark"}).Select(x => new FubuWorld.Topics.Topic(new ProjectRoot(), x)).ToArray();
+            var files = names.Select(x => new StubTopicFile {Name = x, FilePath = x + ".spark"}).Select(x => new Topic(new ProjectRoot(), x)).ToArray();
             theFolder.AddFiles(files);
 
             return files.Select(x => x.File).ToArray();

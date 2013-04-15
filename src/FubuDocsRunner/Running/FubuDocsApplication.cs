@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using FubuDocs.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.StructureMap;
-using FubuWorld.Infrastructure;
 using StructureMap;
 
 namespace FubuDocsRunner.Running

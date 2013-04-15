@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using FubuCore;
+using FubuDocs.Topics;
 using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Core.View;
-using FubuMVC.Spark;
-using FubuWorld.Topics;
 
 namespace FubuWorld.Tests.Topics
 {
@@ -22,14 +21,14 @@ namespace FubuWorld.Tests.Topics
 
         public string Folder { get; set; }
 
-        public void WriteContents(string contents)
-        {
-            new FileSystem().WriteStringToFile(FilePath, contents);
-        }
-
         public IViewToken ToViewToken()
         {
             return new StubViewToken(this);
+        }
+
+        public void WriteContents(string contents)
+        {
+            new FileSystem().WriteStringToFile(FilePath, contents);
         }
     }
 
@@ -40,24 +39,6 @@ namespace FubuWorld.Tests.Topics
         public StubViewToken(StubTopicFile file)
         {
             _file = file;
-        }
-
-        protected bool Equals(StubViewToken other)
-        {
-            return Equals(_file, other._file);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((StubViewToken) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return (_file != null ? _file.GetHashCode() : 0);
         }
 
         public string Name()
@@ -74,5 +55,23 @@ namespace FubuWorld.Tests.Topics
         public Type ViewModel { get; private set; }
         public string Namespace { get; private set; }
         public string ProfileName { get; set; }
+
+        protected bool Equals(StubViewToken other)
+        {
+            return Equals(_file, other._file);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((StubViewToken) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (_file != null ? _file.GetHashCode() : 0);
+        }
     }
 }

@@ -83,6 +83,7 @@ end
 desc "Compiles the app"
 task :compile => [:clean, :restore_if_missing, :aliases, :version] do
   bottles("assembly-pak src/FubuWorld -p FubuWorld.csproj")
+  bottles("assembly-pak src/FubuDocs -p FubuDocs.csproj")
 
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/FubuWorld.sln', :clrversion => CLR_TOOLS_VERSION
 

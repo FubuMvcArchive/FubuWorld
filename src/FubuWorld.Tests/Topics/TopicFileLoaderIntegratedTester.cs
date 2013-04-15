@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using FubuDocs.Topics;
 using FubuTestingSupport;
-using FubuWorld.Topics;
 using NUnit.Framework;
 
 namespace FubuWorld.Tests.Topics

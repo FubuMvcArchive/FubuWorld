@@ -1,5 +1,5 @@
 ﻿using FubuCore;
-using FubuWorld.Topics;
+using FubuDocs.Topics;
 using NUnit.Framework;
 using FubuTestingSupport;
 

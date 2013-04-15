@@ -8,7 +8,7 @@ using FubuCore;
 using FubuCore.CommandLine;
 using System.Collections.Generic;
 using System.Linq;
-using FubuWorld.Topics;
+using FubuDocs.Topics;
 
 namespace FubuDocsRunner
 {

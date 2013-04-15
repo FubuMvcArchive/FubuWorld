@@ -1,7 +1,7 @@
 ﻿using FubuCore;
+using FubuDocs.Topics;
 using FubuMVC.Core.View.Model;
 using FubuMVC.Spark.SparkModel;
-using FubuWorld.Topics;
 using NUnit.Framework;
 using FubuTestingSupport;
 

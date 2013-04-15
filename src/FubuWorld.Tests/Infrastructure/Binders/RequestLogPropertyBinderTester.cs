@@ -2,10 +2,10 @@
 using System.Linq.Expressions;
 using FubuCore.Binding.InMemory;
 using FubuCore.Reflection;
+using FubuDocs.Infrastructure.Binders;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Diagnostics.Runtime.Tracing;
 using FubuTestingSupport;
-using FubuWorld.Infrastructure.Binders;
 using NUnit.Framework;
 using Rhino.Mocks;
 

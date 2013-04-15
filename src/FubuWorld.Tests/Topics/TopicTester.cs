@@ -1,24 +1,15 @@
-﻿using System;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
-using FubuWorld.Topics;
-using NUnit.Framework;
-using FubuTestingSupport;
+﻿using System.Diagnostics;
 using System.Linq;
-using FubuCore;
+using System.Text.RegularExpressions;
+using FubuDocs.Topics;
+using FubuTestingSupport;
+using NUnit.Framework;
 
 namespace FubuWorld.Tests.Topics
 {
     [TestFixture]
     public class TopicTester
     {
-        private Topic a;
-        private Topic b;
-        private Topic c;
-        private Topic d;
-        private Topic e;
-        private ProjectRoot theProject;
-
         [SetUp]
         public void SetUp()
         {
@@ -28,82 +19,17 @@ namespace FubuWorld.Tests.Topics
             c = new Topic(theProject, new StubTopicFile());
             d = new Topic(theProject, new StubTopicFile());
             e = new Topic(theProject, new StubTopicFile());
-
         }
 
-        [Test]
-        public void regex_fun()
-        {
-            //var regex = @"<!--(?!\[).*?(?!<\])-->";
-            var regex = @"<!--(.*?)-->";
-
-            MatchCollection matches = Regex.Matches("<!-- something -->", regex);
-            // MatchCollection matches = Regex.Matches(template, @"\{(\w+)\}");
-
-            foreach (Match match in matches)
-            {
-                Debug.WriteLine(match);
-                var key = match.Groups[1].Value;
-
-                Debug.WriteLine(key);
-            }
-
-            
-        }
-
-        [Test]
-        public void initial_state_nulls()
-        {
-            a.NextSibling.ShouldBeNull();
-            a.Parent.ShouldBeNull();
-            a.PreviousSibling.ShouldBeNull();
-            a.LastChild.ShouldBeNull();
-
-            a.ChildNodes.Any().ShouldBeFalse();
-        }
-
-        [Test]
-        public void append_one_child()
-        {
-            a.AppendChild(b);
-
-            a.FirstChild.ShouldBeTheSameAs(b);
-            a.LastChild.ShouldBeTheSameAs(b);
-            a.ChildNodes.ShouldHaveTheSameElementsAs(b);
-
-            b.Parent.ShouldBeTheSameAs(a);
-            b.NextSibling.ShouldBeNull();
-            b.PreviousSibling.ShouldBeNull();
-
-        }
-
-        [Test]
-        public void prepend_one_child()
-        {
-            a.PrependChild(b);
-
-            a.FirstChild.ShouldBeTheSameAs(b);
-            a.LastChild.ShouldBeTheSameAs(b);
-            a.ChildNodes.ShouldHaveTheSameElementsAs(b);
-
-            b.Parent.ShouldBeTheSameAs(a);
-            b.NextSibling.ShouldBeNull();
-            b.PreviousSibling.ShouldBeNull();
-        }
-
-        [Test]
-        public void append_multiple_children()
-        {
-            a.AppendChild(b);
-            a.AppendChild(c);
-            a.AppendChild(d);
-
-            A_should_Have_B_then_C_then_D();
-        }
+        private Topic a;
+        private Topic b;
+        private Topic c;
+        private Topic d;
+        private Topic e;
+        private ProjectRoot theProject;
 
         private void A_should_Have_B_then_C_then_D()
         {
-
             a.FirstChild.ShouldBeTheSameAs(b);
             a.LastChild.ShouldBeTheSameAs(d);
             a.ChildNodes.ShouldHaveTheSameElementsAs(b, c, d);
@@ -122,14 +48,111 @@ namespace FubuWorld.Tests.Topics
         }
 
         [Test]
-        public void prepend_child()
+        public void append_multiple_children()
         {
+            a.AppendChild(b);
             a.AppendChild(c);
             a.AppendChild(d);
 
-            a.PrependChild(b);
-
             A_should_Have_B_then_C_then_D();
+        }
+
+        [Test]
+        public void append_one_child()
+        {
+            a.AppendChild(b);
+
+            a.FirstChild.ShouldBeTheSameAs(b);
+            a.LastChild.ShouldBeTheSameAs(b);
+            a.ChildNodes.ShouldHaveTheSameElementsAs(b);
+
+            b.Parent.ShouldBeTheSameAs(a);
+            b.NextSibling.ShouldBeNull();
+            b.PreviousSibling.ShouldBeNull();
+        }
+
+        [Test]
+        public void find_Next_with_children()
+        {
+            a.AppendChild(b);
+            a.InsertAfter(c);
+
+            a.FindNext().ShouldEqual(b);
+        }
+
+        [Test]
+        public void find_index_walks_up_top()
+        {
+            a.AppendChild(b);
+            b.AppendChild(c);
+            c.AppendChild(d);
+            d.AppendChild(e);
+
+            e.FindIndex().ShouldEqual(a);
+            d.FindIndex().ShouldEqual(a);
+            c.FindIndex().ShouldEqual(a);
+            b.FindIndex().ShouldEqual(a);
+
+            a.FindIndex().ShouldBeNull();
+        }
+
+        [Test]
+        public void find_next_going_up_one_level_to_do_so()
+        {
+            a.AppendChild(b);
+            a.InsertAfter(c);
+
+            b.FindNext().ShouldEqual(c);
+        }
+
+        [Test]
+        public void find_next_going_up_two_levels_to_do_so()
+        {
+            a.AppendChild(b);
+            b.AppendChild(c);
+            a.InsertAfter(d);
+
+            c.FindNext().ShouldEqual(d);
+        }
+
+        [Test]
+        public void find_next_with_sibling()
+        {
+            a.InsertAfter(b);
+            a.FindNext().ShouldEqual(b);
+        }
+
+        [Test]
+        public void find_previous_going_to_the_parent()
+        {
+            a.AppendChild(b);
+            b.FindPrevious().ShouldEqual(a);
+        }
+
+        [Test]
+        public void find_previous_with_no_parent_or_sibling()
+        {
+            a.FindPrevious().ShouldBeNull();
+            a.AppendChild(b);
+            a.FindPrevious().ShouldBeNull();
+        }
+
+        [Test]
+        public void find_previous_with_sibling()
+        {
+            a.InsertAfter(b);
+            b.FindPrevious().ShouldEqual(a);
+        }
+
+        [Test]
+        public void initial_state_nulls()
+        {
+            a.NextSibling.ShouldBeNull();
+            a.Parent.ShouldBeNull();
+            a.PreviousSibling.ShouldBeNull();
+            a.LastChild.ShouldBeNull();
+
+            a.ChildNodes.Any().ShouldBeFalse();
         }
 
         [Test]
@@ -170,6 +193,49 @@ namespace FubuWorld.Tests.Topics
         }
 
         [Test]
+        public void prepend_child()
+        {
+            a.AppendChild(c);
+            a.AppendChild(d);
+
+            a.PrependChild(b);
+
+            A_should_Have_B_then_C_then_D();
+        }
+
+        [Test]
+        public void prepend_one_child()
+        {
+            a.PrependChild(b);
+
+            a.FirstChild.ShouldBeTheSameAs(b);
+            a.LastChild.ShouldBeTheSameAs(b);
+            a.ChildNodes.ShouldHaveTheSameElementsAs(b);
+
+            b.Parent.ShouldBeTheSameAs(a);
+            b.NextSibling.ShouldBeNull();
+            b.PreviousSibling.ShouldBeNull();
+        }
+
+        [Test]
+        public void regex_fun()
+        {
+            //var regex = @"<!--(?!\[).*?(?!<\])-->";
+            string regex = @"<!--(.*?)-->";
+
+            MatchCollection matches = Regex.Matches("<!-- something -->", regex);
+            // MatchCollection matches = Regex.Matches(template, @"\{(\w+)\}");
+
+            foreach (Match match in matches)
+            {
+                Debug.WriteLine(match);
+                string key = match.Groups[1].Value;
+
+                Debug.WriteLine(key);
+            }
+        }
+
+        [Test]
         public void remove_from_end_of_stack()
         {
             a.AppendChild(b);
@@ -189,7 +255,7 @@ namespace FubuWorld.Tests.Topics
             a.AppendChild(e);
             a.AppendChild(c);
             a.AppendChild(d);
-            
+
 
             e.Remove();
 
@@ -220,86 +286,12 @@ namespace FubuWorld.Tests.Topics
         }
 
         [Test]
-        public void find_next_with_sibling()
-        {
-            a.InsertAfter(b);
-            a.FindNext().ShouldEqual(b);
-        }
-
-        [Test]
-        public void find_Next_with_children()
-        {
-            a.AppendChild(b);
-            a.InsertAfter(c);
-
-            a.FindNext().ShouldEqual(b);
-        }
-
-        [Test]
-        public void find_next_going_up_one_level_to_do_so()
-        {
-            a.AppendChild(b);
-            a.InsertAfter(c);
-
-            b.FindNext().ShouldEqual(c);
-
-        }
-
-        [Test]
-        public void find_next_going_up_two_levels_to_do_so()
-        {
-            a.AppendChild(b);
-            b.AppendChild(c);
-            a.InsertAfter(d);
-
-            c.FindNext().ShouldEqual(d);
-        }
-
-        [Test]
         public void there_is_no_next()
         {
             a.AppendChild(b);
             b.AppendChild(c);
 
             c.FindNext().ShouldBeNull();
-        }
-
-        [Test]
-        public void find_previous_with_sibling()
-        {
-            a.InsertAfter(b);
-            b.FindPrevious().ShouldEqual(a);
-        }
-
-        [Test]
-        public void find_previous_going_to_the_parent()
-        {
-            a.AppendChild(b);
-            b.FindPrevious().ShouldEqual(a);
-        }
-
-        [Test]
-        public void find_previous_with_no_parent_or_sibling()
-        {
-            a.FindPrevious().ShouldBeNull();
-            a.AppendChild(b);
-            a.FindPrevious().ShouldBeNull();
-        }
-
-        [Test]
-        public void find_index_walks_up_top()
-        {
-            a.AppendChild(b);
-            b.AppendChild(c);
-            c.AppendChild(d);
-            d.AppendChild(e);
-
-            e.FindIndex().ShouldEqual(a);
-            d.FindIndex().ShouldEqual(a);
-            c.FindIndex().ShouldEqual(a);
-            b.FindIndex().ShouldEqual(a);
-
-            a.FindIndex().ShouldBeNull();
         }
     }
 }
