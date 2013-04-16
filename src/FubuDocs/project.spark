@@ -1,4 +1,4 @@
-﻿<viewdata model="FubuWorld.Topics.ProjectRoot" />
+﻿<viewdata model="FubuDocs.Topics.ProjectRoot" />
 <p><a href="!{Model.GitHubPage}">Fork it on GitHub</a></p>
 <p><a href="!{Model.UserGroupUrl}">User Group</a></p>
 <p><a href="!{Model.BuildServerUrl}">TeamCity CI Build</a></p>

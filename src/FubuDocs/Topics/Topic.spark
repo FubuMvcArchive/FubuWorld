@@ -10,7 +10,7 @@
     <meta name="author" content="FubuWorld" />
     <title>FubuDocs</title>
     #{this.Asset('twitterbootstrap');}
-    <Stylesheet href="fubudocs.core.css" />
+    <Stylesheet href="fubuworld.core.css" />
     <use content="head" />
     <Styles />
   </head>

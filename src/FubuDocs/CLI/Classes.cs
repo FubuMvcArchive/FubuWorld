@@ -3,44 +3,48 @@ using FubuCore.CommandLine;
 using FubuCore.Util;
 using FubuCore;
 using FubuDocs.Navigation;
+using FubuMVC.Core.Runtime.Files;
+using FubuMVC.Core.View;
 using HtmlTags;
 
 namespace FubuDocs.CLI
 {
-    public static class CommandDocumentation
+    public interface ICommandDocumentationSource
     {
-        private static Cache<string, CommandLineApplication> _applications = new Cache<string, CommandLineApplication>(); 
+        CommandLineApplicationReport ReportFor(string applicationName);
+    }
 
-        public static void AddExecutor<T>(string applicationName) where T : FubuCore.CommandLine.CommandExecutor, new()
+    public class CommandDocumentationSource : ICommandDocumentationSource
+    {
+        private readonly Cache<string, CommandLineApplicationReport> _applications;
+
+        public CommandDocumentationSource(IFubuApplicationFiles files, IFileSystem fileSystem)
         {
-            _applications[applicationName] = new CommandLineApplication(applicationName, new T().Factory);
+            _applications = new Cache<string, CommandLineApplicationReport>(name => {
+                var filename = "{0}.cli.xml".ToFormat(name);
+                var file = files.Find(filename);
+
+                if (file == null)
+                {
+                    throw new ArgumentOutOfRangeException("name", name, "Unable to find a *.cli.xml file for the requested application name");
+                }
+
+                return fileSystem.LoadFromFile<CommandLineApplicationReport>(file.Path);
+            });
         }
 
-        public static Cache<string, CommandLineApplication> Applications
+        public CommandLineApplicationReport ReportFor(string applicationName)
         {
-            get { return _applications; }
+            return _applications[applicationName];
         }
     }
 
-    public class CommandLineApplication
+    public class CommandSectionTag : SectionTag
     {
-        private readonly string _applicationName;
-        private readonly ICommandFactory _factory;
-
-        public CommandLineApplication(string applicationName, ICommandFactory factory)
+        public CommandSectionTag(string applicationName, CommandReport report)
+            : base("{0} {1}".ToFormat(applicationName, report.Name), report.Name)
         {
-            _applicationName = applicationName;
-            _factory = factory;
-        }
-
-        public string ApplicationName
-        {
-            get { return _applicationName; }
-        }
-
-        public ICommandFactory Factory
-        {
-            get { return _factory; }
+            
         }
     }
 
@@ -48,38 +52,18 @@ namespace FubuDocs.CLI
 
     public static class CommandUsagePageExtensions
     {
-        
-    }
-
-    public class CommandUsageEndpoint
-    {
-        public HtmlTag get_commands_ApplicationName(ApplicationUsage application)
+        public static CommandSectionTag SectionForCommand(this IFubuPage page, string applicationName, string command)
         {
             throw new NotImplementedException();
         }
 
-        public HtmlTag get_commands_ApplicationName_Command(CommandUsage usage)
+        public static string BodyForCommand(this IFubuPage page, string applicationName, string command)
         {
-            throw new NotImplementedException();
+            return "the body";
         }
     }
 
-    public class CommandDescriptionTag : SectionTag
-    {
-        public CommandDescriptionTag(string applicationName, UsageGraph graph) : base("{0} {1}".ToFormat(applicationName, graph.CommandName), graph.CommandName)
-        {
-                        
-        }
-    }
-    
 
-    public class ApplicationUsage
-    {
-        public string ApplicationName { get; set; }
-    }
 
-    public class CommandUsage : ApplicationUsage
-    {
-        public string Command { get; set; }
-    }
+
 }
