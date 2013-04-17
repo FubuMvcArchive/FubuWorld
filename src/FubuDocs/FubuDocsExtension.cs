@@ -15,6 +15,7 @@ namespace FubuDocs
             registry.AlterSettings<CommonViewNamespaces>(x => {
                 x.AddForType<FubuDocsRegistry>();
                 x.AddForType<TopicLinkTag>();
+                x.AddForType<CommandSectionTag>();
                 x.Add("FubuMVC.CodeSnippets");
             });
 

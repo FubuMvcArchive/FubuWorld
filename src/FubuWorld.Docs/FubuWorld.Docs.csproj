@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="2.Topics\navigation.spark" />
+    <None Include="3.fubudocs\index.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="3.ViewHelpers\index.spark">
       <SubType>Designer</SubType>
     </None>

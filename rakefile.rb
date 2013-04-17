@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'rubygems/package_task'
 
 COMPILE_TARGET = ENV['config'].nil? ? "Debug" : ENV['config'] # Keep this in sync w/ VS settings since Mono is case-sensitive
 CLR_TOOLS_VERSION = "v4.0.30319"
@@ -121,7 +122,7 @@ end
 
 desc "Outputs the command line usage"
 task :dump_usages do
-  sh "src/FubuDocsRunner/bin/Debug/fubudocs.exe dump-usages fubudocs src/FubuWorld.Docs/fubudocs.cli.xml"
+  sh "src/FubuDocsRunner/bin/Debug/FubuDocsRunner.exe dump-usages fubudocs src/FubuWorld.Docs/fubudocs.cli.xml"
 end
 
 def self.bottles(args)
@@ -138,6 +139,61 @@ desc "Compiles and copies FubuDocsRunner to the /buildsupport directory parallel
 task :deploy => [:compile] do
   sh "src/DeployRunner/bin/debug/DeployRunner.exe"
 end
+
+def cleanDirectory(dir)
+  FileUtils.rm_rf dir;
+  waitfor { !exists?(dir) }
+  Dir.mkdir dir
+end
+
+def cleanFile(file)
+  File.delete file unless !File.exist?(file)
+end
+
+desc "Creates the gem for fubudocs.exe"
+task :create_gem do
+	cleanDirectory 'lib'
+	cleanDirectory 'bin'	
+	cleanDirectory 'pkg'
+	
+	dir = "src/fubudocsrunner/bin/#{COMPILE_TARGET}"
+	
+	cleanFile "#{dir}/fubudocsrunner.vshost.exe"
+	
+	
+	copyOutputFiles dir, '*.dll', 'bin'
+
+	FileUtils.copy "#{dir}/fubu.exe", 'bin'
+	FileUtils.copy "#{dir}/FubuDocsRunner.exe", 'bin/fubudocs.exe'
+	FileUtils.copy 'fubudocs', 'bin'
+	
+	Rake::Task[:gem].invoke
+end
+
+	spec = Gem::Specification.new do |s|
+	  s.platform    = Gem::Platform::RUBY
+	  s.name        = 'fubudocs'
+	  s.version     = BUILD_NUMBER
+	  s.files = Dir['bin/**/*']
+	  s.bindir = 'bin'
+	  s.executables << 'fubudocs'
+	  
+	  s.summary     = 'fubudocs runner'
+	  s.description = 'FubuDocs is a tool for generating project documentation using the FubuMVC framework'
+	  
+	  s.authors           = ['Jeremy D. Miller', 'Josh Arnold']
+	  s.email             = 'fubumvc-devel@googlegroups.com'
+	  s.homepage          = 'http://fubu-project.org'
+	  s.rubyforge_project = 'fubudocs'
+	end
+
+
+Gem::PackageTask.new(spec) do |pkg|
+  pkg.need_zip = true
+  pkg.need_tar = true
+end
+
+
 
 
 

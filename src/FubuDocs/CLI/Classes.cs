@@ -6,6 +6,7 @@ using FubuDocs.Navigation;
 using FubuMVC.Core.Runtime.Files;
 using FubuMVC.Core.View;
 using HtmlTags;
+using System.Linq;
 
 namespace FubuDocs.CLI
 {
@@ -52,14 +53,30 @@ namespace FubuDocs.CLI
 
     public static class CommandUsagePageExtensions
     {
-        public static CommandSectionTag SectionForCommand(this IFubuPage page, string applicationName, string command)
+        public static CommandSectionTag SectionForCommand(this IFubuPage page, string applicationName, string commandName)
         {
-            throw new NotImplementedException();
+            var command = page.CommandReportFor(applicationName, commandName);
+
+            return new CommandSectionTag(applicationName, command);
         }
 
-        public static string BodyForCommand(this IFubuPage page, string applicationName, string command)
+        public static CommandReport CommandReportFor(this IFubuPage page, string applicationName, string commandName)
         {
-            return "the body";
+            var application = page.Get<ICommandDocumentationSource>().ReportFor(applicationName);
+            var command = application.Commands.FirstOrDefault(x => x.Name == commandName);
+            if (command == null)
+                throw new ArgumentOutOfRangeException("commandName", "Could not find the named command in this application");
+
+            return command;
+        }
+
+
+        public static HtmlTag BodyForCommand(this IFubuPage page, string applicationName, string commandName)
+        {
+            var command = page.CommandReportFor(applicationName, commandName);
+
+
+            return new DivTag().Text(command.Usages.First().Usage);
         }
     }
 

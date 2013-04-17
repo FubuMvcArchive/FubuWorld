@@ -12,6 +12,11 @@
     <end>"&lt;/section&gt;"</end>
   </element>
 
+  <element name="Command">
+    <start>this.SectionForCommand('@app', '@command')</start>
+    <end>this.BodyForCommand('@app', '@command') + "&lt;/section&gt;"</end>
+  </element>
+  
   <element name="ProjectSummary">this.ProjectSummary()</element>
   <element name="Snippet">this.BottleSnippetFor('@name')</element>
   <element name="LinkToSnippet">this.LinkToSnippet('@name')</element>
