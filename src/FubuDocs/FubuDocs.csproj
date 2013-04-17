@@ -97,7 +97,14 @@
     </Compile>
     <Compile Include="AllProjectsModel.cs" />
     <Compile Include="AllTopicsEndpoint.cs" />
-    <Compile Include="CLI\Classes.cs" />
+    <Compile Include="CLI\ArgumentsTag.cs" />
+    <Compile Include="CLI\CommandDocumentationSource.cs" />
+    <Compile Include="CLI\CommandSectionTag.cs" />
+    <Compile Include="CLI\CommandUsagePageExtensions.cs" />
+    <Compile Include="CLI\FlagsTag.cs" />
+    <Compile Include="CLI\ICommandDocumentationSource.cs" />
+    <Compile Include="CLI\SingleUsageTag.cs" />
+    <Compile Include="CLI\UsageTableTag.cs" />
     <Compile Include="FubuDocsExtension.cs" />
     <Compile Include="FubuWorldRegistry.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />

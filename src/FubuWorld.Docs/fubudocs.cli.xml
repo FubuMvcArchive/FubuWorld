@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<CommandLineApplicationReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<CommandLineApplicationReport xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ApplicationName>fubudocs</ApplicationName>
   <Commands>
     <CommandReport>
@@ -24,8 +24,33 @@
       </Usages>
     </CommandReport>
     <CommandReport>
+      <Name>snippets</Name>
+      <Description>Scrapes the entire solution for files with code snippets and places those files under the '/snippets' directory of the documentation project</Description>
+      <Arguments />
+      <Flags>
+        <FlagReport>
+          <UsageDescription>[-s, --scan]</UsageDescription>
+          <Description>Scans and lists codesnippets, but does not perform the import</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-q, --quiet]</UsageDescription>
+          <Description>Turns off most of the tracing messages</Description>
+        </FlagReport>
+        <FlagReport>
+          <UsageDescription>[-d, --directory &lt;directory&gt;]</UsageDescription>
+          <Description>The directory holding the docs.  Will try to find a single directory containing the name 'Docs' under an 'src' folder if this flag is not specified</Description>
+        </FlagReport>
+      </Flags>
+      <Usages>
+        <UsageReport>
+          <Description>Scrapes the entire solution for files with code snippets and places those files under the '/snippets' directory of the documentation project</Description>
+          <Usage>fubudocs snippets [-s, --scan] [-q, --quiet] [-d, --directory &lt;directory&gt;]</Usage>
+        </UsageReport>
+      </Usages>
+    </CommandReport>
+    <CommandReport>
       <Name>run</Name>
-      <Description>RunCommand</Description>
+      <Description>Runs a FubuDocs documentation project with Katana</Description>
       <Arguments />
       <Flags>
         <FlagReport>
@@ -67,33 +92,8 @@
       </Flags>
       <Usages>
         <UsageReport>
-          <Description>RunCommand</Description>
+          <Description>Runs a FubuDocs documentation project with Katana</Description>
           <Usage>fubudocs run [-n, --no-bottling] [-b, --build &lt;build&gt;] [-p, --port &lt;port&gt;] [-a, --application &lt;application&gt;] [-d, --directory &lt;directory&gt;] [-o, --open] [-w, --watched] [-b, --browser Chrome|Firefox] [-p, --production-mode]</Usage>
-        </UsageReport>
-      </Usages>
-    </CommandReport>
-    <CommandReport>
-      <Name>snippets</Name>
-      <Description>Scrapes the entire solution for files with code snippets and places those files under the '/snippets' directory of the documentation project</Description>
-      <Arguments />
-      <Flags>
-        <FlagReport>
-          <UsageDescription>[-s, --scan]</UsageDescription>
-          <Description>Scans and lists codesnippets, but does not perform the import</Description>
-        </FlagReport>
-        <FlagReport>
-          <UsageDescription>[-q, --quiet]</UsageDescription>
-          <Description>Turns off most of the tracing messages</Description>
-        </FlagReport>
-        <FlagReport>
-          <UsageDescription>[-d, --directory &lt;directory&gt;]</UsageDescription>
-          <Description>The directory holding the docs.  Will try to find a single directory containing the name 'Docs' under an 'src' folder if this flag is not specified</Description>
-        </FlagReport>
-      </Flags>
-      <Usages>
-        <UsageReport>
-          <Description>Scrapes the entire solution for files with code snippets and places those files under the '/snippets' directory of the documentation project</Description>
-          <Usage>fubudocs snippets [-s, --scan] [-q, --quiet] [-d, --directory &lt;directory&gt;]</Usage>
         </UsageReport>
       </Usages>
     </CommandReport>

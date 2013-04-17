@@ -36,3 +36,4 @@ src/FubuWorld.Docs/fubu-content
 src/FubuWorld.Tests/fubu-content
 src/FubuDocs/pak-*.zip
 pkg
+pak-*.zip

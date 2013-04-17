@@ -7,6 +7,7 @@ using FubuCore.CommandLine;
 
 namespace FubuDocsRunner.Running
 {
+    [CommandDescription("Runs a FubuDocs documentation project with Katana")]
     public class RunCommand : FubuCommand<RunInput>
     {
         private readonly IFileSystem fileSystem = new FileSystem();
