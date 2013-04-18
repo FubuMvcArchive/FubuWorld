@@ -118,6 +118,7 @@
     <Compile Include="debugging.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinderTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Todos\TodoTaskTester.cs" />
     <Compile Include="Topics\can_build_behavior_for_topic_chain.cs" />
     <Compile Include="Topics\ObjectMother.cs" />
     <Compile Include="Topics\ProjectRootPersistenceTester.cs" />

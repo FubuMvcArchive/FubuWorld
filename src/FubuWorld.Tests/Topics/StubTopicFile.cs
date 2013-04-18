@@ -16,6 +16,11 @@ namespace FubuWorld.Tests.Topics
             Folder = Path.GetFileNameWithoutExtension(Name);
         }
 
+        public StubTopicFile(string file)
+        {
+            FilePath = file.ToFullPath();
+        }
+
         public string FilePath { get; set; }
         public string Name { get; set; }
 

@@ -48,7 +48,9 @@
     <None Include="3.commands\index.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="3.commands\3.running.spark" />
+    <None Include="3.commands\3.running.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="3.commands\1.snippets.spark" />
     <None Include="4.ViewHelpers\index.spark">
       <SubType>Designer</SubType>
