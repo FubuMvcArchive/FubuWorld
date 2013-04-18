@@ -116,6 +116,10 @@
     <Compile Include="Navigation\TopLeftTopicNavigationTag.cs" />
     <Compile Include="PoweredByFubu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Snippets\SnippetRequest.cs" />
+    <Compile Include="Snippets\SnippetEndpoints.cs" />
+    <Compile Include="Snippets\SnippetsModel.cs" />
+    <Compile Include="Snippets\SnippetsTableTag.cs" />
     <Compile Include="Todos\TodoEndpoint.cs" />
     <Compile Include="Todos\TodoModel.cs" />
     <Compile Include="Todos\TodoTableTag.cs" />
@@ -143,6 +147,7 @@
     <Content Include="content\images\fubuworld.png" />
     <Content Include="content\images\header-bg.jpg" />
     <Content Include="content\scripts\request-diagnostics.js" />
+    <Content Include="content\scripts\snippets.js" />
     <Content Include="content\scripts\toastr.js" />
     <Content Include="content\scripts\topics.js" />
     <Content Include="content\styles\fubuworld.core.css" />
@@ -167,6 +172,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Shared\_global.spark" />
+    <None Include="Snippets\snippets.spark" />
+    <None Include="Snippets\snippet.spark" />
     <None Include="Todos\todos.spark" />
     <None Include="Topics\Topic.spark">
       <SubType>Designer</SubType>

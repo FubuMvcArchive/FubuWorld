@@ -15,6 +15,11 @@ namespace FubuDocs.Navigation
             var project = page.Get<ITopicContext>().Project;
             var snippets = page.Get<ISnippetCache>();
 
+            if (project == null)
+            {
+                return page.CodeSnippet(snippetName);
+            }
+
             // TODO -- get rid of the downcast here when the new SlickGrid bottle is ready
             var snippet = snippets.As<SnippetCache>().FindByBottle(snippetName, project.BottleName) ??
                           snippets.Find(snippetName);

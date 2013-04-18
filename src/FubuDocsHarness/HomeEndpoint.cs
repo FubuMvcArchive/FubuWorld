@@ -6,7 +6,7 @@ namespace FubuDocsHarness
     {
         public FubuContinuation Index()
         {
-            return FubuContinuation.RedirectTo("fubudocs/commands/running");
+            return FubuContinuation.RedirectTo("snippets");
         }
     }
 }
