@@ -1,14 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
-using FubuCore;
+using System.Threading.Tasks;
 using FubuDocs.Topics;
 
 namespace FubuDocs.Todos
 {
     public class TodoTask
     {
+        public static IEnumerable<TodoTask> FindAllTodos()
+        {
+            var tasks = TopicGraph.AllTopics.AllPossibleTopics().Select(topic => {
+                return Task.Factory.StartNew(() => {
+                    return ReadTasks(topic).ToArray();
+                });
+            });
+
+            Task.WaitAll(tasks.ToArray());
+
+            return tasks.SelectMany(x => x.Result);
+        } 
+
         public static IEnumerable<TodoTask> ReadTasks(Topic topic)
         {
             var i = 0;

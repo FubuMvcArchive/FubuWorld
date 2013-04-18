@@ -124,6 +124,12 @@
     <Compile Include="HomeEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FubuWorld\FubuWorld.csproj">
+      <Project>{6F5C4733-AF68-4591-9802-21425E6877C4}</Project>
+      <Name>FubuWorld</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

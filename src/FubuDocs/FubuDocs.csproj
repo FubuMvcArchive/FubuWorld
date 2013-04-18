@@ -116,7 +116,10 @@
     <Compile Include="Navigation\TopLeftTopicNavigationTag.cs" />
     <Compile Include="PoweredByFubu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Todos\Classes.cs" />
+    <Compile Include="Todos\TodoEndpoint.cs" />
+    <Compile Include="Todos\TodoModel.cs" />
+    <Compile Include="Todos\TodoTableTag.cs" />
+    <Compile Include="Todos\TodoTask.cs" />
     <Compile Include="Topics\DocumentationProjectLoader.cs" />
     <Compile Include="Topics\FubuDocsPackageLoader.cs" />
     <Compile Include="Topics\ITopicContext.cs" />
@@ -164,6 +167,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Shared\_global.spark" />
+    <None Include="Todos\todos.spark" />
     <None Include="Topics\Topic.spark">
       <SubType>Designer</SubType>
     </None>

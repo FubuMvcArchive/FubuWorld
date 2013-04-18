@@ -20,6 +20,11 @@ namespace FubuDocs.Topics
             };
         }
 
+        public IEnumerable<Topic> AllPossibleTopics()
+        {
+            return _projects.SelectMany(x => x.AllTopics());
+        }
+
         public void AddProject(ProjectRoot project)
         {
             _projects[project.Name.ToLowerInvariant()] = project;

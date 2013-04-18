@@ -24,7 +24,9 @@ namespace FubuDocs.Navigation
             {
                 var context = page.Get<ITopicContext>();
                 var url = page.Urls.UrlFor<FileRequest>();
-                tag.Add("a").Data("url", url).Data("key", context.Current.Key).Attr("href", "#").AddClass("edit-link").Text(context.File);
+                var topic = context.Current;
+
+                tag.Add("a").Data("url", url).Data("key", topic.Key).Attr("href", "#").AddClass("edit-link").Text(context.File);
 
                 var lastUpdated = File.GetLastWriteTimeUtc(context.File).ToLocalTime();
                 tag.Add("span").AddClass("last-updated").Text("File changed at: " + lastUpdated);
