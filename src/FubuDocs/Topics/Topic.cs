@@ -273,5 +273,27 @@ namespace FubuDocs.Topics
         {
             yield return this;
         }
+
+        public void ReplaceWith(Topic other)
+        {
+            other._next = NextSibling;
+            if (_next != null)
+            {
+                _next._previous = other;
+            }
+
+            if (PreviousSibling != null)
+            {
+                PreviousSibling._next = other;
+                other._previous = PreviousSibling;
+            }
+            else
+            {
+                _parent._firstChild = other;
+            }
+
+            _previous = null;
+            _next = null;
+        }
     }
 }

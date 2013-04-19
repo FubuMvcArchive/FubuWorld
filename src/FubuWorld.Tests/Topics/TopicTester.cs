@@ -48,6 +48,46 @@ namespace FubuWorld.Tests.Topics
         }
 
         [Test]
+        public void replace_with_parent_and_next()
+        {
+            a.AppendChild(b);
+            a.AppendChild(c);
+
+            b.ReplaceWith(d);
+
+            a.FirstChild.ShouldBeTheSameAs(d);
+            d.NextSibling.ShouldBeTheSameAs(c);
+            c.PreviousSibling.ShouldEqual(d);
+        }
+
+        [Test]
+        public void replace_with_parent_and_previous_and_next()
+        {
+            a.AppendChild(b);
+            a.AppendChild(c);
+            a.AppendChild(d);
+
+            c.ReplaceWith(e);
+
+            b.NextSibling.ShouldBeTheSameAs(e);
+            e.NextSibling.ShouldBeTheSameAs(d);
+            d.PreviousSibling.ShouldBeTheSameAs(e);
+        }
+
+        [Test]
+        public void replace_with_parent_and_previous()
+        {
+            a.AppendChild(b);
+            a.AppendChild(c);
+
+            c.ReplaceWith(d);
+
+            b.NextSibling.ShouldBeTheSameAs(d);
+            d.PreviousSibling.ShouldBeTheSameAs(b);
+            d.NextSibling.ShouldBeNull();
+        }
+
+        [Test]
         public void append_multiple_children()
         {
             a.AppendChild(b);
