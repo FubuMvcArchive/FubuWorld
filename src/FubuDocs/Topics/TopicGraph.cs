@@ -65,6 +65,16 @@ namespace FubuDocs.Topics
                 project.Parent = x.Project;
                 x.ReplaceWith(project.Root);
             });
+
+            _projects.Where(x => x.PluginTo.IsNotEmpty()).Each(x => {
+                if (!_projects.Has(x.PluginTo.ToLower()))
+                {
+                    return;
+                }
+
+                var parent = _projects[x.PluginTo.ToLower()];
+                parent.Plugins.Add(x);
+            });
         }
     }
 }

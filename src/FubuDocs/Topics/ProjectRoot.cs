@@ -8,13 +8,15 @@ namespace FubuDocs.Topics
     public class ProjectRoot : ITopicNode
     {
         public static readonly string File = "project.xml";
-        private Topic _root;
+        private IList<ProjectRoot> _plugins = new List<ProjectRoot>();
 
         public string Name { get; set; }
         public string GitHubPage { get; set; }
         public string UserGroupUrl { get; set; }
         public string BuildServerUrl { get; set; }
         public string BottleName { get; set; }
+
+        public string PluginTo { get; set; }
 
         [XmlIgnore]
         public Topic Root { get; set; }
@@ -27,6 +29,11 @@ namespace FubuDocs.Topics
         }
 
         public ProjectRoot Parent { get; set; }
+
+        public IList<ProjectRoot> Plugins
+        {
+            get { return _plugins; }
+        }
 
         public static ProjectRoot LoadFrom(string file)
         {
