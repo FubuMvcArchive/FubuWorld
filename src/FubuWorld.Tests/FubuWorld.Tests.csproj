@@ -121,6 +121,7 @@
     <Compile Include="Todos\TodoTaskTester.cs" />
     <Compile Include="Topics\can_build_behavior_for_topic_chain.cs" />
     <Compile Include="Topics\ObjectMother.cs" />
+    <Compile Include="Topics\ProjectRootImportIntegratedTester.cs" />
     <Compile Include="Topics\ProjectRootPersistenceTester.cs" />
     <Compile Include="Topics\ProjectRootTester.cs" />
     <Compile Include="Topics\SparkTopicFileTester.cs" />

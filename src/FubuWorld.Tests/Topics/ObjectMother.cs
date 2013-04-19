@@ -18,6 +18,7 @@ namespace FubuWorld.Tests.Topics
         public static readonly Cache<string, Topic> Topics;
         public static readonly IEnumerable<ITopicFile> Files;
         public static BehaviorGraph Behaviors;
+        public static TopicGraph TopicGraph;
 
         static ObjectMother()
         {
@@ -30,6 +31,7 @@ namespace FubuWorld.Tests.Topics
                 .StructureMap(new Container())
                 .Bootstrap();
 
+            TopicGraph = TopicGraph.AllTopics;
 
             Behaviors = app.Factory.Get<BehaviorGraph>();
 

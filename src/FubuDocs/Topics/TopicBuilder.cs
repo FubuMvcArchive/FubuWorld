@@ -33,6 +33,12 @@ namespace FubuDocs.Topics
                         topic.Url = topic.Url.ParentUrl().AppendUrl(segment);
                     }
                 }
+
+                var import = comments.FirstOrDefault(x => x.StartsWith("Import:", StringComparison.OrdinalIgnoreCase));
+                if (import != null)
+                {
+                    topic.Import = import.Split(':').Last().Trim().ToLower();
+                }
             }
 
             if (topic.Title.IsEmpty())

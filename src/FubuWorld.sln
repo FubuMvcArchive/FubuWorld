@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuDocs", "FubuDocs\FubuDo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuDocsHarness", "FubuDocsHarness\FubuDocsHarness.csproj", "{52ED66FE-EB30-4D59-87A9-EA293467E437}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imported.Docs", "Imported.Docs\Imported.Docs.csproj", "{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,16 @@ Global
 		{52ED66FE-EB30-4D59-87A9-EA293467E437}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{52ED66FE-EB30-4D59-87A9-EA293467E437}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{52ED66FE-EB30-4D59-87A9-EA293467E437}.Release|x86.ActiveCfg = Release|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

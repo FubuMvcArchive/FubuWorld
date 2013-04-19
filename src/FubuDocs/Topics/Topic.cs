@@ -116,6 +116,8 @@ namespace FubuDocs.Topics
 
         public ProjectRoot Project { get; private set; }
 
+        public string Import { get; set; }
+
         public void AppendChild(Topic node)
         {
             Topic last = LastChild;

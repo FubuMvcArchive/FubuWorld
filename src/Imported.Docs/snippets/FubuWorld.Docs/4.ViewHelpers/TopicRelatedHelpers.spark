@@ -1,0 +1,26 @@
+<!--Title: Topic Related View Helpers-->
+
+  <Section title="Link to another Topic" id="link-topic">
+    <p>Use the <code>&lt;UsingTopicLink /&gt;</code> spark binding to make a link to another topic.  This html helper will create an &lt;a&gt; tag pointing at the named topic with the topic title as the text.
+  </p>
+
+    <p>Example:</p>
+    <Snippet name="UsingTopicLink"/>
+
+    <p>
+      Which renders:
+      <!-- SAMPLE: UsingTopicLink -->
+      <TopicLink name="CodeSnippets"/>
+      <!-- ENDSAMPLE -->
+    </p>
+  </Section>
+
+  <Section title="Table of Contents for a Topic 'Tree'" id="toc">
+    <p>You can also embed an entire tree structured table of contents for all the <b>children</b> of the current topic tree.  You only need to use the spark binding shown below:</p>
+    
+    <Snippet name="UsingTableOfContents"/>
+
+    <!-- SAMPLE: UsingTableOfContents -->
+    <TableOfContents />
+    <!-- ENDSAMPLE -->
+  </Section>

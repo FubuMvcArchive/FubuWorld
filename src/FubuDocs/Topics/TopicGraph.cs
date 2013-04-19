@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FubuCore.Util;
 using FubuMVC.Core.Registration;
+using FubuCore;
 
 namespace FubuDocs.Topics
 {
@@ -49,5 +51,20 @@ namespace FubuDocs.Topics
             return _topicCache[key];
         }
 
+        public void ConfigureRelationships()
+        {
+            var imports = AllPossibleTopics().Where(x => x.Import.IsNotEmpty()).ToArray();
+            imports.Each(x => {
+                if (!_projects.Has(x.Import))
+                {
+                    x.Remove();
+                    return; // CANNOT BLOW UP
+                }
+
+                var project = _projects[x.Import];
+                project.Parent = x.Project;
+                x.ReplaceWith(project.Root);
+            });
+        }
     }
 }

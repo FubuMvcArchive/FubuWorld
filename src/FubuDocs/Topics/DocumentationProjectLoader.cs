@@ -17,6 +17,8 @@ namespace FubuDocs.Topics
             PackageRegistry.Packages.Where(x => x.Name.EndsWith(".Docs"))
                            .Each(
                                pak => { pak.ForFolder(BottleFiles.WebContentFolder, dir => LoadPackage(pak, dir, graph)); });
+
+            TopicGraph.AllTopics.ConfigureRelationships();
         }
 
         public void LoadPackage(IPackageInfo pak, string directory, BehaviorGraph graph)

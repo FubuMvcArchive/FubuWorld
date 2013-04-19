@@ -26,6 +26,8 @@ namespace FubuDocs.Topics
             get { return this; }
         }
 
+        public ProjectRoot Parent { get; set; }
+
         public static ProjectRoot LoadFrom(string file)
         {
             var project = new FileSystem().LoadFromFile<ProjectRoot>(file);

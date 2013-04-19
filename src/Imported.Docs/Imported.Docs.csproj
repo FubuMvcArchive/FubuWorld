@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{95E0CC2C-1AF2-4736-A7B4-6431D8DE13C9}</ProjectGuid>
+    <ProjectGuid>{3B3BBBC3-D7DC-4450-B024-54CAE8879C2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sample.Docs</RootNamespace>
-    <AssemblyName>Sample.Docs</AssemblyName>
+    <RootNamespace>Imported.Docs</RootNamespace>
+    <AssemblyName>Imported.Docs</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,47 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Project.xml">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="colors\1.1.1.red.spark" />
-    <None Include="colors\1.1.2.green.spark" />
-    <None Include="colors\1.1.blue.spark" />
-    <None Include="colors\1.2.orange.spark" />
-    <None Include="colors\1.3.purple.spark" />
-    <None Include="colors\1.pink.spark" />
-    <None Include="colors\2.1.cornflower.spark" />
-    <None Include="colors\2.2.black.spark" />
-    <None Include="colors\2.white.spark" />
-    <None Include="colors\3.gray.spark" />
-    <None Include="colors\examples\anything.spark" />
-    <None Include="colors\index.spark" />
-    <None Include="deep\1.b\1.subjectB\index.spark" />
-    <None Include="deep\1.b\2.subjectA\C.spark" />
-    <None Include="deep\1.b\index.spark" />
-    <None Include="deep\2.a\index.spark" />
-    <None Include="deep\3.d\index.spark" />
-    <None Include="imported\a.spark" />
-    <None Include="imported\b.spark" />
-    <None Include="imported\c.spark" />
-    <None Include="imported\index.spark" />
-    <None Include="index.spark" />
-    <None Include="subject1\index.spark" />
-    <None Include="subject1\samples\whatever.spark" />
-    <None Include="subject2\child1.spark" />
-    <None Include="subject2\child2.spark" />
-    <None Include="subject2\child3.spark" />
-    <None Include="subject2\index.spark" />
-    <None Include="subject3\1.c.spark" />
-    <None Include="subject3\2.a.spark" />
-    <None Include="subject3\3.b.spark" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="deep\4.c\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
