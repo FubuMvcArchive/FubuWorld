@@ -6,7 +6,7 @@ namespace FubuDocsHarness
     {
         public FubuContinuation Index()
         {
-            return FubuContinuation.RedirectTo("snippets");
+            return FubuContinuation.RedirectTo("fubumvc.plugin/links");
         }
     }
 }

@@ -24,4 +24,5 @@
   <element name="EmbedFile">this.CodeFile('@name')</element>
 
   <element name="TopicLink">this.LinkToTopic('@name')</element>
+  <element name="ExternalTopicLink">this.LinkToExternalTopic('@name')</element>
 </bindings>

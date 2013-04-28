@@ -62,7 +62,15 @@ namespace FubuDocs.Topics
                 return Index;
             }
 
-            return Index.Descendents().FirstOrDefault(x => x.Key == key);
+            if (key.StartsWith(Name.ToLower()))
+            {
+                return Index.Descendents().FirstOrDefault(x => x.Key == key);
+            }
+            else
+            {
+                var searchKey = Name.ToLowerInvariant().AppendUrl(key);
+                return Index.Descendents().FirstOrDefault(x => x.Key == searchKey);
+            }
         }
 
         public IEnumerable<Topic> AllTopics()

@@ -1,10 +1,13 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using FubuCore;
 using FubuDocs.Topics;
 using FubuMVC.CodeSnippets;
 using FubuMVC.Core.UI;
 using FubuMVC.Core.View;
 using HtmlTags;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace FubuDocs.Navigation
 {
@@ -51,7 +54,26 @@ namespace FubuDocs.Navigation
 
         public static HtmlTag LinkToTopic(this IFubuPage page, string name)
         {
+            var context = page.Get<ITopicContext>();
+            Topic topic = context.Project.FindByKey(name);
+            if (topic == null)
+            {
+                var available = context.Project.AllTopics().Select(x => "'" + x.Key + "'").Join(", \n");
+
+                throw new ArgumentOutOfRangeException("name", "Topic '{0}' cannot be found.  Try:\n{1}".ToFormat(name, available));
+            }
+
+            return new TopicLinkTag(topic);
+        }
+
+        public static HtmlTag LinkToExternalTopic(this IFubuPage page, string name)
+        {
             Topic topic = TopicGraph.AllTopics.Find(name);
+            if (topic == null)
+            {
+                return new HtmlTag("span").Text("*LINK TO " + name + "*");
+            }
+
             return new TopicLinkTag(topic);
         }
     }
