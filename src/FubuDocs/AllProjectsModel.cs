@@ -17,7 +17,7 @@ namespace FubuDocs
                 List<HtmlTag> tags =
                     TopicGraph.AllTopics.Projects
                               .OrderBy(x => x.Name)
-                              .Select(x => new HtmlTag("li").Append(new TopicLinkTag(x.Root)))
+                              .Select(x => new HtmlTag("li").Append(new TopicLinkTag(x.Index)))
                               .ToList();
 
                 return new TagList(tags);

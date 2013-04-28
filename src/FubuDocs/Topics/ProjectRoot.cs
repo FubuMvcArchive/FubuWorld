@@ -19,7 +19,10 @@ namespace FubuDocs.Topics
         public string PluginTo { get; set; }
 
         [XmlIgnore]
-        public Topic Root { get; set; }
+        public Topic Index { get; set; }
+
+        [XmlIgnore]
+        public Topic Splash { get; set; }
 
         public string Url { get; set; }
 
@@ -54,19 +57,19 @@ namespace FubuDocs.Topics
 
         public Topic FindByKey(string key)
         {
-            if (Root.Key.EqualsIgnoreCase(key))
+            if (Index.Key.EqualsIgnoreCase(key))
             {
-                return Root;
+                return Index;
             }
 
-            return Root.Descendents().FirstOrDefault(x => x.Key == key);
+            return Index.Descendents().FirstOrDefault(x => x.Key == key);
         }
 
         public IEnumerable<Topic> AllTopics()
         {
-            yield return Root;
+            yield return Index;
 
-            foreach (Topic descendent in Root.Descendents())
+            foreach (Topic descendent in Index.Descendents())
             {
                 yield return descendent;
             }

@@ -10,7 +10,7 @@ namespace FubuWorld.Tests.Topics
         public void can_find_for_the_index()
         {
             ObjectMother.ProjectRoot.FindByKey("fubumvc")
-                        .ShouldBeTheSameAs(ObjectMother.ProjectRoot.Root);
+                        .ShouldBeTheSameAs(ObjectMother.ProjectRoot.Index);
         }
 
         [Test]

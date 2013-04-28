@@ -126,6 +126,7 @@
     <Compile Include="Topics\ProjectRootPersistenceTester.cs" />
     <Compile Include="Topics\ProjectRootTester.cs" />
     <Compile Include="Topics\SparkTopicFileTester.cs" />
+    <Compile Include="Topics\splash_page_mechanics.cs" />
     <Compile Include="Topics\StubTopicFile.cs" />
     <Compile Include="Topics\TopicFolderTester.cs" />
     <Compile Include="Topics\TopicIntegratedTester.cs" />

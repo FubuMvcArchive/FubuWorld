@@ -38,8 +38,8 @@ namespace FubuWorld.Tests.Topics
             ProjectRoot = TopicGraph.AllTopics.ProjectFor("FubuMVC");
 
             Topics = new Cache<string, Topic>();
-            Topics[ProjectRoot.Root.Key] = ProjectRoot.Root;
-            ProjectRoot.Root.Descendents().Each(x => Topics[x.Key] = x);
+            Topics[ProjectRoot.Index.Key] = ProjectRoot.Index;
+            ProjectRoot.Index.Descendents().Each(x => Topics[x.Key] = x);
 
             Files = Topics.Select(x => x.File).ToArray();
         }

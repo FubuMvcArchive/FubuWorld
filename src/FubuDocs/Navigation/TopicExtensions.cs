@@ -51,8 +51,7 @@ namespace FubuDocs.Navigation
 
         public static HtmlTag LinkToTopic(this IFubuPage page, string name)
         {
-            Topic topic = page.Get<ITopicContext>().Current;
-
+            Topic topic = TopicGraph.AllTopics.Find(name);
             return new TopicLinkTag(topic);
         }
     }

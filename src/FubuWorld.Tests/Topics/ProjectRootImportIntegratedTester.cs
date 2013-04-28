@@ -19,7 +19,7 @@ namespace FubuWorld.Tests.Topics
         {
             var importedProject = ObjectMother.TopicGraph.ProjectFor("Imported");
             ObjectMother.Topics["fubumvc/imported"].FirstChild.NextSibling
-                                                               .ShouldBeTheSameAs(importedProject.Root);
+                                                               .ShouldBeTheSameAs(importedProject.Index);
         }
     }
 }

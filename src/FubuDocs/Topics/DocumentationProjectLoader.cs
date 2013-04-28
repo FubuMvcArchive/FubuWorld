@@ -26,6 +26,11 @@ namespace FubuDocs.Topics
             ProjectRoot root = _loader.LoadProject(pak.Name, directory);
             root.AllTopics().Each(topic => graph.AddChain(topic.BuildChain()));
 
+            if (root.Splash != null)
+            {
+                graph.AddChain(root.Splash.BuildChain());
+            }
+
             TopicGraph.AllTopics.AddProject(root);
         }
     }

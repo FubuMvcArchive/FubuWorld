@@ -105,7 +105,16 @@ namespace FubuDocs.Topics
                 throw new InvalidOperationException("The view model has to be Topic here.");
             }
 
-            chain.AddToEnd(new ChromeNode(typeof (TopicChrome)) {Title = () => Title});
+            if (Key.EndsWith("/splash"))
+            {
+                chain.AddToEnd(new ChromeNode(typeof(SplashChrome)) { Title = () => Title });
+            }
+            else
+            {
+                chain.AddToEnd(new ChromeNode(typeof(TopicChrome)) { Title = () => Title });
+            }
+
+            
 
             chain.AddToEnd(new TopicBehaviorNode(this, new ViewNode(viewToken)));
 

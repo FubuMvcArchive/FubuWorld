@@ -79,14 +79,16 @@ namespace FubuDocs.Topics
             });
 
             TopicFolder masterFolder = folders[string.Empty];
-            IEnumerable<Topic> topLevelSubjects = masterFolder.TopLevelTopics();
-            if (topLevelSubjects.Count() > 1)
+            IEnumerable<Topic> topLevelSubjects = masterFolder.TopLevelTopics().ToArray();
+            project.Index = topLevelSubjects.FirstOrDefault(x => x.IsIndex);
+            project.Splash = project.Index.ChildNodes.FirstOrDefault(x => x.Key.EndsWith("/splash"));
+
+            if (project.Splash != null)
             {
-                throw new NotImplementedException("Don't know what to do here");
-            }
-            else
-            {
-                project.Root = topLevelSubjects.Single();
+                project.Splash.Remove();
+
+                project.Splash.Url = project.Url;
+                project.Index.Url = project.Url.AppendUrl("index");
             }
 
             return project;

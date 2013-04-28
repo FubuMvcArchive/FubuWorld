@@ -132,6 +132,7 @@
     <Compile Include="Topics\OrderedTopic.cs" />
     <Compile Include="Topics\ProjectRoot.cs" />
     <Compile Include="Topics\SparkTopicFile.cs" />
+    <Compile Include="Topics\SplashChrome.cs" />
     <Compile Include="Topics\StringExtensions.cs" />
     <Compile Include="Topics\Topic.cs" />
     <Compile Include="Topics\TopicBehavior.cs" />
@@ -175,6 +176,9 @@
     <None Include="Snippets\snippets.spark" />
     <None Include="Snippets\snippet.spark" />
     <None Include="Todos\todos.spark" />
+    <None Include="Topics\Splash.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Topics\Topic.spark">
       <SubType>Designer</SubType>
     </None>

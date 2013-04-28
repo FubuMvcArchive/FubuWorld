@@ -63,7 +63,7 @@ namespace FubuDocs.Topics
 
                 var project = _projects[x.Import];
                 project.Parent = x.Project;
-                x.ReplaceWith(project.Root);
+                x.ReplaceWith(project.Index);
             });
 
             _projects.Where(x => x.PluginTo.IsNotEmpty()).Each(x => {
