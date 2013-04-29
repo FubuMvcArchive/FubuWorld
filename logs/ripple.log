@@ -1,0 +1,11 @@
+4/29/2013 6:27:07 AM: [Info] Restoring dependencies for solution FubuWorld to C:\code\FubuWorld\src\packages
+4/29/2013 6:27:07 AM: [Debug] 
+==========================================================================================
+RippleOperation: FubuWorld
+==========================================================================================
+     ** Ripple Steps
+          1.) DownloadMissingNugets       Download missing nugets for FubuWorld           
+          2.) ExplodeDownloadedNugets     Explode nugets at C:\code\FubuWorld\src\packages
+          3.) ProcessDirectives           Process directives from nugets                  
+          4.) FixReferences               Fix References                                  
+

@@ -8,8 +8,9 @@ namespace FubuDocs.Topics
     public class ProjectRoot : ITopicNode
     {
         public static readonly string File = "project.xml";
-        private IList<ProjectRoot> _plugins = new List<ProjectRoot>();
+        private readonly IList<ProjectRoot> _plugins = new List<ProjectRoot>();
 
+        public string Description { get; set; }
         public string Name { get; set; }
         public string GitHubPage { get; set; }
         public string UserGroupUrl { get; set; }
@@ -36,6 +37,11 @@ namespace FubuDocs.Topics
         public IList<ProjectRoot> Plugins
         {
             get { return _plugins; }
+        }
+
+        public Topic Home
+        {
+            get { return Splash ?? Index; }
         }
 
         public static ProjectRoot LoadFrom(string file)

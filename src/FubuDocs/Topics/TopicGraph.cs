@@ -76,5 +76,11 @@ namespace FubuDocs.Topics
                 parent.Plugins.Add(x);
             });
         }
+
+        public ProjectRoot TryFindProject(string name)
+        {
+            var project = _projects.FirstOrDefault(x => x.Name.EqualsIgnoreCase(name));
+            return project;
+        }
     }
 }

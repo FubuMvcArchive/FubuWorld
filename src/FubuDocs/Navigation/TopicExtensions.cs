@@ -76,6 +76,18 @@ namespace FubuDocs.Navigation
 
             return new TopicLinkTag(topic);
         }
+
+
+        public static HtmlTag ProjectLink(this IFubuPage page, string name)
+        {
+            var project = TopicGraph.AllTopics.TryFindProject(name);
+            if (project == null)
+            {
+                return new HtmlTag("span").Text("LINK TO PROJECT '{0}'".ToFormat(name));
+            }
+
+            return new LinkTag(project.Name, project.Home.AbsoluteUrl).Attr("title", project.Description);
+        }
     }
 
     public class TopicLinkTag : HtmlTag

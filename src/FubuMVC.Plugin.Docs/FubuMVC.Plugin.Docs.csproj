@@ -60,7 +60,9 @@
     <EmbeddedResource Include="pak-Config.zip" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="links.spark" />
+    <None Include="links.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="something.spark" />
   </ItemGroup>
 </Project>

@@ -5,4 +5,5 @@
   <UserGroupUrl>https://groups.google.com/forum/?fromgroups#!forum/fubumvc-devel</UserGroupUrl>
   <BuildServerUrl>http://build.fubu-project.org/project.html?projectId=project51</BuildServerUrl>
   <BottleName>FubuWorld.Docs</BottleName>
+  <Description>Create technical documentation the FubuMVC way</Description>
 </ProjectRoot>
