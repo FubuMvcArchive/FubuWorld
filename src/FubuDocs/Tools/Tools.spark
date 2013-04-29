@@ -1,0 +1,8 @@
+﻿<viewdata model="FubuDocs.Tools.ToolViewModel" />
+<Script src="fubudocs-tools.js" />
+
+<h4>Text Editor</h4>
+!{this.FormFor(Model)}
+!{this.Edit(x => x.Editor)}
+<input type="submit" value="Change"/>
+!{this.EndForm()}

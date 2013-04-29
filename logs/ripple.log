@@ -9,3 +9,56 @@ RippleOperation: FubuWorld
           3.) ProcessDirectives           Process directives from nugets                  
           4.) FixReferences               Fix References                                  
 
+4/29/2013 8:02:28 AM: [Error] FubuMVC.Core.UI already exists in Project FubuDocs
+4/29/2013 8:02:28 AM: [Error] ripple.RippleFatalError: FubuMVC.Core.UI already exists in Project FubuDocs
+4/29/2013 8:06:09 AM: [Info] Install FubuMVC.Validation to Solution FubuWorld
+4/29/2013 8:06:09 AM: [Debug] 
+==========================================================================================
+RippleOperation: FubuWorld
+==========================================================================================
+     ** Ripple Steps
+          1.) NugetOperation              ripple.Steps.NugetOperation                     
+          2.) DownloadMissingNugets       Download missing nugets for FubuWorld           
+          3.) ExplodeDownloadedNugets     Explode nugets at C:\code\FubuWorld\src\packages
+          4.) FixReferences               Fix References                                  
+
+4/29/2013 8:06:10 AM: [Info] * Analyzing FubuMVC.Validation
+4/29/2013 8:06:48 AM: [Info] * Analyzing Bottles,1.0.0.412
+4/29/2013 8:06:48 AM: [Info] * Analyzing FubuCore,1.0.0.210
+4/29/2013 8:06:48 AM: [Info] * Analyzing FubuLocalization,0.9.5.48
+4/29/2013 8:06:49 AM: [Info] * Analyzing FubuMVC.Core,0.9.9.1366
+4/29/2013 8:06:49 AM: [Info] * Analyzing HtmlTags,1.1.0.114
+4/29/2013 8:06:49 AM: [Info] * Analyzing FubuMVC.Core.Assets,0.9.9.94
+4/29/2013 8:06:49 AM: [Info] * Analyzing FubuMVC.Core.UI
+4/29/2013 8:06:49 AM: [Info] * Analyzing FubuMVC.Core.View
+4/29/2013 8:06:49 AM: [Info] * Analyzing FubuValidation
+4/29/2013 8:06:50 AM: [Info] 
+=========================================================================================
+NugetPlan: 
+=========================================================================================
+     ** Steps
+        * InstallSolutionDependency     Install FubuMVC.Validation,0.9.10.734 to solution
+        * InstallProjectDependency      Install FubuMVC.Validation to FubuDocs           
+        * InstallSolutionDependency     Install FubuValidation,0.9.10.734 to solution    
+        * InstallProjectDependency      Install FubuValidation to FubuDocs               
+
+4/29/2013 8:06:50 AM: [Debug] Downloading Download and cache FubuMVC.Validation.0.9.10.734.nupkg
+4/29/2013 8:06:50 AM: [Debug] Downloading Download and cache FubuValidation.0.9.10.734.nupkg
+4/29/2013 8:06:52 AM: [Debug] Exploding Name: FubuMVC.Validation, Version: 0.9.10.734, IsPreRelease: False
+4/29/2013 8:06:52 AM: [Info] Exploding to C:\code\FubuWorld\src\packages\FubuMVC.Validation
+4/29/2013 8:06:52 AM: [Debug] Exploding Name: FubuValidation, Version: 0.9.10.734, IsPreRelease: False
+4/29/2013 8:06:52 AM: [Info] Exploding to C:\code\FubuWorld\src\packages\FubuValidation
+4/29/2013 8:06:53 AM: [Info] HintPath changed:  to ..\packages\FubuMVC.Validation\lib\FubuMVC.Validation.dll
+4/29/2013 8:06:53 AM: [Info] HintPath changed:  to ..\packages\FubuValidation\lib\FubuValidation.dll
+4/29/2013 8:06:53 AM: [Info] HintPath changed:  to ..\packages\FubuValidation\lib\FubuValidation.StructureMap.dll
+4/29/2013 8:14:19 AM: [Info] Restoring dependencies for solution FubuWorld to C:\code\FubuWorld\src\packages
+4/29/2013 8:14:19 AM: [Debug] 
+==========================================================================================
+RippleOperation: FubuWorld
+==========================================================================================
+     ** Ripple Steps
+          1.) DownloadMissingNugets       Download missing nugets for FubuWorld           
+          2.) ExplodeDownloadedNugets     Explode nugets at C:\code\FubuWorld\src\packages
+          3.) ProcessDirectives           Process directives from nugets                  
+          4.) FixReferences               Fix References                                  
+

@@ -1,4 +1,5 @@
-﻿using FubuMVC.Core.Continuations;
+﻿using FubuDocs.Tools;
+using FubuMVC.Core.Continuations;
 
 namespace FubuDocsHarness
 {
@@ -6,7 +7,7 @@ namespace FubuDocsHarness
     {
         public FubuContinuation Index()
         {
-            return FubuContinuation.RedirectTo("fubumvc.plugin/links");
+            return FubuContinuation.RedirectTo<ToolsEndpoints>(x => x.get_tools());
         }
     }
 }

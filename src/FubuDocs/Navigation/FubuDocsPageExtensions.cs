@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using FubuCore;
+using FubuDocs.Infrastructure;
 using FubuDocs.Topics;
 using FubuMVC.Core;
 using FubuMVC.Core.View;
@@ -51,7 +52,7 @@ namespace FubuDocs.Navigation
         {
             var topic = TopicGraph.AllTopics.Find(request.Key);
 
-            new FileSystem().LaunchEditor(topic.File.FilePath);
+            EditorLauncher.LaunchFile(topic.File.FilePath);
         }
     }
 

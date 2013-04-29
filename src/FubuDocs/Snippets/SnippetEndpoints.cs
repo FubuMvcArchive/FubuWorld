@@ -1,4 +1,5 @@
 ﻿using FubuCore;
+using FubuDocs.Infrastructure;
 using FubuMVC.CodeSnippets;
 using FubuMVC.Core.Runtime.Files;
 using FubuMVC.Core.Urls;
@@ -28,7 +29,7 @@ namespace FubuDocs.Snippets
             var snippet = get_snippet_Bottle_Name(request);
             var file = _files.Find(snippet.File);
 
-            new FileSystem().LaunchEditor(file.Path);
+            EditorLauncher.LaunchFile(file.Path);
         }
 
         public SnippetsModel get_snippets()
