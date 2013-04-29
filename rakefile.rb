@@ -85,6 +85,9 @@ desc "Compiles the app"
 task :compile => [:clean, :restore_if_missing, :aliases, :version] do
   bottles("assembly-pak src/FubuWorld -p FubuWorld.csproj")
   bottles("assembly-pak src/FubuDocs -p FubuDocs.csproj")
+  bottles("assembly-pak src/FubuMVC.Plugin.Docs -p FubuMVC.Plugin.Docs.csproj")
+  bottles("assembly-pak src/Sample.Docs -p Sample.Docs.csproj")
+  bottles("assembly-pak src/Imported.Docs -p Imported.Docs.csproj")
 
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/FubuWorld.sln', :clrversion => CLR_TOOLS_VERSION
 
