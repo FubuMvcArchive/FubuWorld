@@ -1,5 +1,6 @@
 ﻿using FubuTestingSupport;
 using NUnit.Framework;
+using System.Linq;
 
 namespace FubuWorld.Tests.Topics
 {
@@ -20,6 +21,13 @@ namespace FubuWorld.Tests.Topics
             var importedProject = ObjectMother.TopicGraph.ProjectFor("Imported");
             ObjectMother.Topics["fubumvc/imported"].FirstChild.NextSibling
                                                                .ShouldBeTheSameAs(importedProject.Index);
+        }
+
+        [Test]
+        public void the_imported_project_is_removed()
+        {
+            ObjectMother.TopicGraph.Projects.Any(x => x.BottleName == "Imported")
+                .ShouldBeFalse();
         }
     }
 }
