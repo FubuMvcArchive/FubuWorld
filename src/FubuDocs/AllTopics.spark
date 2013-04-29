@@ -2,6 +2,5 @@
 
 <h1>All Projects</h1>
 
-<ul>
+<br></br>
 	!{Model.Topics}
-</ul>

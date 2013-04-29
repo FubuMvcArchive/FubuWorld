@@ -10,18 +10,30 @@ namespace FubuDocs
     [UrlPattern("projects")]
     public class AllProjectsModel
     {
-        public TagList Topics
+        public HtmlTag Topics
         {
             get
             {
-                List<HtmlTag> tags =
-                    TopicGraph.AllTopics.Projects
-                              .OrderBy(x => x.Name)
-                              .Select(x => new HtmlTag("li").Append(new TopicLinkTag(x.Index)))
-                              .ToList();
+                var projects = TopicGraph.AllTopics.Projects
+                                         .OrderBy(x => x.Name);
 
-                return new TagList(tags);
+                return new ProjectTableTag(projects);
             }
+        }
+    }
+
+    public class ProjectTableTag : TableTag
+    {
+        public ProjectTableTag(IEnumerable<ProjectRoot> projects)
+        {
+            AddClass("table");
+
+            projects.Each(project => {
+                AddBodyRow(row => {
+                    row.Cell().Append(new TopicLinkTag(project.Home));
+                    row.Cell(project.Description).AddClass("project-description");
+                });
+            });
         }
     }
 }
