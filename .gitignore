@@ -38,3 +38,4 @@ src/FubuDocs/pak-*.zip
 pkg
 pak-*.zip
 src/FubuDocsHarness/fubu-content
+logs

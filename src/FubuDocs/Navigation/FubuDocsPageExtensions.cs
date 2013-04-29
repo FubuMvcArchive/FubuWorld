@@ -3,6 +3,7 @@ using FubuCore;
 using FubuDocs.Infrastructure;
 using FubuDocs.Topics;
 using FubuMVC.Core;
+using FubuMVC.Core.Urls;
 using FubuMVC.Core.View;
 using HtmlTags;
 

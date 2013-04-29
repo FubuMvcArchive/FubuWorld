@@ -25,6 +25,9 @@ namespace FubuDocs.Topics
         [XmlIgnore]
         public Topic Splash { get; set; }
 
+        [XmlIgnore]
+        public string Filename { get; set; }
+
         public string Url { get; set; }
 
         ProjectRoot ITopicNode.Project
@@ -51,6 +54,8 @@ namespace FubuDocs.Topics
             {
                 project.Url = project.Name.ToLower();
             }
+
+            project.Filename = file;
 
             return project;
         }

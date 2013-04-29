@@ -3,6 +3,11 @@
 
 <h4>Text Editor</h4>
 !{this.FormFor(Model)}
-!{this.Edit(x => x.Editor)}
+<dl>
+  !{this.Edit(x => x.Editor)}
+</dl>
 <input type="submit" value="Change"/>
 !{this.EndForm()}
+
+<h4>Projects</h4>
+!{Model.Projects}

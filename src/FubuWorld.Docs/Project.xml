@@ -1,9 +1,10 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <ProjectRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>FubuDocs</Name>
+  <Description>Create technical documentation the idiomatic FubuMVC way</Description>
   <GitHubPage>https://github.com/DarthFubuMVC/FubuWorld</GitHubPage>
   <UserGroupUrl>https://groups.google.com/forum/?fromgroups#!forum/fubumvc-devel</UserGroupUrl>
   <BuildServerUrl>http://build.fubu-project.org/project.html?projectId=project51</BuildServerUrl>
   <BottleName>FubuWorld.Docs</BottleName>
-  <Description>Create technical documentation the FubuMVC way</Description>
+  <PluginTo />
+  <Name>FubuDocs</Name>
 </ProjectRoot>

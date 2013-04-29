@@ -32,6 +32,8 @@ namespace FubuWorld.Tests.Topics
             project2.UserGroupUrl.ShouldEqual(project.UserGroupUrl);
             project2.BuildServerUrl.ShouldEqual(project.BuildServerUrl);
             project2.BottleName.ShouldEqual(project.BottleName);
+
+            project2.Filename.ShouldEqual(file);
         }
 
         [Test]
