@@ -147,6 +147,10 @@
       <Project>{88235A8D-937D-474D-9675-ECA446E01899}</Project>
       <Name>FubuDocs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FubuWorld.Docs\FubuWorld.Docs.csproj">
+      <Project>{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}</Project>
+      <Name>FubuWorld.Docs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FubuWorld\FubuWorld.csproj">
       <Project>{6F5C4733-AF68-4591-9802-21425E6877C4}</Project>
       <Name>FubuWorld</Name>
