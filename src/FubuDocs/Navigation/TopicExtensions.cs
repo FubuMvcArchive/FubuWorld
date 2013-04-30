@@ -52,7 +52,7 @@ namespace FubuDocs.Navigation
             return page.Get<TopicTreeBuilder>().BuildTopTopicLinks().ToTagList();
         }
 
-        public static HtmlTag LinkToTopic(this IFubuPage page, string name)
+        public static HtmlTag LinkToTopic(this IFubuPage page, string name, string title)
         {
             var context = page.Get<ITopicContext>();
             Topic topic = context.Project.FindByKey(name);
@@ -63,10 +63,10 @@ namespace FubuDocs.Navigation
                 throw new ArgumentOutOfRangeException("name", "Topic '{0}' cannot be found.  Try:\n{1}".ToFormat(name, available));
             }
 
-            return new TopicLinkTag(topic);
+            return new TopicLinkTag(topic, title);
         }
 
-        public static HtmlTag LinkToExternalTopic(this IFubuPage page, string name)
+        public static HtmlTag LinkToExternalTopic(this IFubuPage page, string name, string title)
         {
             Topic topic = TopicGraph.AllTopics.Find(name);
             if (topic == null)
@@ -74,7 +74,7 @@ namespace FubuDocs.Navigation
                 return new HtmlTag("span").Text("*LINK TO " + name + "*");
             }
 
-            return new TopicLinkTag(topic);
+            return new TopicLinkTag(topic, title);
         }
 
 
@@ -92,10 +92,12 @@ namespace FubuDocs.Navigation
 
     public class TopicLinkTag : HtmlTag
     {
-        public TopicLinkTag(Topic topic) : base("a")
+        public TopicLinkTag(Topic topic, string title) : base("a")
         {
             Attr("href", topic.AbsoluteUrl);
-            Text(topic.Title);
+
+            if (title.IsEmpty()) title = topic.Title;
+            Text(title);
             Attr("data-key", topic.Name);
         }
     }

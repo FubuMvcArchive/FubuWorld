@@ -7,7 +7,7 @@ namespace FubuDocsHarness
     {
         public FubuContinuation Index()
         {
-            return FubuContinuation.RedirectTo("fubumvc");
+            return FubuContinuation.RedirectTo("fubudocs/ViewHelpers/TopicRelatedHelpers");
         }
     }
 }

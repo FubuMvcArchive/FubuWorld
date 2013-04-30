@@ -23,7 +23,7 @@
   <element name="LinkToCodeFile">this.LinkToCodeFile('@name')</element>
   <element name="EmbedFile">this.CodeFile('@name')</element>
 
-  <element name="TopicLink">this.LinkToTopic('@name')</element>
+  <element name="TopicLink">this.LinkToTopic('@name', null)</element>
   <element name="ExternalTopicLink">this.LinkToExternalTopic('@name')</element>
 
   <element name="ProjectLink">this.ProjectLink('@name')</element>

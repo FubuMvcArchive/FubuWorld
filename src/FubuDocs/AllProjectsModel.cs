@@ -30,7 +30,7 @@ namespace FubuDocs
 
             projects.Each(project => {
                 AddBodyRow(row => {
-                    row.Cell().Append(new TopicLinkTag(project.Home));
+                    row.Cell().Append(new TopicLinkTag(project.Home, null));
                     row.Cell(project.Description).AddClass("project-description");
                 });
             });

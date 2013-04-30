@@ -33,7 +33,7 @@ namespace FubuDocs.Navigation
             if (next != null)
             {
                 yield return new HtmlTag("h4").Text("Next");
-                yield return new HtmlTag("p", tag => tag.Append(new TopicLinkTag(next)));
+                yield return new HtmlTag("p", tag => tag.Append(new TopicLinkTag(next, null)));
             }
 
             Topic previous = _topic.FindPrevious();
@@ -41,7 +41,7 @@ namespace FubuDocs.Navigation
             if (previous != null)
             {
                 yield return new HtmlTag("h4").Text("Previous");
-                yield return new HtmlTag("p", tag => tag.Append(new TopicLinkTag(previous)));
+                yield return new HtmlTag("p", tag => tag.Append(new TopicLinkTag(previous, null)));
             }
         }
 
