@@ -65,10 +65,12 @@
     <None Include="deep\1.b\index.spark" />
     <None Include="deep\2.a\index.spark" />
     <None Include="deep\3.d\index.spark" />
-    <None Include="imported\a.spark" />
-    <None Include="imported\b.spark" />
-    <None Include="imported\c.spark" />
-    <None Include="imported\index.spark" />
+    <None Include="nested\a.spark" />
+    <None Include="nested\b.spark" />
+    <None Include="nested\c.spark" />
+    <None Include="nested\index.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="index.spark" />
     <None Include="subject1\index.spark" />
     <None Include="subject1\samples\whatever.spark" />

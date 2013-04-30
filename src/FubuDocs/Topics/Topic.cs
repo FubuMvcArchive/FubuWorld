@@ -123,7 +123,7 @@ namespace FubuDocs.Topics
 
         public string Url { get; set; }
 
-        public ProjectRoot Project { get; private set; }
+        public ProjectRoot Project { get; internal set; }
 
         public string Import { get; set; }
 

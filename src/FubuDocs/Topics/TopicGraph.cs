@@ -63,7 +63,20 @@ namespace FubuDocs.Topics
 
                 var project = _projects[x.Import];
                 project.Parent = x.Project;
-                x.ReplaceWith(project.Index);
+                var index = project.Index;
+
+                var rootUrl = x.Url;
+
+                x.ReplaceWith(index);
+                index.Url = rootUrl;
+
+                index.Project = x.Project;
+                index.Descendents().Each(t => {
+                    t.Project = x.Project;
+                    t.Url = rootUrl.AppendUrl(t.Url.ChildUrl());
+                });
+
+                _projects.Remove(x.Import);
             });
 
             _projects.Where(x => x.PluginTo.IsNotEmpty()).Each(x => {

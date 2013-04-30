@@ -10,6 +10,11 @@ namespace FubuDocs.Topics
              return (url + "/" + part).Replace("//", "/").Trim('/');
          }
 
+        public static string ChildUrl(this string url)
+        {
+            return url.Split('/').Skip(1).Join("/");
+        }
+
         public static string ParentUrl(this string url)
         {
             url = url.Trim('/');

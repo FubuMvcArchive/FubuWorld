@@ -47,18 +47,25 @@ namespace FubuDocs.Navigation
 
         public HtmlTag BuildTableOfContents()
         {
-            HtmlTag tag = new HtmlTag("ul").AddClass("table-of-contents");
-
             if (_topic == null) return new HtmlTag("div").Render(false);
 
-            writeChildNodes(_topic, tag);
+            return new TableOfContentsTag(_topic);
+        }
+    }
 
-            return tag;
+    public class TableOfContentsTag : HtmlTag
+    {
+        public TableOfContentsTag(Topic topic) : base("ul")
+        {
+            AddClass("table-of-contents");
+
+            writeChildNodes(topic, this);
         }
 
         private void writeChildNodes(Topic node, HtmlTag tag)
         {
-            node.ChildNodes.Each(childTopic => {
+            node.ChildNodes.Each(childTopic =>
+            {
                 HtmlTag li = tag.Add("li");
                 li.Add("a").Attr("href", childTopic.AbsoluteUrl).Text(childTopic.Title);
 

@@ -73,6 +73,9 @@ namespace FubuDocs.Topics
                 return Index;
             }
 
+            var found = Index.Descendents().FirstOrDefault(x => x.Key.EqualsIgnoreCase(key));
+            if (found != null) return found;
+
             if (key.StartsWith(Name.ToLower()))
             {
                 return Index.Descendents().FirstOrDefault(x => x.Key == key);
@@ -92,6 +95,11 @@ namespace FubuDocs.Topics
             {
                 yield return descendent;
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Name: {0}, BottleName: {1}", Name, BottleName);
         }
     }
 }

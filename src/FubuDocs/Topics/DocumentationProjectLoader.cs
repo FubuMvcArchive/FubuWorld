@@ -19,17 +19,21 @@ namespace FubuDocs.Topics
                                pak => { pak.ForFolder(BottleFiles.WebContentFolder, dir => LoadPackage(pak, dir, graph)); });
 
             TopicGraph.AllTopics.ConfigureRelationships();
+
+            TopicGraph.AllTopics.Projects.Each(project => {
+                project.AllTopics().Each(topic => graph.AddChain(topic.BuildChain()));
+
+                if (project.Splash != null)
+                {
+                    graph.AddChain(project.Splash.BuildChain());
+                }
+            });
         }
 
         public void LoadPackage(IPackageInfo pak, string directory, BehaviorGraph graph)
         {
             ProjectRoot root = _loader.LoadProject(pak.Name, directory);
-            root.AllTopics().Each(topic => graph.AddChain(topic.BuildChain()));
 
-            if (root.Splash != null)
-            {
-                graph.AddChain(root.Splash.BuildChain());
-            }
 
             TopicGraph.AllTopics.AddProject(root);
         }

@@ -59,4 +59,8 @@
   <ItemGroup>
     <EmbeddedResource Include="pak-Config.zip" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="imported1.spark" />
+    <None Include="Imported2.spark" />
+  </ItemGroup>
 </Project>

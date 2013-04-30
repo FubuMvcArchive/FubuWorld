@@ -7,7 +7,7 @@ namespace FubuDocsHarness
     {
         public FubuContinuation Index()
         {
-            return FubuContinuation.RedirectTo<ToolsEndpoints>(x => x.get_tools());
+            return FubuContinuation.RedirectTo("fubumvc");
         }
     }
 }
