@@ -50,6 +50,8 @@ namespace FubuDocsRunner.Running
                     if (key.Key == ConsoleKey.R)
                     {
                         _application.RecycleAppDomain();
+                        new SnippetsCommand().Execute(new SnippetsInput());
+
                         tellUserWhatToDo();
                     }
 
