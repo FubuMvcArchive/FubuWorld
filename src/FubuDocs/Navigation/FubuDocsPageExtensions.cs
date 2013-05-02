@@ -1,6 +1,9 @@
 ﻿using System.IO;
 using FubuCore;
 using FubuDocs.Infrastructure;
+using FubuDocs.Snippets;
+using FubuDocs.Todos;
+using FubuDocs.Tools;
 using FubuDocs.Topics;
 using FubuMVC.Core;
 using FubuMVC.Core.Urls;
@@ -20,7 +23,7 @@ namespace FubuDocs.Navigation
 
         public static HtmlTag AuthoringTopic(this IFubuPage page)
         {
-            var tag = new HtmlTag("div").AddClass("authoring");
+            var tag = new HtmlTag("div").AddClass("alert").AddClass("alert-block").AddClass("authoring");
             
             if (FubuMode.InDevelopment())
             {
@@ -28,11 +31,23 @@ namespace FubuDocs.Navigation
                 var url = page.Urls.UrlFor<FileRequest>();
                 var topic = context.Current;
 
-                tag.Add("a").Data("url", url).Data("key", topic.Key).Attr("href", "#").AddClass("edit-link").Text(context.File);
+                var firstLine = tag.Add("div");
+                firstLine.Add("a").Data("url", url).Data("key", topic.Key).Attr("href", "#").AddClass("edit-link").Text(context.File);
 
                 var lastUpdated = File.GetLastWriteTimeUtc(context.File).ToLocalTime();
-                tag.Add("span").AddClass("last-updated").Text("File changed at: " + lastUpdated);
-                
+                firstLine.Add("span").AddClass("last-updated").Text("File changed at: " + lastUpdated).AddClass("file-changed");
+
+                var secondLine = tag.Add("div");
+                var projectUrl = page.Urls.UrlFor(new ProjectRequest {Name = context.Project.Name});
+                secondLine.Add("a").Text(context.Project.Name + " Project Page").Attr("href", projectUrl);
+                secondLine.Add("span").Text(" | ");
+
+                var todoUrl = page.Urls.UrlFor<TodoEndpoint>(x => x.get_todos());
+                secondLine.Add("a").Text("TODO's").Attr("href", todoUrl);
+                secondLine.Add("span").Text(" | ");
+
+                var snippetsUrl = page.Urls.UrlFor<SnippetEndpoints>(x => x.get_snippets());
+                secondLine.Add("a").Text("Code Snippets").Attr("href", snippetsUrl);
             }
             else
             {

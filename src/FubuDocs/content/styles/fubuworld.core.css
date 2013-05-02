@@ -919,13 +919,8 @@ form.bs-docs-example {
 
 
 
-.authoring {
-    padding: 5px;
-    border: solid blue thick;
-    margin-bottom: 10px;
-}
 
-.authoring span {
+span.file-changed {
     float: right;
 }
 

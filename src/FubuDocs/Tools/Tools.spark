@@ -3,7 +3,7 @@
 
 <h4>Text Editor</h4>
 !{this.FormFor(Model)}
-<dl>
+<dl class="dl-horizontal">
   !{this.Edit(x => x.Editor)}
 </dl>
 <input type="submit" value="Change"/>

@@ -7,7 +7,7 @@
 
 <h4>Project Properties</h4>
 !{this.FormFor(Model)}
-<dl>
+<dl class="dl-horizontal">
 !{this.Edit(x => x.Project.Name)}
 !{this.Edit(x => x.Project.Description)}
 !{this.Edit(x => x.Project.GitHubPage)}

@@ -2,7 +2,7 @@
 
   <p>The FubuWorld documentation application uses the <a href="https://github.com/DarthFubuMVC/FubuMVC.CodeSnippets">FubuMVC.CodeSnippets</a> library to discover and embed snippets of code from the running application into FubuMVC views.  The code formatting is done with Google's <a href="http://google-code-prettify.googlecode.com/svn/trunk/README.html">prettyprint.js</a> library.  </p>
 
-  <p>Code snippets work by marking up code files with comments specifying the start and end of a named code snippet.  The FubuMVC.CodeSnippets library scans for these comments through the application folder and each exploded Bottle folder as well at application startup.  You will have to deploy the code files containing code snippets, meaning that you will have to modify your <code>.package-manifest</code> file if you choose not to use the documentation Bottle defaults. See <TopicLink name="WorkingWithFubudocsrunner"/> for more information on setting up a documentation Bottle.</p>
+  <p>Code snippets work by marking up code files with comments specifying the start and end of a named code snippet.  The FubuMVC.CodeSnippets library scans for these comments through the application folder and each exploded Bottle folder as well at application startup.  You will have to deploy the code files containing code snippets, meaning that you will have to modify your <code>.package-manifest</code> file if you choose not to use the documentation Bottle defaults. </p>
   
   <Section title="Using CodeSnippets" id="snippets">
     <p>Assuming that you already have a code file marked up with the snippet comments for a snippet named <i>AddLine</i>, adding that snippet to a Spark view is simply this:
