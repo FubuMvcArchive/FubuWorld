@@ -46,7 +46,7 @@ namespace FubuDocs.Infrastructure
 
             list.Each(x =>
             {
-                log.Trace("Looking for assemblies marked with the [FubuDocModule] attribute in " + x);
+                Console.WriteLine("Looking for *.Docs assemblies in directory " + x);
             });
 
             return LoadPackages(list);
@@ -54,23 +54,22 @@ namespace FubuDocs.Infrastructure
 
         public IEnumerable<IPackageInfo> LoadPackages(List<string> list)
         {
-            IEnumerable<Assembly> assemblies = FindAssemblies(list).Where(assem => assem.GetName().Name.EqualsIgnoreCase(IgnoreAssembly));
+            IEnumerable<Assembly> assemblies = FindAssemblies(list);
             return assemblies
-                .Select(assem => new AssemblyPackageInfo(assem));
+                .Select(assem => {
+                    Console.WriteLine("Loading documentation assembly " + assem);
+                    return new AssemblyPackageInfo(assem);
+                });
         }
 
         public static IEnumerable<Assembly> FindAssemblies(IEnumerable<string> directories)
         {
-            return directories.SelectMany(
-                x =>
-                AssembliesFromPath(x, assem => assem.GetName().Name.EndsWith(".Docs")));
+            return directories.SelectMany(AssembliesFromPath).ToArray();
         }
 
         // TODO -- this is so common here and in FubuMVC, just get something into FubuCore
-        public static IEnumerable<Assembly> AssembliesFromPath(string path, Predicate<Assembly> assemblyFilter)
+        public static IEnumerable<Assembly> AssembliesFromPath(string path)
         {
-
-
             var assemblyPaths = Directory.GetFiles(path)
                 .Where(file =>
                        Path.GetExtension(file).Equals(
@@ -79,7 +78,9 @@ namespace FubuDocs.Infrastructure
                        ||
                        Path.GetExtension(file).Equals(
                            ".dll",
-                           StringComparison.OrdinalIgnoreCase));
+                           StringComparison.OrdinalIgnoreCase)).Where(x => Path.GetFileNameWithoutExtension(x).EndsWith(".Docs")).ToArray();
+
+            Console.WriteLine("Found " + assemblyPaths.Join(", "));
 
             foreach (string assemblyPath in assemblyPaths)
             {
@@ -98,10 +99,7 @@ namespace FubuDocs.Infrastructure
                     }
                 }
 
-
-
-
-                if (assembly != null && assemblyFilter(assembly))
+                if (assembly != null)
                 {
                     yield return assembly;
                 }

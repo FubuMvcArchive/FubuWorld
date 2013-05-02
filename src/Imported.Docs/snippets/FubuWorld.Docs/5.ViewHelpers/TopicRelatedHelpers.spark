@@ -10,8 +10,10 @@
     <p>
       Which renders:
       <!-- SAMPLE: UsingTopicLink -->
-      <TopicLink name="CodeSnippets"/>
+      <TopicLink name="ViewHelpers/CodeSnippets"/>
       <!-- ENDSAMPLE -->
+
+      !{this.LinkToTopic("ViewHelpers/CodeSnippets", "The code snippets")}
     </p>
   </Section>
 

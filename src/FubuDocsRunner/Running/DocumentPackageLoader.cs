@@ -15,6 +15,8 @@ namespace FubuDocsRunner.Running
 
         public static IEnumerable<string> FindDocumentDirectories(string directory)
         {
+            if (!Directory.Exists(directory.AppendPath("src"))) return new string[0];
+
             return Directory.GetDirectories(directory.AppendPath("src"), "*.Docs", SearchOption.TopDirectoryOnly);
         } 
 
@@ -25,8 +27,6 @@ namespace FubuDocsRunner.Running
 
         public IEnumerable<IPackageInfo> Load(IPackageLog log)
         {
-            
-
             var reader = new PackageManifestReader(new FileSystem(), folder => folder);
             var docDirs = FindDocumentDirectories(_directory);
 

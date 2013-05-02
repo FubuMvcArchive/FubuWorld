@@ -157,10 +157,7 @@ task :create_gem do
 	cleanDirectory 'pkg'
 	
 	dir = "src/fubudocsrunner/bin/#{COMPILE_TARGET}"
-	
-	cleanFile "#{dir}/fubudocsrunner.vshost.exe"
-	
-	
+
 	copyOutputFiles dir, '*.dll', 'bin'
 
 	FileUtils.copy "#{dir}/fubu.exe", 'bin'

@@ -15,5 +15,8 @@ namespace FubuDocsRunner.Running
 
         [Description("Disables the bottle and code snippet scanning while this command runs")]
         public bool NoBottlingFlag { get; set; }
+
+        [Description("If set, the relative starting url at which to open the browser")]
+        public string UrlFlag { get; set; }
     }
 }
