@@ -17,6 +17,7 @@ namespace FubuDocs.Topics
         private Topic _next;
         private Topic _parent;
         private Topic _previous;
+        private string _url;
 
         public Topic(ITopicNode parent, ITopicFile file) : base(Path.GetFileNameWithoutExtension(file.FilePath))
         {
@@ -121,7 +122,11 @@ namespace FubuDocs.Topics
             return chain;
         }
 
-        public string Url { get; set; }
+        public string Url
+        {
+            get { return _url; }
+            set { _url = value == null ? null : value.ToLower(); }
+        }
 
         public ProjectRoot Project { get; internal set; }
 
