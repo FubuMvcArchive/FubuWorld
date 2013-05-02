@@ -131,6 +131,7 @@
     <Compile Include="Exports\ScriptTagStrategyTester.cs" />
     <Compile Include="Exports\StubPageSource.cs" />
     <Compile Include="Exports\StubStreamProvider.cs" />
+    <Compile Include="Exporting\UrlQueryEndpointTester.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinderTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Todos\TodoTaskTester.cs" />

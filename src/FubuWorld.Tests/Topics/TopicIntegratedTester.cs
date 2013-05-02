@@ -25,7 +25,7 @@ namespace FubuWorld.Tests.Topics
         public void strips_the_order_out_of_deep_folder_names()
         {
             ObjectMother.Topics["fubumvc/deep/b/subjectA/C"]
-                .Url.ShouldEqual("fubumvc/deep/b/subjectA/C");
+                .Url.ShouldEqual("fubumvc/deep/b/subjecta/c");
         }
 
 
@@ -47,7 +47,7 @@ namespace FubuWorld.Tests.Topics
         [Test]
         public void determine_the_url_for_a_file_overriding_url_in_spark_file()
         {
-            ObjectMother.Topics["fubumvc/colors/green"].Url.ShouldEqual("fubumvc/colors/SeaGreen"); // look at the 1.1.2.green.spark file
+            ObjectMother.Topics["fubumvc/colors/green"].Url.ShouldEqual("fubumvc/colors/seagreen"); // look at the 1.1.2.green.spark file
         }
 
 
