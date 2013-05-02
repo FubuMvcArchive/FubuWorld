@@ -17,6 +17,7 @@ namespace FubuWorld.Tests.Exports
             token.Url.ShouldEqual("http://localhost:5500/_content/styles/default.css");
             token.Parts.ShouldHaveTheSameElementsAs("_content", "styles", "default.css");
             token.LocalPath.ShouldEqual("_content{0}styles{0}default.css".ToFormat(Path.DirectorySeparatorChar));
+            token.IsAsset.ShouldBeTrue();
         }
 
         [Test]
@@ -27,6 +28,7 @@ namespace FubuWorld.Tests.Exports
             token.Url.ShouldEqual("http://localhost:5500/hello/world");
             token.Parts.ShouldHaveTheSameElementsAs("hello", "world", "index.html");
             token.LocalPath.ShouldEqual("hello{0}world{0}index.html".ToFormat(Path.DirectorySeparatorChar));
+            token.IsAsset.ShouldBeFalse();
         }
     }
 }

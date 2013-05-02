@@ -1,4 +1,5 @@
-﻿using FubuDocsRunner.Exports;
+﻿using System.Linq;
+using FubuDocsRunner.Exports;
 using FubuTestingSupport;
 using HtmlTags;
 using NUnit.Framework;
@@ -6,15 +7,16 @@ using NUnit.Framework;
 namespace FubuWorld.Tests.Exports
 {
     [TestFixture]
-    public class ImgStrategyTester
+    public class ImgTagStrategyTester
     {
         [Test]
         public void finds_the_img_tags()
         {
-            var strategy = new ImgStrategy();
+            var strategy = new ImgTagStrategy();
             strategy
-                .AssetsFor(theDocument.ToString())
-                .ShouldHaveTheSameElementsAs("/_content/images/logo.png");
+                .TokensFor("http://localhost", theDocument.ToString())
+                .Select(x => x.Url)
+                .ShouldHaveTheSameElementsAs("http://localhost/_content/images/logo.png");
         }
 
         private HtmlDocument theDocument

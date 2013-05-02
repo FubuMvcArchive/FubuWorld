@@ -121,14 +121,14 @@
   <ItemGroup>
     <Compile Include="BottleCommand.cs" />
     <Compile Include="DocActionInput.cs" />
-    <Compile Include="Exports\AssetParser.cs" />
+    <Compile Include="Exports\DownloadTokenParser.cs" />
     <Compile Include="Exports\DownloadAsset.cs" />
     <Compile Include="Exports\DownloadContext.cs" />
     <Compile Include="Exports\DownloadManager.cs" />
     <Compile Include="Exports\DownloadPlan.cs" />
     <Compile Include="Exports\DownloadReport.cs" />
     <Compile Include="Exports\DownloadToken.cs" />
-    <Compile Include="Exports\DownloadTopic.cs" />
+    <Compile Include="Exports\DownloadUrl.cs" />
     <Compile Include="Exports\HtmlElement.cs" />
     <Compile Include="Exports\IDownloadStep.cs" />
     <Compile Include="Exports\IPageSource.cs" />

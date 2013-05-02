@@ -1,14 +1,21 @@
-﻿namespace FubuDocsRunner.Exports
+﻿using System.Collections.Generic;
+
+namespace FubuDocsRunner.Exports
 {
     public class DownloadContext
     {
         private readonly DownloadPlan _plan;
         private readonly DownloadReport _report;
+        private readonly IPageSource _source;
+        private readonly IList<DownloadToken> _tokens = new List<DownloadToken>();
 
-        public DownloadContext(DownloadPlan plan)
+        public DownloadContext(DownloadPlan plan, IPageSource source)
         {
             _plan = plan;
+            _source = source;
             _report = new DownloadReport();
+
+            _plan.Steps.Each(step => _tokens.Fill(step.Token));
         }
 
         public DownloadPlan Plan
@@ -21,15 +28,27 @@
             get { return _report; }
         }
 
-        public void QueueAssetDowload(string url)
+        public void QueueDownload(DownloadToken token)
         {
-            var token = DownloadToken.For(_plan.BaseUrl, url);
-            _plan.Add(new DownloadAsset(token));
+            if (_tokens.Contains(token))
+            {
+                return;
+            }
+
+            _tokens.Fill(token);
+
+            if (token.IsAsset)
+            {
+                _plan.Add(new DownloadAsset(token));
+                return;
+            }
+            
+            _plan.Add(new DownloadUrl(token, _source));
         }
 
-        public static DownloadContext For(string outputDirectory, string baseUrl)
+        public static DownloadContext For(string outputDirectory, string baseUrl, IPageSource source)
         {
-            return new DownloadContext(new DownloadPlan(outputDirectory, baseUrl));
+            return new DownloadContext(new DownloadPlan(outputDirectory, baseUrl, source), source);
         }
     }
 }

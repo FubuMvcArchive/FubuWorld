@@ -4,17 +4,18 @@ using System.Linq;
 
 namespace FubuDocsRunner.Exports
 {
-    // contains steps
     public class DownloadPlan
     {
         private readonly ConcurrentQueue<IDownloadStep> _steps = new ConcurrentQueue<IDownloadStep>();
         private readonly string _outputDirectory;
         private readonly string _baseUrl;
+        private readonly IPageSource _source;
 
-        public DownloadPlan(string outputDirectory, string baseUrl)
+        public DownloadPlan(string outputDirectory, string baseUrl, IPageSource source)
         {
             _outputDirectory = outputDirectory;
             _baseUrl = baseUrl;
+            _source = source;
         }
 
         public string OutputDirectory
@@ -36,19 +37,23 @@ namespace FubuDocsRunner.Exports
 
         public DownloadReport Execute()
         {
-            var context = new DownloadContext(this);
+            var context = new DownloadContext(this, _source);
 
             while (true)
             {
+                if (!_steps.Any())
+                {
+                    break;
+                }
+
                 IDownloadStep step;
                 if (_steps.TryDequeue(out step))
                 {
                     step.Execute(context);
+                    continue;
                 }
-                else
-                {
-                    break;
-                }
+
+                break;
             }
 
             return context.Report;

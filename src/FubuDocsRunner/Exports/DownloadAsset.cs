@@ -18,5 +18,23 @@
 
             context.Report.ItemDownloaded(new ItemDownloaded(_token, path));
         }
+
+        protected bool Equals(DownloadAsset other)
+        {
+            return _token.Equals(other._token);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((DownloadAsset) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return _token.GetHashCode();
+        }
     }
 }

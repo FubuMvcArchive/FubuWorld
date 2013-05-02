@@ -1,4 +1,5 @@
-﻿using FubuDocsRunner.Exports;
+﻿using System.Linq;
+using FubuDocsRunner.Exports;
 using FubuTestingSupport;
 using HtmlTags;
 using NUnit.Framework;
@@ -6,15 +7,16 @@ using NUnit.Framework;
 namespace FubuWorld.Tests.Exports
 {
     [TestFixture]
-    public class ScriptStrategyTester
+    public class ScriptTagStrategyTester
     {
         [Test]
         public void finds_the_script_tags()
         {
-            var strategy = new ScriptStrategy();
+            var strategy = new ScriptTagStrategy();
             strategy
-                .AssetsFor(theDocument.ToString())
-                .ShouldHaveTheSameElementsAs("/_content/scripts/lib/jquery.min.js", "/_content/scripts/core.min.js");
+                .TokensFor("http://localhost", theDocument.ToString())
+                .Select(x => x.Url)
+                .ShouldHaveTheSameElementsAs("http://localhost/_content/scripts/lib/jquery.min.js", "http://localhost/_content/scripts/core.min.js");
         }
 
         private HtmlDocument theDocument
@@ -31,6 +33,9 @@ namespace FubuWorld.Tests.Exports
 
                 document.Body.Add("script", script => script.Attr("src", "/_content/scripts/lib/jquery.min.js"));
                 document.Body.Add("script", script => script.Attr("src", "/_content/scripts/core.min.js"));
+
+                document.Body.Add("a", a => a.Attr("href", "/something"));
+                document.Body.Add("a", a => a.Attr("href", "/something/else"));
 
                 return document;
             }

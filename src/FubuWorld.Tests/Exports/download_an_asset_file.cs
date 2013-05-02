@@ -23,7 +23,7 @@ namespace FubuWorld.Tests.Exports
             theDirectory = Guid.NewGuid().ToString();
             theFileSystem.CreateDirectory(theDirectory);
 
-            theContext = DownloadContext.For(theDirectory, "http://localhost:5500");
+            theContext = DownloadContext.For(theDirectory, "http://localhost:5500", new StubPageSource());
             theToken = DownloadToken.For("http://localhost:5500", "/_content/styles/default.css");
             theContents = "body { color: #000; }";
 

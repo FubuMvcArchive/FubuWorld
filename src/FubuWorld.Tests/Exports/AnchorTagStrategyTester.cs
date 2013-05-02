@@ -1,4 +1,5 @@
-﻿using FubuDocsRunner.Exports;
+﻿using System.Linq;
+using FubuDocsRunner.Exports;
 using FubuTestingSupport;
 using HtmlTags;
 using NUnit.Framework;
@@ -6,15 +7,16 @@ using NUnit.Framework;
 namespace FubuWorld.Tests.Exports
 {
     [TestFixture]
-    public class LinkStrategyTester
+    public class AnchorTagStrategyTester
     {
         [Test]
-        public void finds_the_link_tags()
+        public void finds_the_script_tags()
         {
-            var strategy = new LinkStrategy();
+            var strategy = new AnchorTagStrategy();
             strategy
-                .AssetsFor(theDocument.ToString())
-                .ShouldHaveTheSameElementsAs("/_content/images/fav.ico", "/_content/styles/resets.css", "/_content/styles/default.css");
+                .TokensFor("http://localhost", theDocument.ToString())
+                .Select(x => x.Url)
+                .ShouldHaveTheSameElementsAs("http://localhost/something", "http://localhost/something/else");
         }
 
         private HtmlDocument theDocument
@@ -31,6 +33,9 @@ namespace FubuWorld.Tests.Exports
 
                 document.Body.Add("script", script => script.Attr("src", "/_content/scripts/lib/jquery.min.js"));
                 document.Body.Add("script", script => script.Attr("src", "/_content/scripts/core.min.js"));
+
+                document.Body.Add("a", a => a.Attr("href", "/something"));
+                document.Body.Add("a", a => a.Attr("href", "/something/else"));
 
                 return document;
             }

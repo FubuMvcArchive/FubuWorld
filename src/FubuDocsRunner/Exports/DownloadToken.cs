@@ -19,9 +19,11 @@ namespace FubuDocsRunner.Exports
             _fileSystem = new FileSystem();
         }
 
+        public string BaseUrl { get; private set; }
         public string Url { get; private set; }
         public string[] Parts { get; private set; }
         public string LocalPath { get; private set; }
+        public bool IsAsset { get; private set; }
 
         public string EnsureLocalPath(string directory)
         {
@@ -70,9 +72,11 @@ namespace FubuDocsRunner.Exports
             var url = baseUrl.TrimEnd('/') + relativePath;
 
             var lastIndex = relativePath.LastIndexOf('.');
+            var isAsset = true;
             if (lastIndex == -1)
             {
                 relativePath += "/index.html";
+                isAsset = false;
             }
 
             var parts = relativePath.TrimStart('/').Split(new [] { "/" }, StringSplitOptions.None);
@@ -80,7 +84,11 @@ namespace FubuDocsRunner.Exports
             var path = "";
             parts.Each(part => path = path.AppendPath(part));
 
-            return new DownloadToken(url, parts, path);
+            return new DownloadToken(url, parts, path)
+            {
+                BaseUrl = baseUrl,
+                IsAsset = isAsset
+            };
         }
     }
 }

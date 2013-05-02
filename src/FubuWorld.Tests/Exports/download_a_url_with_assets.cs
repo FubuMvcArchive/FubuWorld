@@ -9,14 +9,14 @@ using NUnit.Framework;
 namespace FubuWorld.Tests.Exports
 {
     [TestFixture]
-    public class download_a_topic_with_assets
+    public class download_a_url_with_assets
     {
         private FileSystem theFileSystem;
         private string theDirectory;
         private string theContents;
         private DownloadToken theToken;
         private DownloadContext theContext;
-        private DownloadTopic theStep;
+        private DownloadUrl theStep;
         private StubPageSource theSource;
 
         [SetUp]
@@ -26,15 +26,15 @@ namespace FubuWorld.Tests.Exports
             theDirectory = Guid.NewGuid().ToString();
             theFileSystem.CreateDirectory(theDirectory);
 
-            theContext = DownloadContext.For(theDirectory, "http://localhost:5500");
             theToken = DownloadToken.For("http://localhost:5500", "/hello");
 
-            theContents = buildContents().ToString();
-
             theSource = new StubPageSource();
+            theContents = buildContents().ToString();
             theSource.Store(theToken, theContents);
 
-            theStep = new DownloadTopic(theToken, theSource);
+            theContext = DownloadContext.For(theDirectory, "http://localhost:5500", theSource);
+
+            theStep = new DownloadUrl(theToken, theSource);
             theStep.Execute(theContext);
         }
 

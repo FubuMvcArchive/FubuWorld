@@ -9,14 +9,16 @@ using NUnit.Framework;
 namespace FubuWorld.Tests.Exports
 {
     [TestFixture]
-    public class integrated_plan_execution_with_assets
+    public class integrated_plan_execution_with_additonal_urls_and_assets
     {
         private FileSystem theFileSystem;
         private string theDirectory;
-        private string theContents;
-        private DownloadToken theToken;
+        
         private DownloadPlan thePlan;
         private StubPageSource theSource;
+
+        private DownloadToken p1;
+        private DownloadToken p2;
 
         [SetUp]
         public void SetUp()
@@ -25,15 +27,15 @@ namespace FubuWorld.Tests.Exports
             theDirectory = Guid.NewGuid().ToString();
             theFileSystem.CreateDirectory(theDirectory);
 
-            theContents = buildContents().ToString();
-            theToken = DownloadToken.For("http://localhost:5500", "/hello");
+            p1 = DownloadToken.For("http://localhost:5500", "/page1");
+            p2 = DownloadToken.For("http://localhost:5500", "/page2");
 
             theSource = new StubPageSource();
-            theSource.Store(theToken, theContents);
+            theSource.Store(p1, page1);
+            theSource.Store(p2, page2);
 
             thePlan = new DownloadPlan(theDirectory, "http://localhost:5500", theSource);
-
-            thePlan.Add(new DownloadUrl(theToken, theSource));
+            thePlan.Add(new DownloadUrl(p1, theSource));
 
             DownloadScenario.Create(scenario =>
             {
@@ -45,25 +47,54 @@ namespace FubuWorld.Tests.Exports
 
                 scenario.Url("http://localhost:5500/_content/scripts/lib/jquery.min.js", "jquery");
                 scenario.Url("http://localhost:5500/_content/scripts/core.min.js", "core");
+
+                scenario.Url("http://localhost:5500/_content/scripts/page2.min.js", "page2");
             });
 
             thePlan.Execute();
         }
 
-        private HtmlDocument buildContents()
+        private string page1
         {
-            var document = new HtmlDocument();
-            document.Head.Add("link", link => link.Attr("href", "/_content/images/fav.ico"));
-            document.Head.Add("link", link => link.Attr("href", "/_content/styles/resets.css"));
-            document.Head.Add("link", link => link.Attr("href", "/_content/styles/default.css"));
+            get
+            {
+                var document = new HtmlDocument();
+                document.Head.Add("link", link => link.Attr("href", "/_content/images/fav.ico"));
+                document.Head.Add("link", link => link.Attr("href", "/_content/styles/resets.css"));
+                document.Head.Add("link", link => link.Attr("href", "/_content/styles/default.css"));
 
-            document.Body.Add("h1", h1 => h1.Text("Hello World"));
-            document.Body.Add("img", img => img.Attr("src", "/_content/images/logo.png"));
+                document.Body.Add("h1", h1 => h1.Text("Hello World"));
+                document.Body.Add("img", img => img.Attr("src", "/_content/images/logo.png"));
 
-            document.Body.Add("script", script => script.Attr("src", "/_content/scripts/lib/jquery.min.js"));
-            document.Body.Add("script", script => script.Attr("src", "/_content/scripts/core.min.js"));
+                document.Body.Add("script", script => script.Attr("src", "/_content/scripts/lib/jquery.min.js"));
+                document.Body.Add("script", script => script.Attr("src", "/_content/scripts/core.min.js"));
 
-            return document;
+                document.Body.Add("a", a => a.Attr("href", "/page2"));
+
+                return document.ToString();
+            }
+        }
+
+        private string page2
+        {
+            get
+            {
+                var document = new HtmlDocument();
+                document.Head.Add("link", link => link.Attr("href", "/_content/images/fav.ico"));
+                document.Head.Add("link", link => link.Attr("href", "/_content/styles/resets.css"));
+                document.Head.Add("link", link => link.Attr("href", "/_content/styles/default.css"));
+
+                document.Body.Add("h1", h1 => h1.Text("Hello World"));
+                document.Body.Add("img", img => img.Attr("src", "/_content/images/logo.png"));
+
+                document.Body.Add("script", script => script.Attr("src", "/_content/scripts/lib/jquery.min.js"));
+                document.Body.Add("script", script => script.Attr("src", "/_content/scripts/page2.min.js"));
+
+                // Just to keep our sanity
+                document.Body.Add("a", a => a.Attr("href", "/page1"));
+
+                return document.ToString();
+            }
         }
 
         [TearDown]
@@ -75,9 +106,10 @@ namespace FubuWorld.Tests.Exports
         }
 
         [Test]
-        public void downloads_topic_AND_assets()
+        public void downloads_all_urls_and_assets()
         {
-            fileContentsFor("hello", "index.html").ShouldEqual(theContents);
+            fileContentsFor("page1", "index.html").ShouldEqual(page1);
+            fileContentsFor("page2", "index.html").ShouldEqual(page2);
 
             verifyAsset("http://localhost:5500/_content/images/fav.ico", "_content", "images", "fav.ico");
 
@@ -88,6 +120,7 @@ namespace FubuWorld.Tests.Exports
 
             verifyAsset("http://localhost:5500/_content/scripts/lib/jquery.min.js", "_content", "scripts", "lib", "jquery.min.js");
             verifyAsset("http://localhost:5500/_content/scripts/core.min.js", "_content", "scripts", "core.min.js");
+            verifyAsset("http://localhost:5500/_content/scripts/page2.min.js", "_content", "scripts", "page2.min.js");
         }
 
         public string fileContentsFor(params string[] parts)
