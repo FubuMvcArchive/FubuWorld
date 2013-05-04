@@ -32,6 +32,11 @@ namespace FubuDocsRunner.Exports
 
         public void Add(IDownloadStep step)
         {
+            if (_steps.Any(x => x.Token.Equals(step.Token)))
+            {
+                return;
+            }
+
             _steps.Enqueue(step);
         }
 

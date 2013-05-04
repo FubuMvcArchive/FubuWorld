@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace FubuDocsRunner.Exports
 {
@@ -20,6 +21,8 @@ namespace FubuDocsRunner.Exports
         {
             var source = _source.SourceFor(_token);
             var path = _token.EnsureLocalPath(context.Plan.OutputDirectory);
+
+            source = source.Replace(_token.BaseUrl, "");
 
             using (var writer = new StreamWriter(File.Open(path, FileMode.CreateNew)))
             {

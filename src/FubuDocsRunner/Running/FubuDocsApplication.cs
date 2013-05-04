@@ -14,10 +14,11 @@ namespace FubuDocsRunner.Running
             return FubuApplication.For<RunFubuWorldRegistry>()
                                   .StructureMap(new Container())
                                   .Packages(x => {
-                                      string[] directories =
-                                          AppDomain.CurrentDomain.SetupInformation.AppDomainInitializerArguments;
-                                      directories.Each(directory
-                                                       => x.Loader(new DocumentPackageLoader(directory)));
+                                      var directories = AppDomain.CurrentDomain.SetupInformation.AppDomainInitializerArguments;
+                                      if (directories != null)
+                                      {
+                                          directories.Each(directory=> x.Loader(new DocumentPackageLoader(directory)));
+                                      }
 
                                       x.Loader(new FubuDocsPackageLoader());
                                   });

@@ -27,7 +27,7 @@ namespace FubuDocsRunner.Exports
             foreach (Match match in matches)
             {
                 var value = HtmlElement.GetAttributeValue(match.Value, _attribute);
-                if (value.IsNotEmpty())
+                if (value.IsNotEmpty() && value.StartsWith("/"))
                 {
                     yield return DownloadToken.For(baseUrl, value);
                 }

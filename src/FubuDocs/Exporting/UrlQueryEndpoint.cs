@@ -1,14 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FubuCore;
 using FubuMVC.Core.Registration;
+using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Resources.PathBased;
 
 namespace FubuDocs.Exporting
 {
     public class UrlQueryEndpoint
     {
+        private static readonly string[] IgnoredPatterns;
+
+        static UrlQueryEndpoint()
+        {
+            IgnoredPatterns = new[]
+            {
+                "/_fubu", "/_diagnostics", "/_content", "/_about"
+            };
+        }
+
         private readonly BehaviorGraph _graph;
 
         public UrlQueryEndpoint(BehaviorGraph graph)
@@ -41,14 +53,34 @@ namespace FubuDocs.Exporting
                     if (!chain.Calls.Any(x => x.HasAttribute<ExportAttribute>())) continue;
                 }
 
-                if (chain.GetRoutePattern().StartsWith("_fubu")) continue;
-                if (chain.GetRoutePattern().StartsWith("_diagnostics")) continue;
-                if (chain.GetRoutePattern().StartsWith("_content")) continue;
-                if (chain.GetRoutePattern() == "_about") continue;
+                var pattern = GetPattern(chain);
+                
+                if (ShouldIgnore(pattern)) continue;
 
-
-                yield return chain.GetRoutePattern();
+                yield return pattern;
             }
+        }
+
+        public static string GetPattern(BehaviorChain chain)
+        {
+            var pattern = chain.GetRoutePattern();
+            return GetPattern(pattern);
+        }
+
+        public static string GetPattern(string pattern)
+        {
+            if (pattern.StartsWith("http://"))
+            {
+                var index = pattern.IndexOf('/', 7);
+                pattern = index == -1 ? "" : pattern.Substring(index);
+            }
+
+            return pattern;
+        }
+
+        public static bool ShouldIgnore(string pattern)
+        {
+            return IgnoredPatterns.Any(pattern.StartsWith);
         }
     }
 }

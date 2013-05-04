@@ -15,7 +15,7 @@ namespace FubuDocsRunner.Exports
             _source = source;
             _report = new DownloadReport();
 
-            _plan.Steps.Each(step => _tokens.Fill(step.Token));
+            plan.Steps.Each(x => _tokens.Fill(x.Token));
         }
 
         public DownloadPlan Plan
@@ -30,10 +30,7 @@ namespace FubuDocsRunner.Exports
 
         public void QueueDownload(DownloadToken token)
         {
-            if (_tokens.Contains(token))
-            {
-                return;
-            }
+            if (_tokens.Contains(token)) return;
 
             _tokens.Fill(token);
 

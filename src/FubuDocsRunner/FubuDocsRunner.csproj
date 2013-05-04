@@ -129,6 +129,8 @@
     <Compile Include="Exports\DownloadReport.cs" />
     <Compile Include="Exports\DownloadToken.cs" />
     <Compile Include="Exports\DownloadUrl.cs" />
+    <Compile Include="Exports\ExportApplication.cs" />
+    <Compile Include="Exports\ExportCommand.cs" />
     <Compile Include="Exports\HtmlElement.cs" />
     <Compile Include="Exports\IDownloadStep.cs" />
     <Compile Include="Exports\IPageSource.cs" />

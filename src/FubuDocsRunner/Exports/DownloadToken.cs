@@ -27,6 +27,14 @@ namespace FubuDocsRunner.Exports
 
         public string EnsureLocalPath(string directory)
         {
+            lock (Lock)
+            {
+                if (!_fileSystem.DirectoryExists(directory))
+                {
+                    _fileSystem.CreateDirectory(directory);
+                }
+            }
+
             var attempts = new List<string>();
             Parts.Each(x =>
             {
@@ -48,7 +56,7 @@ namespace FubuDocsRunner.Exports
 
         protected bool Equals(DownloadToken other)
         {
-            return string.Equals(Url, other.Url) && string.Equals(LocalPath, other.LocalPath);
+            return Url.EqualsIgnoreCase(other.Url);
         }
 
         public override bool Equals(object obj)
@@ -69,7 +77,12 @@ namespace FubuDocsRunner.Exports
 
         public static DownloadToken For(string baseUrl, string relativePath)
         {
-            var url = baseUrl.TrimEnd('/') + relativePath;
+            baseUrl = baseUrl.TrimEnd('/');
+            relativePath = relativePath.Replace(baseUrl, "");
+
+            var url = baseUrl + relativePath;
+
+            Console.WriteLine("Created token: " + url);
 
             var lastIndex = relativePath.LastIndexOf('.');
             var isAsset = true;

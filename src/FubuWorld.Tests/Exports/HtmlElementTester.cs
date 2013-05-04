@@ -13,5 +13,12 @@ namespace FubuWorld.Tests.Exports
             var input = "<script src=\"/test\" />";
             HtmlElement.GetAttributeValue(input, "src").ShouldEqual("/test");
         }
+
+        [Test]
+        public void get_attribute_value_2()
+        {
+            var input = "<link type=\"text/css\" rel=\"stylesheet\" href=\"/_content/styles/toastr.css\">";
+            HtmlElement.GetAttributeValue(input, "href").ShouldEqual("/_content/styles/toastr.css");
+        }
     }
 }
