@@ -14,7 +14,7 @@ namespace FubuWorld.Tests.Exports
         {
             var strategy = new ScriptTagStrategy();
             strategy
-                .TokensFor("http://localhost", theDocument.ToString())
+                .TokensFor(DownloadToken.For("http://localhost", ""), theDocument.ToString())
                 .Select(x => x.Url)
                 .ShouldHaveTheSameElementsAs("http://localhost/_content/scripts/lib/jquery.min.js", "http://localhost/_content/scripts/core.min.js");
         }

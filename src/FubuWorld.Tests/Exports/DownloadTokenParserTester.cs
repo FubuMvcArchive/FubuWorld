@@ -19,7 +19,7 @@ namespace FubuWorld.Tests.Exports
             DownloadTokenParser.AddStrategy(s1);
             DownloadTokenParser.AddStrategy(s2);
 
-            DownloadTokenParser.TokensFor("http://localhost", "test").Select(x => x.Url).ShouldHaveTheSameElementsAs("http://localhost/a1", "http://localhost/a2", "http://localhost/a3", "http://localhost/a4");
+            DownloadTokenParser.TokensFor(DownloadToken.For("http://localhost", ""), "test").Select(x => x.Url).ShouldHaveTheSameElementsAs("http://localhost/a1", "http://localhost/a2", "http://localhost/a3", "http://localhost/a4");
 
             DownloadTokenParser.Reset();
         }
@@ -35,7 +35,7 @@ namespace FubuWorld.Tests.Exports
                 _assets = assets.Select(x => DownloadToken.For("http://localhost", x));
             }
 
-            public IEnumerable<DownloadToken> TokensFor(string baseUrl, string source)
+            public IEnumerable<DownloadToken> TokensFor(DownloadToken token, string source)
             {
                 return _assets;
             }

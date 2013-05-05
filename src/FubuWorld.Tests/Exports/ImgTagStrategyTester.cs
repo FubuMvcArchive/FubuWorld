@@ -14,7 +14,7 @@ namespace FubuWorld.Tests.Exports
         {
             var strategy = new ImgTagStrategy();
             strategy
-                .TokensFor("http://localhost", theDocument.ToString())
+                .TokensFor(DownloadToken.For("http://localhost", ""), theDocument.ToString())
                 .Select(x => x.Url)
                 .ShouldHaveTheSameElementsAs("http://localhost/_content/images/logo.png");
         }

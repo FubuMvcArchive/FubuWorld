@@ -23,9 +23,18 @@ namespace FubuDocsRunner.Exports
         public string Url { get; private set; }
         public string[] Parts { get; private set; }
         public string LocalPath { get; private set; }
-        public bool IsAsset { get; private set; }
+        public bool TriggersDownloads { get; private set; }
 
-        public string EnsureLocalPath(string directory)
+        public string RelativeUrl
+        {
+            get
+            {
+                var url = Url.Replace(BaseUrl, "");
+                return "/" + url.TrimStart('/');
+            }
+        }
+
+        public string GetLocalPath(string directory)
         {
             lock (Lock)
             {
@@ -75,21 +84,28 @@ namespace FubuDocsRunner.Exports
             }
         }
 
+        public override string ToString()
+        {
+            return Url;
+        }
+
         public static DownloadToken For(string baseUrl, string relativePath)
         {
             baseUrl = baseUrl.TrimEnd('/');
             relativePath = relativePath.Replace(baseUrl, "");
 
+            var triggers = false;
             var url = baseUrl + relativePath;
-
-            Console.WriteLine("Created token: " + url);
-
             var lastIndex = relativePath.LastIndexOf('.');
-            var isAsset = true;
+            
             if (lastIndex == -1)
             {
                 relativePath += "/index.html";
-                isAsset = false;
+                triggers = true;
+            }
+            else if (url.EndsWith(".css"))
+            {
+                triggers = true;
             }
 
             var parts = relativePath.TrimStart('/').Split(new [] { "/" }, StringSplitOptions.None);
@@ -100,7 +116,7 @@ namespace FubuDocsRunner.Exports
             return new DownloadToken(url, parts, path)
             {
                 BaseUrl = baseUrl,
-                IsAsset = isAsset
+                TriggersDownloads = triggers
             };
         }
     }

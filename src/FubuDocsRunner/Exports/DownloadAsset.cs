@@ -13,10 +13,14 @@
 
         public void Execute(DownloadContext context)
         {
-            var path = _token.EnsureLocalPath(context.Plan.OutputDirectory);
-            DownloadManager.Download(_token.Url, path);
+            var path = _token.GetLocalPath(context.Plan.OutputDirectory);
+            DownloadManager.Download(_token.Url, path, contents =>
+            {
+                contents = contents.Replace(_token.BaseUrl, "");
+                context.QueueDownloads(_token, contents);
+            });
 
-            context.Report.ItemDownloaded(new ItemDownloaded(_token, path));
+            context.ItemDownloaded(_token, path);
         }
 
         protected bool Equals(DownloadAsset other)

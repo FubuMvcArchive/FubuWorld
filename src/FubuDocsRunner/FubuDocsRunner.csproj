@@ -133,6 +133,7 @@
     <Compile Include="Exports\ExportCommand.cs" />
     <Compile Include="Exports\HtmlElement.cs" />
     <Compile Include="Exports\IDownloadStep.cs" />
+    <Compile Include="Exports\IDownloadTokenStrategy.cs" />
     <Compile Include="Exports\IPageSource.cs" />
     <Compile Include="Exports\ItemDownloaded.cs" />
     <Compile Include="Program.cs" />

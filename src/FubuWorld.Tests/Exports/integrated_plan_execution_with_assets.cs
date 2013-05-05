@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FubuCore;
 using FubuDocsRunner.Exports;
 using FubuTestingSupport;
@@ -11,8 +10,7 @@ namespace FubuWorld.Tests.Exports
     [TestFixture]
     public class integrated_plan_execution_with_assets
     {
-        private FileSystem theFileSystem;
-        private string theDirectory;
+        private DownloadScenario theScenario;
         private string theContents;
         private DownloadToken theToken;
         private DownloadPlan thePlan;
@@ -21,21 +19,7 @@ namespace FubuWorld.Tests.Exports
         [SetUp]
         public void SetUp()
         {
-            theFileSystem = new FileSystem();
-            theDirectory = Guid.NewGuid().ToString();
-            theFileSystem.CreateDirectory(theDirectory);
-
-            theContents = buildContents().ToString();
-            theToken = DownloadToken.For("http://localhost:5500", "/hello");
-
-            theSource = new StubPageSource();
-            theSource.Store(theToken, theContents);
-
-            thePlan = new DownloadPlan(theDirectory, "http://localhost:5500", theSource);
-
-            thePlan.Add(new DownloadUrl(theToken, theSource));
-
-            DownloadScenario.Create(scenario =>
+            theScenario = DownloadScenario.Create(scenario =>
             {
                 scenario.Url("http://localhost:5500/_content/images/fav.ico", "fav");
                 scenario.Url("http://localhost:5500/_content/styles/resets.css", "resets");
@@ -46,6 +30,21 @@ namespace FubuWorld.Tests.Exports
                 scenario.Url("http://localhost:5500/_content/scripts/lib/jquery.min.js", "jquery");
                 scenario.Url("http://localhost:5500/_content/scripts/core.min.js", "core");
             });
+
+            theContents = buildContents().ToString();
+            theToken = DownloadToken.For("http://localhost:5500", "/hello");
+
+            theSource = new StubPageSource();
+            theSource.Store(theToken, theContents);
+
+            theSource.Store(DownloadToken.For("http://localhost:5500", "/_content/styles/resets.css"), "resets");
+            theSource.Store(DownloadToken.For("http://localhost:5500", "/_content/styles/default.css"), "default");
+
+            thePlan = new DownloadPlan(theScenario.Directory, "http://localhost:5500", theSource);
+
+            thePlan.Add(new DownloadUrl(theToken, theSource));
+
+            
 
             thePlan.Execute();
         }
@@ -69,9 +68,7 @@ namespace FubuWorld.Tests.Exports
         [TearDown]
         public void TearDown()
         {
-            theFileSystem.DeleteDirectory(theDirectory);
-
-            DownloadManager.Live();
+            theScenario.Cleanup();
         }
 
         [Test]
@@ -95,7 +92,7 @@ namespace FubuWorld.Tests.Exports
             var fileSystem = new FileSystem();
 
             var path = new List<string>();
-            path.Add(theDirectory);
+            path.Add(theScenario.Directory);
             path.AddRange(parts);
 
             return fileSystem
@@ -104,7 +101,7 @@ namespace FubuWorld.Tests.Exports
 
         private void verifyAsset(string url, params string[] parts)
         {
-            var expectedContents = DownloadScenario.ContentsFor(url);
+            var expectedContents = theScenario.ContentsFor(url);
             fileContentsFor(parts).ShouldEqual(expectedContents);
         }
     }

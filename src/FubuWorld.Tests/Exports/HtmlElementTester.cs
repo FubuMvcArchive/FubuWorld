@@ -20,5 +20,12 @@ namespace FubuWorld.Tests.Exports
             var input = "<link type=\"text/css\" rel=\"stylesheet\" href=\"/_content/styles/toastr.css\">";
             HtmlElement.GetAttributeValue(input, "href").ShouldEqual("/_content/styles/toastr.css");
         }
+
+        [Test]
+        public void get_attribute_value_from_single_quotes()
+        {
+            var input = "<a href='/a'>";
+            HtmlElement.GetAttributeValue(input, "href").ShouldEqual("/a");
+        }
     }
 }

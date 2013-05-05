@@ -14,7 +14,7 @@ namespace FubuWorld.Tests.Exports
         {
             var strategy = new AnchorTagStrategy();
             strategy
-                .TokensFor("http://localhost", theDocument.ToString())
+                .TokensFor(DownloadToken.For("http://localhost", ""), theDocument.ToString())
                 .Select(x => x.Url)
                 .ShouldHaveTheSameElementsAs("http://localhost/something", "http://localhost/something/else");
         }

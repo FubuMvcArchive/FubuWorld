@@ -73,14 +73,13 @@ namespace FubuWorld.Tests.Exports
         [Test]
         public void reports_the_download_completed()
         {
-            theContext.Report.ShouldHaveTheSameElementsAs(new ItemDownloaded(theToken, theToken.EnsureLocalPath(theDirectory)));
+            theContext.Report.ShouldHaveTheSameElementsAs(new ItemDownloaded(theToken, theToken.GetLocalPath(theDirectory)));
         }
 
         [Test]
         public void queues_up_the_asset_downloads()
         {
             theContext.Plan.Steps
-                .OfType<DownloadAsset>()
                 .ShouldHaveTheSameElementKeysAs(new []
                     {
                         "http://localhost:5500/_content/images/fav.ico",

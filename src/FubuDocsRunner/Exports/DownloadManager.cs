@@ -1,27 +1,44 @@
-﻿using System.IO;
+﻿using System;
 using System.Net;
+using FubuCore;
 
 namespace FubuDocsRunner.Exports
 {
-    public interface IStreamProvider
+    public interface IDownloader
     {
-        Stream Open(string url);
+        void Download(string url, string filePath, Action<string> continuation);
     }
 
-    public class StreamProvider : IStreamProvider
+    public class Downloader : IDownloader
     {
-        public Stream Open(string url)
+        public void Download(string url, string filePath, Action<string> continuation)
         {
             using (var client = new WebClient())
             {
-                return client.OpenRead(url);
+                try
+                {
+                    client.DownloadFile(url, filePath);
+                }
+                catch (WebException exc)
+                {
+                    var response = exc.Response as HttpWebResponse;
+                    if (response != null && response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        // swallow it
+                        return;
+                    }
+                    
+                    throw;
+                }
+
+                continuation(new FileSystem().ReadStringFromFile(filePath));
             }
         }
     }
 
     public class DownloadManager
     {
-        private static IStreamProvider _provider;
+        private static IDownloader _provider;
 
         static DownloadManager()
         {
@@ -30,26 +47,17 @@ namespace FubuDocsRunner.Exports
 
         public static void Live()
         {
-            Stub(new StreamProvider());
+            Stub(new Downloader());
         }
 
-        public static void Stub(IStreamProvider provider)
+        public static void Stub(IDownloader provider)
         {
             _provider = provider;
         }
 
-        public static void Download(string url, string path)
+        public static void Download(string url, string path, Action<string> continuation)
         {
-            using (var stream = _provider.Open(url))
-            {
-                using (var reader = new StreamReader(stream))
-                {
-                    using (var writer = new StreamWriter(File.Open(path, FileMode.CreateNew)))
-                    {
-                        writer.Write(reader.ReadToEnd());
-                    }
-                }
-            }
+            _provider.Download(url, path, continuation);
         }
     }
 }

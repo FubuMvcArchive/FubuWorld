@@ -28,19 +28,30 @@ namespace FubuDocsRunner.Exports
             get { return _report; }
         }
 
+        public void ItemDownloaded(DownloadToken token, string path)
+        {
+            _report.ItemDownloaded(new ItemDownloaded(token, path));
+        }
+
         public void QueueDownload(DownloadToken token)
         {
             if (_tokens.Contains(token)) return;
 
             _tokens.Fill(token);
 
-            if (token.IsAsset)
+            if (token.TriggersDownloads)
             {
-                _plan.Add(new DownloadAsset(token));
+                _plan.Add(new DownloadUrl(token, _source));
                 return;
             }
-            
-            _plan.Add(new DownloadUrl(token, _source));
+
+            _plan.Add(new DownloadAsset(token));
+        }
+
+        public void QueueDownloads(DownloadToken token, string source)
+        {
+            var tokens = DownloadTokenParser.TokensFor(token, source);
+            tokens.Each(QueueDownload);
         }
 
         public static DownloadContext For(string outputDirectory, string baseUrl, IPageSource source)

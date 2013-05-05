@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace FubuDocsRunner.Exports
 {
@@ -20,7 +18,7 @@ namespace FubuDocsRunner.Exports
         public void Execute(DownloadContext context)
         {
             var source = _source.SourceFor(_token);
-            var path = _token.EnsureLocalPath(context.Plan.OutputDirectory);
+            var path = _token.GetLocalPath(context.Plan.OutputDirectory);
 
             source = source.Replace(_token.BaseUrl, "");
 
@@ -29,15 +27,8 @@ namespace FubuDocsRunner.Exports
                 writer.Write(source);
             }
 
-            context.Report.ItemDownloaded(new ItemDownloaded(_token, path));
-
-            queueDownloads(context, source);
-        }
-
-        private void queueDownloads(DownloadContext context, string source)
-        {
-            var tokens = DownloadTokenParser.TokensFor(_token.BaseUrl, source);
-            tokens.Each(context.QueueDownload);
+            context.ItemDownloaded(_token, path);
+            context.QueueDownloads(_token, source);
         }
 
         protected bool Equals(DownloadUrl other)
@@ -49,7 +40,7 @@ namespace FubuDocsRunner.Exports
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((DownloadUrl) obj);
         }
 

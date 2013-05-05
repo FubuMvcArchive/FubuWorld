@@ -1,4 +1,6 @@
-﻿namespace FubuDocsRunner.Exports
+﻿using System;
+
+namespace FubuDocsRunner.Exports
 {
     public class HtmlElement
     {
@@ -11,14 +13,21 @@
             }
 
             var length = attribute.Length + 2; // attribute="
+            var delimiter = input.Substring(index + attribute.Length + 1, 1); // " or '
             var value = "";
 
             index += length;
 
             while (true)
             {
+                if (input.Length <= index)
+                {
+                    Console.WriteLine(input);
+                    break;
+                }
+
                 var next = input.Substring(index, 1);
-                if (next == "\"")
+                if (next == delimiter)
                 {
                     break;
                 }

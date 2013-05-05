@@ -6,34 +6,58 @@ namespace FubuWorld.Tests.Exports
 {
     public class DownloadScenario
     {
-        private static StubStreamProvider _provider;
+        private readonly StubDownloader _downloader;
+        private readonly string _directory;
+        private readonly FileSystem _fileSystem;
 
-        public static void Create(Action<ScenarioDefinition> configure)
+        public DownloadScenario(StubDownloader downloader)
+        {
+            _downloader = downloader;
+
+            _directory = Guid.NewGuid().ToString();
+            _fileSystem = new FileSystem();
+
+            _fileSystem.CreateDirectory(_directory);
+        }
+
+        public string Directory { get { return _directory; } }
+
+        public StubDownloader Downloader { get { return _downloader; } }
+
+        public string ContentsFor(string url)
+        {
+            return _downloader.ContentsFor(url);
+        }
+
+        public void Cleanup()
+        {
+            _fileSystem.DeleteDirectory(_directory);
+            DownloadManager.Live();
+        }
+
+        public static DownloadScenario Create(Action<ScenarioDefinition> configure)
         {
             var scenario = new ScenarioDefinition();
             configure(scenario);
 
-            _provider = scenario.As<IScenarioDefinition>().BuildProvider();
-            DownloadManager.Stub(_provider);
-        }
+            var downloader = scenario.As<IScenarioDefinition>().BuildProvider();
+            DownloadManager.Stub(downloader);
 
-        public static string ContentsFor(string url)
-        {
-            return _provider.ContentsFor(url);
+            return new DownloadScenario(downloader);
         }
 
         public interface IScenarioDefinition
         {
-            StubStreamProvider BuildProvider();
+            StubDownloader BuildProvider();
         }
 
         public class ScenarioDefinition : IScenarioDefinition
         {
-            private readonly StubStreamProvider _provider;
+            private readonly StubDownloader _provider;
 
             public ScenarioDefinition()
             {
-                _provider = new StubStreamProvider();
+                _provider = new StubDownloader();
             }
 
             public ScenarioDefinition Url(string url, string contents)
@@ -42,7 +66,7 @@ namespace FubuWorld.Tests.Exports
                 return this;
             }
 
-            StubStreamProvider IScenarioDefinition.BuildProvider()
+            StubDownloader IScenarioDefinition.BuildProvider()
             {
                 return _provider;
             }
