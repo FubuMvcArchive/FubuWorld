@@ -11,44 +11,68 @@
     <title>FubuDocs</title>
     #{this.Asset('twitterbootstrap');}
     <Stylesheet href="fubuworld.core.css" />
+    <Script src="fubuworld.js" />
     <use content="head" />
     <Styles />
+    <link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet" type="text/css" media="screen">
   </head>
   <body data-spy="scroll" data-target=".bs-docs-sidebar">
-    <div id="diagnostic-menu" class="navbar navbar-fixed-top">
-      
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">
-            <Image src="fubuworld.png" />
-          </a>
-          !{this.TopTopicNavigation()}
-        </div>
-
-        
-      </div>
-    </div>
-    <use content="masthead" />
-    <div id="Content" class="container">
-
-      !{this.AuthoringTopic()}
-
+    <div class="container">
       <div class="row">
-        <div class="span3 bs-docs-sidebar">
-          <ul id="page-toc" class="nav nav-list bs-docs-sidenav affix">
-          </ul>
-
-          <br/>
-
-          !{this.LeftTopicNavigation()}
+        <div class="span6">
+          <p class="logo">
+            <a href="#">
+              <span>Fubu</span>
+            </a>
+          </p>
         </div>
-        <div class="span9">
-          !{this.Get<TopicTreeBuilder>().Title()}
-        !{Model.InnerContent}
-    </div>
+        <div class="span6">
+          <div class="top-header text-right">
+            <em>
+              Join our vibrant mailing list - <a href="#">fubumvc-devel</a>
+            </em>
+            <div class="social">
+              <a href="#" class="ico-google-plus">
+                <Image src="google-plus-icon.png" alt="Google Plus" />
+              </a>
+              <a href="http://twitter.com/fubumvc" class="ico-twitter">
+                <Image src="twitter-icon.png" alt="Twitter" />
+              </a>
+              <a href="http://github.com/DarthFubuMVC" class="ico-facebook">
+                <Image src="github-icon.png" alt="Github" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="nav-follow" class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            !{this.TopTopicNavigation()}
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <use content="masthead" />
+        !{this.AuthoringTopic()}
+
+        <div class="row">
+          <div class="span3 sidebar">
+            <h3 class="half-margin">Topics</h3>
+            <ul id="page-toc" class="nav nav-tabs nav-stacked affix">
+            </ul>
+            <br/>
+            !{this.LeftTopicNavigation()}
+          </div>
+          <div class="span9">
+            !{this.Get<TopicTreeBuilder>().Title()}
+             !{Model.InnerContent}
+            </div>
+        </div>
       </div>
     </div>
-
     <Script src="topics.js"/>
     <Scripts />
     <footer class="footer">

@@ -32,7 +32,7 @@ namespace FubuDocs.Navigation
 
             if (next != null)
             {
-                yield return new HtmlTag("h4").Text("Next");
+                yield return new HtmlTag("h3").AddClass("no-margin").Text("Next");
                 yield return new HtmlTag("p", tag => tag.Append(new TopicLinkTag(next, null)));
             }
 
@@ -40,7 +40,7 @@ namespace FubuDocs.Navigation
 
             if (previous != null)
             {
-                yield return new HtmlTag("h4").Text("Previous");
+                yield return new HtmlTag("h3").AddClass("no-margin").Text("Previous");
                 yield return new HtmlTag("p", tag => tag.Append(new TopicLinkTag(previous, null)));
             }
         }
@@ -49,7 +49,9 @@ namespace FubuDocs.Navigation
         {
             if (_topic == null) return new HtmlTag("div").Render(false);
 
-            return new TableOfContentsTag(_topic);
+            return new HtmlTag("div")
+                .Append("h2", h2 => h2.AddClass("half-margin").Text("Table of Contents"))
+                .Append(new TableOfContentsTag(_topic));
         }
     }
 

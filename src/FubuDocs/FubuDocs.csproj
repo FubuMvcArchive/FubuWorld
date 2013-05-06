@@ -159,9 +159,15 @@
     <Compile Include="Topics\TopicLoader.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\images\facebook-icon.png" />
     <Content Include="content\images\fubuproject.png" />
     <Content Include="content\images\fubuworld.png" />
+    <Content Include="content\images\github-icon.png" />
+    <Content Include="content\images\google-plus-icon.png" />
     <Content Include="content\images\header-bg.jpg" />
+    <Content Include="content\images\twitter-icon.png" />
+    <Content Include="content\scripts\build-status.js" />
+    <Content Include="content\scripts\fubuworld.js" />
     <Content Include="content\scripts\fubudocs-tools.js" />
     <Content Include="content\scripts\request-diagnostics.js" />
     <Content Include="content\scripts\snippets.js" />

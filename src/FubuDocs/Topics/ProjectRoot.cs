@@ -10,6 +10,12 @@ namespace FubuDocs.Topics
         public static readonly string File = "project.xml";
         private readonly IList<ProjectRoot> _plugins = new List<ProjectRoot>();
 
+        public ProjectRoot()
+        {
+            TagLine = "A member of the Fubu family of projects";
+        }
+
+        public string TagLine { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
         public string GitHubPage { get; set; }

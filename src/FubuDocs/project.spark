@@ -1,9 +1,4 @@
 ﻿<viewdata model="FubuDocs.Topics.ProjectRoot" />
-<p>!{Model.Description}</p>
-<p><a href="!{Model.GitHubPage}">Fork it on GitHub</a></p>
-<p><a href="!{Model.UserGroupUrl}">User Group</a></p>
-<p><a href="!{Model.BuildServerUrl}">TeamCity CI Build</a></p>
-
-<h4>Put the nugets here too?</h4>
-
-<hr></hr>
+<Script src="build-status.js" />
+<p class="lead tag-line half-margin">!{Model.TagLine}</p>
+<p class="margin">!{Model.Description}</p>
