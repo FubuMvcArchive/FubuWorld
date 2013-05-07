@@ -1,6 +1,8 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using FubuCore.CommandLine;
 
 namespace FubuDocsRunner.Exports
 {
@@ -43,6 +45,10 @@ namespace FubuDocsRunner.Exports
         public DownloadReport Execute()
         {
             var context = new DownloadContext(this, _source);
+
+            Console.WriteLine("Seeded with...");
+            _steps.Each(x => ConsoleWriter.WriteWithIndent(ConsoleColor.Cyan, 1, x.Token.Url));
+            ConsoleWriter.PrintHorizontalLine();
 
             while (true)
             {

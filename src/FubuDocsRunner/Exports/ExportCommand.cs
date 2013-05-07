@@ -45,12 +45,11 @@ namespace FubuDocsRunner.Exports
             {
                 _fileSystem.DeleteDirectory(input.Output);
 
-                FubuMode.Mode(FubuMode.Development);
-                using (var server = new FubuDocsApplication().BuildApplication().RunEmbedded(_solutionDirectory))
+                // TODO -- It sure would be nice to turn off the pre-compile work so we don't get a ton of console errors
+                using (var server = new FubuDocsExportingApplication(_solutionDirectory).BuildApplication().RunEmbedded(_solutionDirectory))
                 {
                     server.ExportTo(input.Output);
                 }  
-                FubuMode.Reset();
 
             }
             catch (Exception e)

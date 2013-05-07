@@ -39,7 +39,7 @@ namespace FubuDocsRunner.Exports
 
             _tokens.Fill(token);
 
-            if (token.TriggersDownloads)
+            if (!token.IsAsset)
             {
                 _plan.Add(new DownloadUrl(token, _source));
                 return;

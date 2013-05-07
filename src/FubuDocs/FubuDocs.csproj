@@ -187,7 +187,9 @@
     </Content>
     <Content Include="fubudocs.view.config" />
     <None Include="PoweredByFubu.spark" />
-    <None Include="project.spark" />
+    <None Include="project.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Shared\Application.spark">
       <SubType>Designer</SubType>
     </None>
