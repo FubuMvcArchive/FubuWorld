@@ -1,58 +1,21 @@
-﻿
-<viewdata model="FubuDocs.Topics.SplashChrome" />
+﻿<viewdata model="FubuDocs.Topics.SplashChrome" />
 <use namespace="FubuDocs.Navigation" />
+<use namespace="FubuDocs.Topics" />
 <use namespace="FubuMVC.TwitterBootstrap" />
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="description" content="FubuWorld" />
-    <meta name="author" content="FubuWorld" />
-    <title>FubuDocs</title>
-    #{this.Asset('twitterbootstrap');}
-    <Stylesheet href="fubuworld.core.css" />
-    <use content="head" />
-    <Styles />
+    <title>
+      !{this.Get<ITopicContext>().Project.Name}
+    </title>
+    <commonHeader />
   </head>
   <body data-spy="scroll" data-target=".bs-docs-sidebar">
-    <div id="diagnostic-menu" class="navbar navbar-fixed-top">
-      
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">
-            <Image src="fubuworld.png" />
-          </a>
-          TODO -- what is the navigation here?
-        </div>
-      </div>
+    <div class="container">
+      <Partial model="FubuDocs.Shared.TopNavigation" />
     </div>
-    <use content="masthead" />
-    
-    <div id="Content" class="container">
-        !{Model.InnerContent}
-    </div>
-
+    !{Model.InnerContent}
     <Script src="topics.js"/>
-    <Scripts />
-    <footer class="footer">
-      <div class="container">
-        <use content="footer" />
-        <p class="pull-right">
-          <a href="#">Back to top</a>
-        </p>
-        <p>
-          Powered by <a href="#">FubuMVC</a>.
-        </p>
-        <p>
-          Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>.
-        </p>
-      </div>
-    </footer>
-
+    <commonFooter />
   </body>
 </html>
-
-
-
-
-

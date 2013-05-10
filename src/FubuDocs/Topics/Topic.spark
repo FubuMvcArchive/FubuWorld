@@ -1,50 +1,19 @@
-﻿
-<viewdata model="FubuDocs.Topics.TopicChrome" />
+﻿<viewdata model="FubuDocs.Topics.TopicChrome" />
 <use namespace="FubuDocs.Navigation" />
+<use namespace="FubuDocs.Topics" />
 <use namespace="FubuMVC.TwitterBootstrap" />
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="description" content="FubuWorld" />
-    <meta name="author" content="FubuWorld" />
-    <title>FubuDocs</title>
-    #{this.Asset('twitterbootstrap');}
-    <Stylesheet href="fubuworld.core.css" />
-    <Script src="fubuworld.js" />
-    <use content="head" />
-    <Styles />
-    <link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet" type="text/css" media="screen">
+    <title>
+      !{this.Get<ITopicContext>().Current.Title} | !{this.Get<ITopicContext>().Project.Name}
+    </title>
+    <commonHeader />
   </head>
   <body data-spy="scroll" data-target=".bs-docs-sidebar">
     <div class="container">
-      <div class="row">
-        <div class="span6">
-          <p class="logo">
-            <a href="#">
-              <span>Fubu</span>
-            </a>
-          </p>
-        </div>
-        <div class="span6">
-          <div class="top-header text-right">
-            <em>
-              Join our vibrant mailing list - <a href="#">fubumvc-devel</a>
-            </em>
-            <div class="social">
-              <a href="#" class="ico-google-plus">
-                <Image src="google-plus-icon.png" alt="Google Plus" />
-              </a>
-              <a href="http://twitter.com/fubumvc" class="ico-twitter">
-                <Image src="twitter-icon.png" alt="Twitter" />
-              </a>
-              <a href="http://github.com/DarthFubuMVC" class="ico-facebook">
-                <Image src="github-icon.png" alt="Github" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      <Partial model="FubuDocs.Shared.TopNavigation" />
 
       <div id="nav-follow" class="navbar">
         <div class="navbar-inner">
@@ -74,26 +43,6 @@
       </div>
     </div>
     <Script src="topics.js"/>
-    <Scripts />
-    <footer class="footer">
-      <div class="container">
-        <use content="footer" />
-        <p class="pull-right">
-          <a href="#">Back to top</a>
-        </p>
-        <p>
-          Powered by <a href="#">FubuMVC</a>.
-        </p>
-        <p>
-          Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>.
-        </p>
-      </div>
-    </footer>
-
+    <commonFooter />
   </body>
 </html>
-
-
-
-
-

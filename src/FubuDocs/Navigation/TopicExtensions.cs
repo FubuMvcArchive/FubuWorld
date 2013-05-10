@@ -3,7 +3,9 @@ using System.Web;
 using FubuCore;
 using FubuDocs.Topics;
 using FubuMVC.CodeSnippets;
+using FubuMVC.Core.Registration;
 using FubuMVC.Core.UI;
+using FubuMVC.Core.Urls;
 using FubuMVC.Core.View;
 using HtmlTags;
 using System.Linq;
@@ -87,6 +89,42 @@ namespace FubuDocs.Navigation
             }
 
             return new LinkTag(project.Name, project.Home.AbsoluteUrl).Attr("title", project.Description);
+        }
+
+        public static string ProjectIndexUrl(this IFubuPage page, string name)
+        {
+            var project = TopicGraph.AllTopics.TryFindProject(name);
+            if (project == null)
+            {
+                return "#";
+            }
+
+            return project.Index.AbsoluteUrl;
+        }
+
+        public static HtmlTag RootLink(this IFubuPage page)
+        {
+            var root = page.Get<IUrlRegistry>().UrlFor<AllTopicsEndpoint>(x => x.get_topics());
+            return new HtmlTag("a")
+                .Attr("href", root)
+                .Attr("title", FubuDocKeys.Fubu)
+                .Append("span", span => span.Text(FubuDocKeys.Fubu));
+        }
+
+        public static HtmlTag ProjectLogo(this IFubuPage page)
+        {
+            var project = page.Get<ITopicContext>().Project;
+            if (project == null)
+            {
+                return new HtmlTag("div").Render(false);
+            }
+
+            // TODO -- Maybe include the project logo if it's specified?
+            return new HtmlTag("a")
+                .Attr("href", project.Home.AbsoluteUrl)
+                .Attr("title", project.TagLine)
+                .AddClass("project-logo")
+                .Append("span", span => span.Text(project.Name));
         }
     }
 

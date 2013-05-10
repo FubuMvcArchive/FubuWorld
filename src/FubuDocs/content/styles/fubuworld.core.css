@@ -553,13 +553,13 @@ body.boxed .nav-tabs .dropdown a.dropdown-toggle {
 	margin-right: -90px;
 	right: 50%;
 }
-.social .ico-facebook, .social .ico-twitter, .social .ico-google-plus, .social .ico-flickr, .social .ico-rss {
+.social .ico-github, .social .ico-twitter, .social .ico-google-plus, .social .ico-flickr, .social .ico-rss {
 	width: 30px;
 	height: 30px;
 	position: absolute;
 	top: 0px;
 }
-.social .ico-facebook {
+.social .ico-github {
 	right: 120px;
 }
 .social .ico-twitter {
@@ -574,7 +574,7 @@ body.boxed .nav-tabs .dropdown a.dropdown-toggle {
 .social .ico-rss {
 	right: 0px;
 }
-.social .ico-facebook img, .social .ico-twitter img, .social .ico-google-plus img, .social .ico-flickr img, .social .ico-rss img {
+.social .ico-github img, .social .ico-twitter img, .social .ico-google-plus img, .social .ico-flickr img, .social .ico-rss img {
 	width: 30px;
 	height: 30px;
 	background: #CCC;
@@ -623,7 +623,14 @@ body.boxed .nav-tabs .dropdown a.dropdown-toggle {
 	min-width: 110px;
     background: #C30;
 	display: inline-block;
+    box-shadow: 0 1px 1px #ccc !important;
 }
+
+.logo a.project-logo span {
+    background: #fff;
+    color: #c30;
+}
+
 .logo a img {
 	height: 100px;
 }
@@ -2557,4 +2564,8 @@ text-align: right;
 
 .tag-line {
     margin-top: -40px;
+}
+
+.text-center {
+text-align: center;
 }

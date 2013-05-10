@@ -66,6 +66,10 @@
     <None Include="splash.spark" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\images\ico-cog-big.png" />
+    <Content Include="content\images\ico-monitor-big.png" />
+    <Content Include="content\images\ico-pil-big.png" />
+    <Content Include="content\images\ico-vig-big.png" />
     <Content Include="Project.xml">
       <SubType>Designer</SubType>
     </Content>

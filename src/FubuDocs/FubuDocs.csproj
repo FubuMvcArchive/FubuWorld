@@ -117,6 +117,7 @@
     <Compile Include="Exporting\ExportAttribute.cs" />
     <Compile Include="Exporting\UrlList.cs" />
     <Compile Include="Exporting\UrlQueryEndpoint.cs" />
+    <Compile Include="FubuDocKeys.cs" />
     <Compile Include="FubuDocsExtension.cs" />
     <Compile Include="FubuWorldRegistry.cs" />
     <Compile Include="Infrastructure\Binders\RequestLogPropertyBinder.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Navigation\TopLeftTopicNavigationTag.cs" />
     <Compile Include="PoweredByFubu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\TopNavigation.cs" />
     <Compile Include="Snippets\SnippetRequest.cs" />
     <Compile Include="Snippets\SnippetEndpoints.cs" />
     <Compile Include="Snippets\SnippetsModel.cs" />
@@ -184,7 +186,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AllTopics.spark" />
+    <None Include="AllTopics.spark">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="fubudocs.asset.config">
       <SubType>Designer</SubType>
     </Content>
@@ -194,6 +198,15 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Shared\Application.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Shared\TopNavigation.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Shared\_commonFooter.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Shared\_commonHeader.spark">
       <SubType>Designer</SubType>
     </None>
     <None Include="Shared\Documentation.spark">
