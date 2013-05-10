@@ -23,7 +23,12 @@ namespace FubuDocs.Topics
         public string BuildServerUrl { get; set; }
         public string BottleName { get; set; }
 
-        public string PublishedNuspecs { get; set; }
+        /// <summary>
+        /// Use this to limit the nuspecs in the repository that are considered
+        /// relevant to what's documented by this doc project.  If blank, it 
+        /// gets everything but *.Docs projects
+        /// </summary>
+        public string NugetWhitelist { get; set; }
 
         public string PluginTo { get; set; }
 
@@ -35,6 +40,8 @@ namespace FubuDocs.Topics
 
         [XmlIgnore]
         public string Filename { get; set; }
+
+        public PublishedNuget[] Nugets { get; set; }
 
         public string Url { get; set; }
 

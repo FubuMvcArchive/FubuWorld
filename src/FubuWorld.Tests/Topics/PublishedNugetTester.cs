@@ -1,7 +1,10 @@
-﻿using FubuCore;
+﻿using System.Diagnostics;
+using FubuCore;
 using FubuDocs.Topics;
 using NUnit.Framework;
 using FubuTestingSupport;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FubuWorld.Tests.Topics
 {
@@ -40,6 +43,36 @@ namespace FubuWorld.Tests.Topics
 
             nuget.Name.ShouldEqual("FubuWorld.Docs");
             nuget.Description.ShouldEqual("Documentation for FubuWorld.Docs");
+        }
+
+        [Test]
+        public void read_into_a_project_with_no_whitelist()
+        {
+            var directory = ".".ToFullPath().ParentDirectory().ParentDirectory().ParentDirectory().ParentDirectory();
+            var project = new ProjectRoot();
+
+            PublishedNuget.GatherNugetsIntoProject(project,directory);
+
+            // There's a second nuspec for testing that throws this off
+            project.Nugets.Select(x => x.ToString()).ShouldHaveTheSameElementsAs(
+"Name: FubuWorld, Description: The core content bottle and infrastructure for the FubuWorld website"
+                );
+
+        }
+
+        [Test]
+        public void read_into_a_project_with_a_whitelist()
+        {
+            var directory = ".".ToFullPath().ParentDirectory().ParentDirectory().ParentDirectory().ParentDirectory();
+            var project = new ProjectRoot();
+            project.NugetWhitelist = "Sample.Docs, Imported.Docs";
+
+            PublishedNuget.GatherNugetsIntoProject(project, directory);
+
+            project.Nugets.Select(x => x.ToString()).ShouldHaveTheSameElementsAs(
+"Name: Imported.Docs, Description: Documentation for Imported.Docs",
+"Name: Sample.Docs, Description: Documentation for Sample.Docs"
+                );
         }
     }
 }
