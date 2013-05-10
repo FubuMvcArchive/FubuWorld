@@ -42,10 +42,27 @@ namespace FubuDocsRunner
 
             NuspecMaker.CreateNuspecIfMissing(directory);
 
+            gatherNuspecInformation(directory);
+
             if (!input.NoZipFlag)
             {
                 bottleItUp(directory);
             }
+        }
+
+        private static void gatherNuspecInformation(string directory)
+        {
+            string file = directory.AppendPath(ProjectRoot.File);
+            var project = ProjectRoot.LoadFrom(file);
+            var initial = project.Nugets;
+
+            PublishedNuget.GatherNugetsIntoProject(project, Environment.CurrentDirectory);
+            if (initial == null && project.Nugets != null || !Enumerable.SequenceEqual(initial, project.Nugets))
+            {
+                project.WriteTo(file);
+            }
+
+            
         }
 
         private static void writeIndexProjectFileIfNecessary(string directory)
