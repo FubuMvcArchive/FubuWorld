@@ -59,14 +59,14 @@ namespace FubuDocs.Navigation
                     .Attr("title", next.Title);
             }
 
-            Topic index = node.FindIndex();
-            if (index != null && !ReferenceEquals(node, index))
-            {
-                Add("li/a")
-                    .Attr("href", index.AbsoluteUrl)
-                    .Text("Index")
-                    .Attr("title", index.Title);
-            }
+            //Topic index = node.FindIndex();
+            //if (index != null && !ReferenceEquals(node, index))
+            //{
+            //    Add("li/a")
+            //        .Attr("href", index.AbsoluteUrl)
+            //        .Text("Index")
+            //        .Attr("title", index.Title);
+            //}
         }
     }
 }
