@@ -146,6 +146,7 @@
     <Compile Include="Topics\ITopicNode.cs" />
     <Compile Include="Topics\OrderedTopic.cs" />
     <Compile Include="Topics\ProjectRoot.cs" />
+    <Compile Include="Topics\PublishedNuget.cs" />
     <Compile Include="Topics\SparkTopicFile.cs" />
     <Compile Include="Topics\SplashChrome.cs" />
     <Compile Include="Topics\StringExtensions.cs" />

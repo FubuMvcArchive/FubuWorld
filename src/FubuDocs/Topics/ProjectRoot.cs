@@ -23,6 +23,8 @@ namespace FubuDocs.Topics
         public string BuildServerUrl { get; set; }
         public string BottleName { get; set; }
 
+        public string PublishedNuspecs { get; set; }
+
         public string PluginTo { get; set; }
 
         [XmlIgnore]
