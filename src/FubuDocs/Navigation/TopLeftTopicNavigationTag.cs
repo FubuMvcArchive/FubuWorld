@@ -13,13 +13,19 @@ namespace FubuDocs.Navigation
             current.AddClass("active");
 
             Append(current);
+
             Topic parent = node.Parent;
-            while (parent != null)
+            if (parent != null)
             {
                 var tag = new NamedTopicLinkTag(parent);
                 Children.Insert(0, tag);
+            }
 
-                parent = parent.Parent;
+            var index = node.FindIndex();
+            if (index != null && !ReferenceEquals(node, index) && !ReferenceEquals(index, parent))
+            {
+                var indexTag = new NamedTopicLinkTag(node.Project.Index);
+                Children.Insert(0, indexTag);
             }
         }
     }
