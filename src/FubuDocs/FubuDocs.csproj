@@ -175,6 +175,8 @@
     <Content Include="content\scripts\toastr.js" />
     <Content Include="content\scripts\topics.js" />
     <Content Include="content\styles\fubuworld.core.css" />
+    <Content Include="content\styles\sons-of-obsidian.css" />
+    <Content Include="content\styles\sunburst.css" />
     <Content Include="content\styles\toastr-responsive.css" />
     <Content Include="content\styles\toastr.css" />
     <Content Include="Shared\bindings.xml">

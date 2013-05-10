@@ -15,11 +15,7 @@ namespace FubuDocsRunner.Running
                                   .StructureMap(new Container())
                                   .Packages(x => {
                                       var directories = AppDomain.CurrentDomain.SetupInformation.AppDomainInitializerArguments;
-                                      if (directories != null)
-                                      {
-                                          directories.Each(directory=> x.Loader(new DocumentPackageLoader(directory)));
-                                      }
-
+                                      directories.Each(directory => x.Loader(new DocumentPackageLoader(directory)));
                                       x.Loader(new FubuDocsPackageLoader());
                                   });
         }

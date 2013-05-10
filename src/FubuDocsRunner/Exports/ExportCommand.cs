@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Threading.Tasks;
 using FubuCore;
 using FubuCore.CommandLine;
 using FubuDocsRunner.Running;
-using FubuMVC.Core;
 using FubuMVC.Katana;
 
 namespace FubuDocsRunner.Exports
@@ -14,6 +14,18 @@ namespace FubuDocsRunner.Exports
     {
         [Description("The directory to output the application")]
         public string Output { get; set; }
+        
+        [Description("Override the root path forcing all urls to be relative (e.g., 'make everything relative to /ripple')")]
+        [FlagAlias("root", 'r')]
+        public string RootPathFlag { get; set; }
+
+        public IEnumerable<IDownloadReportVisitor> Visitors()
+        {
+            if (RootPathFlag.IsNotEmpty())
+            {
+                yield return new OverrideRootPath(RootPathFlag);
+            }
+        }
     }
 
     [CommandDescription("Exports static html content for all of the documentation projects in the specified folder")]
@@ -47,9 +59,14 @@ namespace FubuDocsRunner.Exports
                 _fileSystem.DeleteDirectory(input.Output);
 
                 // TODO -- It sure would be nice to turn off the pre-compile work so we don't get a ton of console errors
-                using (var server = new FubuDocsExportingApplication(_solutionDirectory).BuildApplication().RunEmbedded(_solutionDirectory))
+                var application = new FubuDocsExportingApplication(_solutionDirectory).BuildApplication();
+                using (var server = application.RunEmbedded(_solutionDirectory))
                 {
-                    server.ExportTo(input.Output);
+                    server.Export(export =>
+                    {
+                        export.OutputTo(input.Output);
+                        input.Visitors().Each(export.AddVisitor);
+                    });
                 }  
 
             }

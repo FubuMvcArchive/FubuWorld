@@ -132,11 +132,13 @@
     <Compile Include="Exports\ExportApplication.cs" />
     <Compile Include="Exports\ExportCommand.cs" />
     <Compile Include="Exports\HtmlElement.cs" />
+    <Compile Include="Exports\IDownloadReportVisitor.cs" />
     <Compile Include="Exports\IDownloadStep.cs" />
     <Compile Include="Exports\IDownloadTokenStrategy.cs" />
     <Compile Include="Exports\IPageSource.cs" />
     <Compile Include="Exports\ItemDownloaded.cs" />
     <Compile Include="Exports\SmokeCommand.cs" />
+    <Compile Include="Exports\OverrideRootPath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Running\DocumentPackageLoader.cs" />

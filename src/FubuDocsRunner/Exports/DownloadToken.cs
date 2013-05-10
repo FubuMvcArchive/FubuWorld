@@ -115,5 +115,15 @@ namespace FubuDocsRunner.Exports
                 IsAsset = isAsset
             };
         }
+
+        public string RelativeUrlAt(string root)
+        {
+            if (!root.StartsWith("/"))
+            {
+                root = "/" + root;
+            }
+
+            return root.TrimEnd('/') + RelativeUrl;
+        }
     }
 }
