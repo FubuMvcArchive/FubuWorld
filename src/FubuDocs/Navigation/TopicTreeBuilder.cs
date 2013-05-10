@@ -16,7 +16,7 @@ namespace FubuDocs.Navigation
 
         public HtmlTag Title()
         {
-            return new HtmlTag("h1").Text(_topic.Title);
+            return new HtmlTag("h1").AddClass("no-margin").Text(_topic.Title).After(new HtmlTag("hr").AddClass("header-line"));
         }
 
         public IEnumerable<HtmlTag> BuildTopTopicLinks()

@@ -63,7 +63,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="5.ViewHelpers\TopicRelatedHelpers.spark" />
-    <None Include="splash.spark" />
+    <None Include="splash.spark">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\images\ico-cog-big.png" />

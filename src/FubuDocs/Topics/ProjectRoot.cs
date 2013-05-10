@@ -21,6 +21,7 @@ namespace FubuDocs.Topics
         public string GitHubPage { get; set; }
         public string UserGroupUrl { get; set; }
         public string BuildServerUrl { get; set; }
+        public string TeamCityBuildType { get; set; }
         public string BottleName { get; set; }
 
         /// <summary>

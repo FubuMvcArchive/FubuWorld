@@ -144,10 +144,6 @@ pre ul, pre ol {
 	right: -20px;
 }
 .label, .badge {
-	padding: 0px 5px;
-	background-color: #CCC;
-	font: 300 12px/30px Oswald, Arial, Helvetica, sans-serif;
-	text-transform: uppercase;
 	display: inline-block;
 }
 .lead {
@@ -2563,9 +2559,40 @@ text-align: right;
 }
 
 .tag-line {
-    margin-top: -40px;
+}
+
+.header-line {
+    margin-bottom:40px;
 }
 
 .text-center {
-text-align: center;
+    text-align: center;
+}
+
+.build-list {
+    list-style-type: none;
+    margin-left:0;
+}
+
+.build-list .btn {
+    width:100px;
+    padding: 0px 5px;
+    background-color: #CCC;
+    font: 300 16px/30px Oswald, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom:5px;
+    cursor:default;
+}
+
+.build-list .btn.build-success {
+    background-color: #468847;
+}
+
+.build-list .btn.build-failure {
+    background-color: #b94a48;
+}
+
+.no-release {
+    max-width: 175px;
 }
