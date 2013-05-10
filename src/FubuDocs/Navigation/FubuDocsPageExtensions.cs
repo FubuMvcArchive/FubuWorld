@@ -38,6 +38,10 @@ namespace FubuDocs.Navigation
                 firstLine.Add("span").AddClass("last-updated").Text("File changed at: " + lastUpdated).AddClass("file-changed");
 
                 var secondLine = tag.Add("div");
+                var toolsUrl = page.Urls.UrlFor<ToolsEndpoints>(x => x.get_tools());
+                secondLine.Add("a").Text("Tools").Attr("href", toolsUrl);
+                secondLine.Add("span").Text(" | ");
+
                 var projectUrl = page.Urls.UrlFor(new ProjectRequest {Name = context.Project.Name});
                 secondLine.Add("a").Text(context.Project.Name + " Project Page").Attr("href", projectUrl);
                 secondLine.Add("span").Text(" | ");
@@ -48,6 +52,10 @@ namespace FubuDocs.Navigation
 
                 var snippetsUrl = page.Urls.UrlFor<SnippetEndpoints>(x => x.get_snippets());
                 secondLine.Add("a").Text("Code Snippets").Attr("href", snippetsUrl);
+                secondLine.Add("span").Text(" | ");
+
+
+
             }
             else
             {
