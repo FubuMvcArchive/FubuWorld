@@ -16,6 +16,7 @@ namespace FubuDocsRunner.Exports
         public string Output { get; set; }
     }
 
+    [CommandDescription("Exports static html content for all of the documentation projects in the specified folder")]
     public class ExportCommand : FubuCommand<ExportInput>
     {
         private readonly IFileSystem _fileSystem = new FileSystem();
