@@ -19,8 +19,16 @@ namespace FubuDocsRunner.Exports
         [FlagAlias("root", 'r')]
         public string RootPathFlag { get; set; }
 
+        [Description("Output report of all downloaded files")]
+        public bool VerboseFlag { get; set; }
+
         public IEnumerable<IDownloadReportVisitor> Visitors()
         {
+            if (VerboseFlag)
+            {
+                yield return new DisplayDownloadReport();
+            }
+
             if (RootPathFlag.IsNotEmpty())
             {
                 yield return new OverrideRootPath(RootPathFlag);

@@ -8,6 +8,7 @@ namespace FubuDocsRunner.Exports
     public class DownloadToken
     {
         private static readonly object Lock = new object();
+
         private readonly FileSystem _fileSystem;
 
         private DownloadToken(string url, string[] parts, string localPath)
@@ -24,6 +25,8 @@ namespace FubuDocsRunner.Exports
         public string[] Parts { get; private set; }
         public string LocalPath { get; private set; }
         public bool IsAsset { get; private set; }
+
+        public string RootFolder { get { return Parts[0]; } }
 
         public string RelativeUrl
         {
@@ -116,14 +119,26 @@ namespace FubuDocsRunner.Exports
             };
         }
 
-        public string RelativeUrlAt(string root)
+        public DownloadToken RelativeAt(string root)
         {
             if (!root.StartsWith("/"))
             {
                 root = "/" + root;
             }
 
-            return root.TrimEnd('/') + RelativeUrl;
+            var relative = root.TrimEnd('/') + RelativeUrl;
+
+            return For(BaseUrl, relative);
+        }
+
+        public bool IsRelativeAt(string path)
+        {
+            return RelativeUrl.StartsWith(path);
+        }
+
+        public bool IsModifiable()
+        {
+            return LocalPath.ToLower().EndsWith(".html");
         }
     }
 }

@@ -5,13 +5,24 @@ namespace FubuDocsRunner.Exports
     public class ItemDownloaded : DescribesItself
     {
         private readonly DownloadToken _token;
+        private readonly string _outputDir;
         private readonly string _fullPath;
 
-        public ItemDownloaded(DownloadToken token, string fullPath)
+        public ItemDownloaded(DownloadToken token, string outputDir, string fullPath)
         {
             _token = token;
+            _outputDir = outputDir;
             _fullPath = fullPath;
         }
+
+        public DownloadToken Token { get { return _token; } }
+
+        public string OutputDir
+        {
+            get { return _outputDir; }
+        }
+
+        public string FullPath { get { return _fullPath; } }
 
         public void Describe(Description description)
         {
@@ -21,7 +32,7 @@ namespace FubuDocsRunner.Exports
 
         protected bool Equals(ItemDownloaded other)
         {
-            return _token.Equals(other._token) && string.Equals(_fullPath, other._fullPath);
+            return _token.Equals(other._token);
         }
 
         public override bool Equals(object obj)
@@ -36,7 +47,7 @@ namespace FubuDocsRunner.Exports
         {
             unchecked
             {
-                return (_token.GetHashCode() * 397) ^ _fullPath.GetHashCode();
+                return _token.GetHashCode();
             }
         }
     }

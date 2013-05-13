@@ -16,7 +16,7 @@
 	text-shadow: none !important;
 }
 body {
-	font: normal 12px/20px Arial, Helvetica, sans-serif;
+	font: normal 16px/24px Arial, Helvetica, sans-serif;
 	color: #666;
 	background-color: #F9F9F9;
 	overflow-x: hidden;
@@ -579,10 +579,10 @@ body.boxed .nav-tabs .dropdown a.dropdown-toggle {
 	top: 0px;
 	right: 0px;
 }
-.social .ico-facebook:hover, .social .ico-twitter:hover, .social .ico-google-plus:hover, .social .ico-flickr:hover, .social .ico-rss:hover {
+.social .ico-github:hover, .social .ico-twitter:hover, .social .ico-google-plus:hover, .social .ico-flickr:hover, .social .ico-rss:hover {
 	width: 40px;
 }
-.social .ico-facebook img:hover, .social .ico-twitter img:hover, .social .ico-google-plus img:hover, .social .ico-flickr img:hover, .social .ico-rss img:hover {
+.social .ico-github img:hover, .social .ico-twitter img:hover, .social .ico-google-plus img:hover, .social .ico-flickr img:hover, .social .ico-rss img:hover {
 	width: 40px;
 	height: 40px;
 	background: #333;

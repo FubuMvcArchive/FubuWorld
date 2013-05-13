@@ -46,7 +46,21 @@ namespace FubuWorld.Tests.Exports
         public void make_relative()
         {
             var token = DownloadToken.For("http://localhost:5500", "/_content/styles/default.css");
-            token.RelativeUrlAt("/ripple").ShouldEqual("/ripple/_content/styles/default.css");
+            token.RelativeAt("/ripple").RelativeUrl.ShouldEqual("/ripple/_content/styles/default.css");
+        }
+
+        [Test]
+        public void is_relative_at()
+        {
+            var token = DownloadToken.For("http://localhost", "/ripple/test");
+            token.IsRelativeAt("/ripple").ShouldBeTrue();
+        }
+
+        [Test]
+        public void is_relative_at_negative()
+        {
+            var token = DownloadToken.For("http://localhost", "/ripple/test");
+            token.IsRelativeAt("/test").ShouldBeFalse();
         }
     }
 }

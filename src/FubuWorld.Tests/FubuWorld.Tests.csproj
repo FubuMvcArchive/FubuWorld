@@ -119,6 +119,7 @@
     <Compile Include="debugging.cs" />
     <Compile Include="Exports\AnchorTagStrategyTester.cs" />
     <Compile Include="Exports\CssUrlStrategyTester.cs" />
+    <Compile Include="Exports\download_files_and_make_them_relative.cs" />
     <Compile Include="Exports\integrated_plan_execution_with_additonal_urls_and_assets.cs" />
     <Compile Include="Exports\DownloadTokenParserTester.cs" />
     <Compile Include="Exports\ImgTagStrategyTester.cs" />

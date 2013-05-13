@@ -30,7 +30,7 @@ namespace FubuDocsRunner.Exports
 
         public void ItemDownloaded(DownloadToken token, string path)
         {
-            _report.ItemDownloaded(new ItemDownloaded(token, path));
+            _report.ItemDownloaded(new ItemDownloaded(token, _plan.OutputDirectory, path));
         }
 
         public void QueueDownload(DownloadToken token)

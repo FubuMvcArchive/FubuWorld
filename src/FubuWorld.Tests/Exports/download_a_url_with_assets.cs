@@ -73,7 +73,7 @@ namespace FubuWorld.Tests.Exports
         [Test]
         public void reports_the_download_completed()
         {
-            theContext.Report.ShouldHaveTheSameElementsAs(new ItemDownloaded(theToken, theToken.GetLocalPath(theDirectory)));
+            theContext.Report.ShouldHaveTheSameElementsAs(new ItemDownloaded(theToken, theContext.Plan.OutputDirectory, theToken.GetLocalPath(theDirectory)));
         }
 
         [Test]
