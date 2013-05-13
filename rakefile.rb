@@ -153,6 +153,14 @@ def cleanFile(file)
   File.delete file unless !File.exist?(file)
 end
 
+desc "Recreates and installs the fubudocs gem locally for testing"
+task :local_gem => [:compile, :create_gem] do
+	sh 'gem uninstall fubudocs'
+	Dir.chdir 'pkg'
+	sh 'gem install fubudocs'
+	Dir.chdir '..'
+end
+
 desc "Creates the gem for fubudocs.exe"
 task :create_gem do
 	cleanDirectory 'lib'

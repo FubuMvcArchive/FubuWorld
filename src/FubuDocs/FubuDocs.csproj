@@ -217,9 +217,7 @@
     <None Include="Snippets\snippet.spark" />
     <None Include="Todos\todos.spark" />
     <None Include="Tools\Project.spark" />
-    <None Include="Tools\Tools.spark">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Tools\Tools.spark" />
     <None Include="Topics\Splash.spark">
       <SubType>Designer</SubType>
     </None>

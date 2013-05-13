@@ -1,5 +1,8 @@
-<markdown>
-<Section title="Starting a new Document Project" id="csproj">
+<markdown>  
+  <Section title="Starting a new Document Project" id="csproj">
+  
+  
+  
 Using <a href="https://github.com/DarthFubuMVC/fubucore">FubuCore</a> as an example solution, we followed these steps to create a new documentation project:
 
 TODO(Add a link to FubuDocsRunner)

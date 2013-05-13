@@ -3,7 +3,7 @@ GEM
   specs:
     albacore (0.3.5)
       rubyzip
-    rake (10.0.3)
+    rake (10.0.4)
     rubyzip (0.9.9)
 
 PLATFORMS
@@ -11,4 +11,4 @@ PLATFORMS
 
 DEPENDENCIES
   albacore
-  rake (= 10.0.3)
+  rake (~> 10.0.3)
