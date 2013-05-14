@@ -107,8 +107,8 @@ namespace FubuDocs.Navigation
             var root = page.Get<IUrlRegistry>().UrlFor<AllTopicsEndpoint>(x => x.get_topics());
             return new HtmlTag("a")
                 .Attr("href", root)
-                .Attr("title", FubuDocKeys.Fubu)
-                .Append("span", span => span.Text(FubuDocKeys.Fubu));
+                .Attr("title", FubuDocsKeys.Fubu)
+                .Append("span", span => span.Text(FubuDocsKeys.Fubu));
         }
 
         public static HtmlTag ProjectLogo(this IFubuPage page)

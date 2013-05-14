@@ -18,6 +18,7 @@ namespace FubuDocs.Topics
         public string TagLine { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
+        public string TwitterHandle { get; set; }
         public string GitHubPage { get; set; }
         public string UserGroupUrl { get; set; }
         public string BuildServerUrl { get; set; }

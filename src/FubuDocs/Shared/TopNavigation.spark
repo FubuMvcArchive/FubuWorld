@@ -12,18 +12,10 @@
   <div class="span6">
     <div class="top-header text-right">
       <em>
-        Join our vibrant mailing list - <a href="https://groups.google.com/forum/?fromgroups#!forum/fubumvc-devel">fubumvc-devel</a>
+        !{Model.MailingList}
       </em>
       <div class="social">
-        <a href="http://plus.google.com/communities/114015895720153100935" class="ico-google-plus">
-          <Image src="google-plus-icon.png" alt="Google Plus" />
-        </a>
-        <a href="http://twitter.com/fubumvc" class="ico-twitter">
-          <Image src="twitter-icon.png" alt="Twitter" />
-        </a>
-        <a href="http://github.com/DarthFubuMVC" class="ico-github">
-          <Image src="github-icon.png" alt="Github" />
-        </a>
+        !{Model.Social}
       </div>
     </div>
   </div>
