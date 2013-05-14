@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using FubuCore;
+using FubuMVC.Core.Runtime;
 
 namespace FubuDocsRunner.Exports
 {
@@ -56,7 +58,8 @@ namespace FubuDocsRunner.Exports
                     var file = directory;
                     attempts.Each(y => file = file.AppendPath(y));
 
-                    if (!_fileSystem.FileExists(file) && !Path.HasExtension(file))
+                    var isFile = attempts.Count == Parts.Length && Path.HasExtension(file);
+                    if (!_fileSystem.FileExists(file) && !isFile)
                     {
                         _fileSystem.CreateDirectory(file);
                     }
@@ -97,14 +100,16 @@ namespace FubuDocsRunner.Exports
             baseUrl = baseUrl.TrimEnd('/');
             relativePath = relativePath.Replace(baseUrl, "");
 
-            var isAsset = true;
+            //var isAsset = true;
             var url = baseUrl + relativePath;
-            var lastIndex = relativePath.LastIndexOf('.');
-            
-            if (lastIndex == -1)
+            //var lastIndex = relativePath.LastIndexOf('.');
+
+            // TODO -- This is naive. We might need to make the execution deferred and go off the mime type
+            var isAsset = relativePath.Contains("_content");
+
+            if (!isAsset)
             {
                 relativePath += "/index.html";
-                isAsset = false;
             }
 
             var parts = relativePath.TrimStart('/').Split(new [] { "/" }, StringSplitOptions.None);

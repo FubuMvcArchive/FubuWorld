@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FubuDocsRunner.Exports
 {
@@ -36,6 +37,12 @@ namespace FubuDocsRunner.Exports
         public void QueueDownload(DownloadToken token)
         {
             if (_tokens.Contains(token)) return;
+
+            if (token.RelativeUrl == "/_content/styles")
+            {
+                Console.WriteLine("Ignoring /_content/styles");
+                return;
+            }
 
             _tokens.Fill(token);
 
