@@ -23,7 +23,9 @@
           <h1 class="no-margin">What is it?</h1>
           <p class="lead no-margin">Can I use it too?</p>
           <br/>
+          <!-- SAMPLE: learn-more-->
           <a href="!{this.ProjectIndexUrl("fubudocs")}" class="btn btn-large btn-primary margin">Learn more</a>
+          <!-- ENDSAMPLE -->
         </div>
       <div class="clearfix"></div>
     </div>

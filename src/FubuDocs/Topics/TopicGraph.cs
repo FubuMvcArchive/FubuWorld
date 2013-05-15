@@ -18,6 +18,12 @@ namespace FubuDocs.Topics
         {
             _topicCache.OnMissing = key => {
                 var projectName = key.Split('/').First();
+
+                if (!_projects.Has(projectName))
+                {
+                    return null;
+                }
+
                 return _projects[projectName].FindByKey(key);
             };
         }

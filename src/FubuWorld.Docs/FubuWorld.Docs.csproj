@@ -43,26 +43,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="2.SplashPages.spark" />
-    <None Include="3.Topics\navigation.spark" />
-    <None Include="4.commands\2.bottling.spark" />
-    <None Include="4.commands\index.spark">
+    <None Include="2.splash.spark" />
+    <None Include="3.topics.spark" />
+    <None Include="4.samples.spark" />
+    <None Include="5.commands\2.bottling.spark" />
+    <None Include="5.commands\4.smoke.spark" />
+    <None Include="5.commands\5.exporting.spark" />
+    <None Include="5.commands\index.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="4.commands\3.running.spark">
+    <None Include="5.commands\3.running.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="4.commands\1.snippets.spark" />
-    <None Include="5.ViewHelpers\index.spark">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="5.commands\1.snippets.spark" />
+    <None Include="6.viewhelpers.spark" />
     <None Include="index.spark" />
     <None Include="1.starting.spark" />
-    <None Include="3.Topics\index.spark" />
-    <None Include="5.ViewHelpers\CodeSnippets.spark">
+    <None Include="5.codesnippets.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="5.ViewHelpers\TopicRelatedHelpers.spark" />
     <None Include="splash.spark">
       <SubType>Designer</SubType>
     </None>
