@@ -154,6 +154,7 @@
     <Compile Include="Topics\AddTopicsInput.cs" />
     <Compile Include="Topics\ITopicFileSystem.cs" />
     <Compile Include="Topics\ListCommand.cs" />
+    <Compile Include="Topics\ReorderCommand.cs" />
     <Compile Include="Topics\TodoTextReport.cs" />
     <Compile Include="Topics\TopicFileSystem.cs" />
     <Compile Include="Topics\TopicTextReport.cs" />
