@@ -75,26 +75,28 @@ namespace FubuDocsRunner.Topics
 
         private void reorderByFile(TopicToken[] topics)
         {
-            var file = Path.GetTempFileName().AppendPath(".txt");
+            var file = Path.GetTempFileName() + ".txt";
             ConsoleWriter.Write(ConsoleColor.White, "Generating and opening file " + file);
 
             new FileSystem().AlterFlatFile(file, list => list.AddRange(topics.Select(x => x.Key)));
 
             Process.Start(file);
             ConsoleWriter.Write(ConsoleColor.White, "After reordering the keys in the file, press any key to return");
-
-
             Console.ReadLine();
-            var newOrder = Console.ReadLine().ToDelimitedArray();
 
-            Console.WriteLine("Got:  " + newOrder.Join(", "));
-            Console.WriteLine("Enter 'accept' or 'reject'");
+            string[] newOrder = null;
 
+            Console.WriteLine("Enter 'accept' to accept or anything else to reject it");
+            new FileSystem().AlterFlatFile(file, list => newOrder = list.Where(x => x.IsNotEmpty()).ToArray());
+            ConsoleWriter.Write(ConsoleColor.Green,"Got: " + newOrder.Join(", "));
+
+            Console.WriteLine("Type 'accept' to accept the changes or anything else to reject the changes");
             var next = Console.ReadLine();
             try
             {
                 if (next == "accept")
                 {
+
                     reorder(topics, newOrder);
                 }
             }
