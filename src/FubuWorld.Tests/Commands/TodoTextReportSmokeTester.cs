@@ -1,4 +1,5 @@
-﻿using FubuCore;
+﻿using System.Diagnostics;
+using FubuCore;
 using FubuDocs.Topics;
 using FubuDocsRunner.Topics;
 using NUnit.Framework;

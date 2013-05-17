@@ -1,50 +1,76 @@
 ﻿using System;
-using System.Collections.Generic;
-using FubuCore.Util.TextWriting;
-using FubuDocs.Todos;
+using System.ComponentModel;
+using FubuCore.CommandLine;
 using FubuDocs.Topics;
-using FubuCore;
 
 namespace FubuDocsRunner.Topics
 {
-    public class ListCommand
+    [CommandDescription("Lists the topics and/or todo's in a document project directory")]
+    public class ListCommand : FubuCommand<ListInput>
     {
-         
-    }
-
-    public class TodoTextReport : TextReport
-    {
-        public TodoTextReport(string folder, IEnumerable<Topic> topics)
+        public ListCommand()
         {
-            AddDivider('-');
-            StartColumns(new Column(ColumnJustification.left, 0, 5),
-                new Column(ColumnJustification.right, 0, 5),
-                new Column(ColumnJustification.left, 0, 0)
-                );            
-            AddColumnData("File", "Line", "Message");
-            AddDivider('-');
+            Usage("Lists all the topics under this directory");
+            Usage("Lists the selected reports for the topics under this directory").Arguments(x => x.Mode);
+        }
 
-            var todos = TodoTask.FindAllTodos(topics);
+        public override bool Execute(ListInput input)
+        {
+            var folder = Environment.CurrentDirectory;
+            var projectFolder = TopicLoader.FindProjectRootFolder(folder);
+            if (projectFolder == null)
+            {
+                Console.WriteLine("Not in a document project folder");
+                return false;
+            }
 
-            todos.Each(todo => {
-                AddColumnData(todo.File.PathRelativeTo(folder), todo.Line.ToString(), todo.Message);
-            });
+            WriteProject(input, projectFolder);
+
+
+            return true;
+        }
+
+        public static void WriteProject(ListInput input, string projectFolder)
+        {
+            var project = TopicLoader.LoadFromFolder(projectFolder);
+            var topics = project.AllTopics();
+
+
+            ConsoleWriter.Write(ConsoleColor.Cyan, "Report for " + projectFolder);
+            Console.WriteLine();
+            if (input.Mode == ListMode.topics || input.Mode == ListMode.all)
+            {
+                new TopicTextReport(topics).WriteToConsole();
+            }
+
+            if (input.Mode == ListMode.all)
+            {
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
+            if (input.Mode == ListMode.all || input.Mode == ListMode.todo)
+            {
+                new TodoTextReport(projectFolder, topics).WriteToConsole();
+            }
         }
     }
 
-    public class TopicTextReport : TextReport
+    public enum ListMode
     {
+        topics,
+        all,
+        todo
+    }
 
-        public TopicTextReport(IEnumerable<Topic> topics)
+    public class ListInput
+    {
+        public ListInput()
         {
-            AddDivider('-');
-            StartColumns(3);
-            AddDivider('-');
-            AddColumnData("Url", "Title", "Key");
-            AddDivider('-');
-
-            topics.Each(topic => AddColumnData(topic.Url, topic.Title, topic.Key));
+            Mode = ListMode.topics;
         }
 
+        [Description("Choose what gets listed for the current document directory.  Default is 'topics'")]
+        public ListMode Mode { get; set; }
     }
 }

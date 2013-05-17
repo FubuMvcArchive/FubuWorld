@@ -150,6 +150,8 @@
     <Compile Include="Running\RunInput.cs" />
     <Compile Include="SnippetsCommand.cs" />
     <Compile Include="Topics\ListCommand.cs" />
+    <Compile Include="Topics\TodoTextReport.cs" />
+    <Compile Include="Topics\TopicTextReport.cs" />
     <Compile Include="WebsiteDirectoryFinder.cs" />
   </ItemGroup>
   <ItemGroup>
