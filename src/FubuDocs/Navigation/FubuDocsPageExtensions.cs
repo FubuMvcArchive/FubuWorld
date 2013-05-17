@@ -19,7 +19,13 @@ namespace FubuDocs.Navigation
              return new SectionTag(text, id).NoClosingTag();
          }
 
-        
+        public static bool ShouldRenderAuthoringTopic(this IFubuPage page)
+        {
+            if (!FubuMode.InDevelopment()) return false;
+
+            var context = page.Get<ITopicContext>();
+            return !context.File.Contains("fubu-content");
+        }
 
         public static HtmlTag AuthoringTopic(this IFubuPage page)
         {
@@ -54,7 +60,8 @@ namespace FubuDocs.Navigation
                 secondLine.Add("a").Text("Code Snippets").Attr("href", snippetsUrl);
                 secondLine.Add("span").Text(" | ");
 
-
+                var viewHelpersTag = page.LinkToExternalTopic("fubudocs/viewhelpers", "View Helpers").Attr("target", "_blank");
+                secondLine.Append(viewHelpersTag);
 
             }
             else
