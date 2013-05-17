@@ -65,6 +65,78 @@ namespace FubuDocsRunner.Topics
         void Reorder(TopicToken topicToken, int order);
     }
 
+    public class TopicFileSystem : ITopicFileSystem
+    {
+        private readonly string _directory;
+        private readonly IFileSystem _fileSystem = new FileSystem();
+
+        public TopicFileSystem(string directory)
+        {
+            _directory = directory;
+        }
+
+        public IEnumerable<TopicToken> ReadTopics()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTopic(TopicToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reorder(TopicToken topicToken, int order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string WriteFile(TopicToken token)
+        {
+            if (token.Type == TopicTokenType.File)
+            {
+                return writeNewFile(token);
+            }
+            else
+            {
+                return writeNewFolder(token);
+            }
+        }
+
+        private string writeNewFolder(TopicToken token)
+        {
+            var childFolder = _directory.AppendPath("{0}.{1}".ToFormat(token.Order, token.Key));
+            _fileSystem.CreateDirectory(childFolder);
+
+            var path = childFolder.AppendPath("index.spark");
+
+            writeTokenToFile(token, path);
+
+            return path;
+        }
+
+        private string writeNewFile(TopicToken token)
+        {
+            var filename = "{0}.{1}.spark".ToFormat(token.Order, token.Key);
+            var path = _directory.AppendPath(filename);
+
+            return writeTokenToFile(token, path);
+        }
+
+        private string writeTokenToFile(TopicToken token, string path)
+        {
+            _fileSystem.AlterFlatFile(path, list => {
+                list.Add("<!--Title: {0}-->".ToFormat(token.Title));
+                list.Add("");
+                list.Add("<markdown>");
+                list.Add("TODO(Write content!)");
+                list.Add("</markdown>");
+                list.Add("");
+            });
+
+            return path;
+        }
+    }
+
     public enum TopicTokenType
     {
         File,
