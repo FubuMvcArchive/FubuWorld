@@ -51,8 +51,14 @@ namespace FubuDocs.Topics
 
         public ProjectRoot LoadProject(string bottleName, string folder)
         {
-            ProjectRoot project = ProjectRoot.LoadFrom(folder.AppendPath(ProjectRoot.File));
             IEnumerable<ITopicFile> files = FindFilesFromBottle(bottleName);
+            ProjectRoot project = ProjectRoot.LoadFrom(folder.AppendPath(ProjectRoot.File));
+            
+            return CorrelateProject(project, files);
+        }
+
+        public static ProjectRoot CorrelateProject(ProjectRoot project, IEnumerable<ITopicFile> files)
+        {
             var folders = new Cache<string, TopicFolder>(raw => new TopicFolder(raw, project));
             files.GroupBy(x => (x.Folder ?? string.Empty)).Each(@group => {
                 TopicFolder topicFolder = folders[@group.Key];
