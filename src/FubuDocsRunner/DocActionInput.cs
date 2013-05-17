@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using FubuCore;
+using FubuDocs.Topics;
 using FubuDocsRunner.Running;
 
 namespace FubuDocsRunner
@@ -20,7 +21,7 @@ namespace FubuDocsRunner
                 return new[] {DirectoryFlag};
             }
 
-            return DocumentPackageLoader.FindDocumentDirectories(Environment.CurrentDirectory);
+            return TopicLoader.FindDocumentDirectories(Environment.CurrentDirectory);
         }
     }
 }

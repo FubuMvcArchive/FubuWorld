@@ -149,6 +149,7 @@
     <Compile Include="Running\RunFubuWorldRegistry.cs" />
     <Compile Include="Running\RunInput.cs" />
     <Compile Include="SnippetsCommand.cs" />
+    <Compile Include="Topics\ListCommand.cs" />
     <Compile Include="WebsiteDirectoryFinder.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,9 +183,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Topics\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

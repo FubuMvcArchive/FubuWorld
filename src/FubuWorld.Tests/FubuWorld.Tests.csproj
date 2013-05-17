@@ -116,6 +116,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\TopicTextReportSmokeTester.cs" />
     <Compile Include="debugging.cs" />
     <Compile Include="Exports\AnchorTagStrategyTester.cs" />
     <Compile Include="Exports\CssUrlStrategyTester.cs" />

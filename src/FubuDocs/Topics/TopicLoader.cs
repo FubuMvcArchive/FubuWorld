@@ -61,7 +61,7 @@ namespace FubuDocs.Topics
         public static ProjectRoot CorrelateProject(ProjectRoot project, IEnumerable<ITopicFile> files)
         {
             var folders = new Cache<string, TopicFolder>(raw => new TopicFolder(raw, project));
-            files.GroupBy(x => (x.Folder ?? string.Empty)).Each(@group => {
+            files.GroupBy(x => (x.Folder ?? String.Empty)).Each(@group => {
                 TopicFolder topicFolder = folders[@group.Key];
                 var folderTopics = @group.Select(file => new Topic(topicFolder, file)).ToArray();
 
@@ -77,7 +77,7 @@ namespace FubuDocs.Topics
             });
 
             folders.Each(x => {
-                if (x.Raw == string.Empty) return;
+                if (x.Raw == String.Empty) return;
 
                 string rawParent = x.Raw.ParentUrl();
 
@@ -85,7 +85,7 @@ namespace FubuDocs.Topics
                 folders.WithValue(rawParent, parent => parent.Add(x));
             });
 
-            TopicFolder masterFolder = folders[string.Empty];
+            TopicFolder masterFolder = folders[String.Empty];
             IEnumerable<Topic> topLevelSubjects = masterFolder.TopLevelTopics().ToArray();
             project.Index = topLevelSubjects.FirstOrDefault(x => x.IsIndex);
             project.Splash = project.Index.ChildNodes.FirstOrDefault(x => x.Key.EndsWith("/splash"));
@@ -105,10 +105,11 @@ namespace FubuDocs.Topics
         {
             var project = ProjectRoot.LoadFrom(folder.AppendPath(ProjectRoot.File));
 
-            var files = new FileSystem().FindFiles(folder, FileSet.Deep("*.spark")).Select(file => {
-                var template = new Template {FilePath = file, RootPath = folder};
-                return new SparkTopicFile(new ViewDescriptor<Template>(template));
-            });
+            var files = new FileSystem()
+                .FindFiles(folder, FileSet.Deep("*.spark"))
+                .Select(file => new Template {FilePath = file, RootPath = folder, ViewPath = file})
+                .Where(IsTopic)
+                .Select(x => new SparkTopicFile(new ViewDescriptor<Template>(x))).ToArray();
 
             CorrelateProject(project, files);
 
@@ -133,7 +134,12 @@ namespace FubuDocs.Topics
             return null;
         }
 
-        
+        public static IEnumerable<string> FindDocumentDirectories(string directory)
+        {
+            if (!Directory.Exists(directory.AppendPath("src"))) return new string[0];
+
+            return Directory.GetDirectories(directory.AppendPath("src"), "*.Docs", SearchOption.TopDirectoryOnly);
+        }
     }
 
     public static class TopicFilePathExtensions

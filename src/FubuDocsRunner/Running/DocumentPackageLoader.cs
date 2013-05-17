@@ -6,6 +6,7 @@ using Bottles;
 using Bottles.Diagnostics;
 using Bottles.Manifest;
 using FubuCore;
+using FubuDocs.Topics;
 
 namespace FubuDocsRunner.Running
 {
@@ -13,12 +14,7 @@ namespace FubuDocsRunner.Running
     {
         private readonly string _directory;
 
-        public static IEnumerable<string> FindDocumentDirectories(string directory)
-        {
-            if (!Directory.Exists(directory.AppendPath("src"))) return new string[0];
 
-            return Directory.GetDirectories(directory.AppendPath("src"), "*.Docs", SearchOption.TopDirectoryOnly);
-        } 
 
         public DocumentPackageLoader(string directory)
         {
@@ -28,7 +24,7 @@ namespace FubuDocsRunner.Running
         public IEnumerable<IPackageInfo> Load(IPackageLog log)
         {
             var reader = new PackageManifestReader(new FileSystem(), folder => folder);
-            var docDirs = FindDocumentDirectories(_directory);
+            var docDirs = TopicLoader.FindDocumentDirectories(_directory);
 
             return docDirs.Select(dir => {
                 return reader.LoadFromFolder(dir);
