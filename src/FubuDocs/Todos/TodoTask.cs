@@ -11,16 +11,18 @@ namespace FubuDocs.Todos
     {
         public static IEnumerable<TodoTask> FindAllTodos()
         {
-            var tasks = TopicGraph.AllTopics.AllPossibleTopics().Select(topic => {
-                return Task.Factory.StartNew(() => {
-                    return ReadTasks(topic).ToArray();
-                });
-            });
+            var topics = TopicGraph.AllTopics.AllPossibleTopics();
+            return FindAllTodos(topics);
+        }
+
+        public static IEnumerable<TodoTask> FindAllTodos(IEnumerable<Topic> topics)
+        {
+            var tasks = topics.Select(topic => { return Task.Factory.StartNew(() => { return ReadTasks(topic).ToArray(); }); });
 
             Task.WaitAll(tasks.ToArray());
 
             return tasks.SelectMany(x => x.Result);
-        } 
+        }
 
         public static IEnumerable<TodoTask> ReadTasks(Topic topic)
         {

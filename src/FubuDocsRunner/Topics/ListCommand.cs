@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using FubuCore.Util.TextWriting;
+using FubuDocs.Todos;
 using FubuDocs.Topics;
+using FubuCore;
 
 namespace FubuDocsRunner.Topics
 {
@@ -10,27 +12,39 @@ namespace FubuDocsRunner.Topics
          
     }
 
-    public class TopicTextReport
+    public class TodoTextReport : TextReport
     {
-        private readonly TextReport _report;
+        public TodoTextReport(string folder, IEnumerable<Topic> topics)
+        {
+            AddDivider('-');
+            StartColumns(new Column(ColumnJustification.left, 0, 5),
+                new Column(ColumnJustification.right, 0, 5),
+                new Column(ColumnJustification.left, 0, 0)
+                );            
+            AddColumnData("File", "Line", "Message");
+            AddDivider('-');
+
+            var todos = TodoTask.FindAllTodos(topics);
+
+            todos.Each(todo => {
+                AddColumnData(todo.File.PathRelativeTo(folder), todo.Line.ToString(), todo.Message);
+            });
+        }
+    }
+
+    public class TopicTextReport : TextReport
+    {
 
         public TopicTextReport(IEnumerable<Topic> topics)
         {
-            _report = new TextReport();
-            _report.AddDivider('-');
-            _report.StartColumns(3);
-            _report.AddDivider('-');
-            _report.AddColumnData("Url", "Title", "Key");
-            _report.AddDivider('-');
+            AddDivider('-');
+            StartColumns(3);
+            AddDivider('-');
+            AddColumnData("Url", "Title", "Key");
+            AddDivider('-');
 
-            topics.Each(topic => _report.AddColumnData(topic.Url, topic.Title, topic.Key));
-
-            
+            topics.Each(topic => AddColumnData(topic.Url, topic.Title, topic.Key));
         }
 
-        public void WriteToConsole()
-        {
-            _report.WriteToConsole();
-        }
     }
 }
