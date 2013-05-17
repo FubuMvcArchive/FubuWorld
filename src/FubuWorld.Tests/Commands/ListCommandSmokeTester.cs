@@ -34,5 +34,25 @@ namespace FubuWorld.Tests.Commands
 
             new ListCommand().Execute(new ListInput { Mode = ListMode.all });
         }
+
+        [Test]
+        public void write_topics_under_a_child_folder()
+        {
+            Environment.CurrentDirectory = ".".ToFullPath().ParentDirectory().ParentDirectory().ParentDirectory()
+                                              .AppendPath("Sample.Docs", "colors");
+
+            new ListCommand().Execute(new ListInput());
+        }
+
+        [Test]
+        public void write_topics_under_the_entire_tree()
+        {
+            Environment.CurrentDirectory = ".".ToFullPath()
+                                              .ParentDirectory().ParentDirectory() // project
+                                              .ParentDirectory()
+                                              .ParentDirectory(); // src
+
+            new ListCommand().Execute(new ListInput());
+        }
     }
 }

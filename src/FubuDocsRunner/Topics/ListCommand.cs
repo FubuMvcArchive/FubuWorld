@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using FubuCore.CommandLine;
 using FubuDocs.Topics;
+using System.Linq;
 
 namespace FubuDocsRunner.Topics
 {
@@ -20,20 +22,38 @@ namespace FubuDocsRunner.Topics
             var projectFolder = TopicLoader.FindProjectRootFolder(folder);
             if (projectFolder == null)
             {
-                Console.WriteLine("Not in a document project folder");
-                return false;
+                var docFolders = TopicLoader.FindDocumentDirectories(folder);
+                if (docFolders.Any())
+                {
+                    showAllFolders(input, docFolders);
+                    return true;
+                }
+                else
+                {
+                    ConsoleWriter.Write(ConsoleColor.Yellow, "No documentation projects found");
+                    return false;
+                }
             }
 
-            WriteProject(input, projectFolder);
+            WriteProject(input, projectFolder, x => x.File.FilePath.StartsWith(folder));
 
 
             return true;
         }
 
-        public static void WriteProject(ListInput input, string projectFolder)
+        private void showAllFolders(ListInput input, IEnumerable<string> docFolders)
+        {
+            docFolders.Each(dir => {
+                WriteProject(input, dir, x => true);
+                Console.WriteLine();
+                Console.WriteLine();
+            });
+        }
+
+        public static void WriteProject(ListInput input, string projectFolder, Func<Topic, bool> filter)
         {
             var project = TopicLoader.LoadFromFolder(projectFolder);
-            var topics = project.AllTopics();
+            var topics = project.AllTopics().Where(filter).ToArray();
 
 
             ConsoleWriter.Write(ConsoleColor.Cyan, "Report for " + projectFolder);
