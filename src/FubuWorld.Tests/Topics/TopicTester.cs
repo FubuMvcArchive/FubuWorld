@@ -333,5 +333,19 @@ namespace FubuWorld.Tests.Topics
 
             c.FindNext().ShouldBeNull();
         }
+
+        [Test]
+        public void compare_to()
+        {
+            Topic.CompareName("a", "b").ShouldEqual(-1);
+            Topic.CompareName("b", "a").ShouldEqual(1);
+            Topic.CompareName("a", "a").ShouldEqual(0);
+
+            Topic.CompareName("1.b", "2.a").ShouldEqual(-1);
+            Topic.CompareName("2.b", "1.a").ShouldEqual(1);
+
+            Topic.CompareName("10.a", "1.b").ShouldEqual(1);
+            Topic.CompareName("1.b", "10.a").ShouldEqual(-1);
+        }
     }
 }

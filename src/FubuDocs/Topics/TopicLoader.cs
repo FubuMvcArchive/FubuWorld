@@ -153,5 +153,13 @@ namespace FubuDocs.Topics
         {
             return File.Exists(folder.AppendPath("ripple.config"));
         }
+
+        public static int OrderPrefix(this string name)
+        {
+            var parts = name.Split('.');
+            var order = -1;
+
+            return int.TryParse(parts.First(), out order) ? order : -1;
+        }
     }
 }

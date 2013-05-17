@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using FubuCore;
+using FubuDocs.Topics;
 
 namespace FubuDocsRunner.Topics
 {
@@ -77,7 +79,45 @@ namespace FubuDocsRunner.Topics
 
         public IEnumerable<TopicToken> ReadTopics()
         {
-            throw new NotImplementedException();
+            var files = _fileSystem.FindFiles(_directory, FileSet.Shallow("*.spark"))
+                .Select(readFile);
+
+            var folders = Directory.GetDirectories(_directory, "*", SearchOption.TopDirectoryOnly)
+                .Select(readDirectory);
+
+            return files.Union(folders).OrderBy(x => x.Order);
+        }
+
+        private TopicToken readDirectory(string directory)
+        {
+            var indexPath = directory.AppendPath("index.spark");
+            if (!_fileSystem.FileExists(indexPath))
+            {
+                throw new NotSupportedException("You can only use batch topic actions on child folders with an index.spark file");
+            }
+
+            var keyParts = Path.GetFileName(directory).Split('.');
+            return new TopicToken
+            {
+                Key = keyParts.Last(),
+                Order = keyParts.Length > 1 ? int.Parse(keyParts.First()) : 0,
+                Type = TopicTokenType.Folder,
+                RelativePath = directory.PathRelativeTo(_directory),
+                Title = TopicBuilder.FindTitle(indexPath) ?? keyParts.Last()
+            };
+        }
+
+        private TopicToken readFile(string file)
+        {
+            var keyParts = Path.GetFileNameWithoutExtension(file).Split('.');
+            return new TopicToken
+            {
+                Key = keyParts.Last(),
+                Order = keyParts.Length > 1 ? int.Parse(keyParts.First()) : 0,
+                Type = TopicTokenType.File,
+                RelativePath = file.PathRelativeTo(_directory),
+                Title = TopicBuilder.FindTitle(file) ?? keyParts.Last()
+            };
         }
 
         public void AddTopic(TopicToken token)

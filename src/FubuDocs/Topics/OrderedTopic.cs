@@ -17,7 +17,7 @@ namespace FubuDocs.Topics
 
         public int CompareTo(OrderedTopic other)
         {
-            return Raw.CompareTo(other.Raw);
+            return Topic.CompareName(Raw, other.Raw);
         }
 
         public static string FindValue(string text)

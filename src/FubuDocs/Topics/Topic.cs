@@ -12,6 +12,19 @@ namespace FubuDocs.Topics
 {
     public class Topic : OrderedTopic, ITopicNode
     {
+        // -1 if first < second
+        // 1 if second > 1
+        // 0 if equal
+        public static int CompareName(string first, string second)
+        {
+            var n1 = first.OrderPrefix();
+            var n2 = second.OrderPrefix();
+
+            if (n1 > -1 && n2 > -1) return n1.CompareTo(n2);
+
+            return first.CompareTo(second);
+        }
+
         public static readonly string Index = "index";
         private Topic _firstChild;
         private Topic _next;

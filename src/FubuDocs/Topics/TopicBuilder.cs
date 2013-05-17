@@ -10,18 +10,34 @@ namespace FubuDocs.Topics
     {
         private static FileSystem FileSystem = new FileSystem();
 
+        public static string FindTitle(string filePath)
+        {
+            Func<string, bool> filter = x => x.StartsWith("Title:", StringComparison.OrdinalIgnoreCase);
+            IEnumerable<string> comments = findComments(filePath).ToArray();
+            var rawTitle = comments.FirstOrDefault(filter);
+            if (rawTitle != null)
+            {
+                var title = rawTitle.Split(':').Last().Trim();
+                return title;
+            } 
+
+            return null;
+        }
+
         public static void BuildOut(Topic topic)
         {
             topic.Url = topic.Key;
 
-            if (FileSystem.FileExists(topic.File.FilePath))
+            var filePath = topic.File.FilePath;
+            if (FileSystem.FileExists(filePath))
             {
                 Func<string, bool> filter = x => x.StartsWith("Title:", StringComparison.OrdinalIgnoreCase);
-                IEnumerable<string> comments = findComments(topic.File.FilePath).ToArray();
+                IEnumerable<string> comments = findComments(filePath).ToArray();
                 var rawTitle = comments.FirstOrDefault(filter);
                 if (rawTitle != null)
                 {
-                    topic.Title = rawTitle.Split(':').Last().Trim();
+                    var title = rawTitle.Split(':').Last().Trim();
+                    topic.Title = title;
                 }
 
                 if (!topic.IsIndex)

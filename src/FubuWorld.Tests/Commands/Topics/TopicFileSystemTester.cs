@@ -4,19 +4,20 @@ using FubuDocsRunner.Topics;
 using NUnit.Framework;
 using FubuCore;
 using FubuTestingSupport;
+using System.Collections.Generic;
 
 namespace FubuWorld.Tests.Commands.Topics
 {
     [TestFixture]
     public class TopicFileSystemTester
     {
-        private string _folder;
+        private const string _folder = "topic-files";
         private TopicFileSystem theTopicFiles;
 
         [SetUp]
         public void SetUp()
         {
-            _folder = Guid.NewGuid().ToString();
+            new FileSystem().CleanDirectory(_folder);
             new FileSystem().CreateDirectory(_folder);
 
             theTopicFiles = new TopicFileSystem(_folder);
@@ -63,6 +64,46 @@ namespace FubuWorld.Tests.Commands.Topics
             text.ShouldContain("<markdown>");
             text.ShouldContain("</markdown>");
             text.ShouldContain("TODO(Write content!)");
+        }
+
+        [Test]
+        public void reading_new_topic_files()
+        {
+            var topics = new TopicToken[]
+            {
+                new TopicToken
+                {
+                    Key = "foo",
+                    Title = "it's my foo",
+                    Order = 1,
+                    Type = TopicTokenType.Folder,
+                    RelativePath = "1.foo"
+                },
+
+                new TopicToken
+                {
+                    Key = "bar",
+                    Title = "it's my bar",
+                    Order = 2,
+                    Type = TopicTokenType.File,
+                    RelativePath = "2.bar.spark"
+                },
+
+                new TopicToken
+                {
+                    Key = "aaa",
+                    Title = "triple a",
+                    Order = 3,
+                    Type = TopicTokenType.File,
+                    RelativePath = "3.aaa.spark"
+                }
+            };
+
+            topics.Each(x => theTopicFiles.WriteFile(x));
+
+            var readTopics = theTopicFiles.ReadTopics();
+
+            readTopics.ShouldHaveTheSameElementsAs(topics);
         }
     }
 }
