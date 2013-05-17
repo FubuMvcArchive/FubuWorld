@@ -99,5 +99,19 @@ namespace FubuDocs.Topics
 
             return project;
         }
+
+        public static ProjectRoot LoadFromFolder(string folder)
+        {
+            var project = ProjectRoot.LoadFrom(folder.AppendPath(ProjectRoot.File));
+
+            var files = new FileSystem().FindFiles(folder, FileSet.Deep("*.spark")).Select(file => {
+                var template = new Template {FilePath = file, RootPath = folder};
+                return new SparkTopicFile(new ViewDescriptor<Template>(template));
+            });
+
+            CorrelateProject(project, files);
+
+            return project;
+        }
     }
 }
