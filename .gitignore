@@ -39,3 +39,6 @@ pkg
 pak-*.zip
 src/FubuDocsHarness/fubu-content
 logs
+src/FubuMVC.Plugin.Docs/snippets
+src/Imported.Docs/snippets
+src/Sample.Docs/snippets

@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ListCommandSmokeTester.cs" />
+    <Compile Include="Commands\SnippetsCommandSmokeTester.cs" />
     <Compile Include="Commands\TodoTextReportSmokeTester.cs" />
     <Compile Include="Commands\TopicTextReportSmokeTester.cs" />
     <Compile Include="debugging.cs" />

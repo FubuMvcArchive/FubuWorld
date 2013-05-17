@@ -20,6 +20,9 @@ namespace FubuDocsRunner
 
         [Description("Turns off most of the tracing messages")]
         public bool QuietFlag { get; set; }
+
+        [Description("Finds and lists all the existing code snippets, but does not execute anything")]
+        public bool ListFlag { get; set; }
     }
 
     [CommandDescription(
@@ -31,9 +34,38 @@ namespace FubuDocsRunner
 
         public override bool Execute(SnippetsInput input)
         {
-            input.DetermineDocumentsFolders().Each(dir => processDirectory(input, dir));
+            var documentsFolders = input.DetermineDocumentsFolders();
+
+            if (input.ListFlag)
+            {
+                writePreview(documentsFolders);
+
+                return true;
+            }
+
+
+            documentsFolders.Each(dir => processDirectory(input, dir));
 
             return true;
+        }
+
+        private static void writePreview(IEnumerable<string> documentsFolders)
+        {
+            ConsoleWriter.Write(ConsoleColor.Cyan, "Writing snippet preview, can take a little while to find the snippets....");
+            Console.WriteLine();
+
+            var snippets = documentsFolders.Select(buildCache).SelectMany(x => x.All())
+                                           .OrderBy(x => x.Name).GroupBy(x => x.Name + "/" + x.File).Select(x => x.First());
+
+            var report = new TextReport();
+            report.AddDivider('-');
+            report.StartColumns(2);
+            report.AddColumnData("Name", "File");
+            report.AddDivider('-');
+
+            snippets.Each(x => report.AddColumnData(x.Name, x.File.PathRelativeTo(Environment.CurrentDirectory)));
+
+            report.WriteToConsole();
         }
 
         private static void processDirectory(SnippetsInput input, string directory)
@@ -106,7 +138,8 @@ namespace FubuDocsRunner
                 new BlockCommentScanner("<!--", "-->", "html", "lang-html"),
                 new BlockCommentScanner("<!--", "-->", "xml", "lang-xml"),
                 new BlockCommentScanner("/*", "*/", "css", "lang-css"),
-                new RazorSnippetScanner()
+                new RazorSnippetScanner(),
+                new RubySnippetScanner(),
             };
 
             scanners.Each(finder => {
