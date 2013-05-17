@@ -149,7 +149,9 @@
     <Compile Include="Running\RunFubuWorldRegistry.cs" />
     <Compile Include="Running\RunInput.cs" />
     <Compile Include="SnippetsCommand.cs" />
+    <Compile Include="Topics\AddTopicsCommand.cs" />
     <Compile Include="Topics\BatchAdderController.cs" />
+    <Compile Include="Topics\AddTopicsInput.cs" />
     <Compile Include="Topics\ITopicFileSystem.cs" />
     <Compile Include="Topics\ListCommand.cs" />
     <Compile Include="Topics\TodoTextReport.cs" />
