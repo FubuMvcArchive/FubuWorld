@@ -105,5 +105,59 @@ namespace FubuWorld.Tests.Commands.Topics
 
             readTopics.ShouldHaveTheSameElementsAs(topics);
         }
+
+
+        [Test]
+        public void reorder_an_existing_topic_file()
+        {
+            var topics = new TopicToken[]
+            {
+                new TopicToken
+                {
+                    Key = "foo",
+                    Title = "it's my foo",
+                    Order = 1,
+                    Type = TopicTokenType.Folder,
+                    RelativePath = "1.foo"
+                },
+
+                new TopicToken
+                {
+                    Key = "bar",
+                    Title = "it's my bar",
+                    Order = 2,
+                    Type = TopicTokenType.File,
+                    RelativePath = "2.bar.spark"
+                },
+
+                new TopicToken
+                {
+                    Key = "aaa",
+                    Title = "triple a",
+                    Order = 3,
+                    Type = TopicTokenType.File,
+                    RelativePath = "3.aaa.spark"
+                }
+            };
+
+            topics.Each(x => theTopicFiles.WriteFile(x));
+
+            var theTopicGettingMoved = topics[2];
+            theTopicFiles.Reorder(theTopicGettingMoved, 2);
+
+            File.Exists(_folder.AppendPath("2.aaa.spark"))
+                .ShouldBeTrue();
+
+            File.Exists(_folder.AppendPath("3.aaa.spark"))
+                .ShouldBeFalse();
+
+            theTopicGettingMoved.Order.ShouldEqual(2);
+
+
+
+
+
+        }
+
     }
 }
