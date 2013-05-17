@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using FubuCore.Util;
 using FubuMVC.Core.Registration;
@@ -112,6 +113,39 @@ namespace FubuDocs.Topics
             CorrelateProject(project, files);
 
             return project;
+        }
+
+        public static string FindProjectRootFolder(string folder)
+        {
+            if (folder.IsDocProjectRoot()) return folder;
+
+            if (folder.Contains(".Docs"))
+            {
+                var parent = folder.ParentDirectory();
+                while (!parent.IsDocProjectRoot())
+                {
+                    parent = parent.ParentDirectory();
+                }
+
+                return parent;
+            }
+
+            return null;
+        }
+
+        
+    }
+
+    public static class TopicFilePathExtensions
+    {
+        public static bool IsDocProjectRoot(this string folder)
+        {
+            return folder.EndsWith(".Docs") && File.Exists(folder.AppendPath(ProjectRoot.File));
+        }
+
+        public static bool IsSolutionRoot(this string folder)
+        {
+            return File.Exists(folder.AppendPath("ripple.config"));
         }
     }
 }
