@@ -19,10 +19,12 @@ namespace FubuDocsRunner.Topics
 
         public IEnumerable<TopicToken> ReadTopics()
         {
-            var files = _fileSystem.FindFiles(_directory, FileSet.Shallow("*.spark"))
+            var files = _fileSystem.FindFiles(_directory, FileSet.Shallow("*.spark", "index.spark"))
                                    .Select(readFile);
 
             var folders = Directory.GetDirectories(_directory, "*", SearchOption.TopDirectoryOnly)
+                .Where(x => !Path.GetFileName(x).EqualsIgnoreCase("samples"))
+                .Where(x => !Path.GetFileName(x).EqualsIgnoreCase("examples"))
                                    .Select(readDirectory);
 
             return files.Union(folders).OrderBy(x => x.Order);
