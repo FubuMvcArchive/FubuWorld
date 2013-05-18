@@ -27,4 +27,9 @@
   <element name="ExternalTopicLink">this.LinkToExternalTopic('@name', '@title')</element>
 
   <element name="ProjectLink">this.ProjectLink('@name')</element>
+
+  <element name="Info">
+    <start>"&lt;div class=\"alert alert-info\"&gt;&lt;i class=\"icon-info-sign\"&gt;&lt;/i&gt;"</start>
+    <end>"&lt;/div&gt;"</end>
+  </element>
 </bindings>

@@ -1,6 +1,66 @@
 ﻿<!--Title: Topics-->
 
+
+
 <markdown>
 
-  TODO(Write content!)
+FubuDocs was heavily influenced by the navigation and organization structure from [readthedocs](https://readthedocs.org).  As such, we had a couple goals in mind:
+
+1. Make it easy and low ceremony to author content
+1. Provide a sensible and maintainable way to establish navigation and organizational structure
+1. Run the resulting website hosted in FubuMVC;-)
+
+To 
+
+<Info>
+FubuDocs uses <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a> for styling and layout
+</Info>
+
+<Section title="A Topic File" id="file">
+
+A topic file is just a text file with the <code>*.spark</code> file extension.  The structure of a topic file is going to follow the basic pattern shown below:
+
+<pre>
+&lt;!--Title: Some title--&gt;
+&lt;markdown&gt;
+
+Content here....
+
+&lt;/markdown&gt;
+</pre>
+
+The title of the topic is embedded as an HTML comment in the pattern <code>&lt;!--Title: [the title]--&gt;</code> anywhere in the file.  
+
+</Section>
+
+<Section title="How FubuDocs renders a Topic" id="rendering">
+
+</Section>
+
+<Section title="Sections within a Topic" id="sections">
+
+</Section>
+
+
+<Section title="Topic Url's" id="url">
+
+</Section>
+
+<Section title="Ordering Topics" id="ordering">
+
+</Section>
+
+<Section title="Topic Folders" id="folders">
+
+</Section>
+
+<Section title="Authoring Toolbar" id="authoring">
+
+</Section>
+
+<Section title="Sample Topic" id="sample">
+The markup for this page is shown below:
+<EmbedFile name="3.topics.spark" />
+</Section>
+
 </markdown>
