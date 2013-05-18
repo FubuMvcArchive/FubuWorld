@@ -43,7 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="2.splash.spark" />
+    <None Include="2.splashpages.spark" />
     <None Include="3.topics.spark" />
     <None Include="4.samples.spark" />
     <None Include="6.commands\2.bottling.spark" />
