@@ -4,12 +4,16 @@ The first step is to simply create a new Visual Studio project with the suffix _
 
 Assuming that you're using <ProjectLink name="FubuRake" /> for the build script, all you need to do is to follow the instructions at <ExternalTopicLink name="fuburake/fubudocs" title="Enabling FubuDocs with FubuRake" />.
   
-Before you run your new docs project for the first time, use either the <code>fubudocs bottle</code> command or the <code>rake docs:bottle</code> rake task to seed the new documentation project as a FubuDocs Bottle.  
-Running this command the first time will generate the project.xml file described in the next section and the "table of contents" page that you can alter later.
+You can immediately launch your new FubuDocs project in a FubuMVC hosted website by either running <code>fubudocs run</code> from the command line at the root of your source repository or by using the <code>rake docs:run</code> Rake task.
+FubuDocs will typically run your documentation website at <code>http://localhost:5050</code>, but the actual port number can vary if there's a conflict.
+
+There's no need to do anything else, but do note that the first time you run the documentation project, the <code>fubudocs run</code> command will
+call the <code>fubudocs bottle</code> command first to seed the documentation project with the project.xml file described in the next section and the "table of contents" page that you can alter later. 
 </Section>
 
 <Section title="project.xml" id="project-xml">
-FubuWorld looks for a file named "project.xml" in the root of each documentation project for data that is common to all documentation projects.  
+FubuWorld looks for a file named "project.xml" in the root of each documentation project for data that is common to all documentation projects.  This file contains metadata about the documentation project that FubuDocs uses to generate navigation elements and our standard project summary information.
+
 Again using FubuCore as an example, that file would look like the following:
 
 <EmbedFile name="sample-project.xml" />
