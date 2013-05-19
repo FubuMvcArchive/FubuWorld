@@ -46,10 +46,6 @@ namespace FubuDocsRunner.Exports
         {
             var context = new DownloadContext(this, _source);
 
-            Console.WriteLine("Seeded with...");
-            _steps.Each(x => ConsoleWriter.WriteWithIndent(ConsoleColor.Cyan, 1, x.Token.Url));
-            ConsoleWriter.PrintHorizontalLine();
-
             while (true)
             {
                 if (!_steps.Any())

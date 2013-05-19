@@ -78,7 +78,8 @@ namespace FubuDocsRunner.Exports
             }
 
             var relative = token.RelativeAt(_root);
-            var target = relative.GetLocalPath(item.OutputDir);
+            var current = Environment.CurrentDirectory;
+            var target = relative.GetLocalPath(current.AppendPath(item.OutputDir));
 
             if (_fileSystem.FileExists(target))
             {

@@ -126,13 +126,12 @@ namespace FubuDocsRunner.Exports
 
         public DownloadToken RelativeAt(string root)
         {
-            if (!root.StartsWith("/"))
+            if (!root.StartsWith("/") && !root.StartsWith("http"))
             {
                 root = "/" + root;
             }
 
             var relative = root.TrimEnd('/') + RelativeUrl;
-
             return For(BaseUrl, relative);
         }
 
