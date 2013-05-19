@@ -1,6 +1,6 @@
 <markdown>  
 <Section title="Starting a new Document Project" id="csproj">
-The first step is to simply create a new Visual Studio project with the suffix _.Docs_ like _FubuCore.Docs_ or _FubuMVC.Docs_.  You do not need any other references or nugets to get started, but you can add other dependencies for examples if you wish.
+The first step is to simply create a new Visual Studio class library project named with the suffix _.Docs_ like _FubuCore.Docs_ or _FubuMVC.Docs_.  You do not need any other references or nugets to get started, but you can add other dependencies as needed for authoring examples if you wish.  
 
 Assuming that you're using <ProjectLink name="FubuRake" /> for the build script, all you need to do is to follow the instructions at <ExternalTopicLink name="fuburake/fubudocs" title="Enabling FubuDocs with FubuRake" />.
   
