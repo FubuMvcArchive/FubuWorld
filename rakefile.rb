@@ -38,7 +38,7 @@ desc "**Default**, compiles and runs tests"
 task :default => [:compile, :unit_test]
 
 desc "Target used for the CI server"
-task :ci => [:update_all_dependencies, :default, :package]
+task :ci => [:update_all_dependencies, :default, :package, :archive_gem]
 
 desc "Update the version information for the build"
 assemblyinfo :version do |asm|
@@ -175,9 +175,6 @@ task :create_gem do
 	FileUtils.copy "#{dir}/FubuDocsRunner.exe", 'bin/fubudocs.exe'
 	FileUtils.copy 'fubudocs', 'bin'
 	
-	Rake::Task[:gem].invoke
-end
-
 	spec = Gem::Specification.new do |s|
 	  s.platform    = Gem::Platform::RUBY
 	  s.name        = 'fubudocs'
@@ -185,6 +182,7 @@ end
 	  s.files = Dir['bin/**/*']
 	  s.bindir = 'bin'
 	  s.executables << 'fubudocs'
+	  s.license = "Apache 2"
 	  
 	  s.summary     = 'fubudocs runner'
 	  s.description = 'FubuDocs is a tool for generating project documentation using the FubuMVC framework'
@@ -194,12 +192,33 @@ end
 	  s.homepage          = 'http://fubu-project.org'
 	  s.rubyforge_project = 'fubudocs'
 	end
-
-
-Gem::PackageTask.new(spec) do |pkg|
-  pkg.need_zip = true
-  pkg.need_tar = true
+	
+	Gem::PackageTask.new(spec) do |pkg|
+	  pkg.need_zip = true
+	  pkg.need_tar = true
+	end
+	
+	Rake::Task[:gem].invoke
 end
+
+desc "Replaces the existing installed gem with the new version for local testing"
+task :local_gem => [:create_gem] do
+	sh 'gem uninstall fubudocs'
+	Dir.chdir 'pkg'
+	sh 'gem install fubudocs'
+	Dir.chdir '..'
+end
+
+desc "Moves the gem to the archive folder"
+task :archive_gem => [:create_gem] do
+	copyOutputFiles "pkg", "*.gem", "artifacts"
+end
+
+
+
+
+
+
 
 
 
