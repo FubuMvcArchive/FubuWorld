@@ -1,6 +1,5 @@
 ﻿<!--Title: Reordering Topics within a Folder-->
 
-<markdown>
+<Command app="fubudocs" command="reorder">
 
-
-</markdown>
+</Command>

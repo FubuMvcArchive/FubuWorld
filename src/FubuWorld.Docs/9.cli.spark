@@ -23,6 +23,8 @@ Use the <code>&lt;Command&gt;</code> binding to embed the command line documenta
 
 <Snippet name="using-command-docs" />
 
+</Section>
+
 The usage above renders this:
 
 <!-- SAMPLE: using-command-docs -->
@@ -30,6 +32,4 @@ The usage above renders this:
 ....and write some prose here.......
 </Command>
 <!-- ENDSAMPLE -->
-</Section>
-
 </markdown>

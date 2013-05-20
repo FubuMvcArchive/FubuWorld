@@ -48,14 +48,6 @@
     <None Include="4.samples.spark" />
     <None Include="6.viewhelpers.spark" />
     <None Include="7.cli.spark" />
-    <None Include="8.commands\1.snippets.spark" />
-    <None Include="8.commands\2.bottling.spark" />
-    <None Include="8.commands\3.running.spark" />
-    <None Include="8.commands\4.smoke.spark" />
-    <None Include="8.commands\5.exporting.spark" />
-    <None Include="8.commands\6.addtopics.spark" />
-    <None Include="8.commands\7.reordering.spark" />
-    <None Include="8.commands\index.spark" />
     <None Include="index.spark" />
     <None Include="1.starting.spark" />
     <None Include="5.codesnippets.spark">

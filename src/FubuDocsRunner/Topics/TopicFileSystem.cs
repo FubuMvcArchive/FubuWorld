@@ -25,6 +25,9 @@ namespace FubuDocsRunner.Topics
             var folders = Directory.GetDirectories(_directory, "*", SearchOption.TopDirectoryOnly)
                 .Where(x => !Path.GetFileName(x).EqualsIgnoreCase("samples"))
                 .Where(x => !Path.GetFileName(x).EqualsIgnoreCase("examples"))
+                .Where(x => Path.GetDirectoryName(x) != "bin")
+                .Where(x => Path.GetDirectoryName(x) != "obj")
+                .Where(x => _fileSystem.FindFiles(x, FileSet.Shallow("*.spark")).Any())
                                    .Select(readDirectory);
 
             return files.Union(folders).OrderBy(x => x.Order);
