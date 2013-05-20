@@ -43,16 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="2.splashpages.spark" />
-    <None Include="3.topics.spark" />
-    <None Include="4.samples.spark" />
-    <None Include="6.viewhelpers.spark" />
-    <None Include="7.cli.spark" />
     <None Include="index.spark" />
-    <None Include="1.starting.spark" />
-    <None Include="5.codesnippets.spark">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="splash.spark">
       <SubType>Designer</SubType>
     </None>
