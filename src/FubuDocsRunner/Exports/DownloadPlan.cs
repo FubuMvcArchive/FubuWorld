@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using FubuCore;
 using FubuCore.CommandLine;
 
 namespace FubuDocsRunner.Exports
@@ -44,6 +45,8 @@ namespace FubuDocsRunner.Exports
 
         public DownloadReport Execute()
         {
+            Console.WriteLine("Exporting to " + _outputDirectory.ToFullPath());
+
             var context = new DownloadContext(this, _source);
 
             while (true)

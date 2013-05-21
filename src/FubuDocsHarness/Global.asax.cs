@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using FubuMVC.Core;
+using FubuMVC.Spark;
 using FubuMVC.StructureMap;
 using StructureMap;
 
@@ -15,7 +16,7 @@ namespace FubuDocsHarness
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            FubuApplication.DefaultPolicies().StructureMap(new Container()).Bootstrap();
+            FubuApplication.For<FubuDocsHarnessRegistry>().StructureMap(new Container()).Bootstrap();
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -46,6 +47,14 @@ namespace FubuDocsHarness
         protected void Application_End(object sender, EventArgs e)
         {
 
+        }
+    }
+
+    public class FubuDocsHarnessRegistry : FubuRegistry
+    {
+        public FubuDocsHarnessRegistry()
+        {
+            AlterSettings<SparkEngineSettings>(x => x.PrecompileViews = false);
         }
     }
 }
