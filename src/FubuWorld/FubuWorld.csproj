@@ -49,6 +49,9 @@
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore\lib\FubuCore.dll</HintPath>
     </Reference>
+    <Reference Include="FubuDocs">
+      <HintPath>..\packages\FubuDocs\lib\net40\FubuDocs.dll</HintPath>
+    </Reference>
     <Reference Include="FubuLocalization">
       <HintPath>..\packages\FubuLocalization\lib\FubuLocalization.dll</HintPath>
     </Reference>
@@ -177,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Home.spark" />
+    <Content Include="ripple.dependencies.config" />
     <None Include="Shared\Application.spark">
       <SubType>Designer</SubType>
     </None>
@@ -184,11 +188,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\Navigation\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FubuDocs\FubuDocs.csproj">
-      <Project>{88235A8D-937D-474D-9675-ECA446E01899}</Project>
-      <Name>FubuDocs</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>
