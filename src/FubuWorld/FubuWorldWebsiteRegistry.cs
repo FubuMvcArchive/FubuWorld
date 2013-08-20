@@ -3,13 +3,19 @@ using FubuWorld.Navigation;
 
 namespace FubuWorld
 {
-    public class FubuWorldWebsiteRegistry : FubuRegistry
+    public class FubuWorldWebsiteRegistry : FubuPackageRegistry
     {
         public FubuWorldWebsiteRegistry()
         {
-            Policies.Add<FubuWorldMenu>();
+            Policies.Add<FubuWorldMenu>(); 
+        }
+    }
 
-            Routes.HomeIs<HomeEndpoint>(x => x.Index());
+    public class FubuWorldExtensions : IFubuRegistryExtension
+    {
+        public void Configure(FubuRegistry registry)
+        {
+            registry.Routes.HomeIs<HomeEndpoint>(x => x.Index());
         }
     }
 }
