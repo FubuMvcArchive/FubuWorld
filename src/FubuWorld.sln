@@ -1,10 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuWorld", "FubuWorld\FubuWorld.csproj", "{6F5C4733-AF68-4591-9802-21425E6877C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuWorld.Tests", "FubuWorld.Tests\FubuWorld.Tests.csproj", "{80DC5E35-BD49-4647-BF5C-831D6EA3227A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuWorld.Docs", "FubuWorld.Docs\FubuWorld.Docs.csproj", "{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,16 +34,6 @@ Global
 		{80DC5E35-BD49-4647-BF5C-831D6EA3227A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{80DC5E35-BD49-4647-BF5C-831D6EA3227A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{80DC5E35-BD49-4647-BF5C-831D6EA3227A}.Release|x86.ActiveCfg = Release|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{8D41BF7E-B4B6-4CAF-8C7A-94D09B2F2826}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
