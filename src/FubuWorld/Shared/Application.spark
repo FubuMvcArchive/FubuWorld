@@ -10,8 +10,8 @@
       <use:title>FubuWorld</use:title>
     </title>
     #{this.Asset('twitterbootstrap');}
-    <Stylesheet href="fubuworld.core.css" />
-    <Script src="fubuworld.js" />
+    <Stylesheet href="fubudocs.core.css" />
+    <Script src="fubudocs.js" />
     <use content="head" />
     <Styles />
     <link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet" type="text/css" media="screen">
