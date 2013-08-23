@@ -42,7 +42,7 @@
                     <Image src="missing.png" />
                     <div class="framework">
                         <h3>StructureMap</h3>
-                        <p>A Dependency Injection/Inversion of Control tool for .NET</p>
+                        <p>The Original Dependency Injection/Inversion of Control tool for .NET</p>
                     </div>
                 </li>
             </ul>
