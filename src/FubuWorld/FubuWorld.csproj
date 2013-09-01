@@ -4,7 +4,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F5C4733-AF68-4591-9802-21425E6877C4}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -14,8 +15,10 @@
     <AssemblyName>FubuWorld</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
-    <FileUpgradeFlags></FileUpgradeFlags>
-    <UpgradeBackupLocation></UpgradeBackupLocation>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -127,11 +130,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FubuWorldWebsiteApplication.cs" />
-    <Compile Include="FubuWorldWebsiteRegistry.cs" />
-    <Compile Include="HomeEndpoint.cs" />
-    <Compile Include="Navigation\FubuWorldMenu.cs" />
-    <Compile Include="Navigation\FubuWorldKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -145,9 +143,6 @@
     <Content Include="content\scripts\toastr.js" />
     <Content Include="content\scripts\topics.js" />
     <Content Include="content\styles\home.css" />
-    <Content Include="website.asset.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -167,7 +162,8 @@
           <IISUrl>http://localhost/fubuworld</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
@@ -190,14 +186,16 @@
     <EmbeddedResource Include="pak-Config.zip" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Home.spark" />
-    <Content Include="ripple.dependencies.config" />
-    <None Include="Shared\Application.spark">
+    <None Include="Index.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Shared\_global.spark" />
+    <Content Include="fubudocs.theme.css" />
+    <Content Include="ripple.dependencies.config" />
+    <None Include="Theme\NavigationBar.spark" />
+    <None Include="Theme\SplashChrome.spark" />
+    <None Include="Theme\TopicChrome.spark" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Shared\Navigation\" />
+    <Folder Include="Shared\" />
   </ItemGroup>
 </Project>
