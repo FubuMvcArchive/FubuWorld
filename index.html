@@ -1,74 +1,92 @@
-<!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Fubuworld : Welcome to the world of Fubu" />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Fubuworld</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/DarthFubuMVC/FubuWorld">View on GitHub</a>
-
-          <h1 id="project_title">Fubuworld</h1>
-          <h2 id="project_tagline">Welcome to the world of Fubu</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/DarthFubuMVC/FubuWorld/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/DarthFubuMVC/FubuWorld/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Fubuworld maintained by <a href="https://github.com/DarthFubuMVC">DarthFubuMVC</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
     
+    
+<meta charset="utf-8"/>
+<meta name="description" content="FubuDocs"/>
+<meta name="author" content="FubuDocs"/>
+
+
+
+<link href="_content/styles/fubudocs.theme.css" rel="stylesheet" type="text/css" />
+<link href="_content/styles/home.css" rel="stylesheet" type="text/css" />
+<link href="_content/styles/toastr.css" rel="stylesheet" type="text/css" />
+<link href="_content/styles/twitter/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="_content/styles/twitter/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+<link href="_content/styles/toastr-responsive.css" rel="stylesheet" type="text/css" />
+<link href="_content/styles/fubudocs.core.css" rel="stylesheet" type="text/css" />
+
+<link media="screen" type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300">
+
+  </head>
+  <body>
+    <div class="jumbotron subhead masthead">
+      <div class="container">
+        <h1>Frameworks For Us, By Us.</h1>
+        <p>Frictionless, compositional, and compile-safe frameworks that bring the love back to .NET.</p>
+      </div>
+    </div>
+
+    <div class="marketing">
+      <h1>The world of Fubu</h1>
+      <p class="marketing-byline">A brief outline of the Fubu ecosystem.</p>
+      <div class="row-fluid">
+        <div class="span5 framework-category">
+          <h2>Foundational</h2>
+          <ul class="framework-list">
+            <li>
+              <img src="_content/images/FubuCore_32.png" />
+              <div class="framework">
+                <h3>FubuCore</h3>
+                <p>A foundational library for .Net frameworks including model binding and localization</p>
+              </div>
+            </li>
+            <li>
+              <img src="_content/images/FubuBottles_32.png" />
+              <div class="framework">
+                <h3>Bottles</h3>
+                <p>Shared libraries for runtime and deployment packaging of .Net applications</p>
+              </div>
+            </li>
+            <li>
+              <img src="_content/images/FubuLocalization_321.png" />
+              <div class="framework">
+                <h3>FubuLocalization</h3>
+                <p>Compact core library for Localization</p>
+              </div>
+            </li>
+            <li>
+              <img src="_content/images/missing.png" />
+              <div class="framework">
+                <h3>StructureMap</h3>
+                <p>The Original Dependency Injection/Inversion of Control tool for .NET</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="span2">&nbsp;</div>
+        <div class="span5 framework-category">
+          <h2>Web Development</h2>
+          <ul class="framework-list">
+            <li>
+              <img src="_content/images/FubuMvc_321.png" />
+              <div class="framework">
+                <h3>FubuMVC</h3>
+                <p>The MVC framwork that gets out of your way</p>
+              </div>
+            </li>
+            <li>
+              <img src="_content/images/FubuHtml_32.png" />
+              <div class="framework">
+                <h3>HtmlTags</h3>
+                <p>NET objects for generating HTML</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
 
   </body>
 </html>
