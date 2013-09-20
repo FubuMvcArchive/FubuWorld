@@ -23,4 +23,8 @@ end
 	sln.fubudocs_enabled = true
     
     sln.assembly_bottle 'FubuWorld'
+	
+	# TODO -- add this later:  , :include_in_ci => true
+	sln.export_docs({:repository => 'git@github.com:DarthFubuMVC/FubuRelease.git', :host => 'src/FubuWorld', :prefix => 'website'})
+	sln.export_docs({:repository => 'git@github.com:DarthFubuMVC/darthfubumvc.github.io.git', :host => 'src/FubuWorld', :branch => 'master'})
 end
