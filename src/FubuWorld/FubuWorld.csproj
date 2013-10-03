@@ -4,8 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F5C4733-AF68-4591-9802-21425E6877C4}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -15,10 +14,8 @@
     <AssemblyName>FubuWorld</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <UpgradeBackupLocation></UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -58,8 +55,14 @@
     <Reference Include="FubuDocs">
       <HintPath>..\packages\FubuDocs\lib\net40\FubuDocs.dll</HintPath>
     </Reference>
+    <Reference Include="FubuDocs.Docs">
+      <HintPath>..\packages\FubuDocs.Docs\lib\net40\FubuDocs.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="FubuLocalization">
       <HintPath>..\packages\FubuLocalization\lib\FubuLocalization.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuLocalization.Docs">
+      <HintPath>..\packages\FubuLocalization.Docs\lib\net40\FubuLocalization.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.CodeSnippets">
       <HintPath>..\packages\FubuMVC.CodeSnippets\lib\net40\FubuMVC.CodeSnippets.dll</HintPath>
@@ -103,6 +106,12 @@
     <Reference Include="FubuMVC.TwitterBootstrap">
       <HintPath>..\packages\FubuMVC.TwitterBootstrap\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="FubuRake.Docs">
+      <HintPath>..\packages\FubuRake.Docs\lib\net40\FubuRake.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuValidation.Docs">
+      <HintPath>..\packages\FubuValidation.Docs\lib\net40\FubuValidation.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlTags">
       <HintPath>..\packages\HtmlTags\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
@@ -110,6 +119,9 @@
       <HintPath>..\packages\HtmlTags.Docs\lib\net40\HtmlTags.Docs.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ripple.Docs">
+      <HintPath>..\packages\ripple.Docs\lib\net40\ripple.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="Spark">
       <HintPath>..\packages\Spark\lib\NET40\Spark.dll</HintPath>
     </Reference>
@@ -143,6 +155,7 @@
     <Content Include="content\scripts\toastr.js" />
     <Content Include="content\scripts\topics.js" />
     <Content Include="content\styles\home.css" />
+    <Content Include="Shared\bindings.xml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -162,8 +175,7 @@
           <IISUrl>http://localhost/fubuworld</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
@@ -189,13 +201,10 @@
     <None Include="Index.spark">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="fubudocs.theme.css" />
     <Content Include="ripple.dependencies.config" />
-    <None Include="Theme\NavigationBar.spark" />
-    <None Include="Theme\SplashChrome.spark" />
-    <None Include="Theme\TopicChrome.spark" />
+    <None Include="Roadmap.spark">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shared\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

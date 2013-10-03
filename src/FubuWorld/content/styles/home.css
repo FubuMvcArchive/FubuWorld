@@ -27,3 +27,23 @@
     font-size: 16px;
     font-style: italic;
 }
+
+.marketing-links a {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+div.marketing-links {
+    background-color: lightgrey;
+    padding-top: 3px;
+    margin-bottom: 10px;
+}
+
+body {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.jumbotron h1 {
+    color: white;
+}

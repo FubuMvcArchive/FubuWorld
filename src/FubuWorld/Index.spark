@@ -1,77 +1,83 @@
 ﻿<html>
-  <head>
-    <Stylesheet href="home.css" />
-    <commonHeader/>
+    <head>
+        <Stylesheet href="home.css" />
+        <commonHeader/>
 
-  </head>
-  <body>
-    <div class="jumbotron subhead masthead">
-      <div class="container">
-        <h1>Frameworks For Us, By Us.</h1>
-        <p>Frictionless, compositional, and compile-safe frameworks that bring the love back to .NET.</p>
-      </div>
-    </div>
-
-    <div class="marketing">
-      <h1>The world of Fubu</h1>
-      <p class="marketing-byline">A brief outline of the Fubu ecosystem.</p>
-      <div class="row-fluid">
-        <div class="span5 framework-category">
-          <h2>Foundational</h2>
-          <ul class="framework-list">
-            <li>
-              <Image src="FubuCore_32.png" />
-              <div class="framework">
-                <h3>FubuCore</h3>
-                <p>A foundational library for .Net frameworks including model binding and localization</p>
-              </div>
-            </li>
-            <li>
-              <Image src="FubuBottles_32.png" />
-              <div class="framework">
-                <h3>Bottles</h3>
-                <p>Shared libraries for runtime and deployment packaging of .Net applications</p>
-              </div>
-            </li>
-            <li>
-              <Image src="FubuLocalization_321.png" />
-              <div class="framework">
-                <h3>FubuLocalization</h3>
-                <p>Compact core library for Localization</p>
-              </div>
-            </li>
-            <li>
-              <Image src="missing.png" />
-              <div class="framework">
-                <h3>StructureMap</h3>
-                <p>The Original Dependency Injection/Inversion of Control tool for .NET</p>
-              </div>
-            </li>
-          </ul>
+    </head>
+    <body>
+        <div class="jumbotron subhead masthead">
+            <div class="container">
+                <h1>Frameworks For Us, By Us.</h1>
+                <p>Frictionless, compositional, and compile-safe frameworks that bring the love back to .NET.</p>
+            </div>
         </div>
-        <div class="span2">&nbsp;</div>
-        <div class="span5 framework-category">
-          <h2>Web Development</h2>
-          <ul class="framework-list">
-            <li>
-              <Image src="FubuMvc_321.png" />
-              <div class="framework">
-                <h3>FubuMVC</h3>
-                <p>The MVC framwork that gets out of your way</p>
-              </div>
-            </li>
-            <li>
-              <Image src="FubuHtml_32.png" />
-              <div class="framework">
-                <h3>HtmlTags</h3>
-                <p>NET objects for generating HTML</p>
-              </div>
-            </li>
-          </ul>
+
+        <div class="marketing">
+            <div class="row-fluid marketing-links">
+                <p class="text-center"><a>The Fubu Community</a><a>Contributing</a><a>Recent Releases</a><a href="/topics">All Projects</a></p>
+            </div>
+			
+            <BlurbRow>
+                <Blurb title="Web Applications">
+                    Build compositional web applications with <ProjectLink name="FubuMVC"/>.  Easy Html generation with the reusable <ProjectLink name="HtmlTags"/> library.
+                </Blurb>  
+				  
+                <Blurb title="Event Based Architecture">
+                    Some descriptive text, <ProjectLink name="FubuTransportation"/>, mention LightningQueues as well.
+                </Blurb>
+				  
+                <Blurb title="Foundational Tools">
+                    Link to <ProjectLink name="StructureMap" />, Link to <ProjectLink name="FubuCore" />, but with some specific topic links probably
+                </Blurb>
+				  
+                <Blurb title="Automated Testing">
+                    Link to Storyteller, FubuTestingSupport, and Serenity
+                </Blurb>
+            </BlurbRow>
+			
+            <BlurbRow>
+                <Blurb title="Build Automation">
+                    Link to <ProjectLink name="FubuRake"/>
+                </Blurb>  
+				  
+                <Blurb title="Dependency Management">
+                    Link to <ProjectLink name="ripple"/>
+                </Blurb>
+				  
+                <Blurb title="Console Applications">
+                    Link to the cli support in FubuCore
+                </Blurb>
+				  
+                <Blurb title="Windows Services">
+                    Link to BottleServiceRunner topic and mention TopShelf
+                </Blurb>
+            </BlurbRow>
+			  
+
+            <BlurbRow>
+                <Blurb title="Documentation Generation">
+                    <ProjectLink name="FubuDocs"/>!
+                </Blurb>  
+				  
+                <Blurb title="Extensibility">
+                    Link to <ProjectLink name="Bottles"/>
+                </Blurb>
+				  
+                <Blurb title="Validation">
+                    Link to <ProjectLink name="FubuValidation"/>, link to the topics on FubuMVC.Validation, integration w/ client side JS too
+                </Blurb>
+				  
+                <Blurb title="Localization">
+                    Link to <ProjectLink name="FubuLocalization"/>, link to the localization integration w/ FubuMVC, extending localization
+                </Blurb>
+            </BlurbRow>
+			  
+
         </div>
-      </div>
-    </div>
+	
+	
 
 
-  </body>
+        <commonFooter/>
+    </body>
 </html>

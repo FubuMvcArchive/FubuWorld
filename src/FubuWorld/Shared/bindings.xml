@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<bindings>
+
+  <element name="Blurb">
+    <start>"&lt;li class=\"span3\" style=\"opacity: 1;\"&gt;&lt;div class=\"text-center\"&gt;&lt;br&gt;&lt;a href=\"#\" class=\"btn half-margin\"&gt;@title&lt;/a&gt;&lt;p class=\"caption\"&gt;"</start>
+    <end>"&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;"</end>
+  </element>
+
+  <element name="BlurbRow">
+    <start>"&lt;div class=\"row-fluid\"&gt;&lt;ul class=\"thumbnails\"&gt;"</start>
+    <end>"&lt;/ul&gt;&lt;/div&gt;"</end>
+  </element>
+</bindings>
