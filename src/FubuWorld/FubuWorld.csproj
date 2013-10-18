@@ -4,8 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F5C4733-AF68-4591-9802-21425E6877C4}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -15,10 +14,8 @@
     <AssemblyName>FubuWorld</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <UpgradeBackupLocation></UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -57,6 +54,9 @@
     </Reference>
     <Reference Include="FubuCore.Docs">
       <HintPath>..\packages\FubuCore.Docs\lib\net40\FubuCore.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuCsProjFile.Docs">
+      <HintPath>..\packages\FubuCsProjFile.Docs\lib\net40\FubuCsProjFile.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuDocs">
       <HintPath>..\packages\FubuDocs\lib\net40\FubuDocs.dll</HintPath>
@@ -187,8 +187,7 @@
           <IISUrl>http://localhost/fubuworld</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
