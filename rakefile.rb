@@ -28,3 +28,12 @@ end
 	sln.export_docs({:repository => 'git@github.com:DarthFubuMVC/FubuRelease.git', :host => 'src/FubuWorld', :prefix => 'website'})
 	sln.export_docs({:repository => 'git@github.com:DarthFubuMVC/darthfubumvc.github.io.git', :host => 'src/FubuWorld', :branch => 'master'})
 end
+
+desc "Cleans things up before running the docs publishing"
+task :pre_docs do
+  sh "git clean -xfd"
+  sh "ripple update"
+end
+
+Rake::Task["website:export"].enhance [:pre_docs]
+Rake::Task["docs:export"].enhance [:pre_docs]
