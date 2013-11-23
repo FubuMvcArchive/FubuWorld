@@ -88,6 +88,9 @@
     <Reference Include="FubuMVC.Diagnostics">
       <HintPath>..\packages\FubuMVC.Diagnostics\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Diagnostics.Docs">
+      <HintPath>..\packages\FubuMVC.Diagnostics.Docs\lib\net40\FubuMVC.Diagnostics.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.Docs">
       <HintPath>..\packages\FubuMVC.Docs\lib\net40\FubuMVC.Docs.dll</HintPath>
     </Reference>
