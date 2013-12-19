@@ -4,8 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F5C4733-AF68-4591-9802-21425E6877C4}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -15,10 +14,8 @@
     <AssemblyName>FubuWorld</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <UpgradeBackupLocation></UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -52,6 +49,9 @@
     <Reference Include="Bottles.Docs">
       <HintPath>..\packages\Bottles.Docs\lib\net40\Bottles.Docs.dll</HintPath>
     </Reference>
+    <Reference Include="fubu.Docs">
+      <HintPath>..\packages\fubu.Docs\lib\net40\fubu.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore\lib\FubuCore.dll</HintPath>
     </Reference>
@@ -67,20 +67,47 @@
     <Reference Include="FubuDocs.Docs">
       <HintPath>..\packages\FubuDocs.Docs\lib\net40\FubuDocs.Docs.dll</HintPath>
     </Reference>
+    <Reference Include="FubuJson.Docs">
+      <HintPath>..\packages\FubuJson.Docs\lib\net40\FubuJson.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="FubuLocalization">
       <HintPath>..\packages\FubuLocalization\lib\FubuLocalization.dll</HintPath>
     </Reference>
     <Reference Include="FubuLocalization.Docs">
       <HintPath>..\packages\FubuLocalization.Docs\lib\net40\FubuLocalization.Docs.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Ajax.Docs">
+      <HintPath>..\packages\FubuMVC.Ajax.Docs\lib\net40\FubuMVC.Ajax.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.AntiForgery.Docs">
+      <HintPath>..\packages\FubuMVC.AntiForgery.Docs\lib\net40\FubuMVC.AntiForgery.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.AssetTransforms.Docs">
+      <HintPath>..\packages\FubuMVC.AssetTransforms.Docs\lib\net40\FubuMVC.AssetTransforms.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Authentication.Docs">
+      <HintPath>..\packages\FubuMVC.Authentication.Docs\lib\net40\FubuMVC.Authentication.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.AutoComplete.Docs">
+      <HintPath>..\packages\FubuMVC.AutoComplete.Docs\lib\net40\FubuMVC.AutoComplete.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.CodeSnippets">
       <HintPath>..\packages\FubuMVC.CodeSnippets\lib\net40\FubuMVC.CodeSnippets.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.CodeSnippets.Docs">
+      <HintPath>..\packages\FubuMVC.CodeSnippets.Docs\lib\net40\FubuMVC.CodeSnippets.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.ContentExtensions.Docs">
+      <HintPath>..\packages\FubuMVC.ContentExtensions.Docs\lib\net40\FubuMVC.ContentExtensions.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core">
       <HintPath>..\packages\FubuMVC.Core\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core.Assets">
       <HintPath>..\packages\FubuMVC.Core.Assets\lib\net40\FubuMVC.Core.Assets.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core.Assets.Docs">
+      <HintPath>..\packages\FubuMVC.Core.Assets.Docs\lib\net40\FubuMVC.Core.Assets.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core.UI">
       <HintPath>..\packages\FubuMVC.Core.UI\lib\net40\FubuMVC.Core.UI.dll</HintPath>
@@ -90,6 +117,9 @@
     </Reference>
     <Reference Include="FubuMVC.Core.View">
       <HintPath>..\packages\FubuMVC.Core.View\lib\net40\FubuMVC.Core.View.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Dates.Docs">
+      <HintPath>..\packages\FubuMVC.Dates.Docs\lib\net40\FubuMVC.Dates.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Diagnostics">
       <HintPath>..\packages\FubuMVC.Diagnostics\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
@@ -103,11 +133,17 @@
     <Reference Include="FubuMVC.JQueryUI">
       <HintPath>..\packages\FubuMVC.JQueryUI\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Json.Docs">
+      <HintPath>..\packages\FubuMVC.Json.Docs\lib\net40\FubuMVC.Json.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.Localization.Docs">
       <HintPath>..\packages\FubuMVC.Localization.Docs\lib\net40\FubuMVC.Localization.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Media">
       <HintPath>..\packages\FubuMVC.Media\lib\net40\FubuMVC.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Media.Docs">
+      <HintPath>..\packages\FubuMVC.Media.Docs\lib\net40\FubuMVC.Media.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Navigation">
       <HintPath>..\packages\FubuMVC.Navigation\lib\net40\FubuMVC.Navigation.dll</HintPath>
@@ -129,6 +165,12 @@
     </Reference>
     <Reference Include="FubuMVC.ViewEngines.Docs">
       <HintPath>..\packages\FubuMVC.ViewEngines.Docs\lib\net40\FubuMVC.ViewEngines.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuObjectBlocks.Docs">
+      <HintPath>..\packages\FubuObjectBlocks.Docs\lib\net40\FubuObjectBlocks.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuPersistence.Docs">
+      <HintPath>..\packages\FubuPersistence.Docs\lib\net40\FubuPersistence.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuRake.Docs">
       <HintPath>..\packages\FubuRake.Docs\lib\net40\FubuRake.Docs.dll</HintPath>
@@ -211,8 +253,7 @@
           <IISUrl>http://localhost/fubuworld</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
