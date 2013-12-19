@@ -14,7 +14,7 @@
 
         <div class="marketing">
             <div class="row-fluid marketing-links">
-                <p class="text-center"><a>The Fubu Community</a><a>Contributing</a><a>Recent Releases</a><a href="/topics">All Projects</a></p>
+                <p class="text-center"><a href="/">Home</a><a href="/community">The Fubu Community</a><a href="contributing">Contributing</a><a href="roadmap">Recent Releases and Roadmap</a><a href="/projects">All Projects</a></p>
             </div>
 			
             <BlurbRow>
@@ -75,8 +75,6 @@
 
         </div>
 	
-	
-
 
         <commonFooter/>
     </body>
