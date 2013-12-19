@@ -82,6 +82,9 @@
     <Reference Include="FubuMVC.Core.UI">
       <HintPath>..\packages\FubuMVC.Core.UI\lib\net40\FubuMVC.Core.UI.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Core.UI.Docs">
+      <HintPath>..\packages\FubuMVC.Core.UI.Docs\lib\net40\FubuMVC.Core.UI.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.Core.View">
       <HintPath>..\packages\FubuMVC.Core.View\lib\net40\FubuMVC.Core.View.dll</HintPath>
     </Reference>
@@ -96,6 +99,9 @@
     </Reference>
     <Reference Include="FubuMVC.JQueryUI">
       <HintPath>..\packages\FubuMVC.JQueryUI\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Localization.Docs">
+      <HintPath>..\packages\FubuMVC.Localization.Docs\lib\net40\FubuMVC.Localization.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Media">
       <HintPath>..\packages\FubuMVC.Media\lib\net40\FubuMVC.Media.dll</HintPath>
@@ -114,6 +120,12 @@
     </Reference>
     <Reference Include="FubuMVC.TwitterBootstrap">
       <HintPath>..\packages\FubuMVC.TwitterBootstrap\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Validation.Docs">
+      <HintPath>..\packages\FubuMVC.Validation.Docs\lib\net40\FubuMVC.Validation.Docs.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.ViewEngines.Docs">
+      <HintPath>..\packages\FubuMVC.ViewEngines.Docs\lib\net40\FubuMVC.ViewEngines.Docs.dll</HintPath>
     </Reference>
     <Reference Include="FubuRake.Docs">
       <HintPath>..\packages\FubuRake.Docs\lib\net40\FubuRake.Docs.dll</HintPath>
@@ -134,8 +146,14 @@
     <Reference Include="ripple.Docs">
       <HintPath>..\packages\ripple.Docs\lib\net40\ripple.Docs.dll</HintPath>
     </Reference>
+    <Reference Include="Serenity.Docs">
+      <HintPath>..\packages\Serenity.Docs\lib\net40\Serenity.Docs.dll</HintPath>
+    </Reference>
     <Reference Include="Spark">
       <HintPath>..\packages\Spark\lib\NET40\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="Storyteller.Docs">
+      <HintPath>..\packages\Storyteller.Docs\lib\net40\Storyteller.Docs.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap\lib\StructureMap.dll</HintPath>
@@ -207,25 +225,12 @@
     <EmbeddedResource Include="pak-WebContent.zip" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="pak-Data.zip" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="pak-Config.zip" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Index.spark">
       <SubType>Designer</SubType>
     </None>
     <Content Include="ripple.dependencies.config" />
     <None Include="Roadmap.spark">
       <SubType>Designer</SubType>
-    </None>
-    <Content Include="web.config" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup />

@@ -19,56 +19,56 @@
 			
             <BlurbRow>
                 <Blurb title="Web Applications">
-                    Build compositional web applications with <ProjectLink name="FubuMVC"/>.  Easy Html generation with the reusable <ProjectLink name="HtmlTags"/> library.
+                    Build compositional web applications with <ProjectLink name="FubuMVC"/>.  Easily generate html in .Net with the <ProjectLink name="HtmlTags"/> library.
                 </Blurb>  
 				  
                 <Blurb title="Event Based Architecture">
-                    Some descriptive text, <ProjectLink name="FubuTransportation"/>, mention LightningQueues as well.
+                    Use <ProjectLink name="FubuTransportation"/> as a low friction service bus for your messaging infrastucture needs.
                 </Blurb>
 				  
                 <Blurb title="Foundational Tools">
-                    Link to <ProjectLink name="StructureMap" />, Link to <ProjectLink name="FubuCore" />, but with some specific topic links probably
+                    Cleanly compose your application's services and dependencies with <ProjectLink name="StructureMap" />, the original IoC/DI tool for .Net.  Use the <ProjectLink name="FubuCore" /> library for common tasks inexplicably left out of .Net's Base Class Library. 
                 </Blurb>
 				  
                 <Blurb title="Automated Testing">
-                    Link to Storyteller, FubuTestingSupport, and Serenity
+                    Write and manage executable specifications in user facing language with the <ProjectLink name="Storyteller" /> tool.  Use <ProjectLink name="Serenity" /> as the glue for hosting and exercising <ProjectLink name="FubuMVC" /> and <ProjectLink name="FubuTransportation" /> applications with <ProjectLink name="Storyteller" />.
                 </Blurb>
             </BlurbRow>
 			
             <BlurbRow>
                 <Blurb title="Build Automation">
-                    Link to <ProjectLink name="FubuRake"/>
+					The combination of <a href="http://rake.rubyforge.org">Rake</a> and our own <ProjectLink name="FubuRake" /> gem makes generic build automation and integration with many of the tools on this site a breeze.
                 </Blurb>  
 				  
                 <Blurb title="Dependency Management">
-                    Link to <ProjectLink name="ripple"/>
+					Use <ProjectLink name="ripple"/> for better dependency management with <a href="http://www.nuget.org">Nuget</a> -- especially for continuation integration scenarios.
                 </Blurb>
 				  
                 <Blurb title="Console Applications">
-                    Link to the cli support in FubuCore
+				    Build command line interfaces with the <ExternalTopicLink title="command line parsing tooling" name="fubucore/cli" /> in <ProjectLink name="FubuCore" />.
                 </Blurb>
 				  
                 <Blurb title="Windows Services">
-                    Link to BottleServiceRunner topic and mention TopShelf
+				    Quickly host <ProjectLink name="FubuMVC" /> or <ProjectLink name="FubuTransportation" /> applications in windows services using <ExternalTopicLink title="BottleServiceRunner" name="bottles/windows-services" /> from the <ProjectLink name="Bottles" /> project and the most excellent <a href="http://topshelf-project.com">TopShelf</a> library.
                 </Blurb>
             </BlurbRow>
 			  
 
             <BlurbRow>
                 <Blurb title="Documentation Generation">
-                    <ProjectLink name="FubuDocs"/>!
+                    Living technical documentation (like this site!) made easy with <ProjectLink name="FubuDocs"/>.
                 </Blurb>  
 				  
                 <Blurb title="Extensibility">
-                    Link to <ProjectLink name="Bottles"/>
+                    Build extensible packaging capabilities into your own framework or application with <ProjectLink name="Bottles"/>.
                 </Blurb>
 				  
                 <Blurb title="Validation">
-                    Link to <ProjectLink name="FubuValidation"/>, link to the topics on FubuMVC.Validation, integration w/ client side JS too
+                    Have validation your way with <ProjectLink name="FubuValidation"/>.  TODO(link to FubuMVC.Validation topic page), integration w/ client side JS too
                 </Blurb>
 				  
                 <Blurb title="Localization">
-                    Link to <ProjectLink name="FubuLocalization"/>, link to the localization integration w/ FubuMVC, extending localization
+                    Localization with flexible storage and testing friendliness with <ProjectLink name="FubuLocalization"/>.  Integrate localization into <ProjectLink name="FubuMVC" /> applications with <ExternalTopicLink title="FubuMVC.Localization" name="fubumvc.localization"/>. 
                 </Blurb>
             </BlurbRow>
 			  
