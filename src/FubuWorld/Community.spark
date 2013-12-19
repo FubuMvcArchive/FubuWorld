@@ -14,12 +14,24 @@
       </div>
     </div>
 
-    <h1>Community</h1>
+        <div class="marketing">
+            <div class="row-fluid marketing-links">
+                <p class="text-center"><a href="/">Home</a><a href="/community">The Fubu Community</a><a href="contributing">Contributing</a><a href="roadmap">Recent Releases and Roadmap</a><a href="/projects">All Projects</a></p>
+            </div>
+		</div>
     
 
     <div class="container">
 
+	<h1>Community</h1>
+	<markdown>
+	- links to Jeremy, Josh, and Corey's twitter stuff and blogs
+	- recent talks?
 
+	- user groups
+	- what else?
+
+	</markdown>
     </div>
 
     <commonFooter/>
