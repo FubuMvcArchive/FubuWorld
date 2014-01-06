@@ -5,6 +5,7 @@
 
     </head>
     <body>
+	<a id="top"></a>
         <div class="jumbotron subhead masthead">
             <div class="container">
                 <h1>Frameworks For Us, By Us.</h1>
@@ -12,9 +13,10 @@
             </div>
         </div>
 
+		
         <div class="marketing">
             <div class="row-fluid marketing-links">
-                <p class="text-center"><a href="/">Home</a><a href="/community">The Fubu Community</a><a href="contributing">Contributing</a><a href="roadmap">Recent Releases and Roadmap</a><a href="/projects">All Projects</a></p>
+                <p class="text-center"><a href="#community">The Fubu Community</a><a href="#contributing">Contributing</a><a href="#projects">All Projects</a><a href="#roadmap">Roadmap</a><a href="#releases">Releases</a></p>
             </div>
 			
             <BlurbRow>
@@ -75,6 +77,68 @@
 
         </div>
 	
+    <div class="container">
+		<a id="projects"></a>
+		<h1>All Projects</h1>
+		<AllProjectsTable />
+
+		<a href="#top">Back to top...</a>
+	</div>
+
+    <div class="container">
+		<a id="contributing"></a>
+		<h1>Contributing</h1>
+
+		git practices, how to get PR's, maybe some links to low hanging fruit issues?
+
+		link to the group
+
+		<a href="#top">Back to top...</a>
+    </div>
+
+    <div class="container">
+	<a id="community"></a>
+	<h1>Community</h1>
+	<markdown>
+	- links to Jeremy, Josh, and Corey's twitter stuff and blogs
+	- recent talks?
+
+	- user groups
+	- what else?
+
+	</markdown>
+
+
+	<a href="#top">Back to top...</a>
+    </div>
+
+
+    <div class="container">
+		<a id="roadmap"></a>
+		<h1>Release Roadmap</h1>
+
+		<i>Let's be honest, any date on this page that's in the future is probably a combination of wishful thinking, good intentions, and high fantasy.</i>
+
+		<h3>In Flight</h3>
+
+		<h3>Forthcoming</h3>
+
+		<a href="#top">Back to top...</a>
+    </div>
+
+    <div class="container">
+		<a id="releases"></a>
+		<h1>Recent Releases</h1>
+
+- FubuRake
+- fubu.exe
+- FubuMVC.Core 1.2
+- Bottles 2.0
+
+
+		<a href="#top">Back to top...</a>
+    </div>
+
 
         <commonFooter/>
     </body>
