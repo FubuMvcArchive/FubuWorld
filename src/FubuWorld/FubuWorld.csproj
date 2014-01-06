@@ -274,22 +274,10 @@
     <EmbeddedResource Include="pak-WebContent.zip" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Community.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Contributing.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="AllProjects.spark">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Index.spark">
       <SubType>Designer</SubType>
     </None>
     <Content Include="ripple.dependencies.config" />
-    <None Include="Roadmap.spark">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup />
 </Project>
