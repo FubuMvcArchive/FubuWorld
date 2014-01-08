@@ -85,59 +85,176 @@
 		<a href="#top">Back to top...</a>
 	</div>
 
-    <div class="container">
-		<a id="contributing"></a>
-		<h1>Contributing</h1>
+<div class="container">
 
-		git practices, how to get PR's, maybe some links to low hanging fruit issues?
+<markdown>
 
-		link to the group
+<br></br><br></br><br></br><br></br><br></br>
 
-		<a href="#top">Back to top...</a>
-    </div>
+<a id="contributing" />
+Contributing
+============
 
-    <div class="container">
-	<a id="community"></a>
-	<h1>Community</h1>
-	<markdown>
-	- links to Jeremy, Josh, and Corey's twitter stuff and blogs
-	- recent talks?
+git practices, how to get PR's, maybe some links to low hanging fruit issues?
 
-	- user groups
-	- what else?
+TODO(need to revise the following)
 
-	</markdown>
+[Contribution Guide](https://github.com/DarthFubuMVC/fubumvc/wiki/Contribution-Guide)
+
+[Back to top...](#top)
 
 
-	<a href="#top">Back to top...</a>
-    </div>
+<br></br><br></br><br></br><br></br><br></br>
+<a id="community"></a>
+Community
+=========
+
+- links to Jeremy, Josh, and Corey's twitter stuff and blogs
+- recent talks?
+- user groups
+- what else?
+
+[Back to top...](#top)
 
 
-    <div class="container">
-		<a id="roadmap"></a>
-		<h1>Release Roadmap</h1>
-
-		<i>Let's be honest, any date on this page that's in the future is probably a combination of wishful thinking, good intentions, and high fantasy.</i>
-
-		<h3>In Flight</h3>
-
-		<h3>Forthcoming</h3>
-
-		<a href="#top">Back to top...</a>
-    </div>
-
-    <div class="container">
-		<a id="releases"></a>
-		<h1>Recent Releases</h1>
-
-- FubuRake
-- fubu.exe
-- FubuMVC.Core 1.2
-- Bottles 2.0
 
 
-		<a href="#top">Back to top...</a>
-    </div>
+
+<br></br><br></br><br></br><br></br><br></br>
+<a id="releases"></a>
+Recent Releases
+===============
+
+[FubuRake 1.0](http://fubuworld.com/fuburake/) 
+
+* Default Conventions based on fubu project conventions
+* NUnit integration
+* Bottles, Ripple, and FubuDocs integration
+* Fubu development server integration
+* Storyteller2 integration
+
+
+
+[FubuMVC.Core 1.2](http://www.nuget.org/packages/FubuMVC.Core/)
+
+* Small bug fixes
+
+
+[FubuMVC.StructureMap 1.2](http://www.nuget.org/packages/FubuMVC.StructureMap/)
+
+* Integrates the _Settings_ pattern out of the box
+
+
+[Bottles 2.0](http://fubuworld.com/bottles)
+
+* Environment test model
+* [Multiple AppDomain support](http://fubuworld.com/bottles/multiple-appdomains/)
+* Messaging test support in distributed development
+* _Remote Links_
+
+
+[BottleServiceRunner](http://nuget.org/packages/BottleServiceRunner)
+
+* TopShelf integration with BottleServiceRunner
+
+
+[fubu beta](http://fubuworld.com/fubu)
+
+* _fubu run_ - the development web server using Katana
+* _fubu new_ - project scaffolding for brand new code trees
+* _fubu add_ - generate new projects in existing code trees
+* _fubu enhance_ - add additional infrasturcture to existing projects
+
+
+[FubuCsProjFile 1.1](http://fubuworld.com/fubucsprojfile)
+
+* .csproj file querying and manipulation
+* Templating engine
+
+[Back to top...](#top)
+
+
+
+
+
+
+<br></br><br></br><br></br><br></br><br></br>
+<a id="roadmap"></a>
+Release Roadmap
+===============
+
+_Let's be honest, any date on this page that's in the future is probably a combination of wishful thinking, good intentions, and high fantasy._
+
+<h2>In Flight</h2>
+
+* [Ripple 3.0](http://fubuworld.com/ripple)
+* [StructureMap 3.0](http://fubuworld.com/structuremap)
+* [FubuDocs 1.0](http://fubuworld.com/fubudocs)
+* [fubu 1.0](https://github.com/DarthFubuMVC/fubu/issues?state=open)
+
+<hr/>
+
+<h2 style="margin-bottom: 15px">Forthcoming</h2>
+
+
+<h4>FubuMVC and FubuMVC.Katana 1.3</h4>
+
+* [See the issue list](https://github.com/DarthFubuMVC/fubumvc/issues?milestone=6&page=1&state=open)
+* Improved OWIN support
+* Startup time improvements
+
+
+<h4>FubuCore 2.0</h4>
+
+* Streamline model binding
+* Model Binding to support FieldInfo
+* ReflectionHelper to support FieldInfo
+
+<h4>FubuTestingSupport 2.0</h4>
+
+* Support [Fixie](https://github.com/plioi/fixie) instead of NUnit
+* Decouple the Should****() methods from NUnit
+* PCL support
+* FubuTestingSupport.AutoMocking – new package for InteractionContext
+
+
+<h4>FubuMVC 2.0</h4>
+
+* [See the issue list](https://github.com/DarthFubuMVC/fubumvc/issues?milestone=5&page=1&state=open)
+* Streamline the authorization rules
+* Streamline the Conneg model
+* Some overdue API Cleanup
+* HTML template generation for SPA applications
+
+<h4>FubuMVC.Core.UI vNext</h4>
+* Consolidate all the commonly used FubuMVC UI-centric Bottle projects
+* Support auto-forms
+* Expose a very slimmed down asset pipeline
+
+
+<h4>FubuMVC.Core.Asset Replacement</h4>
+
+* Eliminate all runtime asset transformations
+* Serve all assets as static files or CDN
+* Develop a [Mimosa.js](http://mimosa.io) recipe for working with FubuMVC/Bottles projects
+
+
+<h4>FubuMVC.Media 1.0 (ReST)</h4>
+
+* Flesh out the Hypermedia support
+* Dependent upon the Conneg improvements in FubuMVC 2.0
+* Support [Bender](https://github.com/mikeobrien/Bender) for object serialization and projections
+* Add more conventions for advanced HTTP usage (headers, status code, etc.)
+
+
+[Back to top...](#top)
+
+
+
+
+</markdown>
+
+</div>
 
 
         <commonFooter/>
